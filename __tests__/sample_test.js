@@ -1,4 +1,5 @@
 /* eslint-env jest */
+
 const { ethers } = require('hardhat')
 
 describe('Greeter', function () {

@@ -37,6 +37,13 @@ coverage
 coverage.json
 typechain
 
-#Hardhat files
+# Hardhat files
 cache
 artifacts
+
+# Markdown files
+*.md
+
+# credentials
+.github
+.env*

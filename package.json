@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,25 +16,22 @@
     "react-dom": "18.0.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^12.1.4",
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.0.0",
+    "babel-jest": "^27.5.1",
     "dotenv": "^10.0.0",
-    "eslint": "^7.32.0",
-    "eslint-config-next": "12.1.4",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-promise": "^5.2.0",
+    "eslint": "^8.13.0",
+    "eslint-config-next": "^12.1.4",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.6.2",
     "hardhat": "^2.9.3",
     "hardhat-gas-reporter": "^1.0.8",
+    "jest": "^27.5.1",
     "prettier": "^2.6.2",
-    "prettier-plugin-solidity": "^1.0.0-beta.13",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.7",
     "solidity-coverage": "^0.7.20"
   }
