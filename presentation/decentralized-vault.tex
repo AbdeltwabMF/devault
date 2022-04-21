@@ -1,0 +1,235 @@
+\documentclass[aspectratio=169,usenames,dvipsnames,pdftex]{beamer}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{media9}
+\usepackage{siunitx}
+\usepackage[scale=2]{ccicons}
+\usepackage{tabularx}
+
+% Glyphs
+\usepackage{fontawesome5}
+
+\usepackage{booktabs}
+\usepackage{appendixnumberbeamer}
+\usepackage{csquotes}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{tikz}
+\usetikzlibrary[topaths]
+\usepackage{xspace}
+
+\usetikzlibrary{shapes,snakes}
+\usepackage{amsmath,amssymb}
+
+%%%%%%%%%%%%%%%%
+%% Title Page %%
+%%%%%%%%%%%%%%%%
+\title{Decentralized Vault (graduation project)}
+\subtitle{\texttt{A Blockchain-based Decentralized Cloud Storage}}
+\date {}
+\author {
+  \texttt{Supervisor:} \\
+  \texttt{\large{Dr. Abdurrahman Nasr}} \\
+  \\
+  \texttt{Participants:} \\
+  \texttt{\large{Abd El-Twab M. Fakhry}} \\
+  \texttt{\large{Hossam Ahmed Elsaied Eissa}}
+}
+\institute {
+  \centering
+  Al-Azhar University \\
+  Faculty of Engineering \\
+  Computers \& Systems Engineering Department \\\vspace{8pt}
+  \today
+}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{}}
+
+%%%%%%%%%%%%%%%%%%%
+%% Common colors %%
+%%%%%%%%%%%%%%%%%%%
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{champagne}{rgb}{0.97, 0.91, 0.81}
+\definecolor{dimgray}{rgb}{0.41, 0.41, 0.41}
+\definecolor{flax}{rgb}{0.93, 0.86, 0.51}
+%% Code colors
+\definecolor{lavendergray}{rgb}{0.77, 0.76, 0.82}
+\definecolor{lightslategray}{rgb}{0.47, 0.53, 0.6}
+\definecolor{egyptianblue}{rgb}{0.06, 0.2, 0.65}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{greencssgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{eggshell}{rgb}{0.94, 0.92, 0.84}
+\definecolor{lava}{rgb}{0.81, 0.06, 0.13}
+\definecolor{lavenderindigo}{rgb}{0.58, 0.34, 0.92}
+\definecolor{mediumred-violet}{rgb}{0.73, 0.2, 0.52}
+\definecolor{black}{rgb}{0.0, 0.0, 0.0}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\definecolor{harvardcrimson}{rgb}{0.79, 0.0, 0.09}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Syntax Highlighting %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{syntax.tex}
+
+%%%%%%%%%%%
+%% Theme %%
+%%%%%%%%%%%
+\usetheme[
+progressbar=frametitle,
+titleformat=smallcaps,
+numbering=fraction,
+block=fill,
+background=light
+]{metropolis}
+
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+\usecolortheme{seahorse}
+\setbeamercolor{background canvas}{bg=champagne}
+\setbeamercovered{transparent=5}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Global Variables %%
+%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\themename}{\textbf{\textsc{Metropolis}}\xspace}
+\newcount\mycount
+
+%%%%%%%%%%%%%%%%%%%%
+%% Document Start %%
+%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+	\maketitle
+
+	\begin{frame}{Table of contents}
+		\setbeamertemplate{section in toc}[sections numbered]
+		\tableofcontents[hideallsubsections]
+	\end{frame}
+
+  \section{{Introduction}}
+
+  \begin{frame}[t]{Background}\vspace{8pt}
+    In the age of Big Data, The Internet Of Things, Digitization of every business, Data has become the biggest valuable asset for anyone.
+    And it’s justly necessary to store it in an organized way such that it’s easily accessible and secure.
+    From this perspective, Databases are being used to store data in a structured manner.
+
+    \begin{figure}
+      \includegraphics[width=0.32\textwidth]{big-data.png}\vspace{-8pt}
+      \caption{Big Data}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}[t]{Problem Statement}%\vspace{12pt}
+    \begin{itemize}
+    \item \texttt{Lack of Security and Privacy of Data} \\
+      If your data is left unencrypted, any system administrator that has root privileges can see your content.
+      Usually, companies look forward to your data so they can sell your data to other companies, suggest advertisements based on your data contents, and use it for their analysis.
+    \item \texttt{Data Hack} \\
+      It's not recommended to store your sensitive data on a centralized server that is financially profitable to get hacked.
+    \item \texttt{Data Loss} \\
+      Of course, you can always stick with local storage, But once they are lost, stolen, or most likely encrypted by ransomware, you cannot make a recovery.
+    \end{itemize}
+    % \begin{figure}
+    %   \includegraphics[width=0.4\textwidth]{best-seller-file.png}
+    % \end{figure}
+  \end{frame}
+
+  \begin{frame}{Proposed Solution}
+    The solution we propose for such a problem is to use a distributed database system that will store data in a peer-to-peer network where is no central authority with the right to modify or censor clients' data. \\\vspace{8pt}
+
+    \textcolor{magenta}{Furthermore} \\
+    \begin{itemize}
+    \item Everything is encrypted before being uploaded. \\
+    \item After being encrypted, each object is split into pieces. \\
+    \item Object pieces are stored on different Nodes around the globe. \\
+    \item Using Blockchain and smart contract for managing data integrity and trust. \\
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Related Theory}
+    \begin{itemize}
+    \item Public and Private Key Pairs
+    \item Shamir’s secret sharing Algorithm
+    \item Hashing
+    \item Blockchain
+    \end{itemize}
+  \end{frame}
+
+  \section{Methodology}
+
+  \begin{frame}{Peer to Peer Network}
+    Instead of establishing a new peer-to-peer Network, we are using IPFS Protocol.
+    \begin{block}{What is the IPFS?}
+      \texttt{IPFS,} The Interplanetary File System is a distributed system for storing and accessing files, applications, and websites. It is a worldwide peer-to-peer file-sharing system created by Protocol Labs.  It is inspired by good ideas from BitTorrent, Git, and Kademlia.
+    \end{block}.
+  \end{frame}
+
+  \section{Development Methodology}
+
+  \begin{frame}{Software Development Approach}
+    We have chosen the Scrum methodology. It’s a popular way to implement agile, and it allows the team to deliver software regularly
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{agile-scrum.png}
+      \caption{Scrum Methodology}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{Tools and Technologies}
+    \begin{itemize}
+      \begin{multicols}{2}
+      \item Node.js
+      \item Solidity
+      \item Github Actions (CI/CD)
+      \item Mocha (Unit Test)
+      \item Rinkeby (Test Net)
+      \item Git (Version Control)
+      \item Jira (Issue Tracking)
+      \item Next.js (React.js Framework)
+      \item Hardhat (Solidity Framework)
+      \item Docker (Deployment)
+      \item ESLint (Linting code base)
+      \item Ethers (Library)
+      \item Github (Remote Repository)
+      \item Infura
+      \end{multicols}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Project Diagram}
+    \begin{figure}
+      \includegraphics[width=0.53\textwidth]{system-diagram2.png}
+      \caption{Project Diagram}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{Usecase UML Diagram}
+    \begin{figure}
+      \includegraphics[width=0.5\textwidth]{usecase-uml.png}
+      \caption{Usecase UML Diagram}
+    \end{figure}
+  \end{frame}
+
+	\section{Conclusion}
+
+	\begin{frame}{Summary}
+    \begin{quote}
+      You deserve to live a sustainable, private, self-sufficient and independent life, don't let anyone take this from you.
+    \end{quote}
+	\end{frame}
+
+	\begin{frame}[standout]
+		Thanks!
+	\end{frame}
+
+%	\appendix
+
+	% \begin{frame}[allowframebreaks]{References}
+	% 	\bibliography{biblio}
+	% 	\bibliographystyle{abbrv}
+	% \end{frame}
+
+\end{document}

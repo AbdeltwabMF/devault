@@ -1,0 +1,73 @@
+\lstdefinestyle{shared} {
+  tabsize=2,
+	showtabs=false,
+	keepspaces=true,
+  breaklines=true,
+  showspaces=false,
+  showstringspaces=false,
+	breakatwhitespace=false,
+  belowcaptionskip=1\baselineskip,
+	captionpos=b,
+  xleftmargin=\parindent,
+	basicstyle=\ttfamily\footnotesize,
+  numbers=left,
+  numbersep=6pt,
+	numberstyle=\tiny\color{lavenderindigo},
+}
+
+\lstdefinestyle{c}{
+	language=C,
+  style=shared,
+	backgroundcolor=\color{eggshell},
+	keywordstyle=\bfseries\color{egyptianblue},
+	commentstyle=\itshape\color{lava},
+  morecomment=[s][\color{forestgreen}]{/*+}{*/},
+  morecomment=[s][\color{harvardcrimson}]{/*-}{*/},
+	stringstyle=\color{greencssgreen},
+	numberstyle=\tiny\color{lavenderindigo},
+  % identifierstyle=\color{black},
+  otherkeywords={size, printf, scanf, sizeof, memset},
+  alsoletter = {\#},
+  keywords=[2]{\#if,\#endif,\#else},
+}
+
+\lstdefinestyle{cpp} {
+  language=C++,
+  style=shared,
+	backgroundcolor=\color{eggshell},
+	keywordstyle=\bfseries\color{egyptianblue},
+	commentstyle=\itshape\color{lava},
+  morecomment=[s][\color{forestgreen}]{/*+}{*/},
+  morecomment=[s][\color{harvardcrimson}]{/*-}{*/},
+	stringstyle=\color{greencssgreen},
+	numberstyle=\tiny\color{lavenderindigo},
+  % identifierstyle=\color{black},
+  otherkeywords={size, front, back, cin, cout, endl, sizeof, memset},
+  alsoletter = {\#},
+  keywords=[2]{\#if,\#endif,\#else},
+}
+
+\lstdefinelanguage{solidity} {
+  morekeywords={pragma, contract, address, uint, bool, event, public,
+    payable, constructor, function, require, for, if, emit, return,
+    true, false, memory, storage},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morecomment=[s][\color{forestgreen}]{/*+}{*/},
+  morecomment=[s][\color{harvardcrimson}]{/*-}{*/},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinestyle{solidity} {
+  style=shared,
+  language=solidity,
+	backgroundcolor=\color{eggshell},
+	keywordstyle=\bfseries\color{egyptianblue},
+	commentstyle=\itshape\color{lava},
+	stringstyle=\color{greencssgreen},
+	numberstyle=\tiny\color{lavenderindigo},
+  % identifierstyle=\color{black},
+  otherkeywords={},
+}
