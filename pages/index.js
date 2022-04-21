@@ -52,7 +52,7 @@ export default function Home () {
         <title>DeVa - Decentralized Vault</title>
         <meta
           name='description'
-          content='A Blockchain Based Decentralized Cloud Storage'
+          content='A Blockchain-based Decentralized Cloud Storage'
         />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -62,7 +62,7 @@ export default function Home () {
 
         <div>
           <p className={styles.description}>
-            A Blockchain Based Decentralized Cloud Storage System
+            A Blockchain-based Decentralized Cloud Storage System
           </p>
           <hr />
         </div>
@@ -95,7 +95,7 @@ export default function Home () {
       </main>
 
       <footer className={styles.footer}>
-        &copy; {new Date().getFullYear()} Abd El-Twab M. Fakhry
+        &copy; {new Date().getFullYear()} DeVa
       </footer>
     </div>
   )

@@ -1,5 +1,6 @@
-/* eslint-env jest */
+/* eslint-env mocha */
 
+const { expect } = require('chai')
 const { ethers } = require('hardhat')
 
 describe('Greeter', function () {
@@ -8,13 +9,13 @@ describe('Greeter', function () {
     const greeter = await Greeter.deploy('Hello, mom!')
     await greeter.deployed()
 
-    expect(await greeter.greet()).toBe('Hello, mom!')
+    expect(await greeter.greet()).to.equal('Hello, mom!')
 
     const setGreetingTx = await greeter.setGreeting('Hola, mom!')
 
     // wait until the transaction is mined
     await setGreetingTx.wait()
 
-    expect(await greeter.greet()).toBe('Hola, mom!')
+    expect(await greeter.greet()).to.equal('Hola, mom!')
   })
 })
