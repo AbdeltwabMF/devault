@@ -99,7 +99,7 @@ background=light
 %% Global Variables %%
 %%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\themename}{\textbf{\textsc{Metropolis}}\xspace}
-\newcount\mycount
+\newcommand{\Item}[1]{\texttt{\textbf{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%
 %% Document Start %%
@@ -120,51 +120,121 @@ background=light
     And it’s justly necessary to store it in an organized way such that it’s easily accessible and secure. \\[4pt]
     There are different ways to store data, such as local hard drives, flash memories, SD Cards, \textcolor{magenta}{\faCloud{}  cloud storage services}, and dare we even say DVDs? \\[10pt]
 
-    \begin{block}{What is \faCloud{} cloud storage?}
+    \onslide<2->{\begin{block}{What is \faCloud{} cloud storage?}
       Cloud storage is a way to save data securely online so that it can be accessed anytime from any location and easily shared with those who are granted permission.
-      It is usually accessed through an applications that use the API, such as cloud desktop storage, a cloud storage gateway or Web-based content management systems.
+      It is usually accessed through an applications that use the API, such as cloud desktop storage, a cloud storage gateway or Web-based content management systems.}
     \end{block}
-
   \end{frame}
 
-  \begin{frame}[t]{Problem Statement}%\vspace{12pt}
+  \begin{frame}[t]{Problem Statement}
+    \textbf{What is wrong with the current approach to store data?}
+
     \begin{itemize}
-    \item \texttt{\textcolor{red}{\faTimesCircle} Lack of Security and Privacy of Data} \\
+    \onslide<2->{\item \texttt{\textcolor{red}{\faTimesCircle} Lack of Security and Privacy of Data} \\
       If your data is left unencrypted, any system administrator that has root privileges can see your content.
-      Usually, companies look forward to your data so they can sell your data to other companies, suggest advertisements based on your data contents, and use it for their analysis.
-    \item \texttt{\textcolor{red}{\faTimesCircle} Data Hack} \\
-      It's not recommended to store your sensitive data on a centralized server that is financially profitable to get hacked.
-    \item \texttt{\textcolor{red}{\faTimesCircle} Data Loss} \\
-      Of course, you can always stick with local storage, But once they are lost, stolen, or most likely encrypted by ransomware, you cannot make a recovery.
+      Usually, companies look forward to your data so they can sell your data to other companies, suggest advertisements based on your data contents, and use it for their analysis.}
+    \onslide<3->{\item \texttt{\textcolor{red}{\faTimesCircle} Data Hack} \\
+      It's not recommended to store your sensitive data on a centralized server that is financially profitable to get hacked.}
+    \onslide<4->{\item \texttt{\textcolor{red}{\faTimesCircle} Data Loss} \\
+      Of course, you can always stick with local storage, But once they are lost, stolen, or most likely encrypted by ransomware, you cannot make a recovery.}
     \end{itemize}
   \end{frame}
 
   \begin{frame}{Proposed Solution}
-    The solution we propose for such a problem is to use:
+    The \textbf{solution} we propose for such a problem is to use:
     \begin{itemize}
-    \item \textcolor{green}{\faCheckCircle{}} A distributed database system that will store data in a peer-to-peer network where is no central authority with the right to modify or censor clients' data.
-    \item \textcolor{green}{\faCheckCircle{}} Encryption, so that everything should be encrypted before being uploaded.
-    \item \textcolor{green}{\faCheckCircle{}} Diffusion, so that each object is shredded into small chunks. And object chunks are stored on different Nodes around the globe.
-    \item \textcolor{green}{\faCheckCircle{}} A Blockchain and smart contract for managing data integrity and trust.
+    \onslide<2->{\item \textcolor{green}{\faCheckCircle{}} A distributed database system that will store data in a peer-to-peer network where is no central authority with the right to modify or censor clients' data.}
+    \onslide<3->{\item \textcolor{green}{\faCheckCircle{}} Encryption, so that everything should be encrypted before being uploaded.}
+    \onslide<4->{\item \textcolor{green}{\faCheckCircle{}} Diffusion, so that each object is shredded into small chunks. And object chunks are stored on different Nodes around the globe.}
+    \onslide<5->{\item \textcolor{green}{\faCheckCircle{}} A Blockchain and smart contract for identity without a central authority. Verification of data that cannot be faked or changed. Combine this with encryption, data ownership, and replication, and that’s what true decentralization means for applications.}
     \end{itemize}
   \end{frame}
 
-  \begin{frame}{Related Theory}
+  \section{Concepts and terminology}
+
+  \begin{frame}{What is a blockchain?}
+    A \textbf{blockchain} is a public database that is updated and shared across many computers in a network.
+
+    \textbf{Block} refers to data and state being stored in consecutive groups known as \textbf{blocks}. Think of it as a Git commit.
+
+    \textbf{Chain} refers to the fact that each block cryptographically references its parent. In other words, blocks get chained together. The data in a block cannot change without changing all subsequent blocks, which would require the consensus of the entire network. Think of it as a Git history.
+  \end{frame}
+
+  \begin{frame}{What is ethereum?}
+    \textcolor{blue}{\Item{Ethereum}} is a platform powered by blockchain technology that is best known for its native cryptocurrency, called ether, or \Item{ETH}, or simply ethereum. The distributed nature of blockchain technology is what makes the \Item{Ethereum} platform secure. \\[6pt]
+    \onslide<2->{The Ethereum platform supports ether in addition to a network of \Item{decentralized apps}, otherwise known as \Item{dApps}. Smart contracts, which originated on the Ethereum platform, are a central component of how the platform operates. Many applications use smart contracts in conjunction with blockchain technology.} \\[6pt]
+    \onslide<3->{As a cryptocurrency, Ethereum is second in market value only to Bitcoin as of January 2022.}
+  \end{frame}
+
+  \begin{frame}{ETH, EVM, and Smart contract}
     \begin{itemize}
-    \item Public and Private Key Pairs
-    \item Shamir’s secret sharing Algorithm
-    \item Hashing
-    \item Blockchain
+      \item \Item{ETH?} \\
+        The native cryptocurrency of Ethereum. Users pay ether to other users to have their code execution requests fulfilled.
+      \onslide<2->{\item \Item{EVM?} \\
+        The Ethereum Virtual Machine is the global virtual computer. Any participant can request the execution of arbitrary code on the EVM; code execution changes the state of the EVM.}
+      \onslide<3->{\item \Item{Smart contracts?} \\
+        A smart contract is code that lives on the Ethereum blockchain. Once smart contracts are deployed on the network you can't change them. Dapps can be decentralized because they are controlled by the logic written into the contract, not an individual or company. This also means you need to design your contracts very carefully.}
     \end{itemize}
+  \end{frame}
+
+  \begin{frame}{What is dapps?}
+    Decentralized applications, or dApps, are software programs that have their backend code running on a distributed computer network. This is in sharp contrast to standard apps which typically run on centralized servers. \\
+    A dapp can have frontend code and user interfaces written in any language (just like an app) to make calls to its backend. Furthermore, its frontend can get hosted on decentralized storage such as \href{https://ipfs.io/}{IPFS}. \\[8pt]
+
+    \begin{block}{What is the IPFS?}
+      \texttt{IPFS,} The Interplanetary File System is a distributed system for storing and accessing files, applications, and websites. It is a worldwide peer-to-peer file-sharing system created by Protocol Labs.
+    \end{block}
+
+    A dApp is entirely open source. By way of its open-source nature, changes to the protocol must be decided via consensus of its network users.
+  \end{frame}
+
+  \begin{frame}{Wallets, accounts, and addresses}
+    It's worth understanding the differences between some key terms.
+    \begin{itemize}
+      \item An Ethereum account is an entity that can send transactions and has a balance.
+      \item An Ethereum account has an Ethereum address, like an inbox has an email address. You can use this to send funds to an account.
+      \item A wallet is a product that lets you manage your Ethereum account. It allows you to view your account balance, send transactions, and more. \\[6pt]
+        Most wallet products will let you generate an Ethereum account. So you don't need one before you download a wallet.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Web3 vs Web2}
+    Web2 refers to the version of the internet most of us know today. An internet dominated by companies that provide services in exchange for your personal data. Web3, in the context of Ethereum, refers to decentralized apps that run on the blockchain. These are apps that allow anyone to participate without monetising their personal data.
+
+    \begin{table}
+      \caption{Practical comparisons}
+      \tiny
+      \begin{tabular}{p{0.45\linewidth} p{0.45\linewidth}}
+        \toprule
+				Web2 & Web3 \\
+				\midrule
+        Twitter can censor any account or tweet & Web3 tweets would be uncensorable because control is decentralized \\
+        Payment service may decide to not allow payments for certain types of work & Web3 payment apps require no personal data and can't prevent payments \\
+        Servers for gig-economy apps could go down and affect worker income & Web3 servers can't go down – they use Ethereum, a decentralized network of 1000s of computers as their backend
+      \end{tabular}
+    \end{table}
   \end{frame}
 
   \section{Methodology}
 
-  \begin{frame}{Peer to Peer Network}
-    Instead of establishing a new peer-to-peer Network, we are using IPFS Protocol.
-    \begin{block}{What is the IPFS?}
-      \texttt{IPFS,} The Interplanetary File System is a distributed system for storing and accessing files, applications, and websites. It is a worldwide peer-to-peer file-sharing system created by Protocol Labs.  It is inspired by good ideas from BitTorrent, Git, and Kademlia.
-    \end{block}
+  \begin{frame}{File processing}
+    Our dApp will take a file as input from a user and upload it to the IPFS by invoking an Ethereum contract. The hash of the file will be stored on Ethereum.
+
+    This is the process we’ll go through:
+    \begin{multicols}{2}
+      \begin{enumerate}[1.]
+      \item Take file as an input
+      \item Convert file to buffer
+      \item Read key used for encryption/decryption
+      \item Encrypt file using AES-256-cbc block cipher.
+      \item Split file into small chunks
+      \item Upload encrypted chunks to IPFS
+      \item Store hash of file returned by IPFS
+      \item Get user’s Metamask Ethereum address
+      \item User confirms transaction to Ethereum via Metamask
+      \item IPFS hash is written on Ethereum
+      \end{enumerate}
+    \end{multicols}
   \end{frame}
 
   \section{Development Methodology}
@@ -183,48 +253,34 @@ background=light
       \item \faNode{} Node.js
       \item Solidity (Smart contract)
       \item \faCodeBranch{} Github Actions (CI/CD)
-      \item Mocha (Unit test)
-      \item Rinkeby (Test net)
-      \item \faGitSquare{} Git (Version control)
-      \item \faJira{} Jira (Issue tracking)
       \item \faReact{} Next.js (React.js framework)
       \item Hardhat (Solidity framework)
       \item \faDocker{} Docker (Deployment)
-      \item ESLint (Linting code base)
       \item Ethers (Library)
-      \item \faGithub{} Github (Remote repository)
       \item Infura (IPFS gateway)
       \end{multicols}
     \end{itemize}
   \end{frame}
 
+  \section{Diagrams}
+
+  \begin{frame}{dApp Architecture}
+    \begin{figure}
+      \includegraphics[width=0.53\textwidth]{dapp-arch.png}
+      \caption{dApp Architecture}
+    \end{figure}
+  \end{frame}
+
   \begin{frame}{Project Diagram}
     \begin{figure}
-      \includegraphics[width=0.53\textwidth]{system-diagram.png}
+      \includegraphics[width=0.53\textwidth]{project-diagram.png}
       \caption{Project Diagram}
     \end{figure}
   \end{frame}
 
-  \begin{frame}{Usecase UML Diagram}
-    \begin{figure}
-      \includegraphics[width=0.5\textwidth]{usecase-uml.png}
-      \caption{Usecase UML Diagram}
-    \end{figure}
-  \end{frame}
-
-	\section{Conclusion}
-
-	\begin{frame}{Summary}
-    \begin{quote}
-      You deserve to live a sustainable, private, self-sufficient and independent life, don't let anyone take this from you.
-    \end{quote}
-	\end{frame}
-
 	\begin{frame}[standout]
 		Thanks!
 	\end{frame}
-
-  % \appendix
 
 	\begin{frame}[allowframebreaks]{References}
     \nocite{*}
