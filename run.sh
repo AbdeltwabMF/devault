@@ -1,18 +1,22 @@
 #!/usr/bin/bash
 
 # install long term support node.js
-source ~/.config/nvm/nvm.sh
+source "$HOME"/.config/nvm/nvm.sh
 nvm install --lts
 
 # compile the smart contracts
 npx hardhat compile
 
 # run the development server
-setsid $TERMINAL -e npm run dev &
+setsid "$TERMINAL" -e npm run dev &
 
 # run the hardhat node - local blockchain
-setsid $TERMINAL -e npx hardhat node &
+setsid "$TERMINAL" -e npx hardhat node &
 
+# open server in browser
+xdg-open http://localhost:3000/
+
+# wait till the hardhat node is ready
 sleep 10s
 
 # update the smart contract address
