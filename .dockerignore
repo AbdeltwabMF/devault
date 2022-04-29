@@ -1,0 +1,14 @@
+artifacts
+cache
+documentations
+.git
+.github
+.gitignore
+hh.md
+LICENSE
+.next
+node_modules
+out
+package-lock.json
+presentation
+README.md

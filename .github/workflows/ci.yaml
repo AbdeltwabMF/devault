@@ -33,6 +33,7 @@ jobs:
         name: Build, Lint, and Test
         run: |
           npm install
+          ./run.sh
           npm run build
           npm run lint
           npm test
