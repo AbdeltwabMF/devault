@@ -1,0 +1,67 @@
+% EXTERNAL RESOURCES:
+%   Resources should be stored in the "resources" folder, TeX or not,
+%   including but not limited to:
+%       - Images                    <- resources/images/...
+%       - Figures                   <- resources/figures/...
+%       - Tables                    <- resources/tables/...
+%       - Listings (code snippets)  <- resources/code/...
+%       - Bibliographies            <- resources/bibliography.bib
+%       - Glossaries                <- resources/{acronyms.text}
+%                                                 {glossary.tex}
+%
+%   Images **specifically** are stored relative to "resources/images"
+%
+%   Resource loading and imports are handled in the "include" folder,
+%   you should define any imports in the "include/def_imports.tex" file.
+%
+% PART PREAMBLES:
+%   When creating a part of more than 1 sub-part, e.g. not "title", it
+%   is **highly** recommended you include a preamble TeX file of the
+%   same name to handle any pre-processing, rather than in the first
+
+%   subpart - this maintains the ethos of a modular library, and will
+%   keep your project manageable!
+%
+% CREATING PARTS:
+%   Use \include{} to include a new (set of) page(s) starting with a new
+%   page right from the get-go automatically.
+%
+% CREATING SUB-PARTS:
+%   Within pages, use \input{} to include sections etc., these do not
+%   automatically add page-breaks, so any page-breaks still need to be
+%   specified manually.
+%
+%   NOTE:
+%       \input{} takes **absolute** paths, from the Overleaf root dir
+%       onward to load from, "parts/title" is "parts/title" everywhere.
+%-----------------------------------------------------------------------
+
+\documentclass[12pt]{report}
+
+\input{headers}
+
+\input{include/def_imports}
+\input{include/def_commands}
+\input{include/def_resources}
+\input{include/def_styles}
+
+\begin{document}
+	\include{parts}
+	\include{parts/title}
+	\include{parts/foreword}
+	\include{parts/foreword/abstract}
+	\include{parts/foreword/statement}
+	\include{parts/foreword/acknowledgements}
+	\include{parts/foreword/table_of_contents}
+	\include{parts/main}
+	\include{parts/main/introduction}
+	\include{parts/main/solving_p_equals_np}
+	\include{parts/main/conclusion}
+	\include{parts/afterword}
+	\include{parts/afterword/references}
+	\include{parts/afterword/appendix}
+	\include{parts/afterword/table_of_figures}
+	\include{parts/afterword/table_of_listings}
+	\include{parts/afterword/list_of_tables}
+	\include{parts/afterword/full_bibliography}
+\end{document}

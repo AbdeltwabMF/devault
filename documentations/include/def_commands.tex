@@ -1,0 +1,19 @@
+% Removes the background for the specified page.
+\newcommand\nobgpls{\backgroundsetup{contents={}}}
+
+% Monospaced text within regular text for inline code
+\newcommand{\code}{\texttt}
+
+% Declares a figure with the given text underneath
+%
+% PARAMETERS:
+%   #1  - figure label for referencing with \ref
+%   #2  - figure content
+%   #3  - figure caption
+\newcommand{\namedfigure}[4]{
+    \begin{figure}[#1]
+        \label{#2}
+        {\centering #3}
+        \caption{#4}
+    \end{figure}
+}
