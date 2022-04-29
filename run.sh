@@ -28,4 +28,5 @@ sed -i "s/^const greeterAddress = .*$/const greeterAddress = \
 
 # test the smart contract
 npx hardhat test
+npm run lint
 npm test
