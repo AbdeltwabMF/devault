@@ -54,6 +54,7 @@ clean:
 	rm -rf $(shell find . -type f -name "*.alg")
 	rm -rf $(shell find . -type f -name "*.glg")
 	rm -rf $(shell find . -type f -name "*.gls")
+	rm -rf $(shell find . -type f -name "*#*")
 	@printf "%b" "$(PURPLE)Cleaning Done.$(NC)\n"
 
 .PHONY : all clean

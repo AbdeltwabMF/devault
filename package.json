@@ -1,7 +1,7 @@
 {
   "name": "deva",
   "description": "DeVa is a blockchain based cloud solution allow users to securely store and share data.",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
