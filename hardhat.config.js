@@ -1,8 +1,10 @@
 require('dotenv').config()
 
-require('@nomiclabs/hardhat-etherscan')
+require('@nomiclabs/hardhat-web3')
+require('@nomiclabs/hardhat-ethers')
 require('@nomiclabs/hardhat-waffle')
-require('hardhat-gas-reporter')
+require('@nomiclabs/hardhat-etherscan')
+require('@nomiclabs/hardhat-solhint')
 require('solidity-coverage')
 
 /**
@@ -14,7 +16,7 @@ module.exports = {
     artifacts: './artifacts',
     sources: './contracts',
     cache: './cache',
-    tests: './__test__'
+    tests: './__tests__'
   },
   networks: {
     ropsten: {

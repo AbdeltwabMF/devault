@@ -1,0 +1,285 @@
+*, *::before, *::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.app {
+  width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  background-color: black;
+  margin-bottom: 20px;
+}
+
+nav ul li {
+  padding: 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.current {
+  border-bottom: 4px solid white;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+.navbar.navbar-dark{
+  width:100%;
+  min-height: 60px;
+  margin:0px auto;
+  left:0;
+  right:0;
+  padding:0;
+}
+
+.navbar.center{
+  display: flex!important;
+  justify-content:space-around;
+  flex-basis: content;
+}
+
+.button {
+  background-color: #000000;
+  align-items: center;
+  height: 40px;
+  color: white;
+  padding: 5px 10px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  background-color: purple;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  background-color: #000000;
+}
+
+.hero{
+  color:rgb(255, 255, 255);
+  background: url("../Images/Homebg.png") center no-repeat;
+  background-size:cover;
+  height: 100vh;
+  width: 100vw;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:left;
+  grid-area:hero;
+}
+
+.hero > h1{
+  margin-left: 10px;
+  margin:1;
+  font-size:80px;
+  text-shadow: 0px 2px 6px rgb(0, 0, 0);
+}
+
+.hero > h5{
+  margin-left: 15px;
+  margin:1;
+  font-size:30px;
+  text-shadow: 0px 0px 4px rgb(0, 0, 0);
+}
+
+.arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.container-row{
+  display: flex;
+}
+
+.container-row .hero-image{
+  flex: 1;
+}
+
+.container-row .A3L_Slogan {
+  flex: 5;
+}
+
+
+ul {
+  list-style-type: square;
+  margin: auto;
+  padding: 0;
+  /* overflow: hidden; */
+  /* background-color: #333; */
+}
+
+li {
+  color: white;
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
+.card {
+  /* background-color: yellow; */
+  background: linear-gradient(to left, rgb(255, 252, 0) , rgb(255, 120, 0) , rgb(0, 0, 0));
+}
+
+.table-sm {
+  background-color: rgb(0, 0, 0);
+
+}
+
+.card2 {
+  background-color: rgb(0, 0, 0);
+}
+
+.buttonHome {
+  background-color: #140029;
+  width: 170px;
+  height: 45px;
+  color: rgb(255, 255, 255);
+  padding: 5px 10px;
+  text-align: left;
+  /* text-decoration: none; */
+  display: inline-block;
+  font-size: 23px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+.hero2{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:left;
+}
+
+.hero2 > h1{
+  margin-left: 200px;
+  margin:1;
+  font-size:90px;
+  text-shadow: 0px 4px 10px rgb(0, 0, 0);
+}
+
+.hero2 > h5{
+  margin-left: 30px;
+  margin:1;
+  font-size:40px;
+  text-shadow: 0px 3px 8px rgb(0, 0, 0);
+}
+
+.hero3{
+  color:rgb(255, 255, 255);
+  background: url("../Images/Homebg2.png") center no-repeat;
+  background-size:cover;
+  height: 100vh;
+  width: 100vw;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:left;
+  grid-area:hero;
+}
+
+.intro > h1{
+  margin-top: 200px;
+  margin-left: 50%;
+  margin:1;
+  font-size:60px;
+  text-shadow: 0px 2px 6px rgb(0, 0, 0);
+}
+
+.intro > h5{
+  margin-left: 52%;
+  margin:1;
+  font-size:25px;
+  text-shadow: 0px 0px 4px rgb(0, 0, 0);
+}
+
+.hero4{
+  color:rgb(255, 255, 255);
+  background: url("../assets/images/Homebg.png") center no-repeat;
+  background-size:cover;
+  height: 100vh;
+  width: 100vw;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:left;
+  grid-area:hero;
+}
+
+.objective > h1{
+  margin-left: 5%;
+  margin-top: 200px;
+  margin-right: 50%;
+  margin:1;
+  font-size:60px;
+  text-shadow: 0px 2px 6px rgb(0, 0, 0);
+}
+
+.objective > h5{
+  margin-left: 7%;
+  margin-right: 40%;
+  margin:1;
+  font-size:25px;
+  text-shadow: 0px 0px 4px rgb(0, 0, 0);
+}
+
+.footerc {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 3px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
