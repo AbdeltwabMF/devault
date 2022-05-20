@@ -1,9 +1,9 @@
 import Head from 'next/head'
 
-import Footer from '../components/Footer/Footer'
-import NavBar from '../components/NavBar/NavBar'
+import Footer from '../Footer/Footer'
+import NavBar from '../NavBar/NavBar'
 
-export default function mainLayout ({ children }) {
+export default function Layout ({ children }) {
   return (
     <>
       <Head>
