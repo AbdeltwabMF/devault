@@ -14,47 +14,37 @@ contract Storage
   struct File {
     string name;
     string description;
-    uint size;
+    string size;
     string mimeType;
     string hash;
-    uint uploadTime;
-    string key;
+    uint256 uploadTime;
   }
 
   event FileStored(
     string name,
     string description,
-    uint size,
+    string size,
     string mimeType,
     string hash,
-    uint uploadTime,
-    string key
+    uint256 uploadTime
   );
 
   function storeFile(
     string memory _name,
     string memory _description,
-    uint _size,
+    string memory _size,
     string memory _mimeType,
-    string memory _hash,
-    string memory _key
+    string memory _hash
   )
     public
   {
-    require(bytes(_name).length > 0, "File name cannot be empty!");
-    require(_size > 0, "File size cannot be zero!");
-    require(bytes(_mimeType).length > 0, "File mime type cannot be empty!");
-    require(bytes(_hash).length > 0, "File hash cannot be empty!");
-    require(bytes(_key).length > 0, "File key cannot be empty!");
-
     File memory newFile = File(
       _name,
       _description,
       _size,
       _mimeType,
       _hash,
-      block.timestamp,
-      _key
+      block.timestamp
     );
 
     _ownerFiles[msg.sender].push(newFile);
@@ -65,8 +55,7 @@ contract Storage
       _size,
       _mimeType,
       _hash,
-      block.timestamp,
-      _key
+      block.timestamp
     );
   }
 
@@ -84,11 +73,10 @@ contract Storage
     returns(
       string memory name,
       string memory description,
-      uint size,
+      string memory size,
       string memory mimeType,
       string memory hash,
-      uint uploadTime,
-      string memory key
+      uint uploadTime
     )
   {
     // Zero-indexed
@@ -102,8 +90,7 @@ contract Storage
       file.size,
       file.mimeType,
       file.hash,
-      file.uploadTime,
-      file.key
+      file.uploadTime
     );
   }
 }

@@ -5,7 +5,7 @@ import { loadFull } from 'tsparticles'
 import particlesConfig from '../config/particles.config'
 import styles from '../styles/404.module.css'
 
-const _404_ = () => {
+const Error404 = () => {
   const particlesInit = async (main) => {
     console.log(main)
 
@@ -28,10 +28,10 @@ const _404_ = () => {
       />
       <div className={`${styles.container}`}>
         <h1 className={`${styles.title}`}>404</h1>
-        <p className={`${styles.description}`}>The server can not find the requested page.</p>
+        <p className={`${styles.message}`}>The server can not find the requested page.</p>
       </div>
     </>
   )
 }
 
-export default _404_
+export default Error404
