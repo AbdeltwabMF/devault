@@ -1,25 +1,45 @@
-import styles from './Footer.module.css'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faTelegram, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { Vim, ReactJs, Artixlinux } from '@icons-pack/react-simple-icons/'
+import styles from './Footer.module.css'
+import Link from 'next/link'
 
 export default function Footer () {
   return (
-    <footer>
-      <Container>
-        <Row>
-          <Col md={6} xs={12}>
-            <Row>
-              &copy; {new Date().getFullYear()} Decentralized Vault
-            </Row>
-            <Row>
-              <FontAwesomeIcon icon={faFacebook} size='lg' fixedWidth spin className={styles.facebook} />
-              your privacy is important to us
-            </Row>
+    <footer className={styles.main}>
+      <Container className={styles.container}>
+        <Row className={styles.social}>
+          <Col xs={12} md={6} lg={3} className={styles.github}>
+            <Link href='https://github.com/abdeltwabmf/decentralized-vault'>
+              <a>
+                <FontAwesomeIcon icon={faGithub} size='xl' fixedWidth className={styles.icon} />
+                <span className={styles.label}>View Code</span>
+              </a>
+            </Link>
           </Col>
-          <Col md={6} xs={12}>contact</Col>
+          <Col xs={12} md={6} lg={3} className={styles.telegram}>
+            <Link href='https://t.me/+OeH3hX00HqxmZDc8'>
+              <a>
+                <FontAwesomeIcon icon={faTelegram} size='xl' fixedWidth className={styles.icon} />
+                <span className={styles.label}>Join Telegram</span>
+              </a>
+            </Link>
+          </Col>
+        </Row>
+
+        <Row className={styles.acknowledgements}>
+          <div>
+            Built with <Vim color='#0D6EFD' className={styles.reactSimpleIcon} /> &amp;
+            <ReactJs color='#0D6EFD' className={styles.reactSimpleIcon} />on
+            <Artixlinux color='#0D6EFD' className={styles.reactSimpleIcon} />
+          </div>
+        </Row>
+
+        <Row className={styles.copy}>
+          &copy; Copyright {new Date().getFullYear()} Decentralized Vault
         </Row>
       </Container>
     </footer>

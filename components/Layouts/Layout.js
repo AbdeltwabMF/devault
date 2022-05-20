@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Footer from '../Footer/Footer'
 import NavBar from '../NavBar/NavBar'
 
+import styles from './Layout.module.css'
+
 export default function Layout ({ children }) {
   return (
     <>
@@ -20,7 +22,7 @@ export default function Layout ({ children }) {
           <NavBar />
         </header>
 
-        <main>
+        <main className={styles.main}>
           {children}
         </main>
 
