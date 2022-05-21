@@ -13,7 +13,11 @@ import { useState, useEffect } from 'react'
 import Storage from '../artifacts/contracts/storage.sol/Storage.json'
 import Web3 from 'web3'
 import FilesTable from '../components/Tables/FilesTable'
+import ReadData from '../components/ReadData/ReadData'
 import styles from '../styles/Vault.module.css'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function Vault () {
   const [account, setAccount] = useState('')
@@ -25,7 +29,7 @@ export default function Vault () {
   const [isLoading, setIsLoading] = useState(false)
 
   /**
-  * @description This is for connecting to metamask.
+  * @description Connecting to metamask.
   */
   const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
 
@@ -39,7 +43,7 @@ export default function Vault () {
   const smartContract = new web3.eth.Contract(Storage.abi, smartContractAddress)
 
   /**
-  * @description This function is for getting the Owner Files Count.
+  * @description Getting the Owner Files Count.
   */
   const getFilesCount = async () => {
     const filesCount = await smartContract.methods.getOwnerFilesCount().call()
@@ -49,17 +53,18 @@ export default function Vault () {
   getFilesCount()
 
   /**
-  * @description This function is for reading contents of files (or raw data buffers) stored on the user's computer.
+  * @description Reading contents of files (or raw data buffers) stored on the user's computer.
   */
   const handleFileReader = (e) => {
+    // Read only the first file
     const file = e.target.files[0]
     const reader = new window.FileReader()
     reader.readAsArrayBuffer(file)
 
-    reader.onload = (e) => {
+    reader.onloadend = (e) => {
       // The file's text will be printed here
       console.log(e.target.result)
-      setBuffer(Buffer(reader.result))
+      setBuffer(Buffer.from(reader.result))
       setType(file.type)
       setName(file.name)
     }
@@ -67,7 +72,17 @@ export default function Vault () {
 
   return (
     <>
-      <FilesTable files={files} />
+      <Container className={styles.container}>
+        <Row>
+          <Col xs={12} className={styles.readData}>
+            <ReadData choosenFile={handleFileReader} />
+            <hr className={styles.devider} />
+          </Col>
+          <Col xs={12}>
+            <FilesTable files={files} />
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

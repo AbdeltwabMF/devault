@@ -1,0 +1,12 @@
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+}
+
+.button {
+	margin-left: 1.2em;
+	padding-left: 2em;
+	padding-right: 2em;
+}

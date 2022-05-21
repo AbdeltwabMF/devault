@@ -1,8 +1,9 @@
-import Table from 'react-bootstrap/Table'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Link from 'next/link'
 import styles from './FilesTable.module.css'
+import Table from 'react-bootstrap/Table'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Link from 'next/link'
+import Container from 'react-bootstrap/Container'
 
 export default function FilesTable ({ files }) {
   /** @description Formats the bytes in terms of KB, MB, GB, etc.
@@ -50,28 +51,23 @@ export default function FilesTable ({ files }) {
 
   return (
     <>
-      <Container className={styles.container}>
-        <h1 className={styles.header} />
-        <Row>
-          <Table striped bordered hover className={styles.table}>
-            <thead className={styles.tableHead} key='fs'>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Size</th>
-                <th>IPFS Hash</th>
-              </tr>
-            </thead>
-            {
+      <Table striped bordered hover className={styles.table}>
+        <thead className={styles.tableHead} key='fs'>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>IPFS Hash</th>
+          </tr>
+        </thead>
+        {
               files.map((file, index) => (
                 <tbody className={styles.tableBody} key={index}>
                   <tr>
                     <td>{index + 1}</td>
                     <td className={styles.tableDescriptor}><Link href='#d'><a className={styles.anchor}>{file.name}</a></Link></td>
-                    <td>{file.description}</td>
                     <td>{timeConvertUnixStamp(file.date)}</td>
                     <td>{file.type}</td>
                     <td>{formatBytes(file.size)}</td>
@@ -80,9 +76,7 @@ export default function FilesTable ({ files }) {
                 </tbody>
               ))
             }
-          </Table>
-        </Row>
-      </Container>
+      </Table>
     </>
   )
 }

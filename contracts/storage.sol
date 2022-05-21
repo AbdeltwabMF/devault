@@ -10,7 +10,6 @@ contract Storage
 
   struct File {
     string name;
-    string description;
     uint256 size;
     string mimeType;
     string hash;
@@ -19,7 +18,6 @@ contract Storage
 
   event FileStored(
     string name,
-    string description,
     uint256 size,
     string mimeType,
     string hash,
@@ -28,7 +26,6 @@ contract Storage
 
   function storeFile(
     string memory _name,
-    string memory _description,
     uint256 _size,
     string memory _mimeType,
     string memory _hash
@@ -37,7 +34,6 @@ contract Storage
   {
     File memory newFile = File(
       _name,
-      _description,
       _size,
       _mimeType,
       _hash,
@@ -48,7 +44,6 @@ contract Storage
 
     emit FileStored(
       _name,
-      _description,
       _size,
       _mimeType,
       _hash,
@@ -69,7 +64,6 @@ contract Storage
     view
     returns(
       string memory name,
-      string memory description,
       uint256 size,
       string memory mimeType,
       string memory hash,
@@ -83,7 +77,6 @@ contract Storage
 
     return (
       file.name,
-      file.description,
       file.size,
       file.mimeType,
       file.hash,
