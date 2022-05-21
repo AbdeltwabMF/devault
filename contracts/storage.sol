@@ -1,11 +1,8 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "hardhat/console.sol";
-
 contract Storage
 {
-
   mapping(address => File[]) private _ownerFiles;
 
   constructor()
@@ -14,7 +11,7 @@ contract Storage
   struct File {
     string name;
     string description;
-    string size;
+    uint256 size;
     string mimeType;
     string hash;
     uint256 uploadTime;
@@ -23,7 +20,7 @@ contract Storage
   event FileStored(
     string name,
     string description,
-    string size,
+    uint256 size,
     string mimeType,
     string hash,
     uint256 uploadTime
@@ -32,7 +29,7 @@ contract Storage
   function storeFile(
     string memory _name,
     string memory _description,
-    string memory _size,
+    uint256 _size,
     string memory _mimeType,
     string memory _hash
   )
@@ -73,10 +70,10 @@ contract Storage
     returns(
       string memory name,
       string memory description,
-      string memory size,
+      uint256 size,
       string memory mimeType,
       string memory hash,
-      uint uploadTime
+      uint256 uploadTime
     )
   {
     // Zero-indexed

@@ -1,0 +1,20 @@
+.header {
+	padding-top: 0.4em;
+	text-align: center;
+}
+
+.table {
+	text-align: center;
+}
+
+.anchor {
+	padding: 0.5em;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.tableDescriptor {
+	padding: 0 !important;
+}
