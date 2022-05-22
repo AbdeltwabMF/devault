@@ -67,7 +67,7 @@ export default function FilesTable ({ files }) {
                 <tbody className={styles.tableBody} key={index}>
                   <tr>
                     <td>{index + 1}</td>
-                    <td className={styles.tableDescriptor}><Link href='#d'><a className={styles.anchor}>{file.name}</a></Link></td>
+                    <td className={styles.tableDescriptor}><Link href={'https://ipfs.infura.io/ipfs/' + file.hash}><a className={styles.anchor}>{file.name}</a></Link></td>
                     <td>{timeConvertUnixStamp(file.date)}</td>
                     <td>{file.type}</td>
                     <td>{formatBytes(file.size)}</td>
