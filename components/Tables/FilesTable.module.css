@@ -8,13 +8,31 @@
 }
 
 .anchor {
-	padding: 0.5em;
 	display: block;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 600;
+	padding: 0.5em;
 	text-decoration: none;
 }
 
-.tableDescriptor {
+.index {
+	width: 0.5em;
+}
+
+.name {
 	padding: 0 !important;
+	width: 10em;
+}
+
+.date {
+	width: 10em;
+}
+
+.type,
+.size {
+	width: 7em;
+}
+
+.hash {
+	width: 10em;
 }

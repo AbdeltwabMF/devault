@@ -66,12 +66,12 @@ export default function FilesTable ({ files }) {
               files.map((file, index) => (
                 <tbody className={styles.tableBody} key={index}>
                   <tr>
-                    <td>{index + 1}</td>
-                    <td className={styles.tableDescriptor}><Link href={'https://ipfs.infura.io/ipfs/' + file.hash}><a className={styles.anchor}>{file.name}</a></Link></td>
-                    <td>{timeConvertUnixStamp(file.date)}</td>
-                    <td>{file.type}</td>
-                    <td>{formatBytes(file.size)}</td>
-                    <td>{file.hash}</td>
+                    <td className={styles.index}>{index + 1}</td>
+                    <td className={styles.name}><Link href={'https://ipfs.infura.io/ipfs/' + file.hash}><a className={styles.anchor}>{file.name}</a></Link></td>
+                    <td className={styles.date}>{timeConvertUnixStamp(file.uploadTime)}</td>
+                    <td className={styles.type}>{file.mimeType}</td>
+                    <td className={styles.size}>{formatBytes(file.size)}</td>
+                    <td className={styles.hash}>{file.hash}</td>
                   </tr>
                 </tbody>
               ))

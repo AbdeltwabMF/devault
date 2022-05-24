@@ -9,7 +9,7 @@
   * @license MIT
   */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Storage from '../artifacts/contracts/storage.sol/Storage.json'
 import Web3 from 'web3'
 import FilesTable from '../components/Tables/FilesTable'
@@ -26,8 +26,9 @@ export default function Vault () {
   const [account, setAccount] = useState('')
   const [filesCount, setFilesCount] = useState(0)
   const [files, setFiles] = useState([])
-  const [buffer, setBuffer] = useState('')
+  const [buffer, setBuffer] = useState(null)
   const [type, setType] = useState('')
+  const [CID, setCID] = useState('')
   const [name, setName] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -60,80 +61,74 @@ export default function Vault () {
     * @description Getting the Owner Files Count.
     */
   const getFilesCount = async () => {
-    const filesCount = await smartContract.methods.getOwnerFilesCount().call()
-    console.log(filesCount)
-    setFilesCount(filesCount)
-  }
-
-  const fetchFiles = async () => {
-    const retrievedFiles = []
-    for (let i = 0; i < filesCount; i++) {
-      const file = await smartContract.methods.getOwnerFile(i).call()
-      retrievedFiles.push(file)
+    try {
+      const filesCount = await smartContract.methods.getFilesCount().call()
+      console.log(filesCount)
+      setFilesCount(filesCount)
+    } catch (error) {
+      console.log(error)
     }
-    console.log(retrievedFiles)
-    setFiles(retrievedFiles)
   }
 
-  try {
-    const getFiles = async () => {
+  /**
+    * @description Getting the Owner actual Files.
+    */
+  const fetchFiles = async () => {
+    try {
+      const files = await smartContract.methods.getAllFiles().call()
+      console.log(files)
+      setFiles(files)
+    } catch (error) {
+      console.log('Error: ', error)
+    }
+  }
+
+  useEffect(() => {
+    const componentDidMount = async () => {
       await getFilesCount()
       await fetchFiles()
     }
-    // Call start
-    (async () => {
-      console.log('before getFiles')
-      await getFiles()
-      console.log('after getFiles')
-    })()
-  } catch (error) {
-    console.log('Connection Error: ', error)
-  }
+    componentDidMount()
+  }, [])
 
   /**
   * @description Reading contents of files (or raw data buffers) stored on the user's computer.
   */
   const captureFile = async (e) => {
-    e.preventDefault()
-    setBuffer('')
-    setType('')
-    setName('')
-
-    // Read only the first file
     try {
       const file = e.target.files[0]
       const reader = new window.FileReader()
       reader.readAsArrayBuffer(file)
-      reader.onloadend = async (e) => {
-        console.log(e.target.result)
-        setBuffer('File Buffer: ', Buffer.from(reader.result))
+
+      reader.onloadend = () => {
+        console.log('reader.onloadend: ', Buffer.from(reader.result))
+        setBuffer(Buffer.from(reader.result))
         setType(file.type)
         setName(file.name)
       }
     } catch (error) {
       console.log(error)
     }
+    e.preventDefault()
   }
 
   const uploadFile = async (e) => {
     e.preventDefault()
-    const result = await ipfs.add(buffer, (err, res) => {
-      if (err) {
-        console.log('Error IPFS: ', err)
-      }
-    })
-    console.log('IPFS respond: ', result)
-    setIsLoading(true)
+    try {
+      console.log('uploading file...')
+      const result = await ipfs.add(buffer)
+      console.info('IPFS respond: ', result)
 
-    if (type === '') { setType('none') }
-    await smartContract.methods.storeFile(name, result.size, type, result.path).send({ from: account }).on('TransactionHash', (hash) => {
-      console.log(hash)
-      setIsLoading(false)
-      setBuffer('')
-      setType('')
-      setName('')
-      // window.location.reload()
-    })
+      setIsLoading(true)
+      if (type === '') { setType('none') }
+
+      await smartContract.methods.storeFile(name, result.size, type, result.path).send({ from: account }).on('TransactionHash', (hash) => {
+        console.log(hash)
+        setIsLoading(false)
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -142,6 +137,7 @@ export default function Vault () {
         <Row>
           <Col xs={12} className={styles.readData}>
             <ReadData captureFile={captureFile} uploadFile={uploadFile} />
+            <hr className={styles.devider} />
           </Col>
           <Col xs={12}>
             <FilesTable files={files} />

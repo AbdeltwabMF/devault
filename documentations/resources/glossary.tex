@@ -1,19 +1,247 @@
-\newglossaryentry{latex} {
-	name=latex,
-	description={Is a markup language specially suited for scientific documents}
+% \newglossaryentry{latex} {
+% 	name=latex,
+% 	description={Is a markup language specially suited for scientific documents}
+% }
+
+% \newglossaryentry{maths} {
+% 	name=mathematics,
+% 	description={Mathematics is what mathematicians do}
+% }
+
+% \newglossaryentry{formula} {
+% 	name=formula,
+% 	description={A mathematical expression}
+% }
+
+
+% Blockchain Infurastructure
+\newglossaryentry{blockchain} {
+	name=blockchain,
+	description={A blockchain is a digital ledger that records transactions in a sequence of blocks}
 }
 
-\newglossaryentry{maths} {
-	name=mathematics,
-	description={Mathematics is what mathematicians do}
+\newglossaryentry{block} {
+	name=block,
+	description={A block is a set of transactions that are recorded in a blockchain network}
 }
 
-\newglossaryentry{formula} {
-	name=formula,
-	description={A mathematical expression}
+\newglossaryentry{chain} {
+	name=chain,
+	description={A chain is a sequence of blocks}
 }
 
-\newglossaryentry{Infura.io} {
-	name=Infura.io,
-	description={Infura is a blockchain as a service platform and provides us a testnet and mainnet nodes of Ethereum, IPFS, etc.}
+\newglossaryentry{genesis} {
+	name=genesis,
+	description={The first block in a blockchain network}
+}
+
+\newglossaryentry{consensus} {
+	name=consensus,
+	description={The process used by a group of peers, or nodes, on a blockchain network to agree on the validity of transactions submitted to the network. Dominant consensus mechanisms are Proof of Work (PoW) and Proof of Stake (PoS).}
+}
+
+\newglossaryentry{proof-of-work} {
+	name=proof-of-work,
+	description={Proof-of-work is a consensus mechanism that requires a miner to find a hash that is difficult to find by chance}
+}
+
+\newglossaryentry{mining} {
+	name=mining,
+	description={In a public blockchain, the process of verifying a transaction and writing it to the blockchain for which the successful miner is rewarded in the cryptocurrency of the blockchain.}
+}
+
+\newglossaryentry{nonce} {
+	name=nonce,
+	description={A nonce is an abbreviation for ``number only used once,'' which, in the context of cryptocurrency mining, is a number added to a hashed—or encrypted—block in a blockchain that, when rehashed, meets the difficulty level restrictions. The nonce is the number that blockchain miners are solving for. When the solution is found, the blockchain miners are offered cryptocurrency in exchange.}
+}
+
+\newglossaryentry{mainnet} {
+	name=main net,
+	description={The production version of a blockchain.}
+}
+
+\newglossaryentry{testnet} {
+	name=test net,
+	description={A staging blockchain environment for testing application before being put into production (or onto the mainnet)}
+}
+
+\newglossaryentry{node} {
+	name=node,
+	description={A computer which holds a copy of the blockchain ledger.}
+}
+
+\newglossaryentry{off-chain} {
+	name=off-chain,
+	description={Data stored external to the blockchain.}
+}
+
+\newglossaryentry{on-chain} {
+	name=on-chain,
+	description={Data stored within the blockchain.}
+}
+
+
+% Attacks
+\newglossaryentry{51\% attack} {
+	name=51\% attack,
+	description={When more than 50\% of the miners in a blockchain launch an attack on the rest of the nodes/users to attempt to steal assets or double spend.}
+}
+
+
+% Cryptography and Security
+\newglossaryentry{trustless} {
+	name=trustless,
+	description={The elimination of trust from a transaction. Blockchain is called a trustless system because the two entities performing a transaction do not need to trust one another. The properties of blockchain - digital signatures, cryptography, etc. - provide the trust.}
+}
+
+\newglossaryentry{immutable} {
+	name=immutable,
+	description={The property of being unchangeable. Once a transaction has been added to a block and written to a blockchain, it cannot be changed and therefore is immutable.}
+}
+
+\newglossaryentry{cryptography} {
+	name=cryptography,
+	description={The science of securing communication using individualized codes so only the participating parties can read the messages.}
+}
+
+\newglossaryentry{hash} {
+	name=hash,
+	description={A cryptographic hash function is a function that takes a message as input and produces a fixed-length output called a hash}
+}
+
+\newglossaryentry{digital signature} {
+	name=digital signature,
+	description={A mathematical scheme for verifying digital messages or documents satisfy two requirements - they have authenticity (from a known sender) and integrity (were not altered in transit.}
+}
+
+\newglossaryentry{wallet} {
+	name=wallet,
+	description={A digital file that holds coins and tokens held by the owner. The wallet also has a blockchain address to which transactions can be sent.}
+}
+
+\newglossaryentry{seed phrase} {
+	name=seed phrase,
+	description={A random sequence of words which can be used to restore a lost wallet.}
+}
+
+\newglossaryentry{public \& private keys} {
+	name=public key,
+	description={A public key is a unique string of characters derived from a private key which is used to encrypt a message or data. The private key is used to decrypt the message or data.}
+}
+
+
+% Bitcoin
+\newglossaryentry{cryptocurrency} {
+	name=cryptocurrency,
+	description={Digital money which uses encryption and consensus algorithms to regulate the generation of coins/tokens and transfer of funds. Cryptocurrencies are generally decentralized, operating independently of central authorities.}
+}
+
+\newglossaryentry{bitcoin} {
+	name=bitcoin,
+	description={A cryptocurrency that uses a blockchain network to regulate the generation of coins/tokens and transfer of funds. Bitcoin is the most widely used cryptocurrency and is the most widely traded currency in the world.}
+}
+
+\newglossaryentry{satoshi nakamoto} {
+	name=satoshi nakamoto,
+	description={The name used by the person or entity who developed bitcoin, authored the bitcoin white paper, and created and deployed bitcoin's original reference implementation. As part of the implementation, Nakamoto also devised the first blockchain database.}
+}
+
+
+% Ethereum
+\newglossaryentry{ethereum} {
+	name=ethereum,
+	description={A public blockchain that supports smart contracts.}
+}
+
+\newglossaryentry{smart contract} {
+	name=smart contract,
+	description={Self-executing computer code deployed on a blockchain to perform a function, often, but not always, the exchange of value between a buyer and a seller.}
+}
+
+\newglossaryentry{solidity} {
+	name=solidity,
+	description={Solidity is a programming language for smart contracts}
+}
+
+\newglossaryentry{bytecode} {
+	name=bytecode,
+	description={Bytecode is the compiled code of a smart contract}
+}
+
+\newglossaryentry{transaction} {
+	name=transaction,
+	description={A transaction is a set of instructions that are sent to a blockchain network to be processed by the network}
+}
+
+\newglossaryentry{gas} {
+	name=gas,
+	description={A fee charged to write a transaction to a public blockchain. The gas is used to reward the miner which validates the transaction.}
+}
+
+\newglossaryentry{dapp} {
+	name=dapp,
+	description={Software which does not rely on a central system or database but can share information amongst its users via a decentralized database, such as a blockchain.}
+}
+
+% Miscellaneous
+\newglossaryentry{open source} {
+	name=open source,
+	description={Software products that include permission to use, enhance, reuse or modify the source code, design documents, or content of the product.}
+}
+
+\newglossaryentry{peer-to-peer} {
+	name=peer-to-peer,
+	description={A direct connection between two participants in a system.}
+}
+
+\newglossaryentry{decentralized} {
+	name=decentralization,
+	description={A system with no single point where the decision is made. Every node makes a decision for its own behavior and the resulting system behavior is the aggregate response.}
+}
+
+\newglossaryentry{centralized} {
+	name=centralized,
+	description={A system or process for which there is a singular (i.e., central) source of authority, control and/or truth.}
+}
+
+
+% IPFS
+\newglossaryentry{ipfs} {
+	name=ipfs,
+	description={A peer-to-peer hypermedia protocol for the Internet. It is used to store and retrieve information in a decentralized way.}
+}
+
+\newglossaryentry{acl} {
+	name=acl,
+	description={In computer security, an access-control list (ACL) is a list of permissions associated with a system resource, also known as an object. An ACL specifies which users or system processes are granted access to objects, as well as what operations are allowed on given objects.}
+}
+
+\newglossaryentry{bitTorrent} {
+	name=bitTorrent,
+	description={BitTorrent is a communication protocol for peer-to-peer file sharing, which is used to distribute data and electronic files over the Internet.}
+}
+
+\newglossaryentry{cid} {
+	name=cid,
+	description={A Content Identifier (CID) is a self-describing content-addressed label used to point to the data stored in IPFS.}
+}
+
+\newglossaryentry{daemon} {
+	name=daemon,
+	description={A Daemon is a computer program that typically runs in the background. The IPFS daemon is how you take your node online to the IPFS network.}
+}
+
+\newglossaryentry{dht} {
+	name=dht,
+	description={A Distributed Hash Table (DHT) is a distributed key-value store where keys are cryptographic hashes. In IPFS, each peer is responsible for a subset of the IPFS DHT.}
+}
+
+\newglossaryentry{gateway} {
+	name=gateway,
+	description={An IPFS Gateway acts as a bridge between traditional web browsers and IPFS. Through the gateway, users can browse files and websites stored in IPFS as if they were stored on a traditional web server.}
+}
+
+\newglossaryentry{merkle tree} {
+	name=merkle tree,
+	description={A Merkle Tree is a specific type of hash tree used in cryptography and computer science, allowing efficient and secure verification of the contents of large data structures. Named after Ralph Merkle, who patented it in 1979.}
 }
