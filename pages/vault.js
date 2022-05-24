@@ -43,7 +43,7 @@ export default function Vault () {
   * @param {jsonInterface} contract.abi - Object: The json interface for the contract to instantiate
   * @returns {object} - The contract instance with all its methods and events.
   */
-  const smartContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  const smartContractAddress = 	'0x5FbDB2315678afecb367f032d93F642f64180aa3'
   const smartContract = new web3.eth.Contract(Storage.abi, smartContractAddress)
 
   try {

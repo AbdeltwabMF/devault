@@ -17,22 +17,22 @@
 % Blockchain Infurastructure
 \newglossaryentry{blockchain} {
 	name=blockchain,
-	description={A blockchain is a digital ledger that records transactions in a sequence of blocks}
+	description={A blockchain is a distributed database that is shared among the nodes of a computer network. As a database, a blockchain stores information electronically in digital format.}
 }
 
 \newglossaryentry{block} {
 	name=block,
-	description={A block is a set of transactions that are recorded in a blockchain network}
+	description={A block is a set of transactions that are recorded in a blockchain network.}
 }
 
 \newglossaryentry{chain} {
 	name=chain,
-	description={A chain is a sequence of blocks}
+	description={A chain is a sequence of blocks that are linked together by a hash of the previous block.}
 }
 
 \newglossaryentry{genesis} {
 	name=genesis,
-	description={The first block in a blockchain network}
+	description={The first block in a blockchain network.}
 }
 
 \newglossaryentry{consensus} {
@@ -42,7 +42,12 @@
 
 \newglossaryentry{proof-of-work} {
 	name=proof-of-work,
-	description={Proof-of-work is a consensus mechanism that requires a miner to find a hash that is difficult to find by chance}
+	description={Proof of work (PoW) is a form of cryptographic proof in which one party (the prover) proves to others (the verifiers) that a certain amount of a specific computational effort has been expended.}
+}
+
+\newglossaryentry{proof-of-stake} {
+	name=proof-of-stake,
+	description={Proof-of-stake (PoS) protocols are a class of consensus mechanisms for blockchains that work by selecting validators in proportion to their quantity of holdings in the associated cryptocurrency. This is done to avoid the computational cost of proof-of-work schemes.}
 }
 
 \newglossaryentry{mining} {
@@ -62,7 +67,7 @@
 
 \newglossaryentry{testnet} {
 	name=test net,
-	description={A staging blockchain environment for testing application before being put into production (or onto the mainnet)}
+	description={A staging blockchain environment for testing application before being put into production (or onto the mainnet).}
 }
 
 \newglossaryentry{node} {
@@ -82,16 +87,15 @@
 
 
 % Attacks
-\newglossaryentry{51\% attack} {
-	name=51\% attack,
+\newglossaryentry{51 attack} {
+	name=51 attack,
 	description={When more than 50\% of the miners in a blockchain launch an attack on the rest of the nodes/users to attempt to steal assets or double spend.}
 }
-
 
 % Cryptography and Security
 \newglossaryentry{trustless} {
 	name=trustless,
-	description={The elimination of trust from a transaction. Blockchain is called a trustless system because the two entities performing a transaction do not need to trust one another. The properties of blockchain - digital signatures, cryptography, etc. - provide the trust.}
+	description={The elimination of trust from a transaction.}
 }
 
 \newglossaryentry{immutable} {
@@ -106,12 +110,12 @@
 
 \newglossaryentry{hash} {
 	name=hash,
-	description={A cryptographic hash function is a function that takes a message as input and produces a fixed-length output called a hash}
+	description={A cryptographic hash function is a function that takes a message as input and produces a fixed-length output called a hash.}
 }
 
 \newglossaryentry{digital signature} {
 	name=digital signature,
-	description={A mathematical scheme for verifying digital messages or documents satisfy two requirements - they have authenticity (from a known sender) and integrity (were not altered in transit.}
+	description={A mathematical scheme for verifying digital messages or documents satisfy two requirements - they have authenticity and integrity.}
 }
 
 \newglossaryentry{wallet} {
@@ -124,8 +128,8 @@
 	description={A random sequence of words which can be used to restore a lost wallet.}
 }
 
-\newglossaryentry{public \& private keys} {
-	name=public key,
+\newglossaryentry{public & private keys} {
+	name=public key and private key,
 	description={A public key is a unique string of characters derived from a private key which is used to encrypt a message or data. The private key is used to decrypt the message or data.}
 }
 
@@ -160,17 +164,17 @@
 
 \newglossaryentry{solidity} {
 	name=solidity,
-	description={Solidity is a programming language for smart contracts}
+	description={Solidity is a programming language for smart contracts.}
 }
 
 \newglossaryentry{bytecode} {
 	name=bytecode,
-	description={Bytecode is the compiled code of a smart contract}
+	description={Bytecode is the compiled code of a smart contract.}
 }
 
 \newglossaryentry{transaction} {
 	name=transaction,
-	description={A transaction is a set of instructions that are sent to a blockchain network to be processed by the network}
+	description={A transaction is a set of instructions that are sent to a blockchain network to be processed by the network.}
 }
 
 \newglossaryentry{gas} {
@@ -178,7 +182,7 @@
 	description={A fee charged to write a transaction to a public blockchain. The gas is used to reward the miner which validates the transaction.}
 }
 
-\newglossaryentry{dapp} {
+\newglossaryentry{decentralized application} {
 	name=dapp,
 	description={Software which does not rely on a central system or database but can share information amongst its users via a decentralized database, such as a blockchain.}
 }
@@ -206,12 +210,12 @@
 
 
 % IPFS
-\newglossaryentry{ipfs} {
+\newglossaryentry{InterPlanetary file system} {
 	name=ipfs,
 	description={A peer-to-peer hypermedia protocol for the Internet. It is used to store and retrieve information in a decentralized way.}
 }
 
-\newglossaryentry{acl} {
+\newglossaryentry{access-control list} {
 	name=acl,
 	description={In computer security, an access-control list (ACL) is a list of permissions associated with a system resource, also known as an object. An ACL specifies which users or system processes are granted access to objects, as well as what operations are allowed on given objects.}
 }
@@ -221,7 +225,7 @@
 	description={BitTorrent is a communication protocol for peer-to-peer file sharing, which is used to distribute data and electronic files over the Internet.}
 }
 
-\newglossaryentry{cid} {
+\newglossaryentry{content identifier} {
 	name=cid,
 	description={A Content Identifier (CID) is a self-describing content-addressed label used to point to the data stored in IPFS.}
 }
@@ -231,7 +235,7 @@
 	description={A Daemon is a computer program that typically runs in the background. The IPFS daemon is how you take your node online to the IPFS network.}
 }
 
-\newglossaryentry{dht} {
+\newglossaryentry{distributed hash table} {
 	name=dht,
 	description={A Distributed Hash Table (DHT) is a distributed key-value store where keys are cryptographic hashes. In IPFS, each peer is responsible for a subset of the IPFS DHT.}
 }
