@@ -23,12 +23,11 @@ sleep 10s
 
 # update the smart contract address
 
-  const smartContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 sed -i "s/smartContractAddress = .*$/smartContractAddress = \
 	'$(npx hardhat run scripts/deploy.js --network localhost \
 	| sed 's/^.*: //g')'/" pages/vault.js
 
 # test the smart contract
-npx hardhat test
-npm run lint
+# npx hardhat test
+# npm run lint
 npm test
