@@ -1,11 +1,8 @@
-import styles from './FilesTable.module.css'
+import styles from './FilesList.module.css'
 import Table from 'react-bootstrap/Table'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Link from 'next/link'
-import Container from 'react-bootstrap/Container'
 
-export default function FilesTable ({ files }) {
+export default function FilesList ({ files }) {
   /** @description Formats the bytes in terms of KB, MB, GB, etc.
     * @param {number} bytes - The number of bytes to format
     * @returns {string} - The formatted bytes

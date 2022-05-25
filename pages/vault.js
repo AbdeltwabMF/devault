@@ -10,15 +10,18 @@
   */
 
 import { useState, useEffect } from 'react'
-import Storage from '../artifacts/contracts/storage.sol/Storage.json'
 import Web3 from 'web3'
-import FilesTable from '../components/Tables/FilesTable'
-import ReadData from '../components/ReadData/ReadData'
-import styles from '../styles/Vault.module.css'
+import { create } from 'ipfs-http-client'
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { create } from 'ipfs-http-client'
+
+import Storage from '../artifacts/contracts/storage.sol/Storage.json'
+import FilesTable from '../components/FilesList/FilesList'
+import ReadData from '../components/UploadFiles/UploadFiles'
+
+import styles from '../styles/Vault.module.css'
 
 const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 

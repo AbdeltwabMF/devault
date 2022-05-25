@@ -47,6 +47,3 @@ artifacts
 # credentials
 .github
 .env*
-
-#
-package-lock.json

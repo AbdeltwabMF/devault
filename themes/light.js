@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles'
+import { createTheme } from '@mui/material/styles'
 import coreTheme from './coreTheme'
 
 // Create a theme instance.
@@ -7,20 +7,26 @@ const theme = createTheme({
   palette: {
     ...coreTheme.palette,
     background: {
-      default: '#22252E',
-      paper: '#2B2E3C'
+      default: '#fff',
+      paper: '#fff'
+    },
+    accountButton: {
+      default: '#EFEFEF'
     },
     primary: {
       main: '#2F80ED'
     },
-    type: 'dark'
+    secondary: {
+      main: '#DEDEDE'
+    },
+    type: 'light'
   },
   overrides: {
     ...coreTheme.overrides,
     MuiButton: {
       ...coreTheme.overrides.MuiButton,
       outlinedPrimary: {
-        border: '1px solid #FFFFFF1A',
+        border: '1px solid #EAEAEA',
         '&:hover': {
           backgroundColor: '#2F80ED !important',
           color: '#fff'
@@ -41,8 +47,8 @@ const theme = createTheme({
     },
     MuiSnackbarContent: {
       root: {
-        color: '#fff',
-        backgroundColor: '#2B2E3C',
+        color: 'rgba(0, 0, 0, 0.87)',
+        backgroundColor: '#F8F9FE',
         padding: '0px',
         minWidth: 'auto',
         '@media (min-width: 960px)': {

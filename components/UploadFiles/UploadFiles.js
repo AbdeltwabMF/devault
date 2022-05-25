@@ -1,10 +1,10 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import styles from './ReadData.module.css'
+import styles from './UploadFiles.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export default function ReadData ({ captureFile, uploadFile }) {
+export default function UploadFiles ({ captureFile, uploadFile }) {
   return (
     <>
       <Form className={styles.main} onSubmit={uploadFile}>
