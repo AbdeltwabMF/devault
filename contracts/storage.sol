@@ -10,8 +10,8 @@ pragma solidity ^0.8.4;
 contract Storage
 {
   /**
-    * @dev Map the owner address to array of files
-    */
+  * @dev Map the owner address to array of files
+  */
   mapping(address => File[]) private _ownerToFiles;
 
   struct File {

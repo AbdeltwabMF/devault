@@ -21,7 +21,8 @@
 
 .name {
 	padding: 0 !important;
-	width: 10em;
+	max-width: 10em;
+	text-overflow: ellipsis;
 }
 
 .date {

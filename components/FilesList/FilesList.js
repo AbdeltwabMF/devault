@@ -1,8 +1,13 @@
 import styles from './FilesList.module.css'
 import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
 import Link from 'next/link'
+import { useState } from 'react'
+import PasswordModal from '../Modals/PasswordModal'
 
-export default function FilesList ({ files }) {
+export default function FilesList ({ files, downloadFile }) {
+  const [showPasswordModal, setShowPasswordModal] = useState(false)
+
   /** @description Formats the bytes in terms of KB, MB, GB, etc.
     * @param {number} bytes - The number of bytes to format
     * @returns {string} - The formatted bytes
@@ -60,19 +65,31 @@ export default function FilesList ({ files }) {
           </tr>
         </thead>
         {
-              files.map((file, index) => (
-                <tbody className={styles.tableBody} key={index}>
-                  <tr>
-                    <td className={styles.index}>{index + 1}</td>
-                    <td className={styles.name}><Link href={'https://ipfs.infura.io/ipfs/' + file.hash}><a className={styles.anchor}>{file.name}</a></Link></td>
-                    <td className={styles.date}>{timeConvertUnixStamp(file.uploadTime)}</td>
-                    <td className={styles.type}>{file.mimeType}</td>
-                    <td className={styles.size}>{formatBytes(file.size)}</td>
-                    <td className={styles.hash}>{file.hash}</td>
-                  </tr>
-                </tbody>
-              ))
-            }
+          files.map((file, index) => (
+            <tbody className={styles.tableBody} key={index}>
+              <tr>
+                <td className={styles.index}>{index + 1}</td>
+                <td className={styles.name}>
+                  <Link href={'https://ipfs.infura.io/ipfs/' + file.hash}>
+                    <a className={styles.anchor}>{file.name}</a>
+                  </Link>
+                </td>
+                {/* <td className={styles.name}>
+                  <Button onClick={() => {
+                    setShowPasswordModal(prevState => !prevState)
+                  }}
+                  >
+                    {file.name}
+                  </Button>
+                </td> */}
+                <td className={styles.date}>{timeConvertUnixStamp(file.uploadTime)}</td>
+                <td className={styles.type}>{file.mimeType}</td>
+                <td className={styles.size}>{formatBytes(file.size)}</td>
+                <td className={styles.hash}>{file.hash}</td>
+              </tr>
+            </tbody>
+          ))
+}
       </Table>
     </>
   )

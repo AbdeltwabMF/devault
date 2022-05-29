@@ -4,8 +4,8 @@ import Col from 'react-bootstrap/Col'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTelegram, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { Vim, ReactJs, Artixlinux } from '@icons-pack/react-simple-icons/'
-import styles from './Footer.module.css'
 import Link from 'next/link'
+import styles from './Footer.module.css'
 
 export default function Footer () {
   return (
@@ -32,9 +32,9 @@ export default function Footer () {
 
         <Row className={styles.acknowledgements}>
           <div>
-            Built with <Vim color='#0D6EFD' className={styles.reactSimpleIcon} /> &amp;
-            <ReactJs color='#0D6EFD' className={styles.reactSimpleIcon} />on
-            <Artixlinux color='#0D6EFD' className={styles.reactSimpleIcon} />
+            Built with <Vim color='#0D6EFD' className={styles.icon} /> &amp;
+            <ReactJs color='#0D6EFD' className={styles.icon} />on
+            <Artixlinux color='#0D6EFD' className={styles.icon} />
           </div>
         </Row>
 

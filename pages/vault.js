@@ -11,15 +11,17 @@
 
 import { useState, useEffect } from 'react'
 import Web3 from 'web3'
-import { create } from 'ipfs-http-client'
+import { create, CID } from 'ipfs-http-client'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import Storage from '../artifacts/contracts/storage.sol/Storage.json'
-import FilesTable from '../components/FilesList/FilesList'
-import ReadData from '../components/UploadFiles/UploadFiles'
+import FilesList from '../components/FilesList/FilesList'
+import UploadFiles from '../components/UploadFiles/UploadFiles'
+
+import CryptoJS from 'crypto-js'
 
 import styles from '../styles/Vault.module.css'
 
@@ -27,13 +29,18 @@ const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 export default function Vault () {
   const [account, setAccount] = useState('')
-  const [filesCount, setFilesCount] = useState(0)
   const [files, setFiles] = useState([])
+  const [filesCount, setFilesCount] = useState(0)
   const [buffer, setBuffer] = useState(null)
-  const [type, setType] = useState('')
-  const [CID, setCID] = useState('')
   const [name, setName] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [type, setType] = useState('')
+  const [size, setSize] = useState(0)
+  const [hash, setHash] = useState('')
+  const [isUploading, setIsUploading] = useState(false)
+  const [isFetching, setIsFetching] = useState(false)
+  const [isCapturing, setIsCapturing] = useState(false)
+  const [isMakingTransaction, setIsMakingTransaction] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
 
   /**
   * @description Connecting to metamask.
@@ -46,92 +53,142 @@ export default function Vault () {
   * @param {jsonInterface} contract.abi - Object: The json interface for the contract to instantiate
   * @returns {object} - The contract instance with all its methods and events.
   */
-  const smartContractAddress = 	'0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  const smartContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
   const smartContract = new web3.eth.Contract(Storage.abi, smartContractAddress)
 
-  try {
-    const getAccount = async () => {
-      const accounts = await web3.eth.getAccounts()
-      console.log('getAccount: ', accounts[0])
-      setAccount(accounts[0])
-    }
-    getAccount()
-  } catch (error) {
-    console.log('Connection Error: ', error)
-  }
-
-  /**
-    * @description Getting the Owner Files Count.
-    */
-  const getFilesCount = async () => {
-    try {
-      const filesCount = await smartContract.methods.getFilesCount().call()
-      console.log(filesCount)
-      setFilesCount(filesCount)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  /**
-    * @description Getting the Owner actual Files.
-    */
-  const fetchFiles = async () => {
-    try {
-      const files = await smartContract.methods.getAllFiles().call()
-      console.log(files)
-      setFiles(files)
-    } catch (error) {
-      console.log('Error: ', error)
-    }
-  }
-
   useEffect(() => {
-    const componentDidMount = async () => {
-      await getFilesCount()
-      await fetchFiles()
+    const getAccount = async () => {
+      await web3.eth.getAccounts().then(accounts => {
+        setAccount(accounts[0])
+      })
     }
-    componentDidMount()
+
+    getAccount()
   }, [])
+
+  /**
+  * @description This is for getting the files count from the blockchain.
+  */
+  useEffect(() => {
+    const getFilesCount = async () => {
+      await smartContract.methods
+        .getFilesCount().call({ from: account }).then(count => {
+          setFilesCount(count)
+        })
+    }
+
+    getFilesCount()
+  }, [isMakingTransaction, account])
+
+  /**
+  * @description Getting the Owner actual Files.
+  */
+  useEffect(() => {
+    const fetchFiles = async () => {
+      setIsFetching(true)
+      console.log('Fetching Files...')
+      await smartContract.methods
+        .getAllFiles().call({ from: account }, function (error, result) {
+          if (error) {
+            console.log('Error code: ', error.code)
+            console.log('Error message: ', error.message)
+          }
+          setFiles(result)
+          console.log('Files Fetched!')
+          setIsFetching(false)
+        })
+    }
+
+    filesCount > 0 && fetchFiles()
+  }, [filesCount])
 
   /**
   * @description Reading contents of files (or raw data buffers) stored on the user's computer.
   */
   const captureFile = async (e) => {
     try {
+      console.log('Capturing File...')
+      setIsCapturing(true)
       const file = e.target.files[0]
       const reader = new window.FileReader()
       reader.readAsArrayBuffer(file)
 
       reader.onloadend = () => {
-        console.log('reader.onloadend: ', Buffer.from(reader.result))
         setBuffer(Buffer.from(reader.result))
         setType(file.type)
         setName(file.name)
       }
+      console.log('File Captured!')
+      setIsCapturing(false)
     } catch (error) {
       console.log(error)
     }
     e.preventDefault()
   }
 
+  useEffect(() => {
+    const encryptFile = () => {
+      // Encrypt
+      const ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123').toString()
+
+      // Decrypt
+      const bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123')
+      const originalText = bytes.toString(CryptoJS.enc.Utf8)
+
+      console.log(originalText) // 'my message'
+    }
+    encryptFile()
+  }, [])
+
   const uploadFile = async (e) => {
     e.preventDefault()
-    try {
-      console.log('uploading file...')
-      const result = await ipfs.add(buffer)
-      console.info('IPFS respond: ', result)
+    console.log('Uploading File...')
+    setIsUploading(true)
+    await ipfs.add(buffer).then(async (response) => {
+      setSize(prevState => response.size)
+      setHash(prevState => response.path)
 
-      setIsLoading(true)
-      if (type === '') { setType('none') }
+      console.log('File Uploaded')
+    })
 
-      await smartContract.methods.storeFile(name, result.size, type, result.path).send({ from: account }).on('TransactionHash', (hash) => {
-        console.log(hash)
-        setIsLoading(false)
+    setIsUploading(false)
+    storeMetaData()
+  }
+
+  const downloadFile = async (password) => {
+    console.log('Downloading & decrypting the file...')
+    setIsDownloading(true)
+    await ipfs.get(CID.parse(hash), async (err, res) => {
+      if (err) {
+        console.log(err)
+      }
+      res.forEach((file) => {
+        console.log('File hash: ', file.path)
+        console.log(file.content.toString('utf8'))
+        const decrypted = CryptoJS.AES.decrypt(file.content.toString('utf8'), password)
+        console.log(decrypted.toString(CryptoJS.enc.Utf8))
       })
-    } catch (error) {
-      console.log(error)
-    }
+      console.log('File downloaded & decrypted successfully!')
+    })
+    setIsDownloading(false)
+  }
+
+  const storeMetaData = async () => {
+    if (type === '') { setType('none') }
+    console.log('Making a transaction...')
+    setIsMakingTransaction(true)
+    await smartContract.methods
+      .storeFile(name, size, type, hash)
+      .send({ from: account, gas: '3000000' })
+      .then((receipt) => {
+        console.log('Transaction made successfully!')
+        console.log('Transaction receipt: ', receipt)
+      }).catch((error) => {
+        console.log('Sorry, file could not be stored. Please try again.')
+        console.log('Error code: ', error.code)
+        console.log('Error message: ', error.message)
+      })
+    setIsMakingTransaction(false)
   }
 
   return (
@@ -139,11 +196,21 @@ export default function Vault () {
       <Container className={styles.container}>
         <Row>
           <Col xs={12} className={styles.readData}>
-            <ReadData captureFile={captureFile} uploadFile={uploadFile} />
+            <UploadFiles
+              captureFile={captureFile}
+              isCapturing={isCapturing}
+              uploadFile={uploadFile}
+              isUploading={isUploading}
+              isMakingTransaction={isMakingTransaction}
+            />
             <hr className={styles.devider} />
           </Col>
           <Col xs={12}>
-            <FilesTable files={files} />
+            <FilesList
+              files={files}
+              downloadFile={downloadFile}
+              isFetching={isFetching}
+            />
           </Col>
         </Row>
       </Container>
