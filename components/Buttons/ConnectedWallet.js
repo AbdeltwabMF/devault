@@ -1,36 +1,51 @@
 import Button from 'react-bootstrap/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+
+import { truncateAddress, truncateBalance } from '../../utils/regexUtility'
 import styles from './ConnectedWallet.module.css'
-import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons'
-import { Text } from '@chakra-ui/react'
-import { truncateAddress } from '../../utils/regexMatchAddress'
-import NoAccount from '../Alerts/NoAccount'
-import { useState } from 'react'
 
-export default function OutlinedButtons ({ account }) {
-  const [alerted, setAlerted] = useState(false)
-  console.log('account', account)
-
+export default function ConnectedWallet ({ account, balance }) {
   return (
     <div>
       <Button
-        variant='outline-primary'
-        className={styles.button}
+        variant='outline-secondary'
+        className={styles.buttonMain}
       >
-        <Text className={styles.address}>
+        <p className={styles.balance}>
+          ETH: {truncateBalance(balance)}
+        </p>
+
+        <Button
+          variant='outline-primary'
+          className={styles.button}
+        >
+          <p className={styles.address}>
+            {(account === undefined)
+              ? 'No Account'
+              : truncateAddress(account)}
+          </p>
           {(account === undefined)
-            ? 'No Account'
-            : truncateAddress(account)}
-        </Text>
-        {(account === undefined)
-          ? (
-            <>
-              <WarningIcon color='red.300' />
-              {!alerted && <NoAccount /> && setAlerted(true)}
-            </>
-            )
-          : (
-            <CheckCircleIcon color='green.400' />)}
-      </Button>{' '}
+            ? (
+              <FontAwesomeIcon
+                icon={faCircleXmark}
+                size='lg'
+                fixedWidth
+                fade
+                className={styles.iconXmark}
+              />
+              )
+            : (
+              <FontAwesomeIcon
+                icon={faCircleCheck}
+                size='lg'
+                fixedWidth
+                fade
+                className={styles.iconCheck}
+              />
+              )}
+        </Button>{' '}
+      </Button>
     </div>
   )
 }

@@ -1,4 +1,18 @@
 .button {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1em;
 	background-color: #3e3e3e;
-	color: #fefefe !important;
+	border: 0px solid #00a8ff;
+	padding: 0.5em 1em;
+}
+
+.iconSpinner {
+	color: #f2f2f2 !important;
+}
+
+.load {
+	padding-left: 0.5em;
 }

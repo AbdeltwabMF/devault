@@ -1,23 +1,47 @@
-.address {
-	padding-right: 1em;
-	color: azure;
-	font-weight: 600;
-	display: inline-block;
+.button,
+.buttonMain {
+	align-items: center;
+	border: 0 !important;
+	box-shadow: 0 0 0 0 !important;
+	border-radius: 1em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 	margin: 0 !important;
 }
 
-.avatar {
-	display: inline-block !important;
-	vertical-align: middle !important;
+.button {
+	background-color: #2B2E3C !important;
+	padding: 0.4em 0.8em !important;
 }
 
-.button {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	border-radius: 1em;
-	background-color: #3e3e3e;
-	border: 0px solid #00a8ff;
-	padding: 0.5em 1em;
+.buttonMain {
+	background-color: #1f1f1f !important;
+	padding: 0.1em 0.1em  0.1em 1em !important;
+}
+
+.balance,
+.address {
+	color: #f1f1f1;
+	display: inline-block;
+	font-weight: 600;
+	margin: 0 !important;
+	padding-right: 0.5em;
+}
+
+.balance,
+.buttonMain {
+	cursor: default !important;
+}
+
+.button:hover {
+	background-color: #50577C !important;
+}
+
+.iconCheck {
+	color: #15D015;
+}
+
+.iconXmark {
+	color: #BF2828;
 }

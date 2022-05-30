@@ -1,19 +1,26 @@
-import LoadingButton from '@mui/lab/LoadingButton'
-import SaveIcon from '@mui/icons-material/Save'
+import Button from 'react-bootstrap/Button'
 import styles from './ConnectingWallet.module.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function ConnectingWallet () {
   return (
     <>
-      <LoadingButton
-        loading
-        loadingPosition='start'
-        startIcon={<SaveIcon />}
-        variant='outlined'
+      <Button
+        variant='primary'
+        disabled
         className={styles.button}
       >
-        Connecting...
-      </LoadingButton>
+        <FontAwesomeIcon
+          icon={faSpinner}
+          size='lg'
+          fixedWidth
+          spin
+          className={styles.iconSpinner}
+        />
+        <span className={styles.load}>Connecting...</span>
+      </Button>
     </>
   )
 }

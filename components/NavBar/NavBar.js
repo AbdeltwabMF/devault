@@ -1,32 +1,32 @@
-import Link from 'next/link'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import styles from './NavBar.module.css'
-import { useState } from 'react'
-import Web3 from 'web3'
 import { useRouter } from 'next/router'
+import { useState, useContext } from 'react'
+
 import ConnectWallet from '../Buttons/ConnectWallet'
 import ConnectedWallet from '../Buttons/ConnectedWallet'
 import ConnectingWallet from '../Buttons/ConnectingWallet'
+import { AccountContext } from '../../pages/_app'
+
+import styles from './NavBar.module.css'
 
 export default function NavBar () {
-  const [connected, setConnected] = useState(false)
-  const [account, setAccount] = useState('')
   const [isConnecting, setIsConnecting] = useState(false)
+  const { getSigner, getContract, account, balance } = useContext(AccountContext)
+  console.log('from Navbar:', account)
+  console.log('from Navbar:', balance)
 
   const router = useRouter()
 
   const handleConnection = async () => {
     console.log('Handle connection...')
     setIsConnecting(true)
-    const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
-    await web3.eth.getAccounts().then(accounts => {
-      setAccount(accounts[0])
-      setConnected(true)
-    })
+    await getSigner()
+    await getContract()
     setIsConnecting(false)
+    console.log('Connection established')
   }
 
   return (
@@ -34,7 +34,7 @@ export default function NavBar () {
       <Container>
         <Navbar.Brand
           // as={Link}
-          active={router.pathname === '/'}
+          active={router.pathname === '/' ? 'true' : 'false'}
           href='/'
           className={styles.brand}
         >Decentralized-Vault
@@ -44,13 +44,13 @@ export default function NavBar () {
           <Nav className='me-auto'>
             <Nav.Link
               // as={Link}
-              active={router.pathname === '/vault'}
+              active={router.pathname === '/vault' ? 'true' : 'false'}
               href='/vault' className={styles.navLink}
             >My Vault
             </Nav.Link>
             <Nav.Link
               // as={Link}
-              active={router.pathname === '/howitworks'}
+              active={router.pathname === '/howitworks' ? 'true' : 'false'}
               href='/howitworks'
               className={styles.navLink}
             >How it Works
@@ -58,7 +58,7 @@ export default function NavBar () {
             <NavDropdown title='Resources' id='collasible-nav-dropdown'>
               <NavDropdown.Item
                 // as={Link}
-                active={router.pathname === '/resources/docs'}
+                active={router.pathname === '/resources/docs' ? 'true' : 'false'}
                 href='/resources/docs'
                 className={styles.navLink}
               >Docs
@@ -66,7 +66,7 @@ export default function NavBar () {
               <NavDropdown.Divider />
               <NavDropdown.Item
                 // as={Link}
-                active={router.pathname === '/resources/toolsandtechnologies'}
+                active={router.pathname === '/resources/toolsandtechnologies' ? 'true' : 'false'}
                 href='/resources/toolsandtechnologies'
                 className={styles.navLink}
               >Tools and Technologies
@@ -74,7 +74,7 @@ export default function NavBar () {
             </NavDropdown>
             <Nav.Link
               // as={Link}
-              active={router.pathname === '/about'}
+              active={router.pathname === '/about' ? 'true' : 'false'}
               href='/about'
               className={styles.navLink}
             >About
@@ -85,8 +85,8 @@ export default function NavBar () {
               {
               isConnecting
                 ? <ConnectingWallet />
-                : connected
-                  ? <ConnectedWallet account={account} />
+                : account > 0
+                  ? <ConnectedWallet account={account} balance={balance} />
                   : <ConnectWallet handleConnection={handleConnection} />
               }
             </Navbar.Text>
