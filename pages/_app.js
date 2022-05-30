@@ -34,15 +34,14 @@ export default function App (props) {
 
   useEffect(() => {
     const checkConnection = async () => {
-      if (window.localStorage.getItem('Wallet') === 'Connected') {
-        await getContract()
-        await getSigner()
+      if (window.sessionStorage.getItem('isMetamaskConnected') === 'true') {
+        await Initialize()
       }
     }
     checkConnection()
-  }, [])
+  }, [account, signer, contract])
 
-  const getSigner = async () => {
+  const Initialize = async () => {
     // The MetaMask plugin also allows signing transactions to
     // send ether and pay to change state within the blockchain.
     // For this, you need the account signer..
@@ -56,12 +55,8 @@ export default function App (props) {
     setSigner(prevState => signer)
     setAccount(prevState => account)
     setBalance(prevState => balance)
-  }
 
-  const getContract = async () => {
-    const provider = getLibrary()
-    const contract = new ethers.Contract(contractAddress, Storage.abi, provider)
-
+    const contract = new ethers.Contract(contractAddress, Storage.abi, provider).connect(signer)
     setContract(prevState => contract)
   }
 
@@ -74,8 +69,7 @@ export default function App (props) {
     balance,
     setBalance,
     setContract,
-    getSigner,
-    getContract,
+    Initialize,
     contractAddress
   }
 

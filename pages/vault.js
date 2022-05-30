@@ -28,7 +28,7 @@ import styles from '../styles/Vault.module.css'
 const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 export default function Vault () {
-  const { contract, getContract, getSigner, account } = useContext(AccountContext)
+  const { contract, account, Initialize } = useContext(AccountContext)
   const [files, setFiles] = useState([])
   const [buffer, setBuffer] = useState(null)
   const [name, setName] = useState('')
@@ -42,24 +42,30 @@ export default function Vault () {
   const [isDownloading, setIsDownloading] = useState(false)
 
   useEffect(() => {
-    console.log('From Vault:', contract)
-    const getActualFiles = async () => {
-      await getContract()
-      await getSigner()
+    console.log('From Vault Before:', contract)
 
-      const filesIndex = await contract.getFilesCount()
-      if (filesIndex !== 0) {
-        setIsFetching(true)
-        console.log('Fetching Files...')
+    if (contract) {
+      const getActualFiles = async () => {
+        const filesIndex = await contract.getFilesCount()
+          .then(filesIndex => filesIndex.toNumber())
 
-        const files = await contract.getAllFiles()
-        setFiles(files)
-        setIsFetching(false)
+        if (filesIndex !== 0) {
+          setIsFetching(true)
+          console.log('Fetching Files...')
+
+          try {
+            const files = await contract.getAllFiles()
+            setFiles(files)
+            setIsFetching(false)
+          } catch (err) {
+            console.log('Cannot fetch files from blockchain:', err.message)
+          }
+        }
       }
-    }
 
-    getActualFiles()
-  }, [])
+      getActualFiles()
+    }
+  }, [isMakingTransaction])
 
   /**
   * @description Reading contents of files (or raw data buffers) stored on the user's computer.
@@ -118,11 +124,12 @@ export default function Vault () {
     console.log('Making a transaction...')
     setIsMakingTransaction(true)
 
-    await contract.storeFile(name, type, size, hash).then(async (res) => {
-      console.log('Transaction made successfully!')
-    }).catch(err => {
-      console.log(err)
-    })
+    await contract.storeFile(name, size, type, hash)
+      .then(async (res) => {
+        console.log('Transaction made successfully!')
+      }).catch(err => {
+        console.log(err)
+      })
 
     setIsMakingTransaction(false)
   }
@@ -154,8 +161,8 @@ export default function Vault () {
           </Container>)
         : (
           <div>
-            <BGParticles />
             <Error404 />
+            <BGParticles />
           </div>
           )}
     </>

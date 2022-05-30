@@ -5,8 +5,8 @@ import BGParticles from '../components/Animation/BGParticles'
 export default function Page404 () {
   return (
     <>
-      <BGParticles />
       <Error404 />
+      <BGParticles />
     </>
   )
 }

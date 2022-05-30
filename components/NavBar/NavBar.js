@@ -14,23 +14,23 @@ import styles from './NavBar.module.css'
 
 export default function NavBar () {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { getSigner, getContract, account, balance } = useContext(AccountContext)
+  const { Initialize, account, balance } = useContext(AccountContext)
 
   const router = useRouter()
 
   const handleConnection = async () => {
     console.log('Handle connection...')
     setIsConnecting(true)
-    await getSigner()
-    await getContract()
+    try {
+      await Initialize()
 
-    const unixTime = Math.round(new Date().getTime() / 1000)
-    window.localStorage.setItem('Wallet', 'Connected')
-    window.localStorage.setItem('Created', unixTime)
-    window.localStorage.setItem('Expired', unixTime + (60 * 60 * 24))
-
+      window.sessionStorage.setItem('isMetamaskConnected', 'true')
+      console.log('Connection established')
+    } catch (error) {
+      console.info('Connection error:', error.message)
+      window.sessionStorage.removeItem('isMetamaskConnected', 'false')
+    }
     setIsConnecting(false)
-    console.log('Connection established')
   }
 
   return (
