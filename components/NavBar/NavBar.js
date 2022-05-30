@@ -23,7 +23,12 @@ export default function NavBar () {
     setIsConnecting(true)
     await getSigner()
     await getContract()
+
+    const unixTime = Math.round(new Date().getTime() / 1000)
     window.localStorage.setItem('Wallet', 'Connected')
+    window.localStorage.setItem('Created', unixTime)
+    window.localStorage.setItem('Expired', unixTime + (60 * 60 * 24))
+
     setIsConnecting(false)
     console.log('Connection established')
   }
@@ -33,9 +38,8 @@ export default function NavBar () {
       <Container>
         <Navbar.Brand
           // as={Link}
-          active={router.pathname === '/' ? 'true' : 'false'}
           href='/'
-          className={styles.brand}
+          className={`${styles.brand} ${router.pathname === '/' ? 'active' : ''}`}
         >Decentralized-Vault
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
@@ -45,41 +49,37 @@ export default function NavBar () {
               ? (
                 <Nav.Link
                   // as={Link}
-                  active={router.pathname === '/vault' ? 'true' : 'false'}
-                  href='/vault' className={styles.navLink}
+                  href='/vault'
+                  className={`${styles.navLink} ${router.pathname === '/vault' ? 'active' : ''}`}
                 >My Vault
                 </Nav.Link>
                 )
               : <></>}
             <Nav.Link
               // as={Link}
-              active={router.pathname === '/howitworks' ? 'true' : 'false'}
               href='/howitworks'
-              className={styles.navLink}
+              className={`${styles.navLink} ${router.pathname === '/howitworks' ? 'active' : ''}`}
             >How it Works
             </Nav.Link>
             <NavDropdown title='Resources' id='collasible-nav-dropdown'>
               <NavDropdown.Item
                 // as={Link}
-                active={router.pathname === '/resources/docs' ? 'true' : 'false'}
                 href='/resources/docs'
-                className={styles.navLink}
+                className={`${styles.navLink} ${router.pathname === '/resources/docs' ? 'active' : ''}`}
               >Docs
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item
                 // as={Link}
-                active={router.pathname === '/resources/toolsandtechnologies' ? 'true' : 'false'}
                 href='/resources/toolsandtechnologies'
-                className={styles.navLink}
+                className={`${styles.navLink} ${router.pathname === '/resources/toolsandtechnologies' ? 'active' : ''}`}
               >Tools and Technologies
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link
               // as={Link}
-              active={router.pathname === '/about' ? 'true' : 'false'}
               href='/about'
-              className={styles.navLink}
+              className={`${styles.navLink} ${router.pathname === '/about' ? 'active' : ''}`}
             >About
             </Nav.Link>
           </Nav>

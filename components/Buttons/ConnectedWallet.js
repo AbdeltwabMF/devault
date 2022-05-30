@@ -25,7 +25,7 @@ export default function ConnectedWallet ({ account, balance }) {
                 icon={faCircleXmark}
                 size='lg'
                 fixedWidth
-                fade
+                beat
                 className={styles.iconXmark}
               />
               )
@@ -34,7 +34,7 @@ export default function ConnectedWallet ({ account, balance }) {
                 icon={faCircleCheck}
                 size='lg'
                 fixedWidth
-                fade
+                beat
                 className={styles.iconCheck}
               />
               )}

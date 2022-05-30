@@ -12,33 +12,17 @@ import { CacheProvider } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ChakraProvider } from '@chakra-ui/react'
 
-import { Web3ReactProvider } from '@web3-react/core'
 import { ethers } from 'ethers'
 
 import Storage from '../artifacts/contracts/storage.sol/Storage.json'
 import Layout from '../components/Layouts/Layout'
 import createEmotionCache from '../utils/createEmotionCache'
+import { getLibrary } from '../utils/getLibrary'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
 export const AccountContext = createContext()
-
-const getLibrary = () => {
-  // A Web3Provider wraps a standard Web3 provider, which is
-  // what MetaMask injects as window.ethereum into each page
-  if (typeof window.ethereum !== 'undefined') {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    return provider
-  } else if (typeof window.web3 !== 'undefined') {
-    const provider = new ethers.providers.Web3Provider(window.web3.currentProvider)
-    return provider
-  } else {
-    // If neither are available, we'll just use the default
-    // provider, which just points to the local node
-    return new ethers.providers.JsonRpcProvider()
-  }
-}
 
 export default function App (props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
@@ -91,7 +75,8 @@ export default function App (props) {
     setBalance,
     setContract,
     getSigner,
-    getContract
+    getContract,
+    contractAddress
   }
 
   return (
@@ -103,13 +88,11 @@ export default function App (props) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <ChakraProvider>
-          <Web3ReactProvider getLibrary={getLibrary}>
-            <AccountContext.Provider value={value}>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </AccountContext.Provider>
-          </Web3ReactProvider>
+          <AccountContext.Provider value={value}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AccountContext.Provider>
         </ChakraProvider>
       </ThemeProvider>
     </CacheProvider>
