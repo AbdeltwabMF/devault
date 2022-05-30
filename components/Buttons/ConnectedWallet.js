@@ -8,14 +8,8 @@ import styles from './ConnectedWallet.module.css'
 export default function ConnectedWallet ({ account, balance }) {
   return (
     <div>
-      <Button
-        variant='outline-secondary'
-        className={styles.buttonMain}
-      >
-        <p className={styles.balance}>
-          ETH: {truncateBalance(balance)}
-        </p>
-
+      <div className={styles.container}>
+        <p className={styles.balance}>ETH: {truncateBalance(balance)}</p>
         <Button
           variant='outline-primary'
           className={styles.button}
@@ -45,7 +39,7 @@ export default function ConnectedWallet ({ account, balance }) {
               />
               )}
         </Button>{' '}
-      </Button>
+      </div>
     </div>
   )
 }

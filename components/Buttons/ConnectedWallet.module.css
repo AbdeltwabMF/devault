@@ -1,5 +1,5 @@
 .button,
-.buttonMain {
+.container {
 	align-items: center;
 	border: 0 !important;
 	box-shadow: 0 0 0 0 !important;
@@ -15,7 +15,7 @@
 	padding: 0.4em 0.8em !important;
 }
 
-.buttonMain {
+.container {
 	background-color: #1f1f1f !important;
 	padding: 0.1em 0.1em  0.1em 1em !important;
 }
@@ -27,11 +27,6 @@
 	font-weight: 600;
 	margin: 0 !important;
 	padding-right: 0.5em;
-}
-
-.balance,
-.buttonMain {
-	cursor: default !important;
 }
 
 .button:hover {

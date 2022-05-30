@@ -20,13 +20,15 @@ import FilesList from '../components/FilesList/FilesList'
 import UploadFiles from '../components/UploadFiles/UploadFiles'
 
 import { AccountContext } from './_app'
+import Error404 from '../components/Errors/Error404'
+import BGParticles from '../components/Animation/BGParticles'
 
 import styles from '../styles/Vault.module.css'
 
 const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 export default function Vault () {
-  const { contract, getContract, getSigner } = useContext(AccountContext)
+  const { contract, getContract, getSigner, account } = useContext(AccountContext)
   const [files, setFiles] = useState([])
   const [buffer, setBuffer] = useState(null)
   const [name, setName] = useState('')
@@ -127,28 +129,35 @@ export default function Vault () {
 
   return (
     <>
-      {isDownloading ? <div className={styles.downloading}>Downloading...</div> : null}
-      <Container className={styles.container}>
-        <Row>
-          <Col xs={12} className={styles.readData}>
-            <UploadFiles
-              captureFile={captureFile}
-              isCapturing={isCapturing}
-              uploadFile={uploadFile}
-              isUploading={isUploading}
-              isMakingTransaction={isMakingTransaction}
-            />
-            <hr className={styles.devider} />
-          </Col>
-          <Col xs={12}>
-            <FilesList
-              files={files}
-              downloadFile={downloadFile}
-              isFetching={isFetching}
-            />
-          </Col>
-        </Row>
-      </Container>
+      {account && contract
+        ? (
+          <Container className={styles.container}>
+            <Row>
+              <Col xs={12} className={styles.readData}>
+                <UploadFiles
+                  captureFile={captureFile}
+                  isCapturing={isCapturing}
+                  uploadFile={uploadFile}
+                  isUploading={isUploading}
+                  isMakingTransaction={isMakingTransaction}
+                />
+                <hr className={styles.devider} />
+              </Col>
+              <Col xs={12}>
+                <FilesList
+                  files={files}
+                  downloadFile={downloadFile}
+                  isFetching={isFetching}
+                />
+              </Col>
+            </Row>
+          </Container>)
+        : (
+          <div>
+            <BGParticles />
+            <Error404 />
+          </div>
+          )}
     </>
   )
 }

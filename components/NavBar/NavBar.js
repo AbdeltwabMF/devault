@@ -42,12 +42,16 @@ export default function NavBar () {
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'>
-            <Nav.Link
-              // as={Link}
-              active={router.pathname === '/vault' ? 'true' : 'false'}
-              href='/vault' className={styles.navLink}
-            >My Vault
-            </Nav.Link>
+            {account
+              ? (
+                <Nav.Link
+                  // as={Link}
+                  active={router.pathname === '/vault' ? 'true' : 'false'}
+                  href='/vault' className={styles.navLink}
+                >My Vault
+                </Nav.Link>
+                )
+              : <></>}
             <Nav.Link
               // as={Link}
               active={router.pathname === '/howitworks' ? 'true' : 'false'}
