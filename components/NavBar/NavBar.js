@@ -15,8 +15,6 @@ import styles from './NavBar.module.css'
 export default function NavBar () {
   const [isConnecting, setIsConnecting] = useState(false)
   const { getSigner, getContract, account, balance } = useContext(AccountContext)
-  console.log('from Navbar:', account)
-  console.log('from Navbar:', balance)
 
   const router = useRouter()
 
@@ -25,6 +23,7 @@ export default function NavBar () {
     setIsConnecting(true)
     await getSigner()
     await getContract()
+    window.localStorage.setItem('Wallet', 'Connected')
     setIsConnecting(false)
     console.log('Connection established')
   }

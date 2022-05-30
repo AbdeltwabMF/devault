@@ -49,12 +49,13 @@ export default function App (props) {
   const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
   useEffect(() => {
-    const Initialize = async () => {
-      getContract()
-      getSigner()
+    const checkConnection = async () => {
+      if (window.localStorage.getItem('Wallet') === 'Connected') {
+        await getContract()
+        await getSigner()
+      }
     }
-
-    Initialize()
+    checkConnection()
   }, [])
 
   const getSigner = async () => {
@@ -92,8 +93,6 @@ export default function App (props) {
     getSigner,
     getContract
   }
-
-  console.log('from Root:', account)
 
   return (
     <CacheProvider value={emotionCache}>
