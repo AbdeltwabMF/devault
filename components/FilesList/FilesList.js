@@ -65,7 +65,7 @@ export default function FilesList ({ files, downloadFile }) {
           </tr>
         </thead>
         {
-          files.map((file, index) => (
+          files && files.map((file, index) => (
             <tbody className={styles.tableBody} key={index}>
               <tr>
                 <td className={styles.index}>{index + 1}</td>

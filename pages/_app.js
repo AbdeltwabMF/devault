@@ -27,13 +27,14 @@ export const AccountContext = createContext()
 export default function App (props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const [signer, setSigner] = useState(null)
+  const [provider, setProvider] = useState(null)
   const [account, setAccount] = useState(null)
   const [blockNumber, setBlockNumber] = useState(null)
   const [balance, setBalance] = useState(null)
   const [contract, setContract] = useState(null)
   const [chainId, setChainId] = useState(null)
   // ropsten Address = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
-  const contractAddress = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
+  const contractAddress = '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
 
   useEffect(() => {
     const checkConnection = async () => {
@@ -73,19 +74,21 @@ export default function App (props) {
   }
 
   const value = {
+    provider,
+    setProvider,
     signer,
     setSigner,
     account,
     setAccount,
     contract,
-    setBalance,
     setContract,
     balance,
-    Initialize,
+    setBalance,
     chainId,
     setChainId,
     blockNumber,
     setBlockNumber,
+    Initialize,
     contractAddress
   }
 

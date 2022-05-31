@@ -19,8 +19,8 @@ export default function NavBar () {
   const router = useRouter()
 
   const handleConnection = async () => {
-    console.log('Handle connection...')
-    setIsConnecting(true)
+    setIsConnecting(prevState => true)
+    console.log('Handle connection to metamask...')
     try {
       await Initialize()
 
@@ -28,9 +28,9 @@ export default function NavBar () {
       console.log('Connection established')
     } catch (error) {
       console.info('Connection error:', error.message)
-      window.sessionStorage.removeItem('isMetamaskConnected', 'false')
+      window.sessionStorage.removeItem('isMetamaskConnected')
     }
-    setIsConnecting(false)
+    setIsConnecting(prevState => false)
   }
 
   return (
@@ -61,21 +61,18 @@ export default function NavBar () {
               className={`${styles.navLink} ${router.pathname === '/howitworks' ? 'active' : ''}`}
             >How it Works
             </Nav.Link>
-            <NavDropdown title='Resources' id='collasible-nav-dropdown'>
-              <NavDropdown.Item
+            <Nav.Link
                 // as={Link}
-                href='/resources/docs'
-                className={`${styles.navLink} ${router.pathname === '/resources/docs' ? 'active' : ''}`}
-              >Docs
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item
+              href='/docs'
+              className={`${styles.navLink} ${router.pathname === '/docs' ? 'active' : ''}`}
+            >Docs
+            </Nav.Link>
+            <Nav.Link
                 // as={Link}
-                href='/resources/toolsandtechnologies'
-                className={`${styles.navLink} ${router.pathname === '/resources/toolsandtechnologies' ? 'active' : ''}`}
-              >Tools and Technologies
-              </NavDropdown.Item>
-            </NavDropdown>
+              href='/toolsandtechnologies'
+              className={`${styles.navLink} ${router.pathname === '/toolsandtechnologies' ? 'active' : ''}`}
+            >Tools &amp; Technologies
+            </Nav.Link>
             <Nav.Link
               // as={Link}
               href='/about'

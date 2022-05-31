@@ -3,15 +3,15 @@ pragma solidity ^0.8.4;
 
 /**
   * @title Storage
-  * @dev Storage contract for storing data
+  * @dev Storage contract for managing files' metadata.
   * @author Abd El-Twab M. Fakhry
   */
 
 contract Storage
 {
   /**
-  * @dev Map the owner address to array of files
-  */
+    * @dev Map the owner address to array of files
+    */
   mapping(address => File[]) private _ownerToFiles;
 
   struct File {
@@ -23,6 +23,23 @@ contract Storage
   }
 
   event FileStored(
+    string name,
+    uint256 size,
+    string mimeType,
+    string hash,
+    uint256 uploadTime
+  );
+
+  event FileShared(
+    address to,
+    string name,
+    uint256 size,
+    string mimeType,
+    string hash,
+    uint256 uploadTime
+  );
+
+  event FileRemoved(
     string name,
     uint256 size,
     string mimeType,
@@ -76,7 +93,7 @@ contract Storage
   /**
     * @dev Get the files count of the owner
     */
-  function getFilesCount()
+  function getFilesLength()
     public
     view
     returns (uint)
@@ -102,7 +119,7 @@ contract Storage
   /**
     * @dev Get all files of the owner
     */
-  function getAllFiles()
+  function getFiles()
     public
     view
     returns(File[] memory)
@@ -124,15 +141,42 @@ contract Storage
     returns (bool)
   {
     require(_ownerToFiles[msg.sender].length > 0, "No files found!");
-    require(_to != msg.sender, "Cannot share with yourself!");
-    require(_to != address(0), "Cannot share with the null address!");
+    require(_to != msg.sender, "To yourself!");
+    require(_to != address(0), "Null address!");
     require(_index < _ownerToFiles[msg.sender].length, "Index out of bounds!");
 
     File memory file = _ownerToFiles[msg.sender][_index];
 
     _ownerToFiles[_to].push(file);
 
-    emit FileStored(
+    emit FileShared(
+      _to,
+      file.name,
+      file.size,
+      file.mimeType,
+      file.hash,
+      block.timestamp
+    );
+
+    return true;
+  }
+
+  /**
+    * @dev Remove a file
+    * @param _index Index of the file
+    */
+  function removeFile(uint256 _index)
+    public
+    returns (bool)
+  {
+    require(_ownerToFiles[msg.sender].length > 0, "No files found!");
+    require(_index < _ownerToFiles[msg.sender].length, "Index out of bounds!");
+
+    File memory file = _ownerToFiles[msg.sender][_index];
+    _ownerToFiles[msg.sender][_index] = _ownerToFiles[msg.sender][_ownerToFiles[msg.sender].length - 1];
+    _ownerToFiles[msg.sender].pop();
+
+    emit FileRemoved(
       file.name,
       file.size,
       file.mimeType,

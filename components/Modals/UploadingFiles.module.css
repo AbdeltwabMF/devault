@@ -1,0 +1,44 @@
+.main {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.header {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.title {
+	color: #0D6EFD;
+	font-size: 1.2rem;
+}
+
+.body {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+
+.footer {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.iconTitle {
+	margin-right: 1rem;
+}
+
+.spinner {
+	margin: 1rem 0;
+	color: #146EBE;
+}
+
+.buttonCancel {
+	width: 100%;
+}

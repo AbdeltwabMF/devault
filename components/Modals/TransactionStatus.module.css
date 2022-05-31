@@ -1,0 +1,26 @@
+.main {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.body {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+
+.icon {
+	size: 4rem;
+	margin-bottom: 1.4rem;
+}
+
+.fail {
+	color: #DC3545;
+}
+
+.success {
+	color: #28A745;
+}

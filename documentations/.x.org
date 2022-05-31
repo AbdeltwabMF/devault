@@ -1,0 +1,6 @@
+* Upgradeability Patterns
+** [[https://docs.openzeppelin.com/upgrades-plugins/1.x/][Transparent Proxy]]
+** [[https://fravoll.github.io/solidity-patterns/eternal_storage.html][Eternal Storage]]
+** [[https://eips.ethereum.org/EIPS/eip-2535#diamond-storage][Diamond Storage]]
+** [[https://blog.zkga.me/dark-forest-and-the-diamond-standard][Diamonds (Multi Facet Proxy)]]
+** [[https://medium.com/@0xzorz/solidity-upgradeability-patterns-a9c6679fd638][Source 1]]

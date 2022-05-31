@@ -15,20 +15,31 @@ import { useState, useEffect, useContext } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import ethers from 'ethers'
 
 import FilesList from '../components/FilesList/FilesList'
 import UploadFiles from '../components/UploadFiles/UploadFiles'
+import UploadingFiles from '../components/Modals/UploadingFiles'
+import TransactionStatus from '../components/Modals/TransactionStatus'
 
 import { AccountContext } from './_app'
 import Error404 from '../components/Errors/Error404'
-import BGParticles from '../components/Animation/BGParticles'
 
 import styles from '../styles/Vault.module.css'
 
 const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 export default function Vault () {
-  const { contract, account, chainId, blockNumber } = useContext(AccountContext)
+  const {
+    contract,
+    account,
+    chainId,
+    blockNumber,
+    setBlockNumber,
+    balance,
+    setBalance,
+    provider
+  } = useContext(AccountContext)
   const [files, setFiles] = useState([])
   const [buffer, setBuffer] = useState(null)
   const [name, setName] = useState('')
@@ -39,114 +50,122 @@ export default function Vault () {
   const [isFetching, setIsFetching] = useState(false)
   const [isCapturing, setIsCapturing] = useState(false)
   const [isMakingTransaction, setIsMakingTransaction] = useState(false)
+  const [isTransactionSucceed, setIsTransactionSucceed] = useState(null)
   const [isDownloading, setIsDownloading] = useState(false)
-  const [isMetaMask, setIsMetaMask] = useState(false)
+  const [isMetamask, setIsMetamask] = useState(false)
 
   useEffect(() => {
-    console.log('From Vault Before:', contract)
+    console.log('Did contract mount in vault:', contract)
     if (window.sessionStorage.getItem('isMetamaskConnected') === 'true') {
-      setIsMetaMask(true)
+      setIsMetamask(prevState => true)
     }
+    if (contract && account) {
+      setIsFetching(prevState => true)
+      console.log('Fetching files metadata form blockchain...')
+      const ___getFiles = async () => {
+        const _options = { from: account }
 
-    if (contract && contract) {
-      const getActualFiles = async () => {
-        const options = { from: account }
-
-        const filesIndex = await contract.getFilesCount(options)
-          .then(filesIndex => filesIndex.toNumber())
-
-        if (filesIndex !== 0) {
-          setIsFetching(true)
-          console.log('Fetching Files...')
-
-          try {
-            const files = await contract.getAllFiles(options)
-            setFiles(files)
-            setIsFetching(false)
-          } catch (err) {
-            console.log('Cannot fetch files from blockchain:', err.message)
+        try {
+          const _files = await contract.getFiles(_options)
+          if (_files.length > 0) {
+            setFiles(prevState => _files)
           }
+        } catch (err) {
+          console.log('Cannot fetch files from blockchain:', err.message)
         }
       }
 
-      getActualFiles()
+      ___getFiles()
+      setIsFetching(prevState => false)
     }
-  }, [isMakingTransaction, chainId, blockNumber])
+  }, [isMakingTransaction, chainId, blockNumber, balance])
+
+  const __refresh = async () => {
+    if (provider) {
+      const _balance = await provider.getBalance(account)
+        .then(_balance => ethers.utils.formatEther(_balance))
+      setBalance(prevState => _balance)
+
+      const _blockNumber = await provider.getBlockNumber()
+      setBlockNumber(prevState => _blockNumber)
+    }
+  }
 
   /**
   * @description Reading contents of files (or raw data buffers) stored on the user's computer.
   */
   const captureFile = async (e) => {
+    setIsCapturing(prevState => true)
+    console.log('Capturing the file...')
+
     try {
-      console.log('Capturing File...')
-      setIsCapturing(true)
+      const _file = e.target.files[0]
+      const _reader = new window.FileReader()
+      _reader.readAsArrayBuffer(_file)
 
-      const file = e.target.files[0]
-      const reader = new window.FileReader()
-      reader.readAsArrayBuffer(file)
-
-      reader.onloadend = () => {
-        setBuffer(Buffer.from(reader.result))
-        setType(file.type)
-        setName(file.name)
+      _reader.onloadend = () => {
+        setBuffer(prevState => Buffer.from(_reader.result))
+        setType(prevState => _file.type)
+        setName(prevState => _file.name)
       }
-
-      console.log('File Captured!')
-      setIsCapturing(false)
     } catch (error) {
-      console.log(error)
+      console.log('Cannot capture the file:', error.message)
     }
 
     e.preventDefault()
+    setIsCapturing(prevState => false)
   }
 
   const uploadFile = async (e) => {
-    e.preventDefault()
-
+    setIsUploading(prevState => true)
     console.log('Uploading file to IPFS...')
-    setIsUploading(true)
+    e.preventDefault()
 
     await ipfs.add(buffer).then(async (response) => {
       setSize(prevState => response.size)
       setHash(prevState => response.path)
-
-      console.log('File uploaded successfully!')
     })
 
-    setIsUploading(false)
-    storeMetadata()
+    setIsUploading(prevState => false)
+    await storeMetadata()
   }
 
   const downloadFile = async (password) => {
+    setIsDownloading(prevState => true)
     console.log('Retrieving & decrypting the file...')
-    setIsDownloading(true)
 
-    setIsDownloading(false)
+    setIsDownloading(prevState => false)
   }
 
   const storeMetadata = async () => {
-    setType(type === '' ? 'none' : type)
-
-    console.log('Making a transaction...')
-    setIsMakingTransaction(true)
+    setIsTransactionSucceed(prevState => null)
+    setIsMakingTransaction(prevState => true)
+    console.log('Storing the file metadata in the blockchain...')
+    setType(type === '' ? prevState => 'none' : prevState => type)
 
     try {
-      const options = { from: account, gasLimit: 3000000 }
+      const _options = { from: account, gasLimit: 3000000 }
 
-      const tx = await contract.storeFile(name, size, type, hash, options)
+      const _tx = await contract.storeFile(name, size, type, hash, _options)
       // wait for the transaction to be mined
-      const receipt = await tx.wait()
-      console.log('Reveipt:', receipt)
+      const _receipt = await _tx.wait()
+      console.log('Receipt:', _receipt)
+
+      setIsTransactionSucceed(prevState => true)
     } catch (err) {
-      console.log('Cannot store file:', err.message)
+      console.log('Cannot make a transaction:', err.message)
+      setIsTransactionSucceed(prevState => false)
     }
 
-    setIsMakingTransaction(false)
+    await __refresh()
+    setIsMakingTransaction(prevState => false)
   }
 
   return (
     <>
-      {(contract || account)
+      {isUploading === true ? <UploadingFiles /> : <></>}
+      {isTransactionSucceed !== null ? <TransactionStatus isSucceed={isTransactionSucceed} /> : <></>}
+      {account
         ? (
           <Container className={styles.container}>
             <Row>
@@ -170,12 +189,7 @@ export default function Vault () {
             </Row>
           </Container>
           )
-        : (
-          <div>
-            <Error404 />
-            {/* <BGParticles /> */}
-          </div>
-          )}
+        : (<Error404 />)}
     </>
   )
 }
