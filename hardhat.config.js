@@ -19,8 +19,23 @@ module.exports = {
     tests: './__tests__'
   },
   networks: {
+    mainnet: {
+      url: process.env.MAINNET_URL || '',
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : []
+    },
     ropsten: {
       url: process.env.ROPSTEN_URL || '',
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : []
+    },
+    rinkeby: {
+      url: process.env.RINKEBY_URL || '',
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : []
+    },
+    kovan: {
+      url: process.env.KOVAN_URL || '',
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : []
     },

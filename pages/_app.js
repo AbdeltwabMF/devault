@@ -28,9 +28,12 @@ export default function App (props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const [signer, setSigner] = useState(null)
   const [account, setAccount] = useState(null)
+  const [blockNumber, setBlockNumber] = useState(null)
   const [balance, setBalance] = useState(null)
   const [contract, setContract] = useState(null)
-  const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  const [chainId, setChainId] = useState(null)
+  // ropsten Address = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
+  const contractAddress = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
 
   useEffect(() => {
     const checkConnection = async () => {
@@ -39,7 +42,7 @@ export default function App (props) {
       }
     }
     checkConnection()
-  }, [account, signer, contract])
+  }, [])
 
   const Initialize = async () => {
     // The MetaMask plugin also allows signing transactions to
@@ -48,16 +51,25 @@ export default function App (props) {
     const provider = getLibrary()
     await provider.send('eth_requestAccounts', [])
 
-    const signer = provider.getSigner()
-    const account = await signer.getAddress()
-    const balance = await provider.getBalance(account).then(balance => ethers.utils.formatEther(balance))
+    const _signer = provider.getSigner()
+    const _account = await _signer.getAddress()
+    const _balance = await provider.getBalance(_account)
+      .then(_balance => ethers.utils.formatEther(_balance))
 
-    setSigner(prevState => signer)
-    setAccount(prevState => account)
-    setBalance(prevState => balance)
+    setSigner(prevState => _signer)
+    setAccount(prevState => _account)
+    setBalance(prevState => _balance)
 
-    const contract = new ethers.Contract(contractAddress, Storage.abi, provider).connect(signer)
-    setContract(prevState => contract)
+    const _contract = new ethers.Contract(contractAddress, Storage.abi, provider).connect(_signer)
+    setContract(prevState => _contract)
+
+    const _chainId = await provider.getNetwork()
+    setChainId(prevState => _chainId.chainId)
+    console.log(_chainId.chainId)
+
+    const _blockNumber = await provider.getBlockNumber()
+    setBlockNumber(prevState => _blockNumber)
+    console.log(_blockNumber)
   }
 
   const value = {
@@ -66,10 +78,14 @@ export default function App (props) {
     account,
     setAccount,
     contract,
-    balance,
     setBalance,
     setContract,
+    balance,
     Initialize,
+    chainId,
+    setChainId,
+    blockNumber,
+    setBlockNumber,
     contractAddress
   }
 

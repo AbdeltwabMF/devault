@@ -28,7 +28,7 @@ import styles from '../styles/Vault.module.css'
 const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 export default function Vault () {
-  const { contract, account, Initialize } = useContext(AccountContext)
+  const { contract, account, chainId, blockNumber } = useContext(AccountContext)
   const [files, setFiles] = useState([])
   const [buffer, setBuffer] = useState(null)
   const [name, setName] = useState('')
@@ -40,13 +40,19 @@ export default function Vault () {
   const [isCapturing, setIsCapturing] = useState(false)
   const [isMakingTransaction, setIsMakingTransaction] = useState(false)
   const [isDownloading, setIsDownloading] = useState(false)
+  const [isMetaMask, setIsMetaMask] = useState(false)
 
   useEffect(() => {
     console.log('From Vault Before:', contract)
+    if (window.sessionStorage.getItem('isMetamaskConnected') === 'true') {
+      setIsMetaMask(true)
+    }
 
-    if (contract) {
+    if (contract && contract) {
       const getActualFiles = async () => {
-        const filesIndex = await contract.getFilesCount()
+        const options = { from: account }
+
+        const filesIndex = await contract.getFilesCount(options)
           .then(filesIndex => filesIndex.toNumber())
 
         if (filesIndex !== 0) {
@@ -54,7 +60,7 @@ export default function Vault () {
           console.log('Fetching Files...')
 
           try {
-            const files = await contract.getAllFiles()
+            const files = await contract.getAllFiles(options)
             setFiles(files)
             setIsFetching(false)
           } catch (err) {
@@ -65,7 +71,7 @@ export default function Vault () {
 
       getActualFiles()
     }
-  }, [isMakingTransaction])
+  }, [isMakingTransaction, chainId, blockNumber])
 
   /**
   * @description Reading contents of files (or raw data buffers) stored on the user's computer.
@@ -124,19 +130,23 @@ export default function Vault () {
     console.log('Making a transaction...')
     setIsMakingTransaction(true)
 
-    await contract.storeFile(name, size, type, hash)
-      .then(async (res) => {
-        console.log('Transaction made successfully!')
-      }).catch(err => {
-        console.log(err)
-      })
+    try {
+      const options = { from: account, gasLimit: 3000000 }
+
+      const tx = await contract.storeFile(name, size, type, hash, options)
+      // wait for the transaction to be mined
+      const receipt = await tx.wait()
+      console.log('Reveipt:', receipt)
+    } catch (err) {
+      console.log('Cannot store file:', err.message)
+    }
 
     setIsMakingTransaction(false)
   }
 
   return (
     <>
-      {account && contract
+      {(contract || account)
         ? (
           <Container className={styles.container}>
             <Row>
@@ -158,11 +168,12 @@ export default function Vault () {
                 />
               </Col>
             </Row>
-          </Container>)
+          </Container>
+          )
         : (
           <div>
             <Error404 />
-            <BGParticles />
+            {/* <BGParticles /> */}
           </div>
           )}
     </>
