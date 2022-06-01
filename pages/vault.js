@@ -91,7 +91,7 @@ export default function Vault () {
       ___getFiles()
       setIsFetching(prevState => false)
     }
-  }, [isMakingTransaction, chainId, blockNumber, balance])
+  }, [isMakingTransaction, chainId, blockNumber, balance, account, contract])
 
   const __refresh = async () => {
     if (provider) {

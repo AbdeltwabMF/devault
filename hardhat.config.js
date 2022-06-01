@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-require('@nomiclabs/hardhat-web3')
 require('@nomiclabs/hardhat-ethers')
 require('@nomiclabs/hardhat-waffle')
 require('@nomiclabs/hardhat-etherscan')

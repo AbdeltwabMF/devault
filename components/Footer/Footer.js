@@ -1,9 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTelegram, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { Vim, ReactJs, Artixlinux } from '@icons-pack/react-simple-icons/'
+import { Vim, ReactJs, Artixlinux, Github, Telegram } from '@icons-pack/react-simple-icons/'
 import Link from 'next/link'
 import styles from './Footer.module.css'
 
@@ -15,7 +13,7 @@ export default function Footer () {
           <Col xs={12} md={6} lg={3} className={styles.github}>
             <Link href='https://github.com/abdeltwabmf/decentralized-vault'>
               <a>
-                <FontAwesomeIcon icon={faGithub} size='xl' fixedWidth className={styles.icon} />
+                <Github color='#0D6EFD' className={styles.icon} />on
                 <span className={styles.label}>View Code</span>
               </a>
             </Link>
@@ -23,7 +21,7 @@ export default function Footer () {
           <Col xs={12} md={6} lg={3} className={styles.telegram}>
             <Link href='https://t.me/+OeH3hX00HqxmZDc8'>
               <a>
-                <FontAwesomeIcon icon={faTelegram} size='xl' fixedWidth className={styles.icon} />
+                <Telegram color='#0D6EFD' className={styles.icon} />on
                 <span className={styles.label}>Join Telegram</span>
               </a>
             </Link>

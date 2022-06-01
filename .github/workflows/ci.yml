@@ -33,4 +33,6 @@ jobs:
         name: Build, Lint, and Test
         run: |
           npm install
-          ./run.sh
+          npx hardhat node &
+          npm run build
+          npm run test

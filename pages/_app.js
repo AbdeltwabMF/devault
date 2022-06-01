@@ -1,31 +1,19 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
-import theme from '../themes/light'
 
 import Head from 'next/head'
-import PropTypes from 'prop-types'
 import { useState, createContext, useEffect } from 'react'
-
-import { ThemeProvider } from '@mui/material/styles'
-import { CacheProvider } from '@emotion/react'
-import CssBaseline from '@mui/material/CssBaseline'
-import { ChakraProvider } from '@chakra-ui/react'
 
 import { ethers } from 'ethers'
 
 import Storage from '../artifacts/contracts/storage.sol/Storage.json'
 import Layout from '../components/Layouts/Layout'
-import createEmotionCache from '../utils/createEmotionCache'
 import { getLibrary } from '../utils/getLibrary'
-
-// Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache()
 
 export const AccountContext = createContext()
 
-export default function App (props) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+export default function App ({ Component, pageProps }) {
   const [signer, setSigner] = useState(null)
   const [provider, setProvider] = useState(null)
   const [account, setAccount] = useState(null)
@@ -94,27 +82,15 @@ export default function App (props) {
   }
 
   return (
-    <CacheProvider value={emotionCache}>
+    <>
       <Head>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <ChakraProvider>
-          <AccountContext.Provider value={value}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </AccountContext.Provider>
-        </ChakraProvider>
-      </ThemeProvider>
-    </CacheProvider>
+      <AccountContext.Provider value={value}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AccountContext.Provider>
+    </>
   )
-}
-
-App.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.object,
-  pageProps: PropTypes.object.isRequired
 }
