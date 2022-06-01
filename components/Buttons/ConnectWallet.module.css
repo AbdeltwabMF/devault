@@ -1,6 +1,6 @@
 .button {
 	align-items: center;
-	background-color: #3e3e3e;
+	background-color: #E2E2E2 !important;
 	border: 0 !important;
 	border-radius: 1em;
 	box-shadow: 0 0 0 0 !important;
@@ -11,7 +11,7 @@
 }
 
 .connect {
-	color: #f3f3f3;
+	color: #3e3e3e;
 	display: inline-block;
 	font-weight: 600;
 	margin: 0 !important;
@@ -19,17 +19,11 @@
 }
 
 .iconWallet {
-	color: #f2f2f2;
+	color: #3e3e3e;
 	padding-right: 0.5em;
 }
 
 .button:hover {
-	background-color: #444444;
-	transition: all 0.3s ease-in-out;
-}
-
-.button:hover .iconWallet,
-.button:hover .connect {
-	color: #00a8ff;
+	background-color: #efefef !important;
 	transition: all 0.3s ease-in-out;
 }

@@ -1,18 +1,22 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVault } from '@fortawesome/free-solid-svg-icons'
+
+import { FileContext } from '../../pages/vault'
 
 import styles from './UploadingFiles.module.css'
 
 export default function Uploading ({ onFail, onSuccess }) {
   const [lgShow, setLgShow] = useState(true)
+  const { setIsCanceled } = useContext(FileContext)
 
   const handleCancel = () => {
     setLgShow(false)
+    setIsCanceled(prevState => true)
   }
 
   return (

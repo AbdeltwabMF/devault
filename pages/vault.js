@@ -11,7 +11,7 @@
 
 import { create } from 'ipfs-http-client'
 
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, createContext } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -28,6 +28,7 @@ import Error404 from '../components/Errors/Error404'
 import styles from '../styles/Vault.module.css'
 
 const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+export const FileContext = createContext()
 
 export default function Vault () {
   const {
@@ -45,14 +46,26 @@ export default function Vault () {
   const [name, setName] = useState('')
   const [type, setType] = useState('')
   const [size, setSize] = useState(0)
-  const [hash, setHash] = useState('')
+  const [hash, setHash] = useState(0)
   const [isUploading, setIsUploading] = useState(false)
   const [isFetching, setIsFetching] = useState(false)
   const [isCapturing, setIsCapturing] = useState(false)
+  const [isCanceled, setIsCanceled] = useState(false)
   const [isMakingTransaction, setIsMakingTransaction] = useState(false)
   const [isTransactionSucceed, setIsTransactionSucceed] = useState(null)
   const [isDownloading, setIsDownloading] = useState(false)
   const [isMetamask, setIsMetamask] = useState(false)
+
+  const value = {
+    isCanceled,
+    setIsCanceled,
+    isFetching,
+    setIsFetching,
+    isDownloading,
+    setIsDownloading,
+    isCapturing,
+    setIsCapturing
+  }
 
   useEffect(() => {
     console.log('Did contract mount in vault:', contract)
@@ -117,17 +130,24 @@ export default function Vault () {
   }
 
   const uploadFile = async (e) => {
+    setIsCanceled(prevState => false)
     setIsUploading(prevState => true)
     console.log('Uploading file to IPFS...')
     e.preventDefault()
 
-    await ipfs.add(buffer).then(async (response) => {
+    try {
+      const response = await ipfs.add(buffer)
       setSize(prevState => response.size)
       setHash(prevState => response.path)
-    })
-
-    setIsUploading(prevState => false)
-    await storeMetadata()
+    } catch (error) {
+      console.log('Cannot upload file to IPFS:', error.message)
+    } finally {
+      if (isCanceled) {
+        setSize(prevState => 0)
+        setHash(prevState => 0)
+      }
+      setIsUploading(prevState => false)
+    }
   }
 
   const downloadFile = async (password) => {
@@ -137,33 +157,40 @@ export default function Vault () {
     setIsDownloading(prevState => false)
   }
 
-  const storeMetadata = async () => {
-    setIsTransactionSucceed(prevState => null)
-    setIsMakingTransaction(prevState => true)
-    console.log('Storing the file metadata in the blockchain...')
-    setType(type === '' ? prevState => 'none' : prevState => type)
+  useEffect(() => {
+    const storeMetadata = async () => {
+      setIsTransactionSucceed(prevState => null)
+      setIsMakingTransaction(prevState => true)
+      console.log('Storing the file metadata in the blockchain...')
+      setType(type === '' ? prevState => 'none' : prevState => type)
 
-    try {
-      const _options = { from: account, gasLimit: 3000000 }
+      try {
+        const _options = { from: account, gasLimit: 3000000 }
 
-      const _tx = await contract.storeFile(name, size, type, hash, _options)
-      // wait for the transaction to be mined
-      const _receipt = await _tx.wait()
-      console.log('Receipt:', _receipt)
+        const _tx = await contract.storeFile(name, size, type, hash, _options)
+        // wait for the transaction to be mined
+        const _receipt = await _tx.wait()
+        console.log('Receipt:', _receipt)
 
-      setIsTransactionSucceed(prevState => true)
-    } catch (err) {
-      console.log('Cannot make a transaction:', err.message)
-      setIsTransactionSucceed(prevState => false)
+        setIsTransactionSucceed(prevState => true)
+      } catch (err) {
+        console.log('Cannot make a transaction:', err.message)
+        setIsTransactionSucceed(prevState => false)
+      }
+
+      await __refresh()
+      setIsMakingTransaction(prevState => false)
     }
-
-    await __refresh()
-    setIsMakingTransaction(prevState => false)
-  }
+    if (size && hash && !isCanceled) {
+      storeMetadata()
+    }
+  }, [size, hash])
 
   return (
     <>
-      {isUploading === true ? <UploadingFiles /> : <></>}
+      {isUploading
+        ? <FileContext.Provider value={value}><UploadingFiles /></FileContext.Provider>
+        : <></>}
       {isTransactionSucceed !== null ? <TransactionStatus isSucceed={isTransactionSucceed} /> : <></>}
       {account
         ? (
@@ -172,10 +199,7 @@ export default function Vault () {
               <Col xs={12} className={styles.readData}>
                 <UploadFiles
                   captureFile={captureFile}
-                  isCapturing={isCapturing}
                   uploadFile={uploadFile}
-                  isUploading={isUploading}
-                  isMakingTransaction={isMakingTransaction}
                 />
                 <hr className={styles.devider} />
               </Col>
@@ -183,7 +207,6 @@ export default function Vault () {
                 <FilesList
                   files={files}
                   downloadFile={downloadFile}
-                  isFetching={isFetching}
                 />
               </Col>
             </Row>

@@ -5,6 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useContext } from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouseLock } from '@fortawesome/free-solid-svg-icons'
+
 import ConnectWallet from '../Buttons/ConnectWallet'
 import ConnectedWallet from '../Buttons/ConnectedWallet'
 import ConnectingWallet from '../Buttons/ConnectingWallet'
@@ -34,65 +37,67 @@ export default function NavBar () {
   }
 
   return (
-    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
-      <Container>
-        <Navbar.Brand
-          as={Link}
-          href='/'
-          className={`${styles.brand} ${router.pathname === '/' ? 'active' : ''}`}
-        ><a className='navbar-brand'>Decentralized-Vaults</a>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='me-auto'>
-            {account
-              ? (
-                <Nav.Link
-                  as={Link}
-                  href='/vault'
-                  className={`${styles.navLink} ${router.pathname === '/vault' ? 'active' : ''}`}
-                ><a className='nav-link'>My Vault</a>
-                </Nav.Link>
-                )
-              : <></>}
-            <Nav.Link
-              as={Link}
-              href='/howitworks'
-              className={`${styles.navLink} ${router.pathname === '/howitworks' ? 'active' : ''}`}
-            ><a className='nav-link'>How it Works</a>
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
-              href='/docs'
-              className={`${styles.navLink} ${router.pathname === '/docs' ? 'active' : ''}`}
-            ><a className='nav-link'>Docs</a>
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
-              href='/toolsandtechnologies'
-              className={`${styles.navLink} ${router.pathname === '/toolsandtechnologies' ? 'active' : ''}`}
-            ><a className='nav-link'>Tools &amp; Technologies</a>
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
-              href='/about'
-              className={`${styles.navLink} ${router.pathname === '/about' ? 'active' : ''}`}
-            ><a className='nav-link'>About</a>
-            </Nav.Link>
-          </Nav>
-          <Nav>
-            <Navbar.Text>
-              {
+    <div className={styles.main}>
+      <Navbar collapseOnSelect expand='xl' bg='transparent' variant='light'>
+        <Container>
+          <Navbar.Brand as={Link} href='/'>
+            <a className={'navbar-brand ' + styles.brand}>
+              <FontAwesomeIcon icon={faHouseLock} size='xl' fixedWidth className={styles.brandIcon} />
+              <span className={styles.brandText}>Decentralized eVault</span>
+            </a>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+          <Navbar.Collapse id='responsive-navbar-nav'>
+            <Nav className='me-auto'>
+              {account
+                ? (
+                  <Nav.Link as={Link} href='/vault'>
+                    <a
+                      className={'nav-link ' + (router.pathname === '/vault' ? ' active' : '') + ' ' + styles.link}
+                    >My Vault
+                    </a>
+                  </Nav.Link>
+                  )
+                : <></>}
+              <Nav.Link as={Link} href='/howitworks'>
+                <a
+                  className={'nav-link ' + (router.pathname === '/howitworks' ? ' active' : '') + ' ' + styles.link}
+                >How it Works
+                </a>
+              </Nav.Link>
+              <Nav.Link as={Link} href='/docs'>
+                <a
+                  className={'nav-link ' + (router.pathname === '/docs' ? ' active' : '') + ' ' + styles.link}
+                >Docs
+                </a>
+              </Nav.Link>
+              <Nav.Link as={Link} href='/toolsandtechnologies'>
+                <a
+                  className={'nav-link ' + (router.pathname === '/toolsandtechnologies' ? ' active' : '') + ' ' + styles.link}
+                >Tools &amp; Technologies
+                </a>
+              </Nav.Link>
+              <Nav.Link as={Link} href='/about'>
+                <a
+                  className={'nav-link ' + (router.pathname === '/about' ? ' active' : '') + ' ' + styles.link}
+                >About
+                </a>
+              </Nav.Link>
+            </Nav>
+            <Nav>
+              <Navbar.Text>
+                {
               isConnecting
                 ? <ConnectingWallet />
                 : account > 0
                   ? <ConnectedWallet account={account} balance={balance} />
                   : <ConnectWallet handleConnection={handleConnection} />
               }
-            </Navbar.Text>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              </Navbar.Text>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
   )
 }

@@ -1,9 +1,36 @@
 .main {
 	background-color: #F3F3F3;
-	box-shadow: 0px 2px 0px 0px #0953C154;
+	box-shadow: 0px 2px 0px 0px #0953C154 !important;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .container {
 	background-color: #F3F3F3;
+}
+
+.brandText {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #091C45 !important;
+	padding-right: 1rem;
+}
+
+.brandIcon {
+	color: #091C45 !important;
+	margin-right: 0.7rem;
+}
+
+.link {
+	color: #091C45;
+	padding: 0.4rem 1rem 0 0.4rem !important;
+}
+
+.active {
+	color: #0953C154 !important;
+}
+
+@media (max-width: 500px) {
+	.brandText {
+		display: none;
+	}
 }

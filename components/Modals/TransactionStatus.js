@@ -2,7 +2,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faCheck, faCircleExclamation, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './TransactionStatus.module.css'
 
@@ -19,6 +19,23 @@ export default function TransactionStatus ({ isSucceed }) {
         centered
         className={styles.main}
       >
+        <Modal.Header
+          closeButton
+          className={styles.header}
+        >
+          <Modal.Title
+            id='uploading-modal-title'
+            className={styles.title}
+          >
+            <FontAwesomeIcon
+              icon={isSucceed ? (faCircleCheck) : (faCircleExclamation)}
+              size='md'
+              fixedWidth
+              className={`${isSucceed ? styles.success : styles.fail} ${styles.titleIcon}`}
+            />
+            <span className={styles.titleText}>{isSucceed ? 'Done' : 'Error Occured'}</span>
+          </Modal.Title>
+        </Modal.Header>
         <Modal.Body className={styles.body}>
           <FontAwesomeIcon
             icon={isSucceed ? faCheck : faXmark}

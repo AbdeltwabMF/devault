@@ -11,6 +11,3 @@ xdg-open http://localhost:3000 &
 
 sleep 5s
 sh deploy.sh
-
-# test the smart contract
-npm test

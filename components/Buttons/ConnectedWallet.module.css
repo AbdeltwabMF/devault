@@ -11,18 +11,18 @@
 }
 
 .button {
-	background-color: #2B2E3C !important;
+	background-color: #E2E2E2 !important;
 	padding: 0.4em 0.8em !important;
 }
 
 .container {
-	background-color: #1f1f1f !important;
+	background-color: #DADADA !important;
 	padding: 0.1em 0.1em  0.1em 1em !important;
 }
 
 .balance,
 .address {
-	color: #f1f1f1;
+	color: #3A3A3A;
 	display: inline-block;
 	font-weight: 600;
 	margin: 0 !important;
@@ -30,7 +30,7 @@
 }
 
 .button:hover {
-	background-color: #50577C !important;
+	background-color: #FFFFFF !important;
 }
 
 .iconCheck {
@@ -43,5 +43,5 @@
 
 .eth {
 	padding-left: 0.5rem;
-	color: #62ECBE;
+	color: #0098A6;
 }
