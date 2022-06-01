@@ -1,7 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useContext } from 'react'
 
@@ -37,10 +37,10 @@ export default function NavBar () {
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
       <Container>
         <Navbar.Brand
-          // as={Link}
+          as={Link}
           href='/'
           className={`${styles.brand} ${router.pathname === '/' ? 'active' : ''}`}
-        >Decentralized-Vault
+        ><a className='navbar-brand'>Decentralized-Vaults</a>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
@@ -48,36 +48,36 @@ export default function NavBar () {
             {account
               ? (
                 <Nav.Link
-                  // as={Link}
+                  as={Link}
                   href='/vault'
                   className={`${styles.navLink} ${router.pathname === '/vault' ? 'active' : ''}`}
-                >My Vault
+                ><a className='nav-link'>My Vault</a>
                 </Nav.Link>
                 )
               : <></>}
             <Nav.Link
-              // as={Link}
+              as={Link}
               href='/howitworks'
               className={`${styles.navLink} ${router.pathname === '/howitworks' ? 'active' : ''}`}
-            >How it Works
+            ><a className='nav-link'>How it Works</a>
             </Nav.Link>
             <Nav.Link
-                // as={Link}
+              as={Link}
               href='/docs'
               className={`${styles.navLink} ${router.pathname === '/docs' ? 'active' : ''}`}
-            >Docs
+            ><a className='nav-link'>Docs</a>
             </Nav.Link>
             <Nav.Link
-                // as={Link}
+              as={Link}
               href='/toolsandtechnologies'
               className={`${styles.navLink} ${router.pathname === '/toolsandtechnologies' ? 'active' : ''}`}
-            >Tools &amp; Technologies
+            ><a className='nav-link'>Tools &amp; Technologies</a>
             </Nav.Link>
             <Nav.Link
-              // as={Link}
+              as={Link}
               href='/about'
               className={`${styles.navLink} ${router.pathname === '/about' ? 'active' : ''}`}
-            >About
+            ><a className='nav-link'>About</a>
             </Nav.Link>
           </Nav>
           <Nav>

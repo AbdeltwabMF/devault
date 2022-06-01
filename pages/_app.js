@@ -33,7 +33,8 @@ export default function App (props) {
   const [balance, setBalance] = useState(null)
   const [contract, setContract] = useState(null)
   const [chainId, setChainId] = useState(null)
-  // ropsten Address = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
+  // 1= '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
+  // 2= '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
   const contractAddress = '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
 
   useEffect(() => {

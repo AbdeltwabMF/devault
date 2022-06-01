@@ -9,7 +9,9 @@ export default function ConnectedWallet ({ account, balance }) {
   return (
     <div>
       <div className={styles.container}>
-        <p className={styles.balance}>ETH: {truncateBalance(balance)}</p>
+        <p className={styles.balance}>{truncateBalance(balance)}
+          <span className={styles.eth}>ETH</span>
+        </p>
         <Button
           variant='outline-primary'
           className={styles.button}
