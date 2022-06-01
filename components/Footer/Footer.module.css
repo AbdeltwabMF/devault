@@ -1,8 +1,6 @@
 .main {
 	background-color: #F3F3F3;
 	box-shadow: 0px -2px 0px 0px #0953C154;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	margin-top: 2rem;
 }
 
 .container {
@@ -12,66 +10,92 @@
 	justify-content: center;
 }
 
-.social {
-	margin-top: 0.5em;
+.row1 {
+	justify-content: space-between;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100%;
 }
 
-.icon {
-	vertical-align: middle;
+.socialIcon,
+.toolsIcon {
 	display: inline-block !important;
 	margin: 0 0.4em;
 }
 
+.social {
+	display: inline-block;
+}
+
+.social:hover {
+	opacity: 0.8;
+}
+
 .label {
-	color: #3e3e3e;
+	color: #091C45;
 	padding: 0 0.3em;
 }
 
-.label:hover {
+.labelLink:hover {
 	color: #0953C1;
 }
 
-.github,
-.linkedin,
-.twitter,
-.telegram {
-	margin: 1em 0;
-	width: unset !important;
-	padding: 0 !important;
+.labelLink {
+	color: #091C45;
+	padding: 0 0.3em;
 }
 
-.telegram a,
-.twitter a,
-.facebook a,
-.instagram a,
-.github a {
-	padding-left: 1em;
-	text-decoration: none;
+.brand {
+	color: #091C45;
 }
 
-.telegram a:hover,
-.twitter a:hover,
-.facebook a:hover,
-.instagram a:hover,
-.github a:hover {
-	color: #0953C1;
+.brandIcon {
+	color: #091C45;
+	margin: 0 0.5rem;
 }
 
-.copy {
-	font-size: 1rem;
-	margin-bottom: 2em;
-	color: #3e3e3e;
-}
-
-.acknowledgements {
-	margin-bottom: 1em;
-	color: #3e3e3e;
-}
-
-.reactSimpleIcon {
-	height: 24px;
-	width: 24px;
-	vertical-align: middle;
+.col1 {
+	width: calc(100% / 3 - 2em);
+	margin: 1rem 0.5rem;
+	text-align: left;
 	padding: 0;
-	margin: 0 0.5em;
+}
+
+.col2 {
+	width: calc(100% / 3 - 2em);
+	margin: 1rem 0.5rem;
+	text-align: center;
+	padding: 0;
+}
+
+.col3 {
+	margin: 1rem 0.5rem;
+	width: calc(100% / 3 - 2em);
+	text-align: right;
+	padding: 0;
+}
+
+@media (max-width: 324px) {
+	.col3,
+	.col2,
+	.col1 {
+		font-size: 0.6rem;
+	}
+}
+
+@media (max-width: 999px) {
+	.col1,
+	.col2,
+	.col3 {
+		width: 100%;
+		margin: 0.5rem 0;
+		text-align: center;
+	}
+
+	.col1 {
+		margin-top: 1rem;
+	}
+	.col3 {
+		margin-bottom: 1rem;
+	}
 }

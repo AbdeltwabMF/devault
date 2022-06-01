@@ -22,15 +22,55 @@
 
 .link {
 	color: #091C45;
-	padding: 0.4rem 1rem 0 0.4rem !important;
+	padding: 0.8rem 0.5rem 0.5em 0.5rem !important;
+}
+
+.dropdownMenu {
+	padding: 0.3rem 0 0 !important;
+}
+.dropdownItem {
+	color: #091C45;
+	background-color: red !important;
+}
+
+.dropdownLink {
+	color: #091C45;
 }
 
 .active {
 	color: #0953C154 !important;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 400px) {
+	.brandText {
+		font-size: 1rem;
+	}
+
+	.brandIcon {
+		font-size: 1.3rem;
+	}
+}
+
+@media (max-width: 324px) {
 	.brandText {
 		display: none;
 	}
+}
+
+.themeToggler {
+	align-items: center;
+	background-color: #091C45;
+	border-radius: 1.3rem;
+	display: flex;
+	justify-content: space-between;
+	padding: 0.3rem 0.6rem;
+	position: absolute;
+	right: 1rem;
+	top: 5.5rem;
+	text-align: center;
+	width: 5rem;
+}
+
+.toggleThemeIcon {
+	color: #F3F3F3;
 }

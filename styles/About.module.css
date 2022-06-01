@@ -1,3 +1,8 @@
+.main {
+  min-height: calc(100vh - 130px);
+  padding: 2rem 1rem;
+}
+
 .container {
   padding: 2rem;
 }

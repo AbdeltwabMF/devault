@@ -6,7 +6,7 @@
   *         and then calling its methods.
   * @author Abd El-Twab M. Fakhry <abdeltwab.m.fakhry at gmail dot com>
   * @version v0.1.0
-  * @license MIT
+  * @license GPL-3.0
   */
 
 import { create } from 'ipfs-http-client'
@@ -21,9 +21,9 @@ import FilesList from '../components/FilesList/FilesList'
 import UploadFiles from '../components/UploadFiles/UploadFiles'
 import UploadingFiles from '../components/Modals/UploadingFiles'
 import TransactionStatus from '../components/Modals/TransactionStatus'
+import NoFils from '../components/AssistantPages/NoFiles'
 
 import { AccountContext } from './_app'
-import Error404 from '../components/Errors/Error404'
 
 import styles from '../styles/Vault.module.css'
 
@@ -146,6 +146,7 @@ export default function Vault () {
         setSize(prevState => 0)
         setHash(prevState => 0)
       }
+      console.log(isCanceled ? 'Uploading canceled.' : '')
       setIsUploading(prevState => false)
     }
   }
@@ -188,31 +189,38 @@ export default function Vault () {
 
   return (
     <>
-      {isUploading
-        ? <FileContext.Provider value={value}><UploadingFiles /></FileContext.Provider>
-        : <></>}
-      {isTransactionSucceed !== null ? <TransactionStatus isSucceed={isTransactionSucceed} /> : <></>}
-      {account
-        ? (
-          <Container className={styles.container}>
-            <Row>
-              <Col xs={12} className={styles.readData}>
-                <UploadFiles
-                  captureFile={captureFile}
-                  uploadFile={uploadFile}
-                />
-                <hr className={styles.devider} />
-              </Col>
-              <Col xs={12}>
-                <FilesList
-                  files={files}
-                  downloadFile={downloadFile}
-                />
-              </Col>
-            </Row>
-          </Container>
-          )
-        : (<Error404 />)}
+      <div className={styles.main}>
+        {isUploading
+          ? <FileContext.Provider value={value}><UploadingFiles /></FileContext.Provider>
+          : <></>}
+        {isTransactionSucceed !== null ? <TransactionStatus isSucceed={isTransactionSucceed} /> : <></>}
+        <Container className={styles.container}>
+          <Row>
+            {account
+              ? (
+                <>
+                  <Col xs={12} className={styles.readData}>
+                    <UploadFiles
+                      captureFile={captureFile}
+                      uploadFile={uploadFile}
+                    />
+                    <hr className={styles.devider} />
+                  </Col>
+                  <Col xs={12}>
+                    {files.length > 0
+                      ? (
+                        <FilesList
+                          files={files}
+                          downloadFile={downloadFile}
+                        />)
+                      : <><NoFils /></>}
+                  </Col>
+                </>
+                )
+              : <></>}
+          </Row>
+        </Container>
+      </div>
     </>
   )
 }

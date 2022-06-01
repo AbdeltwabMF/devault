@@ -15,7 +15,9 @@ export default function Page404 () {
 
   return (
     <>
-      <Error404 />
+      <div className={styles.main}>
+        <Error404 />
+      </div>
     </>
   )
 }

@@ -6,7 +6,7 @@ import styles from '../styles/About.module.css'
 
 export default function Home () {
   return (
-    <div>
+    <div className={styles.main}>
       <Container className={styles.container}>
         <h1 className={styles.title}>Decentralized eVault</h1>
         <Row>
