@@ -19,7 +19,7 @@ import styles from './NavBar.module.css'
 
 export default function NavBar () {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { Initialize, account, balance, provider } = useContext(AccountContext)
+  const { Initialize, account, balance } = useContext(AccountContext)
 
   const router = useRouter()
 
@@ -32,10 +32,11 @@ export default function NavBar () {
       window.sessionStorage.setItem('isMetamaskConnected', 'true')
       console.log('Connection established')
     } catch (error) {
-      if (!provider) {
+      if (parseInt(error.code) !== 4001) {
         MetamaskNotInstalled()
       }
-      console.info('Connection error:', error.message)
+      console.info('Connection error:', error)
+      console.info('Connection error:', error.code)
       window.sessionStorage.removeItem('isMetamaskConnected')
     }
     setIsConnecting(prevState => false)
