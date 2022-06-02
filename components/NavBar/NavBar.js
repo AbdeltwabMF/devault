@@ -12,25 +12,29 @@ import { faHouseLock, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import ConnectWallet from '../Buttons/ConnectWallet'
 import ConnectedWallet from '../Buttons/ConnectedWallet'
 import ConnectingWallet from '../Buttons/ConnectingWallet'
+import MetamaskNotInstalled from '../Alerts/MetamaskNotInstalled'
 import { AccountContext } from '../../pages/_app'
 
 import styles from './NavBar.module.css'
 
 export default function NavBar () {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { Initialize, account, balance } = useContext(AccountContext)
+  const { Initialize, account, balance, provider } = useContext(AccountContext)
 
   const router = useRouter()
 
   const handleConnection = async () => {
     setIsConnecting(prevState => true)
-    console.log('Handle connection to metamask...')
+    console.log('Handle connection...')
     try {
       await Initialize()
 
       window.sessionStorage.setItem('isMetamaskConnected', 'true')
       console.log('Connection established')
     } catch (error) {
+      if (!provider) {
+        MetamaskNotInstalled()
+      }
       console.info('Connection error:', error.message)
       window.sessionStorage.removeItem('isMetamaskConnected')
     }
@@ -99,10 +103,6 @@ export default function NavBar () {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-      </div>
-      <div className={styles.themeToggler}>
-        <FontAwesomeIcon icon={faMoon} size='lg' fixedWidth className={styles.toggleThemeIcon} />
-        <FontAwesomeIcon icon={faSun} size='lg' fixedWidth className={styles.toggleThemeIcon} />
       </div>
     </>
   )
