@@ -13,7 +13,7 @@ import { useState, useEffect, useContext, createContext } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import ethers from 'ethers'
+import { ethers } from 'ethers'
 
 import FilesList from '../components/FilesList/FilesList'
 import UploadFiles from '../components/UploadFiles/UploadFiles'

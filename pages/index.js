@@ -22,7 +22,7 @@ export default function Home () {
                 <br />
                 Join us now and expel big tech companies from your life.
                 <br />
-                Don't let anyone take this from you.
+                Don&apos;t let anyone take this from you.
               </h5>
             </Col>
             <Col xs={12}>
