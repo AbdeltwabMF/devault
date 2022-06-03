@@ -154,7 +154,6 @@ export default function Vault () {
   const downloadFile = async (password) => {
     setIsDownloading(prevState => true)
     console.log('Retrieving & decrypting the file...')
-
     setIsDownloading(prevState => false)
   }
 

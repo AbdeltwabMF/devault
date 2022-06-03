@@ -13,6 +13,7 @@ contract Storage
     * @dev Map the owner address to array of files
     */
   mapping(address => File[]) private _ownerToFiles;
+  mapping(string => uint) private _hashToIndex;
 
   struct File {
     string name;
@@ -64,10 +65,15 @@ contract Storage
     returns (bool)
   {
     require(bytes(_name).length > 0, "Name cannot be empty");
+    require(bytes(_name).length <= 512, "Name cannot be longer than 512 bytes");
+
     require(_size > 0, "Size must be greater than 0");
+    require(_size <= 2**30, "Size must be less than 2**30");
+
     require(bytes(_mimeType).length > 0, "Mime type cannot be empty");
+    require(bytes(_mimeType).length <= 128, "Mime type cannot be longer than 128 bytes");
+
     require(bytes(_hash).length > 0, "Hash cannot be empty");
-    require(msg.sender != address(0), "Sender cannot be 0x0");
 
     File memory newFile = File(
       _name,
@@ -77,17 +83,21 @@ contract Storage
       block.timestamp
     );
 
-    _ownerToFiles[msg.sender].push(newFile);
+    if(_hashToIndex[_hash] == 0) {
+      _hashToIndex[_hash] = _ownerToFiles[msg.sender].length + 1;
+      _ownerToFiles[msg.sender].push(newFile);
 
-    emit FileStored(
-      _name,
-      _size,
-      _mimeType,
-      _hash,
-      block.timestamp
-    );
+      emit FileStored(
+        _name,
+        _size,
+        _mimeType,
+        _hash,
+        block.timestamp
+      );
 
-    return true;
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -110,9 +120,7 @@ contract Storage
     view
     returns(File memory)
   {
-    // Zero-indexed
-    require(_index < _ownerToFiles[msg.sender].length, "Index out of bounds!");
-    require(_ownerToFiles[msg.sender].length > 0, "No files found!");
+    require(_index < _ownerToFiles[msg.sender].length, "Index out of bounds");
     return _ownerToFiles[msg.sender][_index];
   }
 
@@ -140,10 +148,9 @@ contract Storage
     public
     returns (bool)
   {
-    require(_ownerToFiles[msg.sender].length > 0, "No files found!");
+    require(_index < _ownerToFiles[msg.sender].length, "Index out of bounds!");
     require(_to != msg.sender, "To yourself!");
     require(_to != address(0), "Null address!");
-    require(_index < _ownerToFiles[msg.sender].length, "Index out of bounds!");
 
     File memory file = _ownerToFiles[msg.sender][_index];
 
@@ -169,7 +176,6 @@ contract Storage
     public
     returns (bool)
   {
-    require(_ownerToFiles[msg.sender].length > 0, "No files found!");
     require(_index < _ownerToFiles[msg.sender].length, "Index out of bounds!");
 
     File memory file = _ownerToFiles[msg.sender][_index];
