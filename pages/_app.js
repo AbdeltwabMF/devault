@@ -23,7 +23,7 @@ export default function App ({ Component, pageProps }) {
   const [chainId, setChainId] = useState(null)
   // 1= '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
   // 2= '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
-  const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  const contractAddress = '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
 
   useEffect(() => {
     const checkConnection = async () => {
