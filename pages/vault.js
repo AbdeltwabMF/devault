@@ -9,8 +9,6 @@
   * @license GPL-3.0
   */
 
-import { create } from 'ipfs-http-client'
-
 import { useState, useEffect, useContext, createContext } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -22,12 +20,12 @@ import UploadFiles from '../components/UploadFiles/UploadFiles'
 import UploadingFiles from '../components/Modals/UploadingFiles'
 import TransactionStatus from '../components/Modals/TransactionStatus'
 import NoFils from '../components/AssistantPages/NoFiles'
+import getIpfs from '../utils/getIpfs'
 
 import { AccountContext } from './_app'
 
 import styles from '../styles/Vault.module.css'
 
-const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 export const FileContext = createContext()
 
 export default function Vault () {
@@ -136,6 +134,7 @@ export default function Vault () {
     e.preventDefault()
 
     try {
+      const ipfs = getIpfs()
       const response = await ipfs.add(buffer)
       setSize(prevState => response.size)
       setHash(prevState => response.path)
@@ -151,9 +150,15 @@ export default function Vault () {
     }
   }
 
-  const downloadFile = async (password) => {
+  const downloadFile = async (_hash) => {
     setIsDownloading(prevState => true)
     console.log('Retrieving & decrypting the file...')
+
+    const ipfs = getIpfs()
+    const cid = 'QmQJp93vDRsRkiW5ujsQgku4ro3z8djzkah6PKQwaTnKjP'
+    for await (const buf of ipfs.get(cid)) {
+      console.log(buf.toString('utf-8'))
+    }
     setIsDownloading(prevState => false)
   }
 
