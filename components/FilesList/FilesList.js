@@ -2,12 +2,8 @@ import styles from './FilesList.module.css'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Link from 'next/link'
-import { useState } from 'react'
-import PasswordModal from '../Modals/PasswordModal'
 
 export default function FilesList ({ files, downloadFile }) {
-  const [showPasswordModal, setShowPasswordModal] = useState(false)
-
   /** @description Formats the bytes in terms of KB, MB, GB, etc.
     * @param {number} bytes - The number of bytes to format
     * @returns {string} - The formatted bytes
@@ -74,14 +70,14 @@ export default function FilesList ({ files, downloadFile }) {
                     <a className={styles.anchor}>{file.name}</a>
                   </Link>
                 </td>
-                {/* <td className={styles.name}>
+                <td className={styles.name}>
                   <Button onClick={() => {
-                    setShowPasswordModal(prevState => !prevState)
+                    downloadFile(file.hash)
                   }}
                   >
-                    {file.name}
+                    Download
                   </Button>
-                </td> */}
+                </td>
                 <td className={styles.date}>{timeConvertUnixStamp(file.uploadTime)}</td>
                 <td className={styles.type}>{file.mimeType}</td>
                 <td className={styles.size}>{formatBytes(file.size)}</td>
