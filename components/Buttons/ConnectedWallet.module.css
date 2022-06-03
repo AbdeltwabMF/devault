@@ -1,4 +1,4 @@
-.button,
+.dropdown,
 .container {
 	align-items: center;
 	border: 0 !important;
@@ -10,7 +10,7 @@
 	margin: 0 !important;
 }
 
-.button {
+.dropdown {
 	background-color: #E2E2E2 !important;
 	padding: 0.4em 0.8em !important;
 }
@@ -29,7 +29,7 @@
 	padding-right: 0.5em;
 }
 
-.button:hover {
+.dropdown:hover {
 	background-color: #FFFFFF !important;
 }
 

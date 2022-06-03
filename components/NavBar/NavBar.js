@@ -7,19 +7,21 @@ import { useRouter } from 'next/router'
 import { useState, useContext } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouseLock, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+import { faHouseLock } from '@fortawesome/free-solid-svg-icons'
 
 import ConnectWallet from '../Buttons/ConnectWallet'
 import ConnectedWallet from '../Buttons/ConnectedWallet'
 import ConnectingWallet from '../Buttons/ConnectingWallet'
 import MetamaskNotInstalled from '../Alerts/MetamaskNotInstalled'
+import CannotConnectWallet from '../Alerts/CannotConnectWallet'
 import { AccountContext } from '../../pages/_app'
+import WrongNetwork from '../Alerts/WrongNetwork'
 
 import styles from './NavBar.module.css'
 
 export default function NavBar () {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { Initialize, account, balance } = useContext(AccountContext)
+  const { Initialize, account, balance, chainId, setChainId } = useContext(AccountContext)
 
   const router = useRouter()
 
@@ -31,15 +33,22 @@ export default function NavBar () {
 
       window.sessionStorage.setItem('isMetamaskConnected', 'true')
       console.log('Connection established')
-    } catch (error) {
-      if (parseInt(error.code) !== 4001) {
-        MetamaskNotInstalled()
+
+      console.log('chainId: ', chainId)
+      if (chainId !== 3 && WrongNetwork(chainId)) {
+        setChainId(prevState => 3)
       }
-      console.info('Connection error:', error)
-      console.info('Connection error:', error.code)
+    } catch (error) {
+      if (error.message.includes('processing response error')) {
+        MetamaskNotInstalled()
+      } else {
+        CannotConnectWallet(error.message)
+      }
+      console.info('Connection error:', error.message)
       window.sessionStorage.removeItem('isMetamaskConnected')
+    } finally {
+      setIsConnecting(prevState => false)
     }
-    setIsConnecting(prevState => false)
   }
 
   return (
