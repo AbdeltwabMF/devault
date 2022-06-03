@@ -16,6 +16,7 @@ import MetamaskNotInstalled from '../Alerts/MetamaskNotInstalled'
 import CannotConnectWallet from '../Alerts/CannotConnectWallet'
 import { AccountContext } from '../../pages/_app'
 import WrongNetwork from '../Alerts/WrongNetwork'
+import handleMetamaskErrors from '../../hooks/handleMetamaskErrors'
 
 import styles from './NavBar.module.css'
 
@@ -39,10 +40,10 @@ export default function NavBar () {
         setChainId(prevState => 3)
       }
     } catch (error) {
-      if (error.message.includes('processing response error')) {
-        MetamaskNotInstalled()
-      } else {
+      if (handleMetamaskErrors(error)) {
         CannotConnectWallet(error.message)
+      } else {
+        MetamaskNotInstalled()
       }
       console.info('Connection error:', error.message)
       window.sessionStorage.removeItem('isMetamaskConnected')
