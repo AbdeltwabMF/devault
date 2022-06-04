@@ -1,4 +1,4 @@
-import styles from '../../styles/HowItWorks.module.css'
+import styles from '../styles/HowItWorks.module.css'
 
 export default function HowItWorks () {
   return (

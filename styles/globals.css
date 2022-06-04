@@ -1,15 +1,66 @@
+/* This changes all the animations globally */
+/* colors palatte */
+:root {
+  --light-teal: #b2ebf2;
+  --dark-teal: #00796b;
+  --light-aqua: #64ffda;
+  --dark-aqua: #00acc1;
+  --light-blue: #64b5f6;
+  --dark-blue: #2196f3;
+  --light-purple: #e1bee7;
+  --dark-purple: #ba68c8;
+  --light-pink: #f06292;
+  --dark-pink: #c2185b;
+  --light-orange: #ff8a65;
+  --dark-orange: #ff5722;
+  --light-yellow: #fff176;
+  --dark-yellow: #ffc107;
+  --light-green: #a5d6a7;
+  --dark-green: #4caf50;
+  --light-grey: #cfd8dc;
+  --dark-grey: #455a64;
+  --light-black: #212121;
+  --dark-black: #000000;
+  --light-white: #ffffff;
+  --dark-white: #fafafa;
+  --light-red: #ff5252;
+  --dark-red: #d32f2f;
+  --light-gold: #ffd600;
+  --dark-gold: #ffb300;
+}
+
+:root {
+  --fonts-primary: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fonts-secondary: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, serif;
+  --fonts-code: monospace;
+}
+
 html,
 body {
-  padding: 0 !important;
-  margin: 0 !important;
-  font-family: BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+  background-color: var(--light-grey, #cfd8dc);
+  color: var(--dark-black, #000000);
+  padding: 0;
+  margin: 0;
+  font-family: var(--fonts-primary, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif);
 }
 
-a {
-  text-decoration: none !important;
-}
+a {text-decoration: none;}
 
-* {
-  box-sizing: border-box !important;
+* {box-sizing: border-box;}
+
+.btn-check:active+.btn-success,
+.btn-check:checked+.btn-success,
+.btn-success.active,
+.btn-success:active,
+.show>.btn-success.dropdown-toggle,
+.btn-check:active+.btn-success:focus,
+.btn-check:checked+.btn-success:focus,
+.btn-success.active:focus,
+.btn-success:active:focus,
+.show>.btn-success.dropdown-toggle:focus {
+  color: var(--light-white, #ffffff) !important;
+  background-color: var(--light-green, #a5d6a7) !important;
+  border-color: var(--light-green, #a5d6a7) !important;
+  border: 0 !important;
+  box-shadow: 0 !important;
 }

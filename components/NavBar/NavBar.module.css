@@ -1,40 +1,43 @@
 .main {
-	background-color: #F3F3F3;
-	box-shadow: 0px 2px 0px 0px #0953C154 !important;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	background-color: var(--dark-grey, #2b2b2b);
+	box-shadow: 0px 2px 0px 0px var(--dark-teal, #00a6ff);
+	font-family: var(--fonts-primary, "Ubuntu", sans-serif);
 }
 
 .container {
-	background-color: #F3F3F3;
+	max-width: 1200px;
+	margin: auto;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 }
 
 .brandText {
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: #091C45 !important;
+	color: var(--light-grey, #f2f2f2);
 	padding-right: 1rem;
 }
 
 .brandIcon {
-	color: #091C45 !important;
+	color: var(--light-grey, #f2f2f2);
 	margin-right: 0.7rem;
 }
 
 .link {
-	color: #091C45;
+	color: var(--light-grey, #f2f2f2) !important;
 	padding: 0.8rem 0.5rem 0.5em 0.5rem !important;
 }
 
 .dropdownMenu {
 	padding: 0.3rem 0 0 !important;
 }
-.dropdownItem {
-	color: #091C45;
-	background-color: red !important;
+
+.dropdownMenu * {
+	color: var(--light-grey, #f2f2f2) !important;
 }
 
 .dropdownLink {
-	color: #091C45;
+	color: var(--dark-grey, #2b2b2b);
 }
 
 .active {
@@ -51,26 +54,15 @@
 	}
 }
 
+.navbarToggler {
+	box-shadow: none !important;
+	border: none !important;
+	background-color: var(--dark-grey, #2b2b2b) !important;
+	color: var(--light-grey, #f2f2f2) !important;
+}
+
 @media (max-width: 324px) {
 	.brandText {
 		display: none;
 	}
-}
-
-.themeToggler {
-	align-items: center;
-	background-color: #091C45;
-	border-radius: 1.3rem;
-	display: flex;
-	justify-content: space-between;
-	padding: 0.3rem 0.6rem;
-	position: absolute;
-	right: 1rem;
-	top: 5.5rem;
-	text-align: center;
-	width: 5rem;
-}
-
-.toggleThemeIcon {
-	color: #F3F3F3;
 }

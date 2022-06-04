@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Vim, Artixlinux, Github, Telegram, ReactJs, Vercel } from '@icons-pack/react-simple-icons/'
+import { Vim, Artixlinux, Github, Telegram, ReactJs } from '@icons-pack/react-simple-icons/'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouseLock } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
@@ -15,23 +15,23 @@ export default function Footer () {
           <Col xs={12} lg={4} className={styles.col1}>
             <Link href='https://github.com/abdeltwabmf/decentralized-vault'>
               <a className={styles.social}>
-                <Github color='#3e3e3e' className={styles.socialIcon} />
+                <Github color='#bdbdbd' className={styles.socialIcon} />
                 <span className={styles.labelLink}>View Source</span>
               </a>
             </Link>
             <Link href='https://t.me/+OeH3hX00HqxmZDc8'>
               <a className={styles.social}>
-                <Telegram color='#0D6EFD' className={styles.socialIcon} />
+                <Telegram color='#bdbdbd' className={styles.socialIcon} />
                 <span className={styles.labelLink}>Join Telegram</span>
               </a>
             </Link>
           </Col>
           <Col xs={12} lg={4} className={styles.col2}>
-            <span className={styles.label}>Built with </span>
-            <Vim color='#009732' size={19} className={styles.toolsIcon} /> &amp;
-            <ReactJs color='#0D6EFD' size={19} className={styles.toolsIcon} />
+            <span className={styles.label}>Built with</span>
+            <Vim color='#bdbdbd' size={19} className={styles.toolsIcon} /> &amp;
+            <ReactJs color='#bdbdbd' size={19} className={styles.toolsIcon} />
             <span className={styles.label}>on</span>
-            <Artixlinux color='#148FB5' size={19} className={styles.toolsIcon} />
+            <Artixlinux color='#bdbdbd' size={19} className={styles.toolsIcon} />
           </Col>
           <Col xs={12} lg={4} className={styles.col3}>
             &copy; {new Date().getFullYear()}

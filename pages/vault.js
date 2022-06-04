@@ -19,6 +19,7 @@ import FilesList from '../components/FilesList/FilesList'
 import UploadFiles from '../components/UploadFiles/UploadFiles'
 import UploadingFiles from '../components/Modals/UploadingFiles'
 import TransactionStatus from '../components/Modals/TransactionStatus'
+import FileUploadedSuccessfully from '../components/Alerts/FileUploadedSuccessfully'
 import NoFils from '../components/AssistantPages/NoFiles'
 import getIpfs from '../utils/getIpfs'
 
@@ -181,10 +182,11 @@ export default function Vault () {
       } catch (err) {
         console.log('Cannot make a transaction:', err.message)
         setIsTransactionSucceed(prevState => false)
+      } finally {
+        setIsMakingTransaction(prevState => false)
       }
 
       await __refresh()
-      setIsMakingTransaction(prevState => false)
     }
     if (size && hash && !isCanceled) {
       storeMetadata()
@@ -197,7 +199,7 @@ export default function Vault () {
         {isUploading
           ? <FileContext.Provider value={value}><UploadingFiles /></FileContext.Provider>
           : <></>}
-        {isTransactionSucceed !== null ? <TransactionStatus isSucceed={isTransactionSucceed} /> : <></>}
+        {isTransactionSucceed !== null ? <FileUploadedSuccessfully isSucceed={isTransactionSucceed} /> : <></>}
         <Container className={styles.container}>
           <Row>
             {account

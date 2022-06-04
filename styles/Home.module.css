@@ -1,12 +1,12 @@
 .main {
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 123px);
   padding: 2rem 1rem;
 }
 
 .container {
   text-align: center;
-  max-width: 768px;
-  margin: 4rem auto 0;
+  max-width: 950px;
+  margin: 2.5rem auto 0;
 }
 
 .header {
@@ -14,7 +14,7 @@
 }
 
 .headerTitle {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 1000;
   font-family: "Roboto", sans-serif;
   color: #2f2f2f;
@@ -28,21 +28,52 @@
 }
 
 .getStarted {
-  background-color: #ffffff;
+  background-color: #2CA2A2;
   border: 0 !important;
   font-weight: 600;
   font-size: 1.1rem;
   border-radius: 0.3rem;
   box-shadow: 0 0 5px 0 #cccccc;
-  color: #2f2f2f;
-  padding: 0.4rem 1.4rem;
-  margin-top: 2rem;
+  color: #ffffff;
+  padding: 0.5rem 1.8rem;
+  margin-top: 1.5rem;
+  margin: 2rem 0 !important;
 }
 
 .getStarted:hover {
-  background-color: #6366F113;
-  color: #000000;
-  box-shadow: 0 0 10px 0 #cccccc;
+  background-color: #118787;
+  box-shadow: 0 0 20px 0 #2CA2A285;
   border: 0 !important;
   transition: ease-in-out 0.2s;
+}
+
+@media (max-width: 768px) {
+  .main {
+    min-height: calc(100vh - 130px);
+    padding: 2rem 0.5rem;
+  }
+
+  .container {
+    text-align: center;
+    max-width: 768px;
+    margin: 3rem auto 0;
+  }
+
+  .header {
+    margin: auto;
+  }
+
+  .headerTitle {
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: "Roboto", sans-serif;
+    color: #2f2f2f;
+    margin-bottom: 1.5rem;
+  }
+
+  .headerDetails {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+  }
 }

@@ -36,9 +36,7 @@
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-bootstrap": "^2.4.0",
-    "react-dom": "^18.1.0",
-    "sweetalert2": "^11.4.17",
-    "sweetalert2-react-content": "^5.0.0"
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-solhint": "^2.0.1",
