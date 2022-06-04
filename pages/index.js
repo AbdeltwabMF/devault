@@ -1,6 +1,5 @@
 import styles from '../styles/Home.module.css'
 import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useRouter } from 'next/router'
@@ -30,12 +29,12 @@ export default function Home () {
               </h5>
             </Col>
             <Col xs={12}>
-              <Button
+              <button
                 onClick={() => router.push('/vault')}
                 className={styles.getStarted}
               >
                 Get started
-              </Button>
+              </button>
             </Col>
           </Row>
         </Container>

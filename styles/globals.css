@@ -1,5 +1,5 @@
 /* This changes all the animations globally */
-/* colors palatte */
+/* colors palette */
 :root {
   --light-teal: #b2ebf2;
   --dark-teal: #00796b;
@@ -16,6 +16,12 @@
   --light-yellow: #fff176;
   --dark-yellow: #ffc107;
   --light-green: #a5d6a7;
+  --light-ivory: #fffaf0;
+  --dark-ivory: #f5f5f5;
+  --light-brown: #795548;
+  --dark-brown: #5d4037;
+  --light-torquoise: #00bcd4;
+  --dark-torquoise: #009688;
   --dark-green: #4caf50;
   --light-grey: #cfd8dc;
   --dark-grey: #455a64;
