@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faFileAlt,
-  faFileChart,
-  faFileFormula,
   faFileCode,
   faFileExcel,
   faFilePdf,
@@ -70,10 +68,6 @@ export default function fontAwesomeMimeTypeIcon ({ mimeType }) {
       return <FontAwesomeIcon icon={faFilePowerpoint} className={styles.iconMime} size='2x' />
     case 'application/vnd.oasis.opendocument.graphics':
       return <FontAwesomeIcon icon={faFileImage} className={styles.iconMime} size='2x' />
-    case 'application/vnd.oasis.opendocument.chart':
-      return <FontAwesomeIcon icon={faFileChart} className={styles.iconMime} size='2x' />
-    case 'application/vnd.oasis.opendocument.formula':
-      return <FontAwesomeIcon icon={faFileFormula} className={styles.iconMime} size='2x' />
     default:
       return <FontAwesomeIcon icon={faFileAlt} className={styles.iconMime} size='2x' />
   }
