@@ -1,29 +1,29 @@
 .button {
 	align-items: center;
-	background-color: #E2E2E2 !important;
+	background-color: var(--light-grey, #fafafa);
 	border: 0 !important;
 	border-radius: 1em;
 	box-shadow: 0 0 0 0 !important;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	padding: 0.5em 1em;
+	padding: 0.3em 0.8em !important;
 }
 
 .connect {
-	color: #3e3e3e;
+	color: var(--dark-grey, #666) !important;
 	display: inline-block;
 	font-weight: 600;
 	margin: 0 !important;
-	text-transform: uppercase;
+	font-family: var(--fonts-code, monospace);
 }
 
 .iconWallet {
-	color: #3e3e3e;
+	color: var(--dark-grey, #8c8c8c);
 	padding-right: 0.5em;
 }
 
 .button:hover {
-	background-color: #efefef !important;
+	background-color: var(--light-teal, #e6f7ff);
 	transition: all 0.3s ease-in-out;
 }

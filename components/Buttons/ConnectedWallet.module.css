@@ -12,20 +12,20 @@
 }
 
 .dropdown {
-	background-color: var(--light-grey, #fafafa);
+	background-color: var(--dark-ivory, #f5f5f5);
 	padding: 0.2em 0.6em !important;
 }
 
 .dropdown:hover,
 .dropdown:focus,
 .dropdown:active {
-	background-color: var(--light-teal, #e0f2f1) !important;
+	background-color: var(--light-green, #e6ffed);
 	border: 0 !important;
 	box-shadow: 0 !important;
 }
 
 .container {
-	background-color: var(--light-purple) !important;
+	background-color: var(--light-ivory, #f5f5f5);
 	padding: 0.1em 0.1em  0.1em 0.8rem !important;
 }
 
