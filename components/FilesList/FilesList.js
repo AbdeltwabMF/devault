@@ -80,7 +80,7 @@ export default function FilesList ({ files, downloadFile }) {
                 <td className={styles.size}>{formatBytes(file.size)}</td>
                 <td className={styles.time}>{timeConvertUnixStamp(file.uploadTime)}</td>
                 <td className={styles.action}>
-                  <button onclick={() => {
+                  <button onClick={() => {
                     downloadFile(file.hash)
                   }}
                   >
