@@ -1,6 +1,6 @@
-import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
+import '../styles/globals.css'
 
 import Head from 'next/head'
 import { useState, createContext, useEffect } from 'react'

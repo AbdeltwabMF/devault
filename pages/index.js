@@ -14,7 +14,11 @@ export default function Home () {
         <Container className={styles.container}>
           <Row className={styles.header}>
             <Col xs={12}>
-              <h1 className={styles.headerTitle}>Decentralized encrypted cloud storage that respect your privacy</h1>
+              <h1
+                className={'animate__bounceIn ' + `${styles.headerTitle}`}
+              >
+                Decentralized encrypted cloud storage that respect your privacy
+              </h1>
             </Col>
             <Col xs={12}>
               <h5 className={styles.headerDetails}>

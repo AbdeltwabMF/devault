@@ -2,46 +2,48 @@
 .container {
 	align-items: center;
 	border: 0 !important;
-	box-shadow: 0 0 0 0 !important;
+	box-shadow: 0 !important;
 	border-radius: 1em;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	margin: 0 !important;
+	font-family: var(--fonts-code, monospace);
 }
 
 .dropdown {
-	background-color: #E2E2E2 !important;
-	padding: 0.4em 0.8em !important;
+	background-color: var(--light-grey, #fafafa);
+	padding: 0.2em 0.6em !important;
+}
+
+.dropdown:hover,
+.dropdown:focus,
+.dropdown:active {
+	background-color: var(--light-teal, #e0f2f1) !important;
+	border: 0 !important;
+	box-shadow: 0 !important;
 }
 
 .container {
-	background-color: #DADADA !important;
-	padding: 0.1em 0.1em  0.1em 1em !important;
+	background-color: var(--light-purple) !important;
+	padding: 0.1em 0.1em  0.1em 0.8rem !important;
 }
 
 .balance,
 .address {
-	color: #3A3A3A;
+	color: var(--dark-grey, #666);
 	display: inline-block;
 	font-weight: 600;
 	margin: 0 !important;
 	padding-right: 0.5em;
 }
 
-.dropdown:hover {
-	background-color: #FFFFFF !important;
-}
-
 .iconCheck {
-	color: #15D015;
-}
-
-.iconXmark {
-	color: #BF2828;
+	color: var(--dark-green, green);
+	vertical-align: middle !important;
 }
 
 .eth {
 	padding-left: 0.5rem;
-	color: #0098A6;
+	color: var(--dark-teal, teal);
 }

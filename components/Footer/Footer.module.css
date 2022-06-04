@@ -1,6 +1,8 @@
 .main {
-	background-color: #F3F3F3;
-	box-shadow: 0px -2px 0px 0px #0953C154;
+	box-shadow: 0 -2px 0 0 var(--dark-teal, #00bcd4);
+	background-color: var(--dark-grey, #3e3e3e);
+	font-family: var(--fonts-code, monospace);
+	color: var(--light-grey, #bdbdbd);
 }
 
 .container {
@@ -20,7 +22,7 @@
 .socialIcon,
 .toolsIcon {
 	display: inline-block !important;
-	margin: 0 0.4em;
+	margin: 0 0.3em;
 }
 
 .social {
@@ -32,25 +34,23 @@
 }
 
 .label {
-	color: #091C45;
 	padding: 0 0.3em;
-}
-
-.labelLink:hover {
-	color: #0953C1;
 }
 
 .labelLink {
-	color: #091C45;
 	padding: 0 0.3em;
+	color: var(--light-grey, #bdbdbd);
 }
 
+.labelLink:hover {
+	color: var(--light-teal, #00bcd4);
+}
+
+
 .brand {
-	color: #091C45;
 }
 
 .brandIcon {
-	color: #091C45;
 	margin: 0 0.5rem;
 }
 

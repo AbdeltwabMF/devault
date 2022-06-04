@@ -1,4 +1,4 @@
-import styles from '../../styles/ToolsandTechnologies.module.css'
+import styles from '../styles/Resources.module.css'
 
 export default function ToolsandTechnologies () {
   return (
