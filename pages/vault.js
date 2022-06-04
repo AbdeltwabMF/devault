@@ -21,7 +21,10 @@ import UploadingFiles from '../components/Modals/UploadingFiles'
 import TransactionStatus from '../components/Modals/TransactionStatus'
 import FileUploadedSuccessfully from '../components/Alerts/FileUploadedSuccessfully'
 import NoFils from '../components/AssistantPages/NoFiles'
+import AskPassPhrase from '../components/Modals/AskPassPhrase'
+
 import getIpfs from '../utils/getIpfs'
+import getCrypto from '../utils/getCrypto'
 
 import { AccountContext } from './_app'
 
@@ -46,8 +49,10 @@ export default function Vault () {
   const [type, setType] = useState('')
   const [size, setSize] = useState(0)
   const [hash, setHash] = useState(0)
+  const [isRequestPassPhrase, setIsRequestPassPhrase] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [isFetching, setIsFetching] = useState(false)
+  const [passphrase, setPassphrase] = useState('')
   const [isCapturing, setIsCapturing] = useState(false)
   const [isCanceled, setIsCanceled] = useState(false)
   const [isMakingTransaction, setIsMakingTransaction] = useState(false)
@@ -63,7 +68,9 @@ export default function Vault () {
     isDownloading,
     setIsDownloading,
     isCapturing,
-    setIsCapturing
+    setIsCapturing,
+    passphrase,
+    setPassphrase
   }
 
   useEffect(() => {
@@ -151,16 +158,27 @@ export default function Vault () {
     }
   }
 
+  const requestPassPhrase = async () => {
+    setIsRequestPassPhrase(prevState => true)
+  }
+
   const downloadFile = async (_hash) => {
     setIsDownloading(prevState => true)
     console.log('Retrieving & decrypting the file...')
+    await requestPassPhrase()
 
-    const ipfs = getIpfs()
-    const cid = 'QmQJp93vDRsRkiW5ujsQgku4ro3z8djzkah6PKQwaTnKjP'
-    for await (const buf of ipfs.get(cid)) {
-      console.log(buf.toString('utf-8'))
+    try {
+      const ipfs = getIpfs()
+      const cid = 'QmQJp93vDRsRkiW5ujsQgku4ro3z8djzkah6PKQwaTnKjP'
+      for await (const buf of ipfs.get(cid)) {
+        console.log(buf.toString('utf-8'))
+      }
+    } catch (error) {
+      console.log('Cannot download file from IPFS:', error.message)
+      // TODO: handle error
+    } finally {
+      setIsDownloading(prevState => false)
     }
-    setIsDownloading(prevState => false)
   }
 
   useEffect(() => {
@@ -196,6 +214,18 @@ export default function Vault () {
   return (
     <>
       <div className={styles.main}>
+        {isRequestPassPhrase && isDownloading
+          ? (
+            <FileContext.Provider value={value}>
+              <AskPassPhrase isEncryption={false} />
+            </FileContext.Provider>)
+          : isRequestPassPhrase && isUploading
+            ? (
+              <FileContext.Provider value={value}>
+                <AskPassPhrase isEncryption />
+              </FileContext.Provider>)
+            : <></>}
+
         {isUploading
           ? <FileContext.Provider value={value}><UploadingFiles /></FileContext.Provider>
           : <></>}

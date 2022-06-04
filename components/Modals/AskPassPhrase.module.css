@@ -1,0 +1,10 @@
+.modal {
+	position: absolute;
+	top: 25%;
+}
+
+.header {
+	text-align: center;
+	color: var(--fg-5, #666);
+	font-size: 1.2rem;
+}
