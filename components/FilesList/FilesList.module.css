@@ -1,39 +1,73 @@
-.header {
-	padding-top: 0.4em;
-	text-align: center;
-}
-
-.table {
-	text-align: center;
-}
-
-.anchor {
-	display: block;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: 600;
-	padding: 0.5em;
-	text-decoration: none;
-}
-
-.index {
-	width: 0.5em;
-}
-
 .name {
-	padding: 0 !important;
-	max-width: 10em;
-	text-overflow: ellipsis;
+	display: flex;
+	flex-direction: row;
 }
 
-.date {
-	width: 10em;
+.nameText {
+	font-size: 1em;
+	color: var(--fg-1, #666);
+	font-weight: 500;
+	padding: 0.5em;
 }
 
-.type,
+.time {
+	font-size: 1em;
+	color: var(--fg-1, #666);
+	font-weight: 500;
+	padding: 0.5em;
+}
+
 .size {
-	width: 7em;
+	font-size: 1em;
+	color: var(--fg-1, #666);
+	font-weight: 500;
+	padding: 0.5em;
 }
 
-.hash {
-	width: 10em;
+.iconMime {
+	color: var(--dark-teal, #00A0D3);
+	padding-right: 1rem;
+}
+
+.tableBody {
+	vertical-align: middle !important;
+}
+
+.headerText {
+	font-size: 1em;
+	color: var(--fg-3, #666);
+	font-weight: 600;
+	padding: 0;
+}
+
+.sortIcon {
+	color: var(--fg-3, #666);
+	padding-left: 1rem;
+}
+
+.tableRow:hover {
+	background-color: #fafafa94;
+}
+
+.action button {
+	border-radius: 0.4rem;
+	padding: 0.3rem 1rem;
+	color: var(--fg-2, #666);
+	border: 0;
+	background-color: var(--light-ivory, #f8f8f8);
+}
+
+.action button:hover {
+	color: var(--fg-2, #666);
+	background-color: var(--dark-ivory, #f8f8f8);
+	box-shadow: 0  0 0 1px #66666654;
+}
+
+.downloadText {
+	padding: 0;
+}
+
+.downloadIcon {
+	color: var(--fg-2, #666);
+	padding-left: 0.8rem;
 }

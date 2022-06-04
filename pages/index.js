@@ -16,7 +16,7 @@ export default function Home () {
               <h1
                 className={'animate__bounceIn ' + `${styles.headerTitle}`}
               >
-                Decentralized encrypted cloud storage that respect your privacy
+                Decentralized encrypted cloud storage that respects your privacy
               </h1>
             </Col>
             <Col xs={12}>

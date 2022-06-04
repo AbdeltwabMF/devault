@@ -1,7 +1,9 @@
 import styles from './FilesList.module.css'
-import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
-import Link from 'next/link'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSort, faDownload } from '@fortawesome/free-solid-svg-icons'
+
+import FontAwesomeMimeTypeIcon from '../Icons/FontAwesomeMimeTypeIcon'
 
 export default function FilesList ({ files, downloadFile }) {
   /** @description Formats the bytes in terms of KB, MB, GB, etc.
@@ -49,44 +51,52 @@ export default function FilesList ({ files, downloadFile }) {
 
   return (
     <>
-      <Table striped bordered hover className={styles.table}>
+      <table className={'table table-borderless ' + `${styles.table}`}>
         <thead className={styles.tableHead} key='fs'>
           <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Size</th>
-            <th>IPFS Hash</th>
+            <th>
+              <span className={styles.headerText}>Name</span>
+              <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
+            </th>
+            <th>
+              <span className={styles.headerText}>File Size</span>
+              <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
+            </th>
+            <th>
+              <span className={styles.headerText}>Last Modified</span>
+              <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
+            </th>
+            <th />
           </tr>
         </thead>
         {
           files && files.map((file, index) => (
             <tbody className={styles.tableBody} key={index}>
-              <tr>
-                <td className={styles.index}>{index + 1}</td>
+              <tr className={styles.tableRow}>
                 <td className={styles.name}>
-                  <Link href={'https://ipfs.infura.io/ipfs/' + file.hash}>
-                    <a className={styles.anchor}>{file.name}</a>
-                  </Link>
+                  <FontAwesomeMimeTypeIcon mimeType={file.mimeType} />
+                  <span className={styles.nameText}>{file.name}</span>
                 </td>
-                <td className={styles.name}>
-                  <Button onClick={() => {
+                <td className={styles.size}>{formatBytes(file.size)}</td>
+                <td className={styles.time}>{timeConvertUnixStamp(file.uploadTime)}</td>
+                <td className={styles.action}>
+                  <button onClick={() => {
                     downloadFile(file.hash)
                   }}
                   >
-                    Download
-                  </Button>
+                    <span className={styles.downloadText}>Download</span>
+                    <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
+                  </button>
                 </td>
-                <td className={styles.date}>{timeConvertUnixStamp(file.uploadTime)}</td>
-                <td className={styles.type}>{file.mimeType}</td>
-                <td className={styles.size}>{formatBytes(file.size)}</td>
-                <td className={styles.hash}>{file.hash}</td>
               </tr>
             </tbody>
           ))
 }
-      </Table>
+      </table>
     </>
   )
 }
+
+// <Link href={'https://ipfs.infura.io/ipfs/' + file.hash}>
+//   <a className={styles.anchor}>{file.name}</a>
+// </Link>
