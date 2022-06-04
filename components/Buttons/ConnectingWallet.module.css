@@ -7,14 +7,14 @@
 	flex-direction: row;
 	justify-content: center;
 	font-family: var(--fonts-code, monospace);
-	padding: 0.3em 0.8em !important;
+	padding: 0.4em 1em !important;
 }
 
 .iconSpinner {
-	color: var(--dark-grey, #666);
+	color: var(--fg-2, #fff);
 }
 
 .load {
 	padding-left: 0.5em;
-	color: var(--dark-grey, #666);
+	color: var(--fg-2, #fff);
 }

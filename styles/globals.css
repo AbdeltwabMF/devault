@@ -1,44 +1,60 @@
 /* This changes all the animations globally */
 /* colors palette */
 :root {
+  --primary: #2F80ED;
+  --secondary: #DEDEDE;
   --light-teal: #b2ebf2;
   --dark-teal: #00796b;
-  --light-aqua: #64ffda;
-  --dark-aqua: #00acc1;
-  --light-blue: #64b5f6;
-  --dark-blue: #2196f3;
-  --light-purple: #e1bee7;
-  --dark-purple: #ba68c8;
+  --light-aqua: #689D6A;
+  --dark-aqua: #427B58;
+  --light-blue: #458588;
+  --dark-blue: #076678;
+  --light-purple: #B16286;
+  --dark-purple: #8F3F71;
   --light-pink: #f06292;
   --dark-pink: #c2185b;
   --light-orange: #ff8a65;
   --dark-orange: #ff5722;
-  --light-yellow: #fff176;
-  --dark-yellow: #ffc107;
-  --light-green: #a5d6a7;
+  --light-yellow: #D79921;
+  --dark-yellow: #B57614;
   --light-ivory: #fffaf0;
   --dark-ivory: #f5f5f5;
   --light-brown: #795548;
   --dark-brown: #5d4037;
-  --light-torquoise: #00bcd4;
-  --dark-torquoise: #009688;
-  --dark-green: #4caf50;
-  --light-grey: #cfd8dc;
-  --dark-grey: #455a64;
+  --light-green: #98971A;
+  --dark-green: #79740E;
   --light-black: #212121;
   --dark-black: #000000;
   --light-white: #ffffff;
   --dark-white: #fafafa;
-  --light-red: #ff5252;
-  --dark-red: #d32f2f;
+  --light-red: #CC241D;
+  --dark-red: #9D0006;
   --light-gold: #ffd600;
   --dark-gold: #ffb300;
+  --light-grey: #E9ECEF;
+  --dark-grey: #CED4DA;
 }
 
 :root {
   --fonts-primary: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --fonts-secondary: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, serif;
   --fonts-code: monospace;
+}
+
+:root {
+  --bg-0: #F8F9FE;
+  --bg-1: #FBF1C7;
+  --bg-2: #EBDBB2;
+  --bg-3: #D5C4A1;
+  --bg-4: #BDAE93;
+  --bg-5: #A89984;
+  --bg-6: #928374;
+  --fg-0: #282828;
+  --fg-1: #3C3836;
+  --fg-2: #504945;
+  --fg-3: #665C54;
+  --fg-4: #7C6F64;
+
 }
 
 html,
@@ -54,19 +70,9 @@ a {text-decoration: none;}
 
 * {box-sizing: border-box;}
 
-.btn-check:active+.btn-success,
-.btn-check:checked+.btn-success,
-.btn-success.active,
-.btn-success:active,
-.show>.btn-success.dropdown-toggle,
-.btn-check:active+.btn-success:focus,
-.btn-check:checked+.btn-success:focus,
-.btn-success.active:focus,
-.btn-success:active:focus,
-.show>.btn-success.dropdown-toggle:focus {
-  color: var(--light-white, #ffffff) !important;
-  background-color: var(--light-green, #a5d6a7) !important;
-  border-color: var(--light-green, #a5d6a7) !important;
-  border: 0 !important;
-  box-shadow: 0 !important;
+.nav-link:focus, .nav-link:hover {
+    color: var(--light-teal, #b2ebf2);
+}
+a:hover {
+    color: var(--light-teal, #b2ebf2);
 }

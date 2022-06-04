@@ -15,23 +15,24 @@ export default function Footer () {
           <Col xs={12} lg={4} className={styles.col1}>
             <Link href='https://github.com/abdeltwabmf/decentralized-vault'>
               <a className={styles.social}>
-                <Github color='#bdbdbd' className={styles.socialIcon} />
+                <Github color='teal' className={styles.socialIcon} />
                 <span className={styles.labelLink}>View Source</span>
               </a>
             </Link>
             <Link href='https://t.me/+OeH3hX00HqxmZDc8'>
               <a className={styles.social}>
-                <Telegram color='#bdbdbd' className={styles.socialIcon} />
+                <Telegram color='teal' className={styles.socialIcon} />
                 <span className={styles.labelLink}>Join Telegram</span>
               </a>
             </Link>
           </Col>
           <Col xs={12} lg={4} className={styles.col2}>
             <span className={styles.label}>Built with</span>
-            <Vim color='#bdbdbd' size={19} className={styles.toolsIcon} /> &amp;
-            <ReactJs color='#bdbdbd' size={19} className={styles.toolsIcon} />
+            <Vim color='teal' size={19} className={styles.toolsIcon} />
+            <span className={styles.label}>&amp;</span>
+            <ReactJs color='teal' size={19} className={styles.toolsIcon} />
             <span className={styles.label}>on</span>
-            <Artixlinux color='#bdbdbd' size={19} className={styles.toolsIcon} />
+            <Artixlinux color='teal' size={19} className={styles.toolsIcon} />
           </Col>
           <Col xs={12} lg={4} className={styles.col3}>
             &copy; {new Date().getFullYear()}

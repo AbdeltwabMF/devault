@@ -3,34 +3,26 @@
 }
 
 .mainHeader {
-	font-weight: 600;
+	font-weight: 500;
 	margin-bottom: 1rem;
 	text-align: center;
-	color: #3f3f3f54;
-}
-
-.assistantHeader {
-	font-weight: 500;
-	margin-bottom: 2rem;
-	text-align: center;
-	color: #3f3f3f54;
+	color: var(--dark-grey, #666);
 }
 
 .description {
 	font-size: 1.2rem;
-	margin-bottom: 1rem;
+	margin: 2rem 0;
 	text-align: center;
-	color: #3f3f3f54;
+	color: #ADADAD;
 }
 
-.plusIcon {
-	padding: 0 0.5rem;
-	color: green;
+.arrow {
+	padding: 0 0.5rem 0 0.3rem;
 }
 
 .mainHeaderIcon {
 	display: inline-block;
 	text-align: center;
 	margin: 1rem 0;
-	color: #3f3f3f54;
+	color: var(--dark-grey, #666);
 }

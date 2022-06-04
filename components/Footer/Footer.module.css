@@ -2,7 +2,7 @@
 	box-shadow: 0 -2px 0 0 var(--dark-teal, #00bcd4);
 	background-color: var(--dark-grey, #3e3e3e);
 	font-family: var(--fonts-code, monospace);
-	color: var(--light-grey, #bdbdbd);
+	color: var(--dark-teal, #00bcd4);
 }
 
 .container {
@@ -39,15 +39,11 @@
 
 .labelLink {
 	padding: 0 0.3em;
-	color: var(--light-grey, #bdbdbd);
+	color: var(--dark-teal, #00bcd4);
 }
 
 .labelLink:hover {
-	color: var(--light-teal, #00bcd4);
-}
-
-
-.brand {
+	color: var(--fg-1, #fff);
 }
 
 .brandIcon {
