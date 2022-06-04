@@ -1,6 +1,6 @@
 .main {
-	background-color: var(--dark-grey, #2b2b2b);
-	box-shadow: 0px 2px 0px 0px var(--dark-teal, #00a6ff);
+	background-color: var(--light-blue, #00bcd4);
+	box-shadow: 0 2px 0 0 var(--dark-teal, #00bcd4);
 	font-family: var(--fonts-primary, "Ubuntu", sans-serif);
 }
 
@@ -14,34 +14,23 @@
 .brandText {
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: var(--light-grey, #f2f2f2);
+	color: var(--dark-white, #fff);
 	padding-right: 1rem;
 }
 
 .brandIcon {
-	color: var(--light-grey, #f2f2f2);
+	color: var(--light-white, #fff);
 	margin-right: 0.7rem;
 }
 
 .link {
-	color: var(--light-grey, #f2f2f2) !important;
+	color: var(--light-white, #fff);
 	padding: 0.8rem 0.5rem 0.5em 0.5rem !important;
+	font-size: 1.2rem;
 }
 
-.dropdownMenu {
-	padding: 0.3rem 0 0 !important;
-}
-
-.dropdownMenu * {
-	color: var(--light-grey, #f2f2f2) !important;
-}
-
-.dropdownLink {
-	color: var(--dark-grey, #2b2b2b);
-}
-
-.active {
-	color: #0953C154 !important;
+.link:hover {
+	color: var(--light-teal, #00bcd4);
 }
 
 @media (max-width: 400px) {
@@ -57,8 +46,7 @@
 .navbarToggler {
 	box-shadow: none !important;
 	border: none !important;
-	background-color: var(--dark-grey, #2b2b2b) !important;
-	color: var(--light-grey, #f2f2f2) !important;
+	color: var(--light-white, #fff);
 }
 
 @media (max-width: 324px) {

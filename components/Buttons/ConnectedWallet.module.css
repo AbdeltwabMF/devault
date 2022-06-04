@@ -12,16 +12,29 @@
 }
 
 .dropdown {
-	background-color: var(--dark-ivory, #f5f5f5);
-	padding: 0.2em 0.6em !important;
+	background-color: var(--bg-1, #fff);
+	padding: 0.3em 0.6em !important;
+}
+
+.dropdownMenu {
+	background-color: var(--light-grey, #fafafa);
+	border-radius: 1rem;
+}
+
+.dropdownMenu .dropdownItem {
+	border-radius: 0.5rem;
+}
+
+.dropdownMenu .dropdownItem:hover {
+	background-color: var(--light-teal, #e6ffed);
 }
 
 .dropdown:hover,
 .dropdown:focus,
 .dropdown:active {
-	background-color: var(--light-green, #e6ffed);
-	border: 0 !important;
-	box-shadow: 0 !important;
+	background-color: var(--light-teal, #e6ffed);
+	border: 0;
+	box-shadow: 0;
 }
 
 .container {
@@ -31,7 +44,7 @@
 
 .balance,
 .address {
-	color: var(--dark-grey, #666);
+	color: var(--fg-2, #666);
 	display: inline-block;
 	font-weight: 600;
 	margin: 0 !important;
@@ -39,7 +52,7 @@
 }
 
 .iconCheck {
-	color: var(--dark-green, green);
+	color: green;
 	vertical-align: middle !important;
 }
 

@@ -1,0 +1,129 @@
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useState, useContext } from 'react'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouseLock, faBars } from '@fortawesome/free-solid-svg-icons'
+
+import ConnectWallet from '../Buttons/ConnectWallet'
+import ConnectedWallet from '../Buttons/ConnectedWallet'
+import ConnectingWallet from '../Buttons/ConnectingWallet'
+import MetamaskNotInstalled from '../Alerts/MetamaskNotInstalled'
+import CannotConnectWallet from '../Alerts/CannotConnectWallet'
+import { AccountContext } from '../../pages/_app'
+import WrongNetwork from '../Alerts/WrongNetwork'
+import handleMetamaskErrors from '../../hooks/handleMetamaskErrors'
+
+import styles from './Navbar.module.css'
+
+export default function Navbar () {
+  const [isConnecting, setIsConnecting] = useState(false)
+  const { Initialize, account, balance, chainId, setChainId } = useContext(AccountContext)
+
+  const router = useRouter()
+
+  const handleConnection = async () => {
+    setIsConnecting(prevState => true)
+    console.log('Handle connection...')
+    try {
+      await Initialize()
+
+      window.sessionStorage.setItem('isMetamaskConnected', 'true')
+      console.log('Connection established')
+
+      console.log('chainId: ', chainId)
+      if (chainId !== 3 && WrongNetwork(chainId)) {
+        setChainId(prevState => 3)
+      }
+    } catch (error) {
+      if (handleMetamaskErrors(error)) {
+        CannotConnectWallet(error.message)
+      } else {
+        MetamaskNotInstalled()
+      }
+      console.info('Connection error:', error.message)
+      window.sessionStorage.removeItem('isMetamaskConnected')
+    } finally {
+      setIsConnecting(prevState => false)
+    }
+  }
+
+  return (
+    <>
+      <div className={styles.main}>
+        <div className={styles.container}>
+          <nav className='navbar navbar-expand-lg bg-transparent'>
+            <div className='container-fluid'>
+              <Link href='/'>
+                <a className={'navbar-brand ' + styles.brand}>
+                  <FontAwesomeIcon icon={faHouseLock} size='xl' fixedWidth className={styles.brandIcon} />
+                  <span className={styles.brandText}>Decentralized eVault</span>
+                </a>
+              </Link>
+
+              <button
+                className={'navbar-toggler ' + `${styles.navbarToggler}`}
+                type='button'
+                data-bs-toggle='collapse'
+                data-bs-target='#navbarNavDropdown'
+                aria-controls='navbarNavDropdown'
+                aria-expanded='false'
+                aria-label='Toggle navigation'
+              >
+                <FontAwesomeIcon icon={faBars} size='lg' fixedWidth className={styles.navbarTogglerIcon} />
+              </button>
+
+              <div className='collapse navbar-collapse' id='navbarNavDropdown'>
+                <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+                  <li className='nav-item'>
+                    <Link href='/vault'>
+                      <a
+                        aria-current='page'
+                        className={'nav-link ' + (router.pathname === '/vault' ? ' active' : '') + ' ' + styles.link}
+                      >The Vault
+                      </a>
+                    </Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link href='/docs'>
+                      <a
+                        aria-current='page'
+                        className={'nav-link ' + (router.pathname === '/docs' ? ' active' : '') + ' ' + styles.link}
+                      >Docs
+                      </a>
+                    </Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link href='/how-it-works'>
+                      <a
+                        aria-current='page'
+                        className={'nav-link ' + (router.pathname === '/how-it-works' ? ' active' : '') + ' ' + styles.link}
+                      >How it works
+                      </a>
+                    </Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link href='/resources'>
+                      <a
+                        aria-current='page'
+                        className={'nav-link ' + (router.pathname === '/resources' ? ' active' : '') + ' ' + styles.link}
+                      >Resources
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+                <div>
+                  {isConnecting
+                    ? <ConnectingWallet />
+                    : account > 0
+                      ? <ConnectedWallet account={account} balance={balance} />
+                      : <ConnectWallet handleConnection={handleConnection} />}
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </>
+  )
+}

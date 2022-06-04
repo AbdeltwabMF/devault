@@ -14,7 +14,6 @@ export default function ConnectWallet ({ handleConnection }) {
           icon={faWallet}
           size='lg'
           fixedWidth
-          fade
           className={styles.iconWallet}
         />
         <span className={styles.connect}>Connect Wallet</span>

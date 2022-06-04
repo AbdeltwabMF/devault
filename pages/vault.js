@@ -16,7 +16,7 @@ import Col from 'react-bootstrap/Col'
 import { ethers } from 'ethers'
 
 import FilesList from '../components/FilesList/FilesList'
-import UploadFiles from '../components/UploadFiles/UploadFiles'
+import UploadForm from '../components/UploadForm/UploadForm'
 import UploadingFiles from '../components/Modals/UploadingFiles'
 import TransactionStatus from '../components/Modals/TransactionStatus'
 import FileUploadedSuccessfully from '../components/Alerts/FileUploadedSuccessfully'
@@ -206,7 +206,7 @@ export default function Vault () {
               ? (
                 <>
                   <Col xs={12} className={styles.readData}>
-                    <UploadFiles
+                    <UploadForm
                       captureFile={captureFile}
                       uploadFile={uploadFile}
                     />

@@ -1,4 +1,3 @@
-import Dropdown from 'react-bootstrap/Dropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -18,11 +17,13 @@ export default function ConnectedWallet ({ account, balance }) {
         <p className={styles.balance}>{truncateBalance(balance)}
           <span className={styles.eth}>ETH</span>
         </p>
-        <Dropdown>
-          <Dropdown.Toggle
-            variant='success'
-            id='dropdown-basic'
-            className={styles.dropdown}
+        <div className='dropdown'>
+          <button
+            className={'dropdown-toggle ' + `${styles.dropdown}`}
+            type='button'
+            id='addressOptions'
+            data-bs-toggle='dropdown'
+            aria-expanded='false'
           >
             <p className={styles.address}>
               {(account === undefined)
@@ -48,26 +49,35 @@ export default function ConnectedWallet ({ account, balance }) {
                   className={styles.iconCheck}
                 />
                 )}
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item
-              onClick={async () => {
-                setAccount(null)
-                window.sessionStorage.removeItem('isMetamaskConnected')
-              }}
-            >Disconnect
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={async () => {
-                if (chainId !== 3 && WrongNetwork(chainId)) {
-                  setChainId(prevState => 3)
-                }
-              }}
-            >Switch Network
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+          </button>
+          <ul className={'dropdown-menu ' + `${styles.dropdownMenu}`} aria-labelledby='addressOptions'>
+            <li>
+              <button
+                className={'dropdown-item ' + `${styles.dropdownItem}`}
+                type='button'
+                onClick={async () => {
+                  setAccount(null)
+                  window.sessionStorage.removeItem('isMetamaskConnected')
+                }}
+              >
+                Disconnect
+              </button>
+            </li>
+            <li>
+              <button
+                className={'dropdown-item ' + `${styles.dropdownItem}`}
+                type='button'
+                onClick={async () => {
+                  if (chainId !== 3 && WrongNetwork(chainId)) {
+                    setChainId(prevState => 3)
+                  }
+                }}
+              >
+                Switch network
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   )

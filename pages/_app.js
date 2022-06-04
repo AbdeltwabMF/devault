@@ -27,6 +27,10 @@ export default function App ({ Component, pageProps }) {
   const contractAddress = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
 
   useEffect(() => {
+    import('bootstrap/dist/js/bootstrap.min.js')
+  }, [])
+
+  useEffect(() => {
     const checkConnection = async () => {
       if (window.sessionStorage.getItem('isMetamaskConnected') === 'true') {
         await Initialize()
