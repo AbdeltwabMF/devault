@@ -2,8 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
 import '../styles/globals.css'
 
-import Head from 'next/head'
 import { useState, createContext, useEffect } from 'react'
+import Head from 'next/head'
 
 import { ethers } from 'ethers'
 
@@ -11,19 +11,19 @@ import Storage from '../artifacts/contracts/storage.sol/Storage.json'
 import Layout from '../components/Layouts/Layout'
 import { getLibrary } from '../utils/getLibrary'
 
-export const AccountContext = createContext()
+export const Web3Context = createContext()
 
 export default function App ({ Component, pageProps }) {
-  const [signer, setSigner] = useState(null)
   const [provider, setProvider] = useState(null)
+  const [contract, setContract] = useState(null)
+  const [chainId, setChainId] = useState(null)
+  const [signer, setSigner] = useState(null)
   const [account, setAccount] = useState(null)
   const [blockNumber, setBlockNumber] = useState(null)
   const [balance, setBalance] = useState(null)
-  const [contract, setContract] = useState(null)
-  const [chainId, setChainId] = useState(null)
-  // 1= '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
-  // 2= '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
-  // 3= '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
+  // 1 = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
+  // 2 = '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
+  // 3 = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
   const contractAddress = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
 
   useEffect(() => {
@@ -31,12 +31,12 @@ export default function App ({ Component, pageProps }) {
   }, [])
 
   useEffect(() => {
-    const checkConnection = async () => {
-      if (window.sessionStorage.getItem('isMetamaskConnected') === 'true') {
+    const __restoreStates = async () => {
+      if (window.sessionStorage.getItem('metamask') === 'ok') {
         await Initialize()
       }
     }
-    checkConnection()
+    __restoreStates()
   }, [])
 
   const Initialize = async () => {
@@ -60,12 +60,26 @@ export default function App ({ Component, pageProps }) {
 
     const _chainId = await provider.getNetwork()
     setChainId(prevState => _chainId.chainId)
-    console.log(_chainId.chainId)
+    console.log('root:', _chainId.chainId)
 
     const _blockNumber = await provider.getBlockNumber()
     setBlockNumber(prevState => _blockNumber)
-    console.log(_blockNumber)
+    console.log('root:', _blockNumber)
   }
+
+  useEffect(() => {
+    const __update = async () => {
+      if (provider) {
+        const _balance = await provider.getBalance(account)
+          .then(_balance => ethers.utils.formatEther(_balance))
+        setBalance(prevState => _balance)
+
+        const _blockNumber = await provider.getBlockNumber()
+        setBlockNumber(prevState => _blockNumber)
+      }
+    }
+    __update()
+  }, [account, chainId])
 
   const value = {
     provider,
@@ -91,11 +105,11 @@ export default function App ({ Component, pageProps }) {
       <Head>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-      <AccountContext.Provider value={value}>
+      <Web3Context.Provider value={value}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </AccountContext.Provider>
+      </Web3Context.Provider>
     </>
   )
 }

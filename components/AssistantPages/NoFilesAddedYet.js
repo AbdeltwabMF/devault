@@ -1,6 +1,7 @@
-import styles from './NoFiles.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpFromBracket, faFolderOpen } from '@fortawesome/free-solid-svg-icons'
+
+import styles from './NoFilesAddedYet.module.css'
 
 export default function NoFile () {
   return (

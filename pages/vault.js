@@ -10,253 +10,276 @@
   */
 
 import { useState, useEffect, useContext, createContext } from 'react'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import { ethers } from 'ethers'
 
 import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
-import UploadingFiles from '../components/Modals/UploadingFiles'
-import TransactionStatus from '../components/Modals/TransactionStatus'
-import FileUploadedSuccessfully from '../components/Alerts/FileUploadedSuccessfully'
-import NoFils from '../components/AssistantPages/NoFiles'
-import AskPassPhrase from '../components/Modals/AskPassPhrase'
+import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 
-import getIpfs from '../utils/getIpfs'
 import getCrypto from '../utils/getCrypto'
+import getIpfs from '../utils/getIpfs'
 
-import { AccountContext } from './_app'
+import { Web3Context } from './_app'
 
 import styles from '../styles/Vault.module.css'
 
 export const FileContext = createContext()
+export const ProcessContext = createContext()
 
 export default function Vault () {
   const {
+    provider,
     contract,
     account,
     chainId,
     blockNumber,
     setBlockNumber,
     balance,
-    setBalance,
-    provider
-  } = useContext(AccountContext)
+    setBalance
+  } = useContext(Web3Context)
+
   const [files, setFiles] = useState([])
-  const [buffer, setBuffer] = useState(null)
+
+  const [rowData, setRowData] = useState(null)
   const [name, setName] = useState('')
   const [type, setType] = useState('')
   const [size, setSize] = useState(0)
-  const [hash, setHash] = useState(0)
-  const [isRequestPassPhrase, setIsRequestPassPhrase] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
-  const [isFetching, setIsFetching] = useState(false)
+  const [hash, setHash] = useState('')
   const [passphrase, setPassphrase] = useState('')
-  const [isCapturing, setIsCapturing] = useState(false)
-  const [isCanceled, setIsCanceled] = useState(false)
-  const [isMakingTransaction, setIsMakingTransaction] = useState(false)
+
+  const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [isUploadCanceled, setIsUploadCanceled] = useState(false)
   const [isTransactionSucceed, setIsTransactionSucceed] = useState(null)
   const [isDownloading, setIsDownloading] = useState(false)
-  const [isMetamask, setIsMetamask] = useState(false)
+  const [isSameSession, setIsSameSession] = useState(false)
+  const [isReadyForTransaction, setIsReadyForTransaction] = useState(false)
 
-  const value = {
-    isCanceled,
-    setIsCanceled,
-    isFetching,
-    setIsFetching,
+  const processContextValue = {
+    isRequestingPassphrase,
+    setIsRequestingPassphrase,
+    isUploading,
+    setIsUploading,
+    isUploadCanceled,
+    setIsUploadCanceled,
+    isTransactionSucceed,
+    setIsTransactionSucceed,
     isDownloading,
     setIsDownloading,
-    isCapturing,
-    setIsCapturing,
+    isSameSession,
+    setIsSameSession,
+    isReadyForTransaction,
+    setIsReadyForTransaction
+  }
+
+  const fileContextValue = {
+    rowData,
+    setRowData,
+    name,
+    setName,
+    type,
+    setType,
+    size,
+    setSize,
+    hash,
+    setHash,
     passphrase,
     setPassphrase
   }
 
   useEffect(() => {
-    console.log('Did contract mount in vault:', contract)
-    if (window.sessionStorage.getItem('isMetamaskConnected') === 'true') {
-      setIsMetamask(prevState => true)
+    const __update = async () => {
+      if (provider) {
+        const _balance = await provider.getBalance(account)
+          .then(_balance => ethers.utils.formatEther(_balance))
+        setBalance(prevState => _balance)
+
+        const _blockNumber = await provider.getBlockNumber()
+        setBlockNumber(prevState => _blockNumber)
+      }
     }
-    if (contract && account) {
-      setIsFetching(prevState => true)
-      console.log('Fetching files metadata form blockchain...')
-      const ___getFiles = async () => {
+    __update()
+  }, [isTransactionSucceed])
+
+  useEffect(() => {
+    const fetchFilesMetadata = async () => {
+      if (window.sessionStorage.getItem('metamask') === 'ok') {
+        setIsSameSession(prevState => true)
+      }
+
+      if (contract && account) {
         const _options = { from: account }
 
         try {
+          console.log('Fetching files metadata form blockchain...')
           const _files = await contract.getFiles(_options)
           if (_files.length > 0) {
             setFiles(prevState => _files)
           }
         } catch (err) {
           console.log('Cannot fetch files from blockchain:', err.message)
+          // TODO: handle error
         }
       }
-
-      ___getFiles()
-      setIsFetching(prevState => false)
     }
-  }, [isMakingTransaction, chainId, blockNumber, balance, account, contract])
+    fetchFilesMetadata()
+  }, [isTransactionSucceed, chainId, account, contract])
 
-  const __refresh = async () => {
-    if (provider) {
-      const _balance = await provider.getBalance(account)
-        .then(_balance => ethers.utils.formatEther(_balance))
-      setBalance(prevState => _balance)
+  useEffect(() => {
+    if (isReadyForTransaction) {
+      const __storeFilesMetadata = async () => {
+        setType(type === '' ? prevState => 'none' : prevState => type)
 
-      const _blockNumber = await provider.getBlockNumber()
-      setBlockNumber(prevState => _blockNumber)
+        try {
+          console.log('Storing the files metadata in the blockchain...')
+          setIsTransactionSucceed(prevState => null)
+
+          const _options = { from: account, gasLimit: 3000000 }
+
+          const _tx = await contract.storeFile(name, size, type, hash, _options)
+          // wait for the transaction to be mined
+          const _receipt = await _tx.wait()
+          console.log('Receipt:', _receipt)
+
+          setIsTransactionSucceed(prevState => true)
+          setIsReadyForTransaction(prevState => false)
+        } catch (err) {
+          console.log('Cannot make a transaction to store files\' metadata:', err.message)
+          setIsTransactionSucceed(prevState => false)
+        } finally {
+          setIsReadyForTransaction(prevState => false)
+          console.log('Done.')
+        }
+      }
+      __storeFilesMetadata()
     }
-  }
+  }, [isReadyForTransaction])
 
-  /**
-  * @description Reading contents of files (or raw data buffers) stored on the user's computer.
-  */
-  const captureFile = async (e) => {
-    setIsCapturing(prevState => true)
-    console.log('Capturing the file...')
-
+  const captureFiles = (e) => {
+    e.preventDefault()
     try {
+      console.log('Capturing the file...')
       const _file = e.target.files[0]
       const _reader = new window.FileReader()
       _reader.readAsArrayBuffer(_file)
 
       _reader.onloadend = () => {
-        setBuffer(prevState => Buffer.from(_reader.result))
+        setRowData(prevState => Buffer.from(_reader.result))
         setType(prevState => _file.type)
         setName(prevState => _file.name)
       }
     } catch (error) {
       console.log('Cannot capture the file:', error.message)
+    // TODO: handle error
     }
-
-    e.preventDefault()
-    setIsCapturing(prevState => false)
   }
 
-  const uploadFile = async (e) => {
-    setIsCanceled(prevState => false)
-    setIsUploading(prevState => true)
-    console.log('Uploading file to IPFS...')
-    e.preventDefault()
+  const uploadFiles = async (e) => {
+    // e.preventDefault()
 
     try {
+      console.log('Encrypting & Uploading file to IPFS...')
+      setIsUploading(prevState => true)
+
+      const crypto = getCrypto()
       const ipfs = getIpfs()
-      const response = await ipfs.add(buffer)
+
+      const bufferWordArray = crypto.lib.WordArray.create(rowData)
+      const encryptedBufferWordArray = await crypto.AES.encrypt(bufferWordArray, '123').toString()
+      console.log('encrypted', encryptedBufferWordArray)
+
+      const response = await ipfs.add(Buffer.from(encryptedBufferWordArray))
+
       setSize(prevState => response.size)
       setHash(prevState => response.path)
+
+      setIsReadyForTransaction(prevState => true)
     } catch (error) {
       console.log('Cannot upload file to IPFS:', error.message)
+    // TODO: show error message
     } finally {
-      if (isCanceled) {
-        setSize(prevState => 0)
-        setHash(prevState => 0)
-      }
-      console.log(isCanceled ? 'Uploading canceled.' : '')
       setIsUploading(prevState => false)
     }
   }
 
-  const requestPassPhrase = async () => {
-    setIsRequestPassPhrase(prevState => true)
+  const saveFilesLocally = (fileUint8ArrayBuffer, fileName, fileMimeType) => {
+    const blob = new Blob([fileUint8ArrayBuffer], {
+      type: fileMimeType
+    })
+
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = fileUint8ArrayBuffer
+    a.download = fileName
+    document.body.appendChild(a)
+    a.style = 'display: none'
+    a.click()
+    a.remove()
+
+    setTimeout(function () {
+      return window.URL.revokeObjectURL(url)
+    }, 1000)
   }
 
-  const downloadFile = async (_hash) => {
-    setIsDownloading(prevState => true)
-    console.log('Retrieving & decrypting the file...')
-    await requestPassPhrase()
-
+  const downloadFiles = async (_name, _hash, _type) => {
     try {
+      console.log('Retrieving & decrypting the file...')
+      setIsDownloading(prevState => true)
+
       const ipfs = getIpfs()
-      const cid = 'QmQJp93vDRsRkiW5ujsQgku4ro3z8djzkah6PKQwaTnKjP'
-      for await (const buf of ipfs.get(cid)) {
+      const crypto = getCrypto()
+
+      console.log(_hash)
+      for await (const buf of ipfs.get(_hash)) {
         console.log(buf.toString('utf-8'))
+
+        const decrypted = crypto.AES.decrypt(buf.toString('utf8'), '123')
+        console.log(decrypted)
+
+        saveFilesLocally(decrypted, _name, _type)
       }
     } catch (error) {
       console.log('Cannot download file from IPFS:', error.message)
-      // TODO: handle error
+    // TODO: handle error
     } finally {
       setIsDownloading(prevState => false)
     }
   }
 
-  useEffect(() => {
-    const storeMetadata = async () => {
-      setIsTransactionSucceed(prevState => null)
-      setIsMakingTransaction(prevState => true)
-      console.log('Storing the file metadata in the blockchain...')
-      setType(type === '' ? prevState => 'none' : prevState => type)
-
-      try {
-        const _options = { from: account, gasLimit: 3000000 }
-
-        const _tx = await contract.storeFile(name, size, type, hash, _options)
-        // wait for the transaction to be mined
-        const _receipt = await _tx.wait()
-        console.log('Receipt:', _receipt)
-
-        setIsTransactionSucceed(prevState => true)
-      } catch (err) {
-        console.log('Cannot make a transaction:', err.message)
-        setIsTransactionSucceed(prevState => false)
-      } finally {
-        setIsMakingTransaction(prevState => false)
-      }
-
-      await __refresh()
-    }
-    if (size && hash && !isCanceled) {
-      storeMetadata()
-    }
-  }, [size, hash])
-
   return (
     <>
-      <div className={styles.main}>
-        {isRequestPassPhrase && isDownloading
-          ? (
-            <FileContext.Provider value={value}>
-              <AskPassPhrase isEncryption={false} />
-            </FileContext.Provider>)
-          : isRequestPassPhrase && isUploading
-            ? (
-              <FileContext.Provider value={value}>
-                <AskPassPhrase isEncryption />
-              </FileContext.Provider>)
-            : <></>}
-
-        {isUploading
-          ? <FileContext.Provider value={value}><UploadingFiles /></FileContext.Provider>
-          : <></>}
-        {isTransactionSucceed !== null ? <FileUploadedSuccessfully isSucceed={isTransactionSucceed} /> : <></>}
-        <Container className={styles.container}>
-          <Row>
-            {account
-              ? (
-                <>
-                  <Col xs={12} className={styles.readData}>
-                    <UploadForm
-                      captureFile={captureFile}
-                      uploadFile={uploadFile}
-                    />
-                    <hr className={styles.devider} />
-                  </Col>
-                  <Col xs={12}>
-                    {files.length > 0
-                      ? (
-                        <FilesList
-                          files={files}
-                          downloadFile={downloadFile}
-                        />)
-                      : <><NoFils /></>}
-                  </Col>
-                </>
-                )
-              : <></>}
-          </Row>
-        </Container>
-      </div>
+      <FileContext.Provider value={fileContextValue}>
+        <ProcessContext.Provider value={processContextValue}>
+          <div className={styles.main}>
+            <div className={'container ' + `${styles.container}`}>
+              <div className={'row ' + `${styles.row}`}>
+                {account
+                  ? (
+                    <>
+                      <div className={'col col-12 ' + `${styles.readData}`}>
+                        <UploadForm
+                          captureFiles={captureFiles}
+                          uploadFiles={uploadFiles}
+                        />
+                        <hr className={styles.devider} />
+                      </div>
+                      <div className='col col-12 '>
+                        {files.length > 0
+                          ? (
+                            <FilesList
+                              files={files}
+                              downloadFiles={downloadFiles}
+                            />)
+                          : <><NoFilesAddedYet /></>}
+                      </div>
+                    </>
+                    )
+                  : (<></>)}
+              </div>
+            </div>
+          </div>
+        </ProcessContext.Provider>
+      </FileContext.Provider>
     </>
   )
 }
