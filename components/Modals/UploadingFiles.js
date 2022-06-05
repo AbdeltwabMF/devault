@@ -35,7 +35,7 @@ export default function UploadingFile () {
                 <button
                   type='button'
                   onClick={handleCancel}
-                  class='btn btn-danger'
+                  className='btn btn-danger'
                   data-bs-dismiss='modal'
                 >Cancel
                 </button>
