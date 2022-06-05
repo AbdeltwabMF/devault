@@ -1,5 +1,5 @@
 .main {
-  min-height: calc(100vh - 123px);
+  min-height: calc(100vh - 112.78px);
   padding: 2rem 1rem;
 }
 
@@ -48,23 +48,8 @@
 }
 
 @media (max-width: 768px) {
-  .main {
-    min-height: calc(100vh - 130px);
-    padding: 2rem 0.5rem;
-  }
-
-  .container {
-    text-align: center;
-    max-width: 768px;
-    margin: 3rem auto 0;
-  }
-
-  .header {
-    margin: auto;
-  }
-
   .headerTitle {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 900;
     font-family: "Roboto", sans-serif;
     color: #2f2f2f;
@@ -74,6 +59,22 @@
   .headerDetails {
     color: #666;
     font-size: 1rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .headerTitle {
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-family: "Roboto", sans-serif;
+    color: #2f2f2f;
+    margin-bottom: 1.5rem;
+  }
+
+  .headerDetails {
+    color: #666;
+    font-size: 0.8rem;
     margin: 0;
   }
 }

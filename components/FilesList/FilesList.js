@@ -59,11 +59,12 @@ export default function FilesList ({ files, downloadFiles }) {
   }
 
   useEffect(() => {
-    if (!askingPassphrase && isReadyForDownloading) {
+    if (askingPassphrase === false && isReadyForDownloading) {
       setAskingPassphrase(null)
+      console.log(isReadyForDownloading)
       downloadFiles(selectedFileName, selectedFileHash, selectedFileSize)
     }
-  }, [askingPassphrase])
+  }, [askingPassphrase, isReadyForDownloading])
 
   const getPassphrase = () => {
     setAskingPassphrase(true)

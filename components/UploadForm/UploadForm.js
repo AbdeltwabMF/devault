@@ -11,11 +11,12 @@ export default function UploadForm ({ captureFiles, uploadFiles }) {
   const [isReadyForUploading, setIsReadyForUploading] = useState(false)
 
   useEffect(() => {
-    if (!askingPassphrase && isReadyForUploading) {
+    if (askingPassphrase === false && isReadyForUploading) {
       setAskingPassphrase(null)
+      console.log(isReadyForUploading)
       uploadFiles()
     }
-  }, [askingPassphrase])
+  }, [askingPassphrase, isReadyForUploading])
 
   const getPassphrase = (e) => {
     e.preventDefault()
