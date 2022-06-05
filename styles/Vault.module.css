@@ -1,5 +1,5 @@
 .main {
-  min-height: calc(100vh - 123px);
+  min-height: calc(100vh - 112.78px);
   padding: 2rem 1rem;
 }
 
@@ -8,5 +8,5 @@
 }
 
 .devider {
-  padding-bottom: 0.2em;
+  padding-bottom: 0.15em;
 }

@@ -16,8 +16,9 @@ import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
 import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 
-import getCrypto from '../utils/getCrypto'
 import getIpfs from '../utils/getIpfs'
+import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
+import { downloadBlob } from '../utils/downloadHandlers'
 
 import { Web3Context } from './_app'
 
@@ -32,15 +33,13 @@ export default function Vault () {
     contract,
     account,
     chainId,
-    blockNumber,
     setBlockNumber,
-    balance,
     setBalance
   } = useContext(Web3Context)
 
   const [files, setFiles] = useState([])
 
-  const [rowData, setRowData] = useState(null)
+  const [fileBuffer, setFileBuffer] = useState(null)
   const [name, setName] = useState('')
   const [type, setType] = useState('')
   const [size, setSize] = useState(0)
@@ -73,8 +72,8 @@ export default function Vault () {
   }
 
   const fileContextValue = {
-    rowData,
-    setRowData,
+    fileBuffer,
+    setFileBuffer,
     name,
     setName,
     type,
@@ -164,7 +163,7 @@ export default function Vault () {
       _reader.readAsArrayBuffer(_file)
 
       _reader.onloadend = () => {
-        setRowData(prevState => Buffer.from(_reader.result))
+        setFileBuffer(prevState => _reader.result)
         setType(prevState => _file.type)
         setName(prevState => _file.name)
       }
@@ -174,70 +173,43 @@ export default function Vault () {
     }
   }
 
-  const uploadFiles = async (e) => {
-    // e.preventDefault()
-
+  const uploadFiles = async () => {
     try {
       console.log('Encrypting & Uploading file to IPFS...')
       setIsUploading(prevState => true)
 
-      const crypto = getCrypto()
       const ipfs = getIpfs()
-
-      const bufferWordArray = crypto.lib.WordArray.create(rowData)
-      const encryptedBufferWordArray = await crypto.AES.encrypt(bufferWordArray, '123').toString()
-      console.log('encrypted', encryptedBufferWordArray)
-
-      const response = await ipfs.add(Buffer.from(encryptedBufferWordArray))
+      const encryptedFileBufferWordArray = encryptAES256(fileBuffer, passphrase)
+      // const encryptedFileBufferWordArray = fileBuffer
+      const response = await ipfs.add(Buffer.from(encryptedFileBufferWordArray))
 
       setSize(prevState => response.size)
       setHash(prevState => response.path)
 
+      setIsUploading(prevState => false)
       setIsReadyForTransaction(prevState => true)
     } catch (error) {
       console.log('Cannot upload file to IPFS:', error.message)
-    // TODO: show error message
+      // TODO: show error message
     } finally {
       setIsUploading(prevState => false)
     }
   }
 
-  const saveFilesLocally = (fileUint8ArrayBuffer, fileName, fileMimeType) => {
-    const blob = new Blob([fileUint8ArrayBuffer], {
-      type: fileMimeType
-    })
-
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = fileUint8ArrayBuffer
-    a.download = fileName
-    document.body.appendChild(a)
-    a.style = 'display: none'
-    a.click()
-    a.remove()
-
-    setTimeout(function () {
-      return window.URL.revokeObjectURL(url)
-    }, 1000)
-  }
-
-  const downloadFiles = async (_name, _hash, _type) => {
+  const downloadFiles = async (_name, cid, _type) => {
     try {
       console.log('Retrieving & decrypting the file...')
       setIsDownloading(prevState => true)
 
       const ipfs = getIpfs()
-      const crypto = getCrypto()
 
-      console.log(_hash)
-      for await (const buf of ipfs.get(_hash)) {
-        console.log(buf.toString('utf-8'))
-
-        const decrypted = crypto.AES.decrypt(buf.toString('utf8'), '123')
-        console.log(decrypted)
-
-        saveFilesLocally(decrypted, _name, _type)
+      for await (const file of ipfs.get(cid)) {
+        console.log('IPFS encrypted file retrieved:', file.toString('utf8'))
+        const decryptedUint8Array = decryptAES256(file.toString('utf8'), passphrase)
+        // const decryptedUint8Array = file
+        downloadBlob(decryptedUint8Array, _name, _type)
       }
+      setIsDownloading(prevState => false)
     } catch (error) {
       console.log('Cannot download file from IPFS:', error.message)
     // TODO: handle error

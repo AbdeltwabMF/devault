@@ -43,3 +43,9 @@
 .icon {
 	vertical-align: middle;
 }
+
+@media (max-width: 500px) {
+	.upload {
+		display: none;
+	}
+}
