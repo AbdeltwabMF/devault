@@ -1,24 +1,20 @@
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-
 import styles from '../styles/About.module.css'
 
 export default function Home () {
   return (
     <div className={styles.main}>
-      <Container className={styles.container}>
+      <div className={'container ' + `${styles.container}`}>
         <h1 className={styles.title}>Decentralized eVault</h1>
-        <Row>
-          <Col xs={12}>
+        <div className='row '>
+          <div className='col col-12'>
             <div>
               <p className={styles.description}>
                 A Blockchain-based decentralized encrypted cloud storage.
               </p>
               <hr />
             </div>
-          </Col>
-          <Col xs={12}>
+          </div>
+          <div className='col col-12'>
             <div className={styles.card}>
               <h2>Private</h2>
               <p>
@@ -27,8 +23,8 @@ export default function Home () {
                 data.
               </p>
             </div>
-          </Col>
-          <Col xs={12}>
+          </div>
+          <div className='col col-12'>
             <div className={styles.card}>
               <h2>Source</h2>
               <p>
@@ -36,8 +32,8 @@ export default function Home () {
                 Nodes
               </p>
             </div>
-          </Col>
-          <Col xs={12}>
+          </div>
+          <div className='col col-12'>
             <div className={styles.card}>
               <h2>Available</h2>
               <p>
@@ -45,15 +41,15 @@ export default function Home () {
                 multi-region by default, always available when you need it.
               </p>
             </div>
-          </Col>
-          <Col xs={12}>
+          </div>
+          <div className='col col-12'>
             <div className={styles.card}>
               <h2>Open Source</h2>
               <p>DeeVa software is completely open source</p>
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
