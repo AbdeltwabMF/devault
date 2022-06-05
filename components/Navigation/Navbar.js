@@ -6,43 +6,43 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouseLock, faBars } from '@fortawesome/free-solid-svg-icons'
 
 import ConnectWallet from '../Buttons/ConnectWallet'
-import ConnectedWallet from '../Buttons/ConnectedWallet'
 import ConnectingWallet from '../Buttons/ConnectingWallet'
-import MetamaskNotInstalled from '../Alerts/MetamaskNotInstalled'
-import CannotConnectWallet from '../Alerts/CannotConnectWallet'
-import { AccountContext } from '../../pages/_app'
-import WrongNetwork from '../Alerts/WrongNetwork'
-import handleMetamaskErrors from '../../hooks/handleMetamaskErrors'
+import ConnectedWallet from '../Buttons/ConnectedWallet'
+
+import handleMetamaskErrors from '../../utils/handleMetamaskErrors'
+
+import { Web3Context } from '../../pages/_app'
 
 import styles from './Navbar.module.css'
 
 export default function Navbar () {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { Initialize, account, balance, chainId, setChainId } = useContext(AccountContext)
+  const { Initialize, account, balance, chainId, setChainId } = useContext(Web3Context)
 
   const router = useRouter()
 
   const handleConnection = async () => {
-    setIsConnecting(prevState => true)
     console.log('Handle connection...')
+    setIsConnecting(prevState => true)
+
     try {
       await Initialize()
 
-      window.sessionStorage.setItem('isMetamaskConnected', 'true')
+      window.sessionStorage.setItem('metamask', 'ok')
       console.log('Connection established')
 
-      console.log('chainId: ', chainId)
-      if (chainId !== 3 && WrongNetwork(chainId)) {
-        setChainId(prevState => 3)
-      }
+      // console.log('chainId: ', chainId)
+      // if (chainId !== 3 && WrongNetwork(chainId)) {
+      //   setChainId(prevState => 3)
+      // }
     } catch (error) {
-      if (handleMetamaskErrors(error)) {
-        CannotConnectWallet(error.message)
-      } else {
-        MetamaskNotInstalled()
-      }
+      // if (handleMetamaskErrors(error)) {
+      //   CannotConnectWallet(error.message)
+      // } else {
+      //   MetamaskNotInstalled()
+      // }
+      window.sessionStorage.removeItem('metamask')
       console.info('Connection error:', error.message)
-      window.sessionStorage.removeItem('isMetamaskConnected')
     } finally {
       setIsConnecting(prevState => false)
     }

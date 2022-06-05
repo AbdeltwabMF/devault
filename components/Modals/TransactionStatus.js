@@ -1,56 +1,45 @@
-import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faCheck, faCircleExclamation, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './TransactionStatus.module.css'
 
 export default function TransactionStatus ({ isSucceed }) {
-  const [lgShow, setLgShow] = useState(true)
+  const [show, setShow] = useState(true)
+
+  setTimeout(() => {
+    setShow(false)
+  }, 5000)
 
   return (
     <>
-      <Modal
-        size='md'
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby='uploading-modal'
-        centered
-        className={styles.main}
+      <div
+        className={'modal fade ' + `${show ? ' show' : ''}` + ' ' + `${styles.modal}`}
+        id='exampleModal'
+        tabIndex='-1'
+        aria-labelledby='exampleModalLabel'
+        style={{ display: show ? 'block' : 'none' }}
       >
-        <Modal.Header
-          closeButton
-          className={styles.header}
-        >
-          <Modal.Title
-            id='uploading-modal-title'
-            className={styles.title}
-          >
-            <FontAwesomeIcon
-              icon={isSucceed ? (faCircleCheck) : (faCircleExclamation)}
-              size='md'
-              fixedWidth
-              className={`${isSucceed ? styles.success : styles.fail} ${styles.titleIcon}`}
-            />
-            <span className={styles.titleText}>{isSucceed ? 'Done' : 'Error Occured'}</span>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className={styles.body}>
-          <FontAwesomeIcon
-            icon={isSucceed ? faCheck : faXmark}
-            size='5x'
-            fixedWidth
-            beat
-            className={`${styles.icon} ${isSucceed ? styles.success : styles.fail}`}
-          />
-          {
-          isSucceed === true
-            ? <h3 className={styles.title}>Transaction made successfully! </h3>
-            : <h3 className={styles.title}>Cannot make a transaction!</h3>
-          }
-        </Modal.Body>
-      </Modal>
+        <div className='modal-dialog'>
+          <div className='modal-content'>
+            <div className='modal-body'>
+              <FontAwesomeIcon
+                icon={isSucceed ? faCheck : faXmark}
+                size='2x'
+                fixedWidth
+                beat
+                className={`${styles.icon} ${isSucceed ? styles.success : styles.fail}`}
+              />
+              {
+              isSucceed === true
+                ? <h3 className={styles.title}>Transaction made successfully! </h3>
+                : <h3 className={styles.title}>Cannot make a transaction!</h3>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

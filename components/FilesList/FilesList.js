@@ -1,11 +1,20 @@
-import styles from './FilesList.module.css'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from 'react'
 
 import FontAwesomeMimeTypeIcon from '../Icons/FontAwesomeMimeTypeIcon'
 
-export default function FilesList ({ files, downloadFile }) {
+import AskPassphrase from '../Modals/AskPassphrase'
+
+import styles from './FilesList.module.css'
+
+export default function FilesList ({ files, downloadFiles }) {
+  const [askingPassphrase, setAskingPassphrase] = useState(null)
+  const [selectedFileName, setSelectedFileName] = useState('')
+  const [selectedFileHash, setSelectedFileHash] = useState('')
+  const [selectedFileSize, setSelectedFileSize] = useState('')
+  const [isReadyForDownloading, setIsReadyForDownloading] = useState(false)
+
   /** @description Formats the bytes in terms of KB, MB, GB, etc.
     * @param {number} bytes - The number of bytes to format
     * @returns {string} - The formatted bytes
@@ -49,8 +58,20 @@ export default function FilesList ({ files, downloadFile }) {
     return time
   }
 
+  useEffect(() => {
+    if (!askingPassphrase && isReadyForDownloading) {
+      setAskingPassphrase(null)
+      downloadFiles(selectedFileName, selectedFileHash, selectedFileSize)
+    }
+  }, [askingPassphrase])
+
+  const getPassphrase = () => {
+    setAskingPassphrase(true)
+  }
+
   return (
     <>
+      {askingPassphrase && <AskPassphrase isEncryption={false} setAskingPassphrase={setAskingPassphrase} setIsReadyForDownloading={setIsReadyForDownloading} />}
       <table className={'table table-borderless ' + `${styles.table}`}>
         <thead className={styles.tableHead} key='fs'>
           <tr>
@@ -69,34 +90,31 @@ export default function FilesList ({ files, downloadFile }) {
             <th />
           </tr>
         </thead>
-        {
-          files && files.map((file, index) => (
-            <tbody className={styles.tableBody} key={index}>
-              <tr className={styles.tableRow}>
-                <td className={styles.name}>
-                  <FontAwesomeMimeTypeIcon mimeType={file.mimeType} />
-                  <span className={styles.nameText}>{file.name}</span>
-                </td>
-                <td className={styles.size}>{formatBytes(file.size)}</td>
-                <td className={styles.time}>{timeConvertUnixStamp(file.uploadTime)}</td>
-                <td className={styles.action}>
-                  <button onClick={() => {
-                    downloadFile(file.hash)
-                  }}
-                  >
-                    <span className={styles.downloadText}>Download</span>
-                    <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          ))
-}
+        {files && files.map((file, index) => (
+          <tbody className={styles.tableBody} key={index}>
+            <tr className={styles.tableRow}>
+              <td className={styles.name}>
+                <FontAwesomeMimeTypeIcon mimeType={file.mimeType} />
+                <span className={styles.nameText}>{file.name}</span>
+              </td>
+              <td className={styles.size}>{formatBytes(file.size)}</td>
+              <td className={styles.time}>{timeConvertUnixStamp(file.uploadTime)}</td>
+              <td className={styles.action}>
+                <button onClick={() => {
+                  getPassphrase()
+                  setSelectedFileName(file.name)
+                  setSelectedFileHash(file.hash)
+                  setSelectedFileSize(file.size)
+                }}
+                >
+                  <span className={styles.downloadText}>Download</span>
+                  <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        ))}
       </table>
     </>
   )
 }
-
-// <Link href={'https://ipfs.infura.io/ipfs/' + file.hash}>
-//   <a className={styles.anchor}>{file.name}</a>
-// </Link>

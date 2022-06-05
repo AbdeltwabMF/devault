@@ -2,43 +2,31 @@
 	align-items: center;
 	display: flex;
 	justify-content: center;
-}
-
-.header {
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
+	margin-top: 10%;
 }
 
 .title {
-	color: #0D6EFD;
+	color: var(--dark-blue, #2b2b2b);
 	font-size: 1.2rem;
-}
-
-.body {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 100%;
+	margin-top: 1rem;
+	text-align: center;
 }
 
 .footer {
+	margin-top: 2rem;
 	align-items: center;
 	display: flex;
 	justify-content: center;
-}
-
-.iconTitle {
-	margin-right: 1rem;
 }
 
 .spinner {
 	margin: 1rem 0;
-	color: #146EBE;
+	color: var(--dark-teal, #0D6EFD);
 }
 
-.buttonCancel {
-	width: 100%;
+.body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

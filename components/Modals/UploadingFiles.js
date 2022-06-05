@@ -1,72 +1,49 @@
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Spinner from 'react-bootstrap/Spinner'
 import { useState, useContext } from 'react'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faVault } from '@fortawesome/free-solid-svg-icons'
-
 import { FileContext } from '../../pages/vault'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './UploadingFiles.module.css'
 
-export default function Uploading ({ onFail, onSuccess }) {
-  const [lgShow, setLgShow] = useState(true)
+export default function UploadingFile () {
+  const [show, setShow] = useState(true)
   const { setIsCanceled } = useContext(FileContext)
 
   const handleCancel = () => {
-    setLgShow(false)
+    setShow(false)
     setIsCanceled(prevState => true)
   }
 
   return (
     <>
-      <Modal
-        size='md'
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        backdrop='static'
-        keyboard={false}
-        aria-labelledby='uploading-modal'
-        centered
-        className={styles.main}
+      <div
+        className={'modal fade ' + `${show ? ' show' : ''}` + ' ' + `${styles.main}`}
+        id='exampleModal'
+        tabIndex='-1'
+        aria-labelledby='exampleModalLabel'
+        style={{ display: show ? 'block' : 'none' }}
       >
-        <Modal.Header
-          className={styles.header}
-        >
-          <Modal.Title
-            id='uploading-modal-title'
-            className={styles.title}
-          >
-            <FontAwesomeIcon
-              icon={faVault}
-              size='xl'
-              fixedWidth
-              className={styles.iconTitle}
-            />
-            Uploading your files to the eVault.
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body className={styles.body}>
-          <Spinner
-            animation='border'
-            role='status'
-            className={styles.spinner}
-          >
-            <span className='visually-hidden'>Loading...</span>
-          </Spinner>
-        </Modal.Body>
-        <Modal.Footer className={styles.footer}>
-          <Button
-            onClick={handleCancel}
-            className={styles.buttonCancel}
-            variant='danger'
-          >
-            Cancel
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <div className='modal-dialog'>
+          <div className='modal-content'>
+            <div className={'modal-body ' + `${styles.body}`}>
+              <FontAwesomeIcon icon={faSpinner} size='2x' spin className={styles.spinner} />
+              <div className={styles.title}>
+                Your files are being encrypted and uploaded. This may take a few minutes.
+              </div>
+              <div className={styles.footer}>
+                <button
+                  type='button'
+                  onClick={handleCancel}
+                  className='btn btn-danger'
+                  data-bs-dismiss='modal'
+                >Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { useContext } from 'react'
-import { AccountContext } from '../../pages/_app'
+import { Web3Context } from '../../pages/_app'
 
 import WrongNetwork from '../Alerts/WrongNetwork'
 
@@ -10,7 +10,7 @@ import { truncateAddress, truncateBalance } from '../../utils/regexUtility'
 import styles from './ConnectedWallet.module.css'
 
 export default function ConnectedWallet ({ account, balance }) {
-  const { setAccount, chainId, setChainId } = useContext(AccountContext)
+  const { setAccount, chainId, setChainId } = useContext(Web3Context)
   return (
     <div>
       <div className={styles.container}>
