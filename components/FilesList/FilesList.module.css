@@ -1,27 +1,53 @@
 .name {
 	display: flex;
 	flex-direction: row;
+	width: 100%;
+}
+
+.tdName {
+	max-width: 12rem;
 }
 
 .nameText {
 	font-size: 1em;
 	color: var(--fg-1, #666);
 	font-weight: 500;
-	padding: 0.5em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.time {
-	font-size: 1em;
-	color: var(--fg-1, #666);
-	font-weight: 500;
-	padding: 0.5em;
+.tdSize {
+	max-width: 8rem;
 }
 
 .size {
 	font-size: 1em;
 	color: var(--fg-1, #666);
 	font-weight: 500;
-	padding: 0.5em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+}
+
+.tdTime {
+	max-width: 6rem;
+}
+
+.time {
+	font-size: 1em;
+	color: var(--fg-1, #666);
+	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+}
+
+.tdAction {
+	max-width: 6rem;
+	text-align: center;
 }
 
 .iconMime {
@@ -70,4 +96,23 @@
 .downloadIcon {
 	color: var(--fg-2, #666);
 	padding-left: 0.8rem;
+}
+
+@media (max-width: 768px) {
+	.tdSize,
+	.tdTime,
+	.thSize,
+	.thTime {
+		display: none;
+	}
+}
+
+@media (max-width: 916px) {
+	.downloadText {
+		display: none;
+	}
+
+	.downloadIcon {
+		padding-left: 0;
+	}
 }
