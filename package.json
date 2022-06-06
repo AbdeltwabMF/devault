@@ -1,7 +1,7 @@
 {
   "name": "decentralized-vault",
   "description": "A Blockchain-based decentralized vault for storing and managing digital assets.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "license": "MIT",
   "author": {
@@ -16,7 +16,8 @@
     "start": "next start",
     "test": "jest",
     "deploy": "sh ./scripts/deploy.sh",
-    "deploy-prod": "sh ./scripts/deploy.sh ropsten",
+    "deploy-prod": "sh ./scripts/deploy.sh ropsten 0",
+    "deploy-prod2": "sh ./scripts/deploy.sh ropsten 1",
     "lint": "next lint"
   },
   "dependencies": {
