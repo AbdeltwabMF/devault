@@ -80,11 +80,11 @@ export default function FilesList ({ files, downloadFiles }) {
               <span className={styles.headerText}>Name</span>
               <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </th>
-            <th>
+            <th className={styles.thSize}>
               <span className={styles.headerText}>File Size</span>
               <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </th>
-            <th>
+            <th className={styles.thTime}>
               <span className={styles.headerText}>Last Modified</span>
               <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </th>
@@ -94,23 +94,31 @@ export default function FilesList ({ files, downloadFiles }) {
         {files && files.map((file, index) => (
           <tbody className={styles.tableBody} key={index}>
             <tr className={styles.tableRow}>
-              <td className={styles.name}>
-                <FontAwesomeMimeTypeIcon mimeType={file.mimeType} />
-                <span className={styles.nameText}>{file.name}</span>
+              <td className={styles.tdName}>
+                <div className={styles.name} title={file.name}>
+                  <FontAwesomeMimeTypeIcon mimeType={file.mimeType} />
+                  <span className={styles.nameText}>{file.name}</span>
+                </div>
               </td>
-              <td className={styles.size}>{formatBytes(file.size)}</td>
-              <td className={styles.time}>{timeConvertUnixStamp(file.uploadTime)}</td>
-              <td className={styles.action}>
-                <button onClick={() => {
-                  getPassphrase()
-                  setSelectedFileName(file.name)
-                  setSelectedFileHash(file.hash)
-                  setSelectedFileSize(file.size)
-                }}
-                >
-                  <span className={styles.downloadText}>Download</span>
-                  <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
-                </button>
+              <td className={styles.tdSize}>
+                <div className={styles.size}>{formatBytes(file.size)}</div>
+              </td>
+              <td className={styles.tdTime}>
+                <div className={styles.time}>{timeConvertUnixStamp(file.uploadTime)}</div>
+              </td>
+              <td className={styles.tdAction}>
+                <div className={styles.action}>
+                  <button onClick={() => {
+                    getPassphrase()
+                    setSelectedFileName(file.name)
+                    setSelectedFileHash(file.hash)
+                    setSelectedFileSize(file.size)
+                  }}
+                  >
+                    <span className={styles.downloadText}>Download</span>
+                    <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
+                  </button>
+                </div>
               </td>
             </tr>
           </tbody>

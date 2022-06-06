@@ -15,6 +15,7 @@ import { ethers } from 'ethers'
 import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
 import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
+import HorizontalDivider from '../components/Dividers/HorizontalDivider'
 
 import getIpfs from '../utils/getIpfs'
 import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
@@ -229,7 +230,7 @@ export default function Vault () {
       <FileContext.Provider value={fileContextValue}>
         <ProcessContext.Provider value={processContextValue}>
           <div className={styles.main}>
-            <div className={'container ' + `${styles.container}`}>
+            <div className={'container-fluid ' + `${styles.container}`}>
               <div className={'row ' + `${styles.row}`}>
                 {account
                   ? (
@@ -239,8 +240,8 @@ export default function Vault () {
                           captureFiles={captureFiles}
                           uploadFiles={uploadFiles}
                         />
-                        <hr className={styles.devider} />
                       </div>
+                      <HorizontalDivider />
                       <div className='col col-12 '>
                         {files.length > 0
                           ? (
