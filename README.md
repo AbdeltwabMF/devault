@@ -34,7 +34,7 @@ Decentralized storage is one of the hottest blockchain use-cases.
 	- You will be asked for a password to decrypt the file with.
 	- The file gets decrypted and downloaded.
 
-## Run the production build locally
+## Run The Production Build
 
 ```bash
 git clone https://github.com/AbdeltwabMF/decentralized-vault.git
@@ -42,7 +42,7 @@ cd decentralized-vault
 docker-compose up --build --force-recreate
 ```
 
-## Run the development environment
+## Run The Development Environment
 
 This will run the development server on port 3000. Also it will run a local blockchain hardhat node listening on port 8545.
 
@@ -53,7 +53,7 @@ npm ci
 npm run dev2
 ```
 
-## Tools used for deve lopment
+## The Tools Used In This Project
 
 - [Neovim](https://neovim.io/): as an IDE.
 - [Next.js](https://nextjs.org/): as a frontend framework.
