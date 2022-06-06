@@ -14,8 +14,8 @@ export default function AskPassphrase ({ isEncryption, setAskingPassphrase, setI
 
     if (passphrase1 !== passphrase2) {
       window.alert('Passphrases do not match')
-    } else if (passphrase1.length < 8) {
-      window.alert('Passphrase must be at least 8 characters long')
+    } else if (passphrase1.length < 1) {
+      window.alert('Passphrase must be at least 1 characters long')
     } else {
       setShow(prevStat => false)
       setPassphrase(prevStat => passphrase1)
