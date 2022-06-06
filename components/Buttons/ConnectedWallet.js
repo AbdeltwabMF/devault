@@ -4,7 +4,7 @@ import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { Web3Context } from '../../pages/_app'
 
-import WrongNetwork from '../Alerts/WrongNetwork'
+// import WrongNetwork from '../Alerts/WrongNetwork'
 
 import { truncateAddress, truncateBalance } from '../../utils/regexUtility'
 import styles from './ConnectedWallet.module.css'
@@ -67,11 +67,11 @@ export default function ConnectedWallet ({ account, balance }) {
               <button
                 className={'dropdown-item ' + `${styles.dropdownItem}`}
                 type='button'
-                onClick={async () => {
-                  if (chainId !== 3 && WrongNetwork(chainId)) {
-                    setChainId(prevState => 3)
-                  }
-                }}
+                // onClick={async () => {
+                //   if (chainId !== 3 && WrongNetwork(chainId)) {
+                //     setChainId(prevState => 3)
+                //   }
+                // }}
               >
                 Switch network
               </button>

@@ -6,7 +6,7 @@ export default function HorizontalDivider () {
       <div className={styles.main}>
         <hr className={styles.line} />
         <span className={styles.text}>
-          Your data is your own
+          Your data is yours
         </span>
         <hr className={styles.line} />
       </div>
