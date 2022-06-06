@@ -24,6 +24,9 @@ import { Web3Context } from './_app'
 
 import styles from '../styles/Vault.module.css'
 
+import all from 'it-all'
+import { concat } from 'uint8arrays/concat'
+
 export const FileContext = createContext()
 export const ProcessContext = createContext()
 
@@ -163,6 +166,8 @@ export default function Vault () {
       _reader.readAsArrayBuffer(_file)
 
       _reader.onloadend = () => {
+        console.log('result:', _reader.result)
+        console.log('result buffer', Buffer.from(_reader.result))
         setFileBuffer(prevState => _reader.result)
         setType(prevState => _file.type)
         setName(prevState => _file.name)
@@ -179,8 +184,8 @@ export default function Vault () {
       setIsUploading(prevState => true)
 
       const ipfs = getIpfs()
+      // fileBuffer = ArrayBuffer
       const encryptedFileBufferWordArray = encryptAES256(fileBuffer, passphrase)
-      // const encryptedFileBufferWordArray = fileBuffer
       const response = await ipfs.add(Buffer.from(encryptedFileBufferWordArray))
 
       setSize(prevState => response.size)
@@ -202,13 +207,14 @@ export default function Vault () {
       setIsDownloading(prevState => true)
 
       const ipfs = getIpfs()
+      console.log('cid:', cid)
 
-      for await (const file of ipfs.get(cid)) {
-        console.log('IPFS encrypted file retrieved:', file.toString('utf8'))
-        const decryptedUint8Array = decryptAES256(file.toString('utf8'), passphrase)
-        // const decryptedUint8Array = file
-        downloadBlob(decryptedUint8Array, _name, _type)
-      }
+      // Get the data in one large uint8array
+      const data = concat(await all(ipfs.cat(cid)))
+
+      const decryptedUint8Array = decryptAES256(data, passphrase)
+      downloadBlob(decryptedUint8Array, _name, _type)
+
       setIsDownloading(prevState => false)
     } catch (error) {
       console.log('Cannot download file from IPFS:', error.message)

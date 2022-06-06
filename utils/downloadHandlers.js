@@ -30,20 +30,3 @@ export function downloadBlob (_data, _name, _mimeType) {
     return window.URL.revokeObjectURL(url)
   }, 1000)
 }
-
-// assumes wordArray is Big-Endian (because it comes from CryptoJS which is all BE)
-// From: https://gist.github.com/creationix/07856504cf4d5cede5f9#file-encode-js
-export function convertWordArrayToUint8Array (wordArray) {
-  const len = wordArray.words.length
-  const u8Array = new Uint8Array(len << 2)
-  let offset = 0; let word; let i
-
-  for (i = 0; i < len; i++) {
-    word = wordArray.words[i]
-    u8Array[offset++] = word >> 24
-    u8Array[offset++] = (word >> 16) & 0xff
-    u8Array[offset++] = (word >> 8) & 0xff
-    u8Array[offset++] = word & 0xff
-  }
-  return u8Array
-}
