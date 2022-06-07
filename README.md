@@ -2,7 +2,7 @@
 <img src="/public/decentra-vault-1.png" width="200px" height="200px" />
 </div>
 <h1 align="center">Decentralized Vault</h1>
-<p align="center">A Blockchain-based decentralized encrypted cloud storage system.</p>
+<p align="center">A Blockchain-based self-hosted decentralized encrypted cloud storage system.</p>
 
 ## What is Decentralized Vault?
 Decentralized storage is one of the hottest blockchain use-cases.
@@ -39,7 +39,8 @@ Decentralized storage is one of the hottest blockchain use-cases.
 ```bash
 git clone https://github.com/AbdeltwabMF/decentralized-vault.git
 cd decentralized-vault
-docker-compose up --build --force-recreate
+docker build -t decentralized-vault .
+docker container run -d --rm -p 3000:3000 decentralized-vault
 ```
 
 ## Run The Development Environment

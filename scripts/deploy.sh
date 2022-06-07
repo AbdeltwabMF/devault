@@ -57,25 +57,27 @@ case "$1" in
 		network="localhost" ;;
 esac
 
+smart_contract_address=""
+
 if [[ "$network" != "ropsten" ]] || (( $2 != 0 )); then
 	# deploy the smart contracts to the specified network
 	printf "%b" "${BCYAN}[INFO]${CYAN} Deploying smart contracts to ${network} network...${NC}\n"
 	smart_contract_address=$(npx hardhat run ./scripts/deploy.js --network "$network" 2>/dev/null)
+
+	while [[ $smart_contract_address == "" ]]; do
+		printf "%b" "\n${BRED}[ERROR]${RED} Failed to deploy smart contract to $network network.${NC}\n"
+		printf "%b" "${BYELLOW}[WARN]${YELLOW} Please check your node is up and running and try again.\n${NC}"
+		printf "%b" "${BCYAN}[INFO]${CYAN} Retrying in 5 seconds...\n${NC}"
+		sleep 5s
+		smart_contract_address=$(npx hardhat run ./scripts/deploy.js --network "$network" 2>/dev/null)
+	done
+
 	printf "%b" "${BCYAN}[INFO]${CYAN} New smart contract address: ${smart_contract_address} cached.\n${NC}"
 	sed -i "s/SMART_CONTRACT_ADDRESS_ROPSTEN.*$/SMART_CONTRACT_ADDRESS_ROPSTEN=$smart_contract_address/" ./.env
 else
 	printf "%b" "${BCYAN}[INFO]${CYAN} Retrieving smart contract cached address...${NC}\n"
 	smart_contract_address=$(grep "SMART_CONTRACT_ADDRESS_ROPSTEN" ./.env | cut -d "=" -f 2)
 fi
-
-# Try to deploy the smart contract to local network
-while [[ $smart_contract_address == "" ]]; do
-	printf "%b" "\n${BRED}[ERROR]${RED} Failed to deploy smart contract to $network network.${NC}\n"
-	printf "%b" "${BYELLOW}[WARN]${YELLOW} Please check your node is up and running and try again.\n${NC}"
-	printf "%b" "${BCYAN}[INFO]${CYAN} Retrying in 5 seconds...\n${NC}"
-	sleep 5s
-	smart_contract_address=$(npx hardhat run ./scripts/deploy.js --network "$network" 2>/dev/null)
-done
 
 # replace the address of the smart contract with the deployed address in the app root
 sed -i "s/contractAddress = .*$/contractAddress = '$smart_contract_address'/" ./pages/_app.js
