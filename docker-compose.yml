@@ -2,14 +2,7 @@
 version: "3"
 
 services:
-  # blockchain:
-  #   image: "hardhat-node"
-  #   restart: always
-  #   ports:
-  #     - "8545:8545"
-  nextjs:
-    build: ./
+  decentralized-vault:
+    build: .
     ports:
       - "3000:3000"
-    # depends_on:
-    #   - blockchain
