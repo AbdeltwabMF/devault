@@ -1,9 +1,9 @@
 {
   "name": "decentralized-vault",
-  "description": "A Blockchain-based decentralized vault for storing and managing digital assets.",
+  "description": "A Blockchain-based self-hosted decentralized cloud storage system",
   "version": "0.2.0",
   "private": true,
-  "license": "MIT",
+  "license": "GPLv3",
   "author": {
     "name": "Abd El-Twab M. Fakhry",
     "email": "abdeltwab.m.fakhry@gmail.com"
