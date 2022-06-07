@@ -24,7 +24,7 @@ export default function App ({ Component, pageProps }) {
   // 1 = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
   // 2 = '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
   // 3 = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
-  const contractAddress = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
+  const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap.min.js')

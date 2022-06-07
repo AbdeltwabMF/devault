@@ -76,3 +76,7 @@ a {text-decoration: none;}
 a:hover {
     color: var(--light-teal, #b2ebf2);
 }
+
+.dropdown-toggle::after {
+  display: none;
+}
