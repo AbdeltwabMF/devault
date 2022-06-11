@@ -32,6 +32,6 @@ jobs:
       -
         name: Build, Lint, and Test
         run: |
-          npm ci -f
+          npm ci
           npm run build2
           npm run test

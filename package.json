@@ -40,7 +40,6 @@
     "uint8arrays": "^3.0.0"
   },
   "devDependencies": {
-    "@icons-pack/react-simple-icons": "^4.7.2",
     "@nomiclabs/hardhat-solhint": "^2.0.1",
     "dotenv": "^10.0.0",
     "eslint": "^8.13.0",
