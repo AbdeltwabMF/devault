@@ -15,6 +15,7 @@
     "build2": "next build && next export",
     "start": "next start",
     "test": "jest",
+    "test-coverage": "jest --coverage",
     "deploy": "sh ./scripts/deploy.sh",
     "deploy-prod": "sh ./scripts/deploy.sh ropsten 0",
     "deploy-prod2": "sh ./scripts/deploy.sh ropsten 1",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@nomiclabs/hardhat-solhint": "^2.0.1",
+    "chai": "^4.3.6",
     "dotenv": "^10.0.0",
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.1.4",

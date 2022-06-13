@@ -1,5 +1,6 @@
 /* eslint-env jest */
 const { ethers } = require('hardhat')
+const { expect } = require('chai')
 
 it('should return 1 -- the count of the files', async function () {
   const Storage = await ethers.getContractFactory('Storage')
@@ -14,7 +15,7 @@ it('should return 1 -- the count of the files', async function () {
 
   const filesCount = await storage.getFilesLength()
 
-  expect(parseInt(filesCount)).toBe(1)
+  expect(parseInt(filesCount)).to.equal(1)
 })
 
 it('should return 0 -- the count of the files', async function () {
@@ -30,5 +31,5 @@ it('should return 0 -- the count of the files', async function () {
 
   const filesCount = await storage.getFilesLength()
 
-  expect(parseInt(filesCount)).toBe(1)
+  expect(parseInt(filesCount)).to.equal(1)
 })
