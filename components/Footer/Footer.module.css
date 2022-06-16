@@ -1,15 +1,14 @@
 .main {
-	background-color: var(--dark-grey, #3e3e3e);
-	box-shadow: 0 -2px 0 0 var(--dark-teal, #00bcd4);
-	color: var(--dark-teal, #00bcd4);
+	color: var(--color-accent-100, #f5f5f5);
+	box-shadow: 0 5px 12px 0 var(--color-primary-500, #f5f5f5);
 	font-family: var(--fonts-code, monospace);
+	background-color: var(--color-primary-800, #f5f5f5);
 }
 
 .container {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	font-size: 0.8rem;
 	justify-content: center;
 }
 
@@ -20,12 +19,14 @@
 }
 
 .socialIcon {
-	height: 1.5em;
-	width: 1.5em;
 }
 
 .social {
-	display: inline-block;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
 }
 
 .social:hover {
@@ -36,13 +37,15 @@
 	padding: 0 0.3em;
 }
 
-.labelLink {
-	color: var(--dark-teal, #00bcd4);
-	padding: 0 0.3em;
+.labelLinkJoin,
+.labelLinkSource {
+	color: var(--color-secondary-200, #e0e0e0);
+	padding-left: 0.5rem;
+	padding-right: 1rem;
 }
 
 .labelLink:hover {
-	color: var(--fg-1, #fff);
+	color: var(--color-secondary-800, #e0e0e0);
 }
 
 .brandIcon {
@@ -55,11 +58,36 @@
 	width: 100%;
 }
 
+.col1,
+.col2,
+.col3 {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.col1 {
+	justify-content: start;
+}
+
+.col2 {
+	justify-content: start;
+}
+
+.col3 {
+	justify-content: end;
+}
+
 @media (max-width: 1000px) {
 	.col1,
 	.col2,
 	.col3 {
 		padding-bottom: 0.5rem;
+		justify-content: center;
+	}
+
+	.labelLinkJoin {
+		padding-right: 0;
 	}
 }
 

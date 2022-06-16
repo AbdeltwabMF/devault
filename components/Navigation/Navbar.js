@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState, useContext } from 'react'
 
@@ -9,15 +10,13 @@ import ConnectWallet from '../Buttons/ConnectWallet'
 import ConnectingWallet from '../Buttons/ConnectingWallet'
 import ConnectedWallet from '../Buttons/ConnectedWallet'
 
-import handleMetamaskErrors from '../../utils/handleMetamaskErrors'
-
 import { Web3Context } from '../../pages/_app'
 
 import styles from './Navbar.module.css'
 
 export default function Navbar () {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { Initialize, account, balance, chainId, setChainId } = useContext(Web3Context)
+  const { Initialize, account, balance } = useContext(Web3Context)
 
   const router = useRouter()
 
@@ -56,8 +55,8 @@ export default function Navbar () {
             <div className='container-fluid'>
               <Link href='/'>
                 <a className={'navbar-brand ' + styles.brand}>
-                  <FontAwesomeIcon icon={faHouseLock} size='xl' fixedWidth className={styles.brandIcon} />
-                  <span className={styles.brandText}>Decentralized eVault</span>
+                  <Image src='/logo-white.png' alt='logo' width='56px' height='56px' className='brandIcon' />
+                  <span className={styles.brandText}>De.Vault</span>
                 </a>
               </Link>
 

@@ -1,6 +1,12 @@
 .main {
-  min-height: calc(100vh - 112.78px);
+  min-height: calc(100vh - 139.59px);
   padding: 2rem 1rem;
+  background: var(--color-primary-300, #fafafa);
+  background: linear-gradient(
+    180deg,
+    var(--color-primary-300, #fafafa) 0%,
+    var(--color-primary-900, #f5f5f5) 100%
+  );
 }
 
 .container {
@@ -13,37 +19,47 @@
   margin: auto;
 }
 
+.decentralized {
+  color: var(--color-secondary-700, #00a699);
+  margin-bottom: 1rem;
+}
+
+.selfHosted {
+  color: var(--color-accent-800, #f5f5f5);
+  margin-bottom: 1rem;
+}
+
+.encrypted {
+  color: var(--color-info-600, #00a699);
+  margin-bottom: 1rem;
+}
+
 .headerTitle {
   font-size: 4rem;
   font-weight: 1000;
   font-family: "Roboto", sans-serif;
-  color: #2f2f2f;
+  color: var(--color-grey-200, #fff);
   margin-bottom: 2rem;
 }
 
 .headerDetails {
-  color: #666;
-  font-size: 1.3rem;
-  margin: 0;
+  color: var(--color-grey-100, #666);
+  font-weight: 600;
 }
 
 .getStarted {
-  background-color: #2CA2A2;
-  border: 0 !important;
-  font-weight: 600;
-  font-size: 1.1rem;
+  background-color: var(--color-primary-500, #00a699);
+  border: 0;
   border-radius: 0.3rem;
-  box-shadow: 0 0 5px 0 #cccccc;
-  color: #ffffff;
+  color: var(--color-grey-100, #fff);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 2rem;
   padding: 0.5rem 1.8rem;
-  margin-top: 1.5rem;
-  margin: 2rem 0 !important;
 }
 
 .getStarted:hover {
-  background-color: #118787;
-  box-shadow: 0 0 20px 0 #2CA2A285;
-  border: 0 !important;
+  background-color: var(--color-primary-400, #00a699);
   transition: ease-in-out 0.2s;
 }
 
@@ -52,12 +68,10 @@
     font-size: 3rem;
     font-weight: 900;
     font-family: "Roboto", sans-serif;
-    color: #2f2f2f;
     margin-bottom: 1.5rem;
   }
 
   .headerDetails {
-    color: #666;
     font-size: 1rem;
     margin: 0;
   }
@@ -68,12 +82,10 @@
     font-size: 1.5rem;
     font-weight: 900;
     font-family: "Roboto", sans-serif;
-    color: #2f2f2f;
     margin-bottom: 1.5rem;
   }
 
   .headerDetails {
-    color: #666;
     font-size: 0.8rem;
     margin: 0;
   }
