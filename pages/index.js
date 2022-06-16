@@ -11,9 +11,13 @@ export default function Home () {
           <div className={'row ' + `${styles.header}`}>
             <div className='col col-12 '>
               <h1
-                className={'animate__bounceIn ' + `${styles.headerTitle}`}
+                className={styles.headerTitle}
               >
-                Decentralized encrypted cloud storage that respects your privacy
+                <span className={styles.decentralized}>Decentralized,</span>{' '}
+                <span className={styles.selfHosted}>self-hosted,</span>{' '}
+                and{' '}
+                <span className={styles.encrypted}>encrypted</span>{' '}
+                cloud storage that respects your privacy
               </h1>
             </div>
             <div className='col col-12 '>

@@ -1,6 +1,8 @@
 .name {
+	align-items: center;
 	display: flex;
 	flex-direction: row;
+	justify-content: start;
 	width: 100%;
 }
 
@@ -10,7 +12,7 @@
 
 .nameText {
 	font-size: 1em;
-	color: var(--fg-1, #666);
+	color: var(--color-grey-900, #666666);
 	font-weight: 500;
 	white-space: nowrap;
 	overflow: hidden;
@@ -23,7 +25,7 @@
 
 .size {
 	font-size: 1em;
-	color: var(--fg-1, #666);
+	color: var(--color-grey-900, #666666);
 	font-weight: 500;
 	white-space: nowrap;
 	overflow: hidden;
@@ -37,7 +39,7 @@
 
 .time {
 	font-size: 1em;
-	color: var(--fg-1, #666);
+	color: var(--color-grey-900, #666666);
 	font-weight: 500;
 	white-space: nowrap;
 	overflow: hidden;
@@ -51,7 +53,7 @@
 }
 
 .iconMime {
-	color: var(--dark-teal, #00A0D3);
+	color: var(--color-success-200, #00a699);
 	padding-right: 1rem;
 }
 
@@ -59,33 +61,36 @@
 	vertical-align: middle !important;
 }
 
+.tableHeader {
+}
+
 .headerText {
 	font-size: 1em;
-	color: var(--fg-3, #666);
+	color: var(--color-grey-900, #666666);
 	font-weight: 600;
 	padding: 0;
 }
 
 .sortIcon {
-	color: var(--fg-3, #666);
+	color: var(--color-grey-900, #666666);
 	padding-left: 1rem;
 }
 
 .tableRow:hover {
-	background-color: #fafafa94;
+	background-color: var(--color-primary-800, #00a699);
 }
 
 .action button {
 	border-radius: 0.4rem;
 	padding: 0.3rem 1rem;
-	color: var(--fg-2, #666);
+	color: var(--color-grey-900, #666666);
 	border: 0;
-	background-color: var(--light-ivory, #f8f8f8);
+	background-color: var(--color-grey-200, #fafafa);
 }
 
 .action button:hover {
-	color: var(--fg-2, #666);
-	background-color: var(--dark-ivory, #f8f8f8);
+	color: var(--color-grey-900, #666666);
+	background-color: var(--color-grey-100, #fafafa);
 	box-shadow: 0  0 0 1px #66666654;
 }
 
@@ -94,7 +99,7 @@
 }
 
 .downloadIcon {
-	color: var(--fg-2, #666);
+	color: var(--color-grey-900, #666666);
 	padding-left: 0.8rem;
 }
 

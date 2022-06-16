@@ -1,10 +1,67 @@
 .modal {
-	position: absolute;
-	top: 25%;
+	background-color: #3f3f3f84;
 }
 
 .header {
 	text-align: center;
-	color: var(--fg-5, #666);
-	font-size: 1.2rem;
+	color: var(--color-info-300, #00a699);
+	font-size: 1.5rem;
+	padding-bottom: 2rem;
+}
+
+.body {
+	padding: 1rem 1.5rem;
+}
+
+.footer {
+	background-color: var(--color-grey-200, #fafafa);
+	margin-top: 2rem;
+}
+
+.close {
+	background-color: var(--color-grey-200, #fafafa);
+	border: none;
+	color: var(--color-error-600, #ff0000);
+	border-radius: 0.5rem;
+}
+
+.close:hover,
+.close:focus,
+.close:active {
+	background-color: var(--color-error-500, #ff0000);
+}
+
+.upload {
+	border-radius: 0.5rem;
+	background-color: var(--color-success-400, #00a699);
+	border: none;
+	box-shadow: none;
+}
+
+.upload:hover,
+.upload:active,
+.upload:focus {
+	background-color: var(--color-success-300, #00a699);
+	box-shadow: none;
+}
+
+.lockIcon {
+	margin: 2rem;
+}
+
+.input {
+	background-color: var(--color-grey-200, #fafafa);
+	box-shadow: none;
+}
+
+.input:focus,
+.input:hover,
+.input:active {
+	background-color: var(--color-grey-100, #fafafa);
+	box-shadow: none;
+}
+
+.description {
+	color: var(--color-grey-600, #666666);
+	font-size: 0.8rem;
 }

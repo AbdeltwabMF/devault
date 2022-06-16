@@ -1,7 +1,5 @@
-// import { Vim, Artixlinux, Github, Telegram, ReactJs } from '@icons-pack/react-simple-icons/'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouseLock } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from './Footer.module.css'
 
 export default function Footer () {
@@ -9,32 +7,62 @@ export default function Footer () {
     <footer className={styles.main}>
       <div className={'container ' + `${styles.container}`}>
         <div className={'row ' + `${styles.row1}`}>
-          <div className={'col col-lg-4 col-12 ' + `${styles.col1}`}>
+          <div className={'col col-lg-5 col-12 ' + `${styles.col1}`}>
             <Link href='https://github.com/abdeltwabmf/decentralized-evault'>
               <a className={styles.social}>
-                {/* <Github color='teal' className={styles.socialIcon} /> */}
-                <span className={styles.labelLink}>View Source</span>
+                <Image
+                  height='20'
+                  width='20'
+                  alt='GitHub'
+                  className={styles.socialIcon}
+                  src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/github.svg'
+                />
+                <span className={styles.labelLinkSource}>View Source</span>
               </a>
             </Link>
             <Link href='https://t.me/+OeH3hX00HqxmZDc8'>
               <a className={styles.social}>
-                {/* <Telegram color='teal' className={styles.socialIcon} /> */}
-                <span className={styles.labelLink}>Join Telegram</span>
+                <Image
+                  height='20'
+                  width='20'
+                  alt='Telegram'
+                  className={styles.socialIcon}
+                  src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/telegram.svg'
+                />
+                <span className={styles.labelLinkJoin}>Join Telegram</span>
               </a>
             </Link>
           </div>
           <div className={'col col-lg-4 col-12 ' + `${styles.col2}`}>
             <span className={styles.label}>Built with</span>
-            {/* <Vim color='teal' size={19} className={styles.toolsIcon} /> */}
+            <Image
+              height='20'
+              width='20'
+              alt='Vim'
+              className={styles.toolsIcon}
+              src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vim.svg'
+            />
             <span className={styles.label}>&amp;</span>
-            {/* <ReactJs color='teal' size={19} className={styles.toolsIcon} /> */}
+            <Image
+              height='20'
+              width='20'
+              alt='Next.js'
+              className={styles.toolsIcon}
+              src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/nextdotjs.svg'
+            />
             <span className={styles.label}>on</span>
-            {/* <Artixlinux color='teal' size={19} className={styles.toolsIcon} /> */}
+            <Image
+              height='20'
+              width='20'
+              alt='Artix Linux'
+              className={styles.toolsIcon}
+              src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/artixlinux.svg'
+            />
           </div>
-          <div className={'col col-lg-4 col-12 ' + `${styles.col3}`}>
+          <div className={'col col-lg-3 col-12 ' + `${styles.col3}`}>
             &copy; {new Date().getFullYear()}
-            <FontAwesomeIcon icon={faHouseLock} size='lg' fixedWidth className={styles.brandIcon} />
-            <span className={styles.brand}>Decentralized eVault</span>
+            <Image src='/logo-black.png' alt='logo' width='32px' height='32px' className='brandIcon' />
+            <span className={styles.brand}>De.Vault</span>
           </div>
         </div>
       </div>

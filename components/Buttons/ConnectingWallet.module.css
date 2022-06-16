@@ -1,6 +1,6 @@
 .button {
 	align-items: center;
-	background-color: var(--light-grey, #dadada);
+	background-color: var(--color-primary-400, #f5f5f5);
 	border: 0;
 	border-radius: 1em;
 	display: flex;
@@ -10,11 +10,11 @@
 	padding: 0.4em 1em !important;
 }
 
-.iconSpinner {
-	color: var(--fg-2, #fff);
+.iconSpinner,
+.load {
+	color: var(--color-grey-100, #f5f5f5);
 }
 
 .load {
 	padding-left: 0.5em;
-	color: var(--fg-2, #fff);
 }
