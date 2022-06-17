@@ -43,7 +43,7 @@
   "devDependencies": {
     "@nomiclabs/hardhat-solhint": "^2.0.1",
     "chai": "^4.3.6",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.1.4",
     "jest": "^28.1.0",
