@@ -5,6 +5,7 @@
 LOG_HISTORY_FILE="deploy.history"
 LOG_FILE="deploy.log"
 touch $LOG_FILE $LOG_HISTORY_FILE
+echo "$(date) - Starting the deployment process" >> $LOG_FILE
 cat $LOG_FILE >> $LOG_HISTORY_FILE
 cat /dev/null > $LOG_FILE
 

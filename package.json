@@ -1,6 +1,6 @@
 {
   "name": "devault",
-  "description": "A Blockchain-based self-hosted decentralized cloud storage system",
+  "description": "A Blockchain-based self-hosted decentralized encrypted cloud storage",
   "version": "0.2.2",
   "private": true,
   "license": "GPLv3",
@@ -17,8 +17,8 @@
     "test": "jest",
     "test-coverage": "jest --coverage",
     "deploy": "sh ./scripts/deploy.sh",
-    "deploy-prod": "sh ./scripts/deploy.sh ropsten 0",
-    "deploy-prod2": "sh ./scripts/deploy.sh ropsten 1",
+    "deploy-prod0": "./scripts/deploy.sh ropsten 0",
+    "deploy-prod1": "./scripts/deploy.sh ropsten 1",
     "lint": "next lint"
   },
   "dependencies": {

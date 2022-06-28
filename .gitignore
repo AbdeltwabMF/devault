@@ -39,3 +39,7 @@ cache
 
 # Security
 .env
+
+# Logs
+*.log
+*.history

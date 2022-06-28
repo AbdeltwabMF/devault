@@ -48,8 +48,6 @@ start_services() {
 	info "The development environment is waiting for you, engineer"
 }
 
-start_services
-
 compile_smart_contract() {
 	info "Compiling the smart contracts..."
 	info "$(npx hardhat compile)"
@@ -76,6 +74,10 @@ esac
 
 smart_contract_address=""
 
+decorize_address() {
+	printf "%b" "${BBLUE}${smart_contract_address}${CYAN}"
+}
+
 # deploy the smart contracts to the specified network
 deploy() {
 	info "Deploying the smart contracts to ${network} network..."
@@ -85,14 +87,15 @@ deploy() {
 if [[ "$network" != "localhost" ]]; then
 	if (( $2 == 1 )); then
 		deploy
-		info "A new smart contract address: ${smart_contract_address} is cached"
+		info "A new smart contract address: $(decorize_address) is cached"
 		sed -i "s/SMART_CONTRACT_ADDRESS_ROPSTEN.*$/SMART_CONTRACT_ADDRESS_ROPSTEN=$smart_contract_address/" ./.env
 	else
-		info "Retrieving the cached smart contract address: ${smart_contract_address}..."
 		smart_contract_address=$(grep "SMART_CONTRACT_ADDRESS_ROPSTEN" ./.env | cut -d "=" -f 2)
+		info "The cached smart contract address: $(decorize_address) is retrieved"
 	fi
 	do_final
 else
+	start_services
 	deploy
 	while [[ $smart_contract_address == "" ]]; do
 		error "Unable to deploy the smart contracts to $network network"
@@ -101,6 +104,6 @@ else
 		sleep 5s
 		deploy
 	done
-	info "The smart contracts: ${BBLUE}${smart_contract_address}${CYAN} deployed successfully to ${network} network"
+	info "The smart contracts: $(decorize_address) deployed successfully to ${network} network"
 	do_final
 fi
