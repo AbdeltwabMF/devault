@@ -10,15 +10,12 @@
   },
   "scripts": {
     "dev": "next dev",
-    "dev2": "./scripts/deploy.sh",
     "build": "next build",
     "build2": "next build && next export",
     "start": "next start",
     "test": "jest",
     "test-coverage": "jest --coverage",
-    "deploy": "sh ./scripts/deploy.sh",
-    "deploy-prod0": "./scripts/deploy.sh ropsten 0",
-    "deploy-prod1": "./scripts/deploy.sh ropsten 1",
+    "deploy": "./scripts/deploy.sh",
     "lint": "next lint"
   },
   "dependencies": {
