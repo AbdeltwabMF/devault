@@ -39,8 +39,7 @@ Decentralized storage is one of the hottest blockchain use-cases.
 ```bash
 git clone https://github.com/AbdeltwabMF/devault.git
 cd devault
-docker build -t decentralized-vault .
-docker container run -d --rm -p 3000:3000 decentralized-vault
+docker-compose up --build --force-recreate
 ```
 
 ## Run The Development Environment
