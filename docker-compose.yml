@@ -2,7 +2,7 @@
 version: "3"
 
 services:
-  decentralized-vault:
+  devault:
     build: .
     ports:
       - "3000:3000"

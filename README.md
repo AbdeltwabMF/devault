@@ -1,7 +1,7 @@
 <div align="center">
 <img src="/public/logo-white.png" width="200px" height="200px" />
 </div>
-<h1 align="center">Decentralized Vault</h1>
+<h1 align="center">Devault</h1>
 <p align="center">A Blockchain-based self-hosted decentralized encrypted cloud storage system.</p>
 
 ## What is Decentralized Vault?

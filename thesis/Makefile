@@ -31,7 +31,7 @@ all:
 	@printf "%b" "$(BCYAN)Refreshing the target file...\n$(NC)"
 	lualatex $(TARGET).tex
 	@printf "%b" "$(BGREEN)Done.\n$(NC)"
-	zathura $(TARGET).pdf
+	# zathura $(TARGET).pdf
 
 clean:
 	@printf "%b" "$(WHITE)Cleaning...\n$(NC)"

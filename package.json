@@ -1,7 +1,7 @@
 {
-  "name": "decentralized-vault",
+  "name": "devault",
   "description": "A Blockchain-based self-hosted decentralized cloud storage system",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "private": true,
   "license": "GPLv3",
   "author": {
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "dev2": "./scripts/run.sh && ./scripts/deploy.sh",
+    "dev2": "./scripts/deploy.sh",
     "build": "next build",
     "build2": "next build && next export",
     "start": "next start",
