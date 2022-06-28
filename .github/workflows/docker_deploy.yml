@@ -31,6 +31,6 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/decentralized-vault:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/decentralized-vault:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/decentralized-vault:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devault:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/devault:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/devault:buildcache,mode=max

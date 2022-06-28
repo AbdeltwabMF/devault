@@ -2,7 +2,7 @@
 <img src="/public/logo-white.png" width="200px" height="200px" />
 </div>
 <h1 align="center">Devault</h1>
-<p align="center">A Blockchain-based self-hosted decentralized encrypted cloud storage system.</p>
+<p align="center">A Blockchain-based self-hosted decentralized encrypted cloud storage.</p>
 
 ## What is Decentralized Vault?
 Decentralized storage is one of the hottest blockchain use-cases.
@@ -37,21 +37,23 @@ Decentralized storage is one of the hottest blockchain use-cases.
 ## Run The Production Build
 
 ```bash
-git clone https://github.com/AbdeltwabMF/decentralized-vault.git
-cd decentralized-vault
+git clone https://github.com/AbdeltwabMF/devault.git
+cd devault
 docker build -t decentralized-vault .
 docker container run -d --rm -p 3000:3000 decentralized-vault
 ```
 
 ## Run The Development Environment
 
-This will run the development server on port 3000. Also it will run a local blockchain hardhat node listening on port 8545.
+This will run:
+- The development server on port 3000.
+- A local blockchain node on port 8545.
 
 ```bash
-git clone https://github.com/AbdeltwabMF/decentralized-vault.git
-cd decentralized-vault
+git clone https://github.com/AbdeltwabMF/devault.git
+cd devault
 npm ci
-npm run dev2
+npm run deploy localhost
 ```
 
 ## The Tools Used In This Project
@@ -73,7 +75,7 @@ npm run dev2
 
 ## Community
 
-The `Decentralized Vault` community can be found on [Telegram](https://t.me/+OeH3hX00HqxmZDc8), where you can ask questions or suggest new ideas.
+The `Devault` community can be found on [Telegram](https://t.me/+OeH3hX00HqxmZDc8), where you can ask questions, suggest new ideas, and get support.
 
 ## License
 Licensed under the [GPL-v3](LICENSE) License.
