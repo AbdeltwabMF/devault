@@ -4,11 +4,24 @@
 <h1 align="center">Devault</h1>
 <p align="center">A Blockchain-based, self-hosted, and end-to-end encrypted cloud storage.</p>
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AbdeltwabMF/devault/graphs/commit-activity)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://devault.vercel.app/)
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://devault.vercel.app/)
+[![GitHub license](https://img.shields.io/github/license/AbdeltwabMF/devault.svg)](https://github.com/AbdeltwabMF/devault/blob/main/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/AbdeltwabMF/devault.svg)](https://github.com/AbdeltwabMF/devault/releases)
+[![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://hub.docker.com/r/abdeltwabmf/devault)
+[![](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/+OeH3hX00HqxmZDc8)
+[![](https://img.shields.io/badge/matrix-000000?style=for-the-badge&logo=Matrix&logoColor=white)](https://matrix.to/#/#devault-community:matrix.org)
+
 ## :tada: About the Project
 
-### :camera: screenshots
+`Devault` stands for DEcentralized VAULT
 
-![vault](/public/screenshots/vault.png)
+### :camera: Screenshots
+
+![landpage](/public/screenshots/landpage.png)
+
+###	:art: [Color Reference](https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51)
 
 ### What is Devault?
 Decentralized storage is one of the hottest blockchain use-cases.
@@ -45,11 +58,31 @@ Decentralized storage is one of the hottest blockchain use-cases.
 
 ### :yellow_circle: Prerequisites
 
+#### :package: Package manager
+
 This project uses `npm` as a package manager
 
 ```sh
 pacman -S npm
 ```
+
+#### :key: Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env` file
+
+`PRIVATE_KEY`
+`ROPSTEN_URL`
+
+To generate those keys you will need to:
+- 1. create infura account
+- 2. create a new ethereum node
+- 3. copy the private key to .env
+- 4. copy ropsten url to .env
+
+`SMART_CONTRACT_ADDRESS_ROPSTEN`
+
+This variable will be set later by the deployment script
+
 
 ### :wrench: Run for development
 
@@ -138,26 +171,30 @@ npm run build2
 
 The tools used in this project.
 
-- [Neovim](https://neovim.io/): as an IDE.
-- [Next.js](https://nextjs.org/): as a frontend framework.
-- [Hardhat](https://hardhat.io): as a framework for developing, testing, linting and deploying smart contracts.
-- [Solidity](https://docs.soliditylang.org/): as a smart contract language.
-- [Metamask](https://metamask.io/): as a web3 provider.
-- [Ethers.js](https://docs.ethers.io/): as a library for interacting with the Ethereum blockchain.
-- [Ropsten](https://ropsten.etherscan.io/): as a testnet for deploying smart contracts.
-- [Infura](https://infura.io/): for running a virtual blockchain node to deploy the smart contracts through it.
-- [IPFS](https://ipfs.io/): for storing and sharing the encrypted files.
-- [Jest](https://jestjs.io/): for unit testing.
-- [Etherscan](https://etherscan.io/): for verifying transactions and blocks.
-- [Vercel](https://vercel.com/): for deploying the app for production.
-- [Docker](https://www.docker.com/): for deploying and shipping the app for production.
-- [LaTeX](https://www.latex-project.org/): for writing the thesis and the presentation.
+| Icon                                                                 | Tool                                       | Description                                                                    |
+|:--------------------------------------------------------------------:|:------------------------------------------:|:------------------------------------------------------------------------------:|
+| <img src="/public/tools/neovim.svg" width="48px" height="48px" />    | [Neovim](https://neovim.io/)               | as an IDE                                                                      |
+| <img src="/public/tools/nextdotjs.svg" width="48px" height="48px" /> | [Next.js](https://nextjs.org/)             | as a frontend framework                                                        |
+| <img src="/public/tools/hardhat.png" width="48px" height="48px" />   | [Hardhat](https://hardhat.io)              | as a framework for developing, testing, linting and deploying smart contracts  |
+| <img src="/public/tools/solidity.svg" width="48px" height="48px" />  | [Solidity](https://docs.soliditylang.org/) | as a smart contract language                                                   |
+| <img src="/public/tools/metamask.png" width="48px" height="48px" />  | [Metamask](https://metamask.io/)           | as a web3 provider                                                             |
+| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Ethers.js](https://docs.ethers.io/)       | as a library for interacting with the Ethereum blockchain                      |
+| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Ropsten](https://ropsten.etherscan.io/)   | as a testnet for deploying smart contracts                                     |
+| <img src="/public/tools/infura.png" width="48px" height="48px" />    | [Infura](https://infura.io/)               | for running a virtual blockchain node to deploy the smart contracts through it |
+| <img src="/public/tools/ipfs.svg" width="48px" height="48px" />      | [IPFS](https://ipfs.io/)                   | for storing and sharing the encrypted files                                    |
+| <img src="/public/tools/jest.svg" width="48px" height="48px" />      | [Jest](https://jestjs.io/)                 | for unit testing                                                               |
+| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Etherscan](https://etherscan.io/)         | for verifying transactions and blocks                                          |
+| <img src="/public/tools/vercel.svg" width="48px" height="48px" />    | [Vercel](https://vercel.com/)              | for deploying the app for production                                           |
+| <img src="/public/tools/docker.svg" width="48px" height="48px" />    | [Docker](https://www.docker.com/)          | for deploying and shipping the app for production                              |
+| <img src="/public/tools/latex.svg" width="48px" height="48px" />     | [LaTeX](https://www.latex-project.org/)    | for writing the thesis and the presentation                                    |
 
 ## :bulb: FAQ
 
 ## :hearts: Community
 
-The `Devault` community can be found on [Telegram](https://t.me/+OeH3hX00HqxmZDc8), where you can ask questions, suggest new ideas, and get support.
+The `Devault` community can be found on:
+[Telegram](https://t.me/+OeH3hX00HqxmZDc8) or [Matrix](https://matrix.to/#/#devault-community:matrix.org)
+, where you can ask questions, suggest new ideas, and get support.
 
 ## :gem: Acknowledgements
 

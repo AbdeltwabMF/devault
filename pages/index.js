@@ -13,7 +13,8 @@ export default function Home () {
               <h1
                 className={styles.headerTitle}
               >
-                <span className={styles.decentralized}>Decentralized,</span>{' '}
+                Devault is a {' '}
+                <span className={styles.decentralized}>decentralized,</span>{' '}
                 <span className={styles.selfHosted}>self-hosted,</span>{' '}
                 and{' '}
                 <span className={styles.encrypted}>end-to-end encrypted</span>{' '}
