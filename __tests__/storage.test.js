@@ -15,7 +15,7 @@ it('should return 1 -- the count of the files', async function () {
 
   const filesCount = await storage.getFilesLength()
 
-  expect(parseInt(filesCount)).to.equal(1)
+  expect(parseInt(filesCount, 10)).to.equal(1)
 })
 
 it('should return 0 -- the count of the files', async function () {
@@ -31,5 +31,5 @@ it('should return 0 -- the count of the files', async function () {
 
   const filesCount = await storage.getFilesLength()
 
-  expect(parseInt(filesCount)).to.equal(1)
+  expect(parseInt(filesCount, 10)).to.equal(1)
 })

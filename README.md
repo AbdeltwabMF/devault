@@ -335,6 +335,18 @@ npm run build2
     </ul>
 </details>
 
+## Future Work
+
+  - [ ] Secure file sharing.
+  - [x] Client-side encryption/decryption.
+  - [x] Download a file.
+  - [x] Upload a file.
+  - [ ] Delete selected files.
+  - [ ] Search files.
+  - [ ] Sort files based on (date, size, name...)
+  - [ ] Upload files.
+  - [ ] Download selected files.
+
 ## :hearts: Community
 
 The `Devault` community can be found on:
@@ -359,6 +371,28 @@ Where you can ask questions, suggest new ideas, and get support.
   - [Patrick Collins](https://www.youtube.com/c/PatrickCollins/) 
   - [3blue1brown](https://www.youtube.com/c/3blue1brown/)
   - [Savjee](https://www.youtube.com/c/Savjee/)
+
+## Tutorials
+
+<details>
+    <summary>Videos</summary>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=gyMwXuJrbJQ">Learn Blockchain, Solidity, and Full Stack Web3 Development with JavaScript</a></li>
+        <li><a href="https://www.youtube.com/watch?v=bdXJmWajZRY">Upgrading your Smart Contracts | A Tutorial & Introduction</a></li>
+        <li><a href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv">Learn JavaScript in Arabic 2021</a></li>
+        <li><a href="https://www.youtube.com/playlist?list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h">React Hooks</a></li>
+        <li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiQF_5bEErheiAawrJ-2zQoI">Blockchain & Cryptocurrency</a></li>
+        <li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiSM_uLyxy5B6ml_BpmLFAHU">Decentralized tech</a></li>
+    </ul>
+</details>
+
+<details>
+    <summary>Articles & Documentations</summary>
+    <ul>
+        <li><a href="https://ethereum.org/en/developers/docs/">Ethereum Official Documentation</a></li>
+        <li><a href="https://cryptozombies.io/">Cryptozombies</a></li>
+    </ul>
+</details>
 
 ## :hatching_chick: Contributors
 
