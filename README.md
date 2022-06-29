@@ -41,6 +41,9 @@
     <a href="https://github.com/AbdeltwabMF/devault/graphs/commit-activity">
         <img src="https://img.shields.io/github/commit-activity/w/abdeltwabmf/devault" alt="commits" />
     </a>
+    <a href="https://github.com/AbdeltwabMF/devault">
+        <img src="https://img.shields.io/tokei/lines/github/AbdeltwabMF/devault" alt="lines-of-code" />
+    </a>
     <a href="https://matrix.to/#/#devault-community:matrix.org">
         <img src="https://img.shields.io/matrix/devault-community:matrix.org" alt="chat" />
     </a>
