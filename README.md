@@ -57,6 +57,9 @@
     - [Tech stack and Tools](#hammer_and_wrench-tech-stack-and-tools)
     - [What is Devault](#microphone-what-is-devault)
     - [Why Devault](#mag-why-devault)
+      - [The Problem with Traditional Cloud Storage](#-1-the-problem-with-traditional-cloud-storage)
+      - [Solution with Devault](#1-the-solution-with-devault)
+      - [Features](#see_no_evil-features)
     - [How Devault Works](#closed_lock_with_key-how-devault-works)
   - [Source Code Directory Structure](#ladder-source-code-directory-structure)
   - [Getting Started](#biking_man-getting-started)
@@ -68,8 +71,12 @@
     - [Deployment | Hosting](#sparkles-deployment--hosting)
   - [Usage](#thinking-usage)
   - [FAQ](#bulb-faq)
+  - [Future Work](#rescue_worker_helmet-future-work)
   - [Community](#hearts-community)
   - [Acknowledgements](#gem-acknowledgements)
+    - [Softwares](#lollipop-softwares)
+    - [Engineers](#construction_worker-engineers)
+  - [Tutorials](#books-tutorials)
   - [Contributors](#hatching_chick-contributors)
   - [License](#warning-license)
 
@@ -91,25 +98,39 @@ Devault is a decentralized, self-hosted, end-to-end encrypted, and alternative t
 
 ### :mag: Why Devault
 
-  - It is decentralized cloud storage based on blockchain.
-  - It uses client-side encryption/decryption.
+#### :-1: The Problem with Traditional Cloud Storage
+  
+  - Data loss
+  - Data hack
+  - Data surveillance
+  
+#### :+1: The Solution with Devault
+
+  - No third party can access your files or prevent you from accessing them.
+  - It prevents the censorship of the data.
+  - It's nearly impossible to hack AES-256-CBC encryption or even the blockchain.
+  - It prevents the data from being tampered with.
   - It breaks apart the users’ files and distributes them across multiple nodes on the network.
   - The smart contract is upgradeable, so the data is never lost when there is a bug fix.
-  - It prevents the data from being tampered with.
-  - It prevents the censorship of the data.
-  - It is open source.
-  - No third party can access your files or prevent you from accessing them.
+
+#### :see_no_evil: Features
+
+  - Decentralized
+  - Blockchain based
+  - End-to-end encryption/decryption
+  - Self-hosted
+  - Open-source
 
 ### :closed_lock_with_key: How Devault Works
 
-When you upload a file:
+**When you upload a file:**
 
   - The file gets encrypted using AES-256-CBC encryption.
   - The encrypted file is split into pieces.
   - The chunks are distributed across the network nodes.
   - The root hash will be stored in your wallet on the blockchain.
 
-When you download a file:
+**When you download a file:**
 
   - The root hash will be retrieved from your wallet on the blockchain.
   - The root hash will be used to retrieve the file chunks.
@@ -340,7 +361,7 @@ npm run build2
     </ul>
 </details>
 
-## Future Work
+## :rescue_worker_helmet: Future Work
 
   - [ ] Secure file sharing.
   - [x] Client-side encryption/decryption.
@@ -363,13 +384,13 @@ Where you can ask questions, suggest new ideas, and get support.
 
 ## :gem: Acknowledgements
 
-### Softwares
+### :lollipop: Softwares
 
   - [eslint](https://eslint.org/)
   - [ale](https://github.com/dense-analysis/ale)
   - [remix](https://remix.ethereum.org/)
 
-### Engineers
+### :construction_worker: Engineers
 
   - [Osama El-Zero](https://www.youtube.com/c/ElzeroInfo/)
   - [Web Dev Simplified](https://www.youtube.com/c/WebDevSimplified/)
@@ -377,7 +398,7 @@ Where you can ask questions, suggest new ideas, and get support.
   - [3blue1brown](https://www.youtube.com/c/3blue1brown/)
   - [Savjee](https://www.youtube.com/c/Savjee/)
 
-## Tutorials
+## :books: Tutorials
 
 <details>
     <summary>Videos</summary>
