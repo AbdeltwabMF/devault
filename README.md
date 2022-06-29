@@ -19,6 +19,7 @@
 - [About the Project](#tada-about-the-project)
   - [Screenshots](#camera-screenshots)
   - [Color Reference](#art-color-reference)
+  - [Tech stack and Tools](#hammer_and_wrench-tech-stack-and-tools)
   - [What is Devault](#microphone-what-is-devault)
   - [Why Devault](#mag-why-devault)
   - [How Devault Works](#closed_lock_with_key-how-devault-works)
@@ -29,7 +30,6 @@
   - [Run for Development](#wrench-run-for-development)
     - [Run the Tests](#syringe-run-the-tests)
   - [Deployment | Hosting](#sparkles-deployment--hosting)
-- [Tech stack and Tools](#hammer_and_wrench-tech-stack-and-tools)
 - [FAQ](#bulb-faq)
 - [Community](#hearts-community)
 - [Acknowledgements](#gem-acknowledgements)
@@ -78,6 +78,26 @@ When you download a file:
 - The root hash will be used to retrieve the file chunks.
 - The retrieved chucks will be combined and decrypted to represent the original file.
 
+### :hammer_and_wrench: Tech stack and Tools
+
+The tools used in this project.
+
+| Icon                                                                 | Tool                                       | Description                                                                    |
+|:--------------------------------------------------------------------:|:------------------------------------------:|:------------------------------------------------------------------------------:|
+| <img src="/public/tools/neovim.svg" width="48px" height="48px" />    | [Neovim](https://neovim.io/)               | as an IDE                                                                      |
+| <img src="/public/tools/nextdotjs.svg" width="48px" height="48px" /> | [Next.js](https://nextjs.org/)             | as a frontend framework                                                        |
+| <img src="/public/tools/hardhat.png" width="48px" height="48px" />   | [Hardhat](https://hardhat.io)              | as a framework for developing, testing, linting and deploying smart contracts  |
+| <img src="/public/tools/solidity.svg" width="48px" height="48px" />  | [Solidity](https://docs.soliditylang.org/) | as a smart contract language                                                   |
+| <img src="/public/tools/metamask.png" width="48px" height="48px" />  | [Metamask](https://metamask.io/)           | as a web3 provider                                                             |
+| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Ethers.js](https://docs.ethers.io/)       | as a library for interacting with the Ethereum blockchain                      |
+| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Ropsten](https://ropsten.etherscan.io/)   | as a testnet for deploying smart contracts                                     |
+| <img src="/public/tools/infura.png" width="48px" height="48px" />    | [Infura](https://infura.io/)               | for running a virtual blockchain node to deploy the smart contracts through it |
+| <img src="/public/tools/ipfs.svg" width="48px" height="48px" />      | [IPFS](https://ipfs.io/)                   | for storing and sharing the encrypted files                                    |
+| <img src="/public/tools/jest.svg" width="48px" height="48px" />      | [Jest](https://jestjs.io/)                 | for unit testing                                                               |
+| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Etherscan](https://etherscan.io/)         | for verifying transactions and blocks                                          |
+| <img src="/public/tools/vercel.svg" width="48px" height="48px" />    | [Vercel](https://vercel.com/)              | for deploying the app for production                                           |
+| <img src="/public/tools/docker.svg" width="48px" height="48px" />    | [Docker](https://www.docker.com/)          | for deploying and shipping the app for production                              |
+| <img src="/public/tools/latex.svg" width="48px" height="48px" />     | [LaTeX](https://www.latex-project.org/)    | for writing the thesis and the presentation                                    |
 
 ## :biking_man: Getting Started
 
@@ -190,27 +210,6 @@ The generated static site will be in the `out` directory (ex. use `nginx` to ser
 ```sh
 npm run build2
 ```
-
-## :hammer_and_wrench: Tech stack and Tools
-
-The tools used in this project.
-
-| Icon                                                                 | Tool                                       | Description                                                                    |
-|:--------------------------------------------------------------------:|:------------------------------------------:|:------------------------------------------------------------------------------:|
-| <img src="/public/tools/neovim.svg" width="48px" height="48px" />    | [Neovim](https://neovim.io/)               | as an IDE                                                                      |
-| <img src="/public/tools/nextdotjs.svg" width="48px" height="48px" /> | [Next.js](https://nextjs.org/)             | as a frontend framework                                                        |
-| <img src="/public/tools/hardhat.png" width="48px" height="48px" />   | [Hardhat](https://hardhat.io)              | as a framework for developing, testing, linting and deploying smart contracts  |
-| <img src="/public/tools/solidity.svg" width="48px" height="48px" />  | [Solidity](https://docs.soliditylang.org/) | as a smart contract language                                                   |
-| <img src="/public/tools/metamask.png" width="48px" height="48px" />  | [Metamask](https://metamask.io/)           | as a web3 provider                                                             |
-| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Ethers.js](https://docs.ethers.io/)       | as a library for interacting with the Ethereum blockchain                      |
-| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Ropsten](https://ropsten.etherscan.io/)   | as a testnet for deploying smart contracts                                     |
-| <img src="/public/tools/infura.png" width="48px" height="48px" />    | [Infura](https://infura.io/)               | for running a virtual blockchain node to deploy the smart contracts through it |
-| <img src="/public/tools/ipfs.svg" width="48px" height="48px" />      | [IPFS](https://ipfs.io/)                   | for storing and sharing the encrypted files                                    |
-| <img src="/public/tools/jest.svg" width="48px" height="48px" />      | [Jest](https://jestjs.io/)                 | for unit testing                                                               |
-| <img src="/public/tools/ethereum.svg" width="48px" height="48px" />  | [Etherscan](https://etherscan.io/)         | for verifying transactions and blocks                                          |
-| <img src="/public/tools/vercel.svg" width="48px" height="48px" />    | [Vercel](https://vercel.com/)              | for deploying the app for production                                           |
-| <img src="/public/tools/docker.svg" width="48px" height="48px" />    | [Docker](https://www.docker.com/)          | for deploying and shipping the app for production                              |
-| <img src="/public/tools/latex.svg" width="48px" height="48px" />     | [LaTeX](https://www.latex-project.org/)    | for writing the thesis and the presentation                                    |
 
 ## :bulb: FAQ
 
