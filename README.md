@@ -33,7 +33,7 @@ Decentralized storage is one of the hottest blockchain use-cases.
 - The encryption & decryption is done on the client-side witch is make a lot of sense for the user.
 - Only users who have a wallet can access the data.
 - Only users who have the key can access the data.
-- The smart contract is upgradable, so the data is never lost when there is a bug fix.
+- The smart contract is upgrade-able, so the data is never lost when there is a bug fix.
 - It prevents the data from being tampered with.
 - It prevents the censorship of the data.
 - It is open source.
@@ -50,7 +50,7 @@ Decentralized storage is one of the hottest blockchain use-cases.
 	- The chunks distributed to multiple nodes on the network.
 - Fourth: download files.
 	- The file will be reconstructed from the chunks.
-	- You will be asked for a password to decrypt the file with.
+	- You will be asked for a password to decrypt the file.
 	- The file gets decrypted and downloaded.
 
 
@@ -198,6 +198,21 @@ The `Devault` community can be found on:
 
 ## :gem: Acknowledgements
 
+### Softwares
+
+- [eslint](https://eslint.org/)
+- [ale](https://github.com/dense-analysis/ale)
+- [crypto-js](https://cryptojs.gitbook.io/docs/)
+
+### Engineers
+
+- [Osama El-Zero](https://www.youtube.com/c/ElzeroInfo/)
+- [Web Dev Simplified](https://www.youtube.com/c/WebDevSimplified/)
+- [Patrick collins](https://www.youtube.com/c/PatrickCollins/)
+- [nader dabit](https://www.youtube.com/c/naderdabit/)
+- [3blue1brown](https://www.youtube.com/c/3blue1brown/)
+- [Savjee](https://www.youtube.com/c/Savjee/)
 
 ## :warning: License
+
 Licensed under the [GPL-v3](LICENSE) License.
