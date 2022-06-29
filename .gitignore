@@ -34,9 +34,6 @@ yarn-error.log*
 # Hardhat files
 cache
 
-# Markdown files
-*.md
-
 # Security
 .env
 
