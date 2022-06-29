@@ -61,7 +61,7 @@ export default function Footer () {
           </div>
           <div className={'col col-lg-4 col-12 ' + `${styles.col3}`}>
             &copy; {new Date().getFullYear()}
-            <Image src='/devault.png' alt='logo' width='32px' height='32px' className='brandIcon' />
+            <Image src='/devault-64.png' alt='logo' width='32px' height='32px' className='brandIcon' />
             <span className={styles.brand}>Devault</span>
           </div>
         </div>
