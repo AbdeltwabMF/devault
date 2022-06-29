@@ -2,9 +2,15 @@
 <img src="/public/devault-1024.png" width="200px" height="200px" />
 </div>
 <h1 align="center">Devault</h1>
-<p align="center">A Blockchain-based self-hosted decentralized encrypted cloud storage.</p>
+<p align="center">A Blockchain-based, self-hosted, and end-to-end encrypted cloud storage.</p>
 
-## What is Decentralized Vault?
+## :tada: About the Project
+
+### :camera: screenshots
+
+![vault](/public/screenshots/vault.png)
+
+### What is Devault?
 Decentralized storage is one of the hottest blockchain use-cases.
 
 ## Why Decentralized Vault?
@@ -34,28 +40,103 @@ Decentralized storage is one of the hottest blockchain use-cases.
 	- You will be asked for a password to decrypt the file with.
 	- The file gets decrypted and downloaded.
 
-## Run The Production Build
 
-```bash
-git clone https://github.com/AbdeltwabMF/devault.git
-cd devault
-docker-compose up --build --force-recreate
+## :biking_man: Getting Started
+
+### :yellow_circle: Prerequisites
+
+This project uses `npm` as a package manager
+
+```sh
+pacman -S npm
 ```
 
-## Run The Development Environment
+### :wrench: Run for development
 
-This will run:
-- The development server on port 3000.
-- A local blockchain node on port 8545.
+- Clone the repo
 
-```bash
+```sh
 git clone https://github.com/AbdeltwabMF/devault.git
 cd devault
+```
+
+- Install dependencies
+
+```sh
 npm ci
+```
+
+- Run the development server and local blockchain node.
+
+```sh
 npm run deploy localhost
 ```
 
-## The Tools Used In This Project
+- Navigate to `http://localhost:3000` <br/>
+
+:green_circle: _Now you're good to go_
+
+#### :syringe: Run the tests
+
+- Run the smart contracts test
+
+```sh
+npx hardhat test
+```
+
+- Generates a code coverage report for smart contracts test
+
+```sh
+npx hardhat coverage
+```
+
+- Run the whole project tests
+
+```sh
+npm run test
+```
+
+### :sparkles: Deployment | Hosting
+
+- Deploy using source code and docker
+
+```sh
+git clone https://github.com/AbdeltwabMF/devault.git
+cd devault
+```
+
+```sh
+docker-compose up --build --force-recreate -d
+```
+
+- Deploy using official docker image hosted on docker hub
+
+```sh
+docker container run -p 3000:3000 -d abdeltwabmf/devault
+```
+
+- Deploy using vercel
+
+```sh
+npm i -g vercel
+```
+
+```sh
+vercel --prod
+```
+
+- Deploy using static site generation
+
+The generated static site will be in the `out` directory (ex. use `nginx` to serve it)
+
+```sh
+npm run build2
+```
+
+
+## :hammer_and_wrench: Tech stack and Tools
+
+The tools used in this project.
 
 - [Neovim](https://neovim.io/): as an IDE.
 - [Next.js](https://nextjs.org/): as a frontend framework.
@@ -72,9 +153,14 @@ npm run deploy localhost
 - [Docker](https://www.docker.com/): for deploying and shipping the app for production.
 - [LaTeX](https://www.latex-project.org/): for writing the thesis and the presentation.
 
-## Community
+## :bulb: FAQ
+
+## :hearts: Community
 
 The `Devault` community can be found on [Telegram](https://t.me/+OeH3hX00HqxmZDc8), where you can ask questions, suggest new ideas, and get support.
 
-## License
+## :gem: Acknowledgements
+
+
+## :warning: License
 Licensed under the [GPL-v3](LICENSE) License.
