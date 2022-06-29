@@ -10,8 +10,6 @@
 [![GitHub license](https://img.shields.io/github/license/AbdeltwabMF/devault.svg)](https://github.com/AbdeltwabMF/devault/blob/main/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/AbdeltwabMF/devault.svg)](https://github.com/AbdeltwabMF/devault/releases)
 [![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://hub.docker.com/r/abdeltwabmf/devault)
-[![](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/+OeH3hX00HqxmZDc8)
-[![](https://img.shields.io/badge/matrix-000000?style=for-the-badge&logo=Matrix&logoColor=white)](https://matrix.to/#/#devault-community:matrix.org)
 
 
 ## :scroll: Table of Contents
