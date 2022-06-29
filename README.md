@@ -13,6 +13,30 @@
 [![](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/+OeH3hX00HqxmZDc8)
 [![](https://img.shields.io/badge/matrix-000000?style=for-the-badge&logo=Matrix&logoColor=white)](https://matrix.to/#/#devault-community:matrix.org)
 
+
+## :scroll: Table of Contents
+
+- [About the Project](#tada-about-the-project)
+  - [Screenshots](#camera-screenshots)
+  - [Color Reference](#art-color-reference)
+  - [What is Devault](#microphone-what-is-devault)
+  - [Why Devault](#mag-why-devault)
+  - [How Devault Works](#closed_lock_with_key-how-devault-works)
+- [Getting Started](#biking_man-getting-started)
+  - [Prerequisites](#yellow_circle-prerequisites)
+    - [Package Manager](#package-package-manager)
+    - [Environment Variables](#key-environment-variables)
+  - [Run for Development](#wrench-run-for-development)
+    - [Run the Tests](#syringe-run-the-tests)
+  - [Deployment | Hosting](#sparkles-deployment--hosting)
+- [Tech stack and Tools](#hammer_and_wrench-tech-stack-and-tools)
+- [FAQ](#bulb-faq)
+- [Community](#hearts-community)
+- [Acknowledgements](#gem-acknowledgements)
+- [Contributors](#hatching_chick-contributors)
+- [License](#warning-license)
+
+  
 ## :tada: About the Project
 
 `Devault` stands for DEcentralized VAULT
@@ -23,42 +47,43 @@
 
 ###	:art: [Color Reference](https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51)
 
-### What is Devault?
-Decentralized storage is one of the hottest blockchain use-cases.
+### :microphone: What is Devault?
 
-## Why Decentralized Vault?
-- It is a decentralized storage system that is based on blockchain.
-- It encrypts data and stores it in a decentralized cloud.
-- It breaks apart the users’ files and distributes them across multiple nodes on their network.
-- The encryption & decryption is done on the client-side witch is make a lot of sense for the user.
-- Only users who have a wallet can access the data.
-- Only users who have the key can access the data.
-- The smart contract is upgrade-able, so the data is never lost when there is a bug fix.
+Devault is a decentralized, self-hosted, end-to-end encrypted, and alternative to proprietary and centralized cloud storage. 
+
+
+### :mag: Why Devault?
+
+- It is decentralized cloud storage based on blockchain.
+- It uses client-side encryption/decryption.
+- It breaks apart the users’ files and distributes them across multiple nodes on the network.
+- The smart contract is upgradeable, so the data is never lost when there is a bug fix.
 - It prevents the data from being tampered with.
 - It prevents the censorship of the data.
 - It is open source.
+- No third party can access your files or prevent you from accessing them.
 
-## How Decentralized Vault Works?
-- First: create a wallet.
-	- The wallet is a private key that is used to sign transactions.
-	- we use [metamask](https://metamask.io/) as a web3 provider. So you can use metamask to create a wallet and start using decentralized vault.
-- Second: connect the wallet to the application.
-  - through the connect wallet button.
-- Third: upload files.
-	- You will be asked for a password to encrypt the file with.
-	- Then your file is split into smaller chunks, cryptographically hashed, and given a unique fingerprint called a content identifier (CID).
-	- The chunks distributed to multiple nodes on the network.
-- Fourth: download files.
-	- The file will be reconstructed from the chunks.
-	- You will be asked for a password to decrypt the file.
-	- The file gets decrypted and downloaded.
+### :closed_lock_with_key: How Devault Works?
+
+When you upload a file:
+
+- The file gets encrypted using AES-256-CBC encryption.
+- The encrypted file split into pieces.
+- The chunks are distributed across the network nodes.
+- The root hash will be stored in the your wallet on the blockchain.
+
+When you download a file:
+
+- The root hash will be retrieved from your wallet on the blockchain.
+- The root hash will be used to retrieve the file chunks.
+- The retrieved chucks will be combined and decrypted to represent the original file.
 
 
 ## :biking_man: Getting Started
 
 ### :yellow_circle: Prerequisites
 
-#### :package: Package manager
+#### :package: Package Manager
 
 This project uses `npm` as a package manager
 
@@ -84,7 +109,7 @@ To generate those keys you will need to:
 This variable will be set later by the deployment script
 
 
-### :wrench: Run for development
+### :wrench: Run for Development
 
 - Clone the repo
 
@@ -109,7 +134,7 @@ npm run deploy localhost
 
 :green_circle: _Now you're good to go_
 
-#### :syringe: Run the tests
+#### :syringe: Run the Tests
 
 - Run the smart contracts test
 
@@ -166,7 +191,6 @@ The generated static site will be in the `out` directory (ex. use `nginx` to ser
 npm run build2
 ```
 
-
 ## :hammer_and_wrench: Tech stack and Tools
 
 The tools used in this project.
@@ -193,8 +217,11 @@ The tools used in this project.
 ## :hearts: Community
 
 The `Devault` community can be found on:
-[Telegram](https://t.me/+OeH3hX00HqxmZDc8) or [Matrix](https://matrix.to/#/#devault-community:matrix.org)
-, where you can ask questions, suggest new ideas, and get support.
+
+- [Telegram](https://t.me/+OeH3hX00HqxmZDc8)
+- [Matrix](https://matrix.to/#/#devault-community:matrix.org)
+
+Where you can ask questions, suggest new ideas, and get support.
 
 ## :gem: Acknowledgements
 
@@ -203,15 +230,32 @@ The `Devault` community can be found on:
 - [eslint](https://eslint.org/)
 - [ale](https://github.com/dense-analysis/ale)
 - [crypto-js](https://cryptojs.gitbook.io/docs/)
+- [bootstrap](https://getbootstrap.com/)
+- [remix](https://remix.ethereum.org/)
 
 ### Engineers
 
 - [Osama El-Zero](https://www.youtube.com/c/ElzeroInfo/)
 - [Web Dev Simplified](https://www.youtube.com/c/WebDevSimplified/)
-- [Patrick collins](https://www.youtube.com/c/PatrickCollins/)
-- [nader dabit](https://www.youtube.com/c/naderdabit/)
+- [Patrick Collins](https://www.youtube.com/c/PatrickCollins/)
+- [Nader Dabit](https://www.youtube.com/c/naderdabit/)
 - [3blue1brown](https://www.youtube.com/c/3blue1brown/)
 - [Savjee](https://www.youtube.com/c/Savjee/)
+- [Design Course](https://www.youtube.com/c/DesignCourse/)
+- [Codographia](https://www.youtube.com/c/Codographia)
+
+## :hatching_chick: Contributors
+
+<table>
+  <tr>
+    <td align="center">
+        <a href="https://abdeltwabmf.github.io">
+        <img src="https://avatars.githubusercontent.com/u/55063723?v=3?s=100" width="100px;" alt="Abdeltwabmf"/><br />
+            <sub><b>Abd El-Twab M. Fakhry</b></sub>
+        </a>
+    </td>
+  </tr>
+</table>
 
 ## :warning: License
 
