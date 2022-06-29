@@ -4,13 +4,38 @@
 <h1 align="center">Devault</h1>
 <p align="center">A Blockchain-based, self-hosted, and end-to-end encrypted cloud storage.</p>
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AbdeltwabMF/devault/graphs/commit-activity)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://devault.vercel.app/)
-[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://devault.vercel.app/)
-[![GitHub license](https://img.shields.io/github/license/AbdeltwabMF/devault.svg)](https://github.com/AbdeltwabMF/devault/blob/main/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/AbdeltwabMF/devault.svg)](https://github.com/AbdeltwabMF/devault/releases)
-[![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://hub.docker.com/r/abdeltwabmf/devault)
-
+<div align="center">
+    <a href="https://github.com/AbdeltwabMF/devault/graphs/commit-activity">
+        <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="maintenance" />
+    </a>
+    <a href="https://devault.vercel.app/">
+        <img src="https://img.shields.io/website-up-down-green-red/http/shields.io.svg" alt="website" />
+    </a>
+    <a href="https://github.com/AbdeltwabMF/devault/blob/main/LICENSE">
+        <img src="https://img.shields.io/github/license/AbdeltwabMF/devault?logo=gnu&.svg" alt="license" />
+    <a>
+    <a href="https://github.com/AbdeltwabMF/devault/releases">
+        <img src="https://img.shields.io/github/release/AbdeltwabMF/devault.svg" alt="release" />
+    </a>
+    <a href="https://github.com/AbdeltwabMF/devault/graphs/contributors">
+        <img src="https://img.shields.io/github/contributors/AbdeltwabMF/devault.svg" alt="contributors" />
+    </a>
+    <a href="http://makeapullrequest.com">
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="pull-request" />
+    </a>
+    <a href="https://standardjs.com">
+        <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="linting" />
+    </a>
+    <a href="https://matrix.to/#/#devault-community:matrix.org">
+        <img src="https://img.shields.io/matrix/devault-community:matrix.org" alt="linting" />
+    </a>
+    <a href="https://hub.docker.com/r/abdeltwabmf/devault">
+        <img src="https://img.shields.io/docker/image-size/abdeltwabmf/devault/latest" alt="docker" />
+    </a>
+    <a href="https://github.com/AbdeltwabMF/devault">
+        <img src="https://img.shields.io/github/languages/top/AbdeltwabMF/devault" alt="languages" />
+    </a>
+</div>
 
 ## :scroll: Table of Contents
 
