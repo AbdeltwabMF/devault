@@ -26,14 +26,14 @@
     <a href="https://standardjs.com">
         <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="style" />
     </a>
-    <a href="https://matrix.to/#/#devault-community:matrix.org">
-        <img src="https://img.shields.io/matrix/devault-community:matrix.org" alt="chat" />
-    </a>
     <a href="https://hub.docker.com/r/abdeltwabmf/devault">
         <img src="https://img.shields.io/docker/image-size/abdeltwabmf/devault/latest" alt="docker" />
     </a>
     <a href="https://github.com/AbdeltwabMF/devault">
         <img src="https://img.shields.io/github/languages/top/AbdeltwabMF/devault" alt="languages" />
+    </a>
+    <a href="https://matrix.to/#/#devault-community:matrix.org">
+        <img src="https://img.shields.io/matrix/devault-community:matrix.org" alt="chat" />
     </a>
 </div>
 
@@ -46,6 +46,7 @@
   - [What is Devault](#microphone-what-is-devault)
   - [Why Devault](#mag-why-devault)
   - [How Devault Works](#closed_lock_with_key-how-devault-works)
+- [Source Code Directory Structure](/#ladder-source-code-directory-structure)
 - [Getting Started](#biking_man-getting-started)
   - [Prerequisites](#yellow_circle-prerequisites)
     - [Package Manager](#package-package-manager)
@@ -125,6 +126,51 @@ The tools used in this project.
 | <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Etherscan](https://etherscan.io/)         | Verifying transactions and blocks                                          |
 | <img src="/public/tools/vercel.png" width="32px" height="32px" />    | [Vercel](https://vercel.com/)              | Production deployment                                           |
 | <img src="/public/tools/docker.png" width="32px" height="32px" />    | [Docker](https://www.docker.com/)          | Deploying and shipping the app for production                              |
+
+## :ladder: Source Code Directory Structure
+
+A quick look at the top-level files and directories:
+
+```sh
+.
+├── __tests__
+├── artifacts
+├── components
+├── contracts
+├── docker-compose.yml
+├── Dockerfile
+├── docs
+├── hardhat.config.js
+├── jest.config.js
+├── next.config.js
+├── out
+├── package.json
+├── pages
+├── public
+├── scripts
+├── SECURITY.md
+├── styles
+└── utils
+```
+
+- 1. \_\_tests\_\_: contains all the unit tests
+- 2. artifacts: produced by hardhat after compiling the smart contracts and contains smart contracts ABIs.
+- 3. components: contains all the React components.
+- 4. contracts: contains all the smart contracts source code.
+- 5. docker-compose.yml: docker compose file for serving the production build.
+- 6. Dockerfile: docker file for building and running next.js app used by docker-compose
+- 7. docs: contains all the source code documentations.
+- 8. hardhat.config.js: hardhat config file
+- 9. jest.config.js: jest config file
+- 10. next.config.js: next.js config file
+- 11. out: produced by `npm run build2` and contains static site.
+- 12. package.json: npm package manager config file
+- 13. pages: contains all pages routes
+- 14. public: contains all the assets (ex. images, fonts...)
+- 15. scripts: contains all the scripts used to automate the development process (ex. deploy, logger...)
+- 16. SECURITY: defining which version receives updates.
+- 17. styles: contains all pages styles.
+- 18. utils: contains all javascript functions used by other components.
 
 ## :biking_man: Getting Started
 
@@ -279,8 +325,6 @@ Where you can ask questions, suggest new ideas, and get support.
 
 - [eslint](https://eslint.org/)
 - [ale](https://github.com/dense-analysis/ale)
-- [crypto-js](https://cryptojs.gitbook.io/docs/)
-- [bootstrap](https://getbootstrap.com/)
 - [remix](https://remix.ethereum.org/)
 
 ### Engineers
@@ -288,11 +332,8 @@ Where you can ask questions, suggest new ideas, and get support.
 - [Osama El-Zero](https://www.youtube.com/c/ElzeroInfo/)
 - [Web Dev Simplified](https://www.youtube.com/c/WebDevSimplified/)
 - [Patrick Collins](https://www.youtube.com/c/PatrickCollins/)
-- [Nader Dabit](https://www.youtube.com/c/naderdabit/)
 - [3blue1brown](https://www.youtube.com/c/3blue1brown/)
 - [Savjee](https://www.youtube.com/c/Savjee/)
-- [Design Course](https://www.youtube.com/c/DesignCourse/)
-- [Codographia](https://www.youtube.com/c/Codographia)
 
 ## :hatching_chick: Contributors
 
