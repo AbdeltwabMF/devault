@@ -43,3 +43,7 @@ cache
 # Logs
 *.log
 *.history
+
+# docs
+/thesis/
+/presentation/

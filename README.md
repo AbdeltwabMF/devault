@@ -2,7 +2,7 @@
 <img src="/public/devault-1024.png" width="200px" height="200px" />
 </div>
 <h1 align="center">Devault</h1>
-<p align="center">A Blockchain-based, self-hosted, and end-to-end encrypted cloud storage.</p>
+<h4 align="center">A Blockchain-based, self-hosted, and end-to-end encrypted cloud storage.</h4>
 
 <div align="center">
     <a href="https://github.com/AbdeltwabMF/devault/graphs/commit-activity">
@@ -24,10 +24,10 @@
         <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="pull-request" />
     </a>
     <a href="https://standardjs.com">
-        <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="linting" />
+        <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="style" />
     </a>
     <a href="https://matrix.to/#/#devault-community:matrix.org">
-        <img src="https://img.shields.io/matrix/devault-community:matrix.org" alt="linting" />
+        <img src="https://img.shields.io/matrix/devault-community:matrix.org" alt="chat" />
     </a>
     <a href="https://hub.docker.com/r/abdeltwabmf/devault">
         <img src="https://img.shields.io/docker/image-size/abdeltwabmf/devault/latest" alt="docker" />
@@ -125,7 +125,6 @@ The tools used in this project.
 | <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Etherscan](https://etherscan.io/)         | for verifying transactions and blocks                                          |
 | <img src="/public/tools/vercel.png" width="32px" height="32px" />    | [Vercel](https://vercel.com/)              | for deploying the app for production                                           |
 | <img src="/public/tools/docker.png" width="32px" height="32px" />    | [Docker](https://www.docker.com/)          | for deploying and shipping the app for production                              |
-| <img src="/public/tools/latex.png" width="32px" height="32px" />     | [LaTeX](https://www.latex-project.org/)    | for writing the thesis and the presentation                                    |
 
 ## :biking_man: Getting Started
 
