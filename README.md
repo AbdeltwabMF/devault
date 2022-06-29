@@ -155,6 +155,7 @@ A quick look at the top-level files and directories:
 ├── scripts
 ├── SECURITY.md
 ├── styles
+├── .github
 └── utils
 ```
 
@@ -175,7 +176,8 @@ A quick look at the top-level files and directories:
   - 15. scripts: contains all the scripts used to automate the development process (ex. deploy, logger...)
   - 16. SECURITY: defining which version receives updates.
   - 17. styles: contains all page styles.
-  - 18. utils: contains all javascript functions used by other components.
+  - 18. .github: contains automated workflows (CI/CD).
+  - 19. utils: contains all javascript functions used by other components.
 
 ## :biking_man: Getting Started
 
