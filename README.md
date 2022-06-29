@@ -310,6 +310,27 @@ npm run build2
 
 ## :bulb: FAQ
 
+<details>
+    <summary>Why metamask?</summary>
+    <ul>
+        <li>It's the most popular wallet out there, and it's the only wallet supported by the current version of devault.</li>
+    </ul>
+</details>
+
+<details>
+    <summary>Is it possible to upload files without ethers?</summary>
+    <ul>
+        <li>No, you should have some ethers to be able to write files' metadata to the blockchain.</li>
+    </ul>
+</details>
+
+<details>
+    <summary>What happens when I switch to another account</summary>
+    <ul>
+        <li>The files that is related to that account will be retrieved instead of the previous one.</li>
+    </ul>
+</details>
+
 ## :hearts: Community
 
 The `Devault` community can be found on:
