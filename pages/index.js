@@ -16,15 +16,13 @@ export default function Home () {
                 <span className={styles.decentralized}>Decentralized,</span>{' '}
                 <span className={styles.selfHosted}>self-hosted,</span>{' '}
                 and{' '}
-                <span className={styles.encrypted}>encrypted</span>{' '}
+                <span className={styles.encrypted}>end-to-end encrypted</span>{' '}
                 cloud storage that respects your privacy
               </h1>
             </div>
             <div className='col col-12 '>
               <h5 className={styles.headerDetails}>
                 You deserve to live a sustainable, private, self-sufficient and independent life.
-                <br />
-                Join us now and expel big tech companies from your life.
                 <br />
                 Don&apos;t let anyone take this from you.
               </h5>

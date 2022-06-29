@@ -7,7 +7,7 @@ export default function Footer () {
     <footer className={styles.main}>
       <div className={'container ' + `${styles.container}`}>
         <div className={'row ' + `${styles.row1}`}>
-          <div className={'col col-lg-5 col-12 ' + `${styles.col1}`}>
+          <div className={'col col-lg-4 col-12 ' + `${styles.col1}`}>
             <Link href='https://github.com/abdeltwabmf/decentralized-evault'>
               <a className={styles.social}>
                 <Image
@@ -17,7 +17,7 @@ export default function Footer () {
                   className={styles.socialIcon}
                   src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/github.svg'
                 />
-                <span className={styles.labelLinkSource}>View Source</span>
+                <span className={styles.labelLinkSource}>Source</span>
               </a>
             </Link>
             <Link href='https://t.me/+OeH3hX00HqxmZDc8'>
@@ -29,7 +29,7 @@ export default function Footer () {
                   className={styles.socialIcon}
                   src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/telegram.svg'
                 />
-                <span className={styles.labelLinkJoin}>Join Telegram</span>
+                <span className={styles.labelLinkJoin}>Join</span>
               </a>
             </Link>
           </div>
@@ -59,9 +59,9 @@ export default function Footer () {
               src='https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/artixlinux.svg'
             />
           </div>
-          <div className={'col col-lg-3 col-12 ' + `${styles.col3}`}>
+          <div className={'col col-lg-4 col-12 ' + `${styles.col3}`}>
             &copy; {new Date().getFullYear()}
-            <Image src='/logo-black.png' alt='logo' width='32px' height='32px' className='brandIcon' />
+            <Image src='/devault.png' alt='logo' width='32px' height='32px' className='brandIcon' />
             <span className={styles.brand}>Devault</span>
           </div>
         </div>

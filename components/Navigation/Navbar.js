@@ -55,7 +55,7 @@ export default function Navbar () {
             <div className='container-fluid'>
               <Link href='/'>
                 <a className={'navbar-brand ' + styles.brand}>
-                  <Image src='/logo-white.png' alt='logo' width='56px' height='56px' className='brandIcon' />
+                  <Image src='/devault.png' alt='logo' width='56px' height='56px' className='brandIcon' />
                   <span className={styles.brandText}>Devault</span>
                 </a>
               </Link>

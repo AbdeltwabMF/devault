@@ -35,7 +35,7 @@
 }
 
 .headerTitle {
-  font-size: 4rem;
+  font-size: 3.4rem;
   font-weight: 1000;
   font-family: "Roboto", sans-serif;
   color: var(--color-grey-200, #fff);
@@ -43,8 +43,7 @@
 }
 
 .headerDetails {
-  color: var(--color-grey-100, #666);
-  font-weight: 600;
+  color: var(--color-primary-300, #666);
 }
 
 .getStarted {

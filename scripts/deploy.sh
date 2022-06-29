@@ -66,8 +66,6 @@ do_final() {
 	sed -i "s/contractAddress = .*$/contractAddress = '$smart_contract_address'/" ./pages/_app.js
 }
 
-compile_smart_contract
-
 network=""
 smart_contract_address=""
 
@@ -87,6 +85,9 @@ check_network() {
 }
 
 main() {
+	install_nvm >/dev/null 2>&1
+	compile_smart_contract
+
 	if [[ "$network" != "localhost" ]]; then
 		if (( $2 == 1 )); then
 			deploy_to_network
@@ -100,7 +101,6 @@ main() {
 	else
 		deploy_to_network
 		if [[ $smart_contract_address == "" ]]; then
-			install_nvm >/dev/null 2>&1
 			start_services
 		fi
 		while [[ $smart_contract_address == "" ]]; do
