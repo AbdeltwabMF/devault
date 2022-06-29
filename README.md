@@ -94,7 +94,7 @@
 
 ## :microphone: What is Devault
 
-Devault is a decentralized, self-hosted, end-to-end encrypted, and alternative to proprietary and centralized cloud storage. 
+Devault is a decentralized, self-hosted, and end-to-end encrypted alternative to proprietary and centralized cloud storage.
 
 ### :mag: Why Devault
 
