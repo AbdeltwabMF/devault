@@ -44,7 +44,11 @@
 
 ### :camera: Screenshots
 
-![landpage](/public/screenshots/landpage.png)
+|                                               |                                               |
+|:---------------------------------------------:|:---------------------------------------------:|
+| ![landpage](/public/screenshots/landpage.png) | ![landpage](/public/screenshots/thevault.png) |
+
+
 
 ###	:art: [Color Reference](https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51)
 
@@ -217,12 +221,24 @@ npm run build2
 - 1. Create an ethereum wallet using [metamask](https://metamask.io/) extension.
 - 2. Open [devault website](https://devault.vercel.app/).
 - 3. Click connect wallet and follow the steps.
-- 4. Navigate to [The Vault](https://devault.vercel.app/vault) tab.
-- 5. Pick a file and press upload.
-- 6. Give a passphrase to encrypt the file. (you can use different passphrases for different files).
-- 7. Once the file is successfully uploaded it will appear on the same page with the option to download.
-- 8. When downloading give the same passphrase you entered when uploading the file.
-- 9. The file now being downloaded.
+- 4. <details>
+       <summary>Make sure you're on the ropsten network. (settings > advanced > show test networks)</summary>
+       <ul>
+        <li><img src="/public/screenshots/metamask-ropsten.png" /></li>
+       </ul>
+     </details>
+- 5. <details>
+       <summary>Go to [ropsten faucet](https://faucet.egorfine.com/) and paste your address to get some ethers. (used for transactions)</summary>
+       <ul>
+        <li><img src="/public/screenshots/faucet.png" /></li>
+       </ul>
+     </details>
+- 6. Navigate to [The Vault](https://devault.vercel.app/vault) tab.
+- 7. Pick a file and press upload.
+- 8. Give a passphrase to encrypt the file. (you can use different passphrases for different files).
+- 9. Once the file is successfully uploaded it will appear on the same page with the option to download.
+- 10. When downloading give the same passphrase you entered when uploading the file.
+- 11. The file now being downloaded.
 
 ## :bulb: FAQ
 
