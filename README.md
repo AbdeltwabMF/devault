@@ -30,6 +30,7 @@
   - [Run for Development](#wrench-run-for-development)
     - [Run the Tests](#syringe-run-the-tests)
   - [Deployment | Hosting](#sparkles-deployment--hosting)
+- [Usage](#thinking-usage)
 - [FAQ](#bulb-faq)
 - [Community](#hearts-community)
 - [Acknowledgements](#gem-acknowledgements)
@@ -78,7 +79,7 @@ When you download a file:
 - The root hash will be used to retrieve the file chunks.
 - The retrieved chucks will be combined and decrypted to represent the original file.
 
-### :hammer_and_wrench: Tech stack and Tools
+### :hammer_and_wrench: Tech Stack and Tools
 
 The tools used in this project.
 
@@ -210,6 +211,18 @@ The generated static site will be in the `out` directory (ex. use `nginx` to ser
 ```sh
 npm run build2
 ```
+
+## :thinking: Usage
+
+- 1. Create an ethereum wallet using [metamask](https://metamask.io/) extension.
+- 2. Open [devault website](https://devault.vercel.app/).
+- 3. Click connect wallet and follow the steps.
+- 4. Navigate to [The Vault](https://devault.vercel.app/vault) tab.
+- 5. Pick a file and press upload.
+- 6. Give a passphrase to encrypt the file. (you can use different passphrases for different files).
+- 7. Once the file is successfully uploaded it will appear on the same page with the option to download.
+- 8. When downloading give the same passphrase you entered when uploading the file.
+- 9. The file now being downloaded.
 
 ## :bulb: FAQ
 
