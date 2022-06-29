@@ -112,19 +112,19 @@ The tools used in this project.
 
 |                                                                      | Tool                                       | Description                                                                    |
 |:--------------------------------------------------------------------:|:------------------------------------------:|:------------------------------------------------------------------------------:|
-| <img src="/public/tools/neovim.png" width="32px" height="32px" />    | [Neovim](https://neovim.io/)               | as an IDE                                                                      |
-| <img src="/public/tools/nextdotjs.png" width="32px" height="32px" /> | [Next.js](https://nextjs.org/)             | as a frontend framework                                                        |
-| <img src="/public/tools/hardhat.png" width="32px" height="32px" />   | [Hardhat](https://hardhat.io)              | as a framework for developing, testing, linting and deploying smart contracts  |
-| <img src="/public/tools/solidity.png" width="32px" height="32px" />  | [Solidity](https://docs.soliditylang.org/) | as a smart contract language                                                   |
-| <img src="/public/tools/metamask.png" width="32px" height="32px" />  | [Metamask](https://metamask.io/)           | as a web3 provider                                                             |
-| <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Ethers.js](https://docs.ethers.io/)       | as a library for interacting with the Ethereum blockchain                      |
-| <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Ropsten](https://ropsten.etherscan.io/)   | as a testnet for deploying smart contracts                                     |
-| <img src="/public/tools/infura.png" width="32px" height="32px" />    | [Infura](https://infura.io/)               | for running a virtual blockchain node to deploy the smart contracts through it |
-| <img src="/public/tools/ipfs.png" width="32px" height="32px" />      | [IPFS](https://ipfs.io/)                   | for storing and sharing the encrypted files                                    |
-| <img src="/public/tools/jest.png" width="32px" height="32px" />      | [Jest](https://jestjs.io/)                 | for unit testing                                                               |
-| <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Etherscan](https://etherscan.io/)         | for verifying transactions and blocks                                          |
-| <img src="/public/tools/vercel.png" width="32px" height="32px" />    | [Vercel](https://vercel.com/)              | for deploying the app for production                                           |
-| <img src="/public/tools/docker.png" width="32px" height="32px" />    | [Docker](https://www.docker.com/)          | for deploying and shipping the app for production                              |
+| <img src="/public/tools/neovim.png" width="32px" height="32px" />    | [Neovim](https://neovim.io/)               | IDE                                                                      |
+| <img src="/public/tools/nextdotjs.png" width="32px" height="32px" /> | [Next.js](https://nextjs.org/)             | Full stack framework                                                        |
+| <img src="/public/tools/hardhat.png" width="32px" height="32px" />   | [Hardhat](https://hardhat.io)              | Framework for developing, testing, linting and deploying smart contracts  |
+| <img src="/public/tools/solidity.png" width="32px" height="32px" />  | [Solidity](https://docs.soliditylang.org/) | The smart contract language                                                   |
+| <img src="/public/tools/metamask.png" width="32px" height="32px" />  | [Metamask](https://metamask.io/)           | Web3 provider                                                             |
+| <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Ethers.js](https://docs.ethers.io/)       | Library for interacting with the Ethereum blockchain                      |
+| <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Ropsten](https://ropsten.etherscan.io/)   | Testnet for deploying smart contracts                                     |
+| <img src="/public/tools/infura.png" width="32px" height="32px" />    | [Infura](https://infura.io/)               | Blockchain node as a service to deploy the smart contracts through it |
+| <img src="/public/tools/ipfs.png" width="32px" height="32px" />      | [IPFS](https://ipfs.io/)                   | Storing, retrieving and sharing the encrypted files                                    |
+| <img src="/public/tools/jest.png" width="32px" height="32px" />      | [Jest](https://jestjs.io/)                 | Unit testing and code coverage                                                              |
+| <img src="/public/tools/ethereum.png" width="32px" height="32px" />  | [Etherscan](https://etherscan.io/)         | Verifying transactions and blocks                                          |
+| <img src="/public/tools/vercel.png" width="32px" height="32px" />    | [Vercel](https://vercel.com/)              | Production deployment                                           |
+| <img src="/public/tools/docker.png" width="32px" height="32px" />    | [Docker](https://www.docker.com/)          | Deploying and shipping the app for production                              |
 
 ## :biking_man: Getting Started
 
