@@ -46,7 +46,7 @@
   - [What is Devault](#microphone-what-is-devault)
   - [Why Devault](#mag-why-devault)
   - [How Devault Works](#closed_lock_with_key-how-devault-works)
-- [Source Code Directory Structure](/#ladder-source-code-directory-structure)
+- [Source Code Directory Structure](#ladder-source-code-directory-structure)
 - [Getting Started](#biking_man-getting-started)
   - [Prerequisites](#yellow_circle-prerequisites)
     - [Package Manager](#package-package-manager)
