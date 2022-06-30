@@ -43,7 +43,7 @@
     "dotenv": "^16.0.1",
     "eslint": "^8.18.0",
     "eslint-config-next": "^12.1.4",
-    "jest": "^28.1.0",
+    "jest": "^28.1.2",
     "solidity-coverage": "^0.7.0"
   }
 }
