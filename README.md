@@ -363,12 +363,15 @@ npm run build2
 
 ## :rescue_worker_helmet: Future Work
 
+  - [ ] Arabic version.
   - [ ] Secure file sharing.
   - [x] Client-side encryption/decryption.
   - [x] Download a file.
   - [x] Upload a file.
   - [ ] Delete selected files.
   - [ ] Search files.
+  - [ ] Change passphrase.
+  - [ ] Remove account.
   - [ ] Sort files based on (date, size, name...)
   - [ ] Upload files.
   - [ ] Download selected files.
@@ -401,22 +404,70 @@ Where you can ask questions, suggest new ideas, and get support.
 ## :books: Tutorials
 
 <details>
-    <summary>Videos</summary>
+    <summary>View</summary>
     <ul>
-        <li><a href="https://www.youtube.com/watch?v=gyMwXuJrbJQ">Learn Blockchain, Solidity, and Full Stack Web3 Development with JavaScript</a></li>
-        <li><a href="https://www.youtube.com/watch?v=bdXJmWajZRY">Upgrading your Smart Contracts | A Tutorial & Introduction</a></li>
-        <li><a href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv">Learn JavaScript in Arabic 2021</a></li>
-        <li><a href="https://www.youtube.com/playlist?list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h">React Hooks</a></li>
-        <li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiQF_5bEErheiAawrJ-2zQoI">Blockchain & Cryptocurrency</a></li>
-        <li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiSM_uLyxy5B6ml_BpmLFAHU">Decentralized tech</a></li>
-    </ul>
-</details>
-
-<details>
-    <summary>Articles & Documentations</summary>
-    <ul>
-        <li><a href="https://ethereum.org/en/developers/docs/">Ethereum Official Documentation</a></li>
-        <li><a href="https://cryptozombies.io/">Cryptozombies</a></li>
+        <li>
+            <strong>How Blockchain works</strong>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=_160oMzblY8">Blockchain 101 - Visual demo</a></li>
+                <li><a href="https://www.youtube.com/watch?v=xIDL_akeras">Blockchain 101 - Public / Private keys</a></li>
+                <li><a href="https://www.youtube.com/watch?v=SSo_EIwHSd4">How does a blockchain work</a></li>
+                <li><a href="https://www.youtube.com/watch?v=bBC-nXj3Ng4">But how does bitcoin actually work?</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLsRSUZfRUa8iRe88Ef3hdn5302sVu-3Ey">البلوكتشين خطوة بخطوة - مرحلة بناء بلوكتشين وعملة رقمية</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiTqZmbtFisdXFxul5k0F-Q4">Building a blockchain with Javascript</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLd2pEan0ZG_ZQX25f5Z-1RFkHPz2QuLeY">Blockchain 101 Tutorial - شرح بالعربي تقنية البلوك تشين</a></li>
+                
+            </ul>
+        </li>
+        <li>
+            <strong>Understanding the cryptographic part of the Blockchain</strong>
+            <ul>
+                <li><a href="https://youtu.be/S9JGmA5_unY">How secure is 256 bit security?</a></li>
+                <li><a href="https://www.youtube.com/channel/UC1usFRN4LCMcfIV7UjHNuQg">Introduction to Cryptography by Christof Paar</a></li>
+            </ul>
+        </li>
+        <li>
+            <strong>Data structures used in Blockchain</strong>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=n6nEPaE7KZ8">Merkle Tree</a></li>
+                <li><a href="https://youtu.be/qHMLy5JjbjQ">Merkle Tree with real world examples</a></li>
+                <li><a href="https://www.youtube.com/watch?v=3giNelTfeAk">How Merkle Trees Enable the Decentralized Web!</a></li>
+            </ul>
+        </li>
+        <li>
+            <strong>Acronyms and glossaries</strong>
+            <ul>
+                <li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiQF_5bEErheiAawrJ-2zQoI">Blockchain & Cryptocurrency</a></li>
+            </ul>
+        </li>
+        <li>
+            <strong>The smart contract development & security</strong>
+            <ul>
+                <li><a href="https://cryptozombies.io/">Cryptozombies</a></li>
+                <li><a href="https://ethereum.org/en/developers/docs/">Ethereum Official Documentation</a></li>
+                <li><a href="https://www.youtube.com/watch?v=gyMwXuJrbJQ">Learn Blockchain, Solidity, and Full Stack Web3 Development with JavaScript</a></li>
+                <li><a href="https://www.youtube.com/watch?v=bdXJmWajZRY">Upgrading your Smart Contracts | A Tutorial & Introduction</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLO5VPQH6OWdVQwpQfw9rZ67O6Pjfo6q-p">Solidity 0.8</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLO5VPQH6OWdVfvNOaEhBtA53XHyHo_oJo">Solidity Applications</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLO5VPQH6OWdXxQc_1YPa63Ody9LknKW4k">Security</a></li>
+            </ul>
+        </li>
+        <li>
+            <strong>The front end (JavaScript & React)</strong>
+            <ul>
+                <li><a href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv">Learn JavaScript in Arabic 2021</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h">React Hooks</a></li>
+            </ul>
+        </li>
+        <li>
+            <strong>The IPFS protocol</strong>
+            <ul>
+                <li><a href="https://docs.ipfs.io/">Welcome to the IPFS docs</a></li>
+                <li><a href="https://youtu.be/HUVmypx9HGI">IPFS and the Permanent We</a></li>
+                <li><a href="https://youtu.be/6kqgsGXpykM">InterPlanetary File System (IPFS) Tutorial - Building the Distributed Web</a></li>
+                <li><a href="https://www.youtube.com/watch?v=3jizwk6_m1s">Upload 10000 NFTs to IPFS</a></li>
+            </ul>
+        </li>
     </ul>
 </details>
 
