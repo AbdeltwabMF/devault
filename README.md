@@ -416,7 +416,7 @@ Where you can ask questions, suggest new ideas, and get support.
                 <li><a href="https://www.youtube.com/playlist?list=PLsRSUZfRUa8iRe88Ef3hdn5302sVu-3Ey">البلوكتشين خطوة بخطوة - مرحلة بناء بلوكتشين وعملة رقمية</a></li>
                 <li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiTqZmbtFisdXFxul5k0F-Q4">Building a blockchain with Javascript</a></li>
                 <li><a href="https://www.youtube.com/playlist?list=PLd2pEan0ZG_ZQX25f5Z-1RFkHPz2QuLeY">Blockchain 101 Tutorial - شرح بالعربي تقنية البلوك تشين</a></li>
-                
+                <li><a href="https://github.com/yjjnls/awesome-blockchain">Awesome Blockchain</a></li>
             </ul>
         </li>
         <li>
@@ -424,6 +424,7 @@ Where you can ask questions, suggest new ideas, and get support.
             <ul>
                 <li><a href="https://youtu.be/S9JGmA5_unY">How secure is 256 bit security?</a></li>
                 <li><a href="https://www.youtube.com/channel/UC1usFRN4LCMcfIV7UjHNuQg">Introduction to Cryptography by Christof Paar</a></li>
+                <li><a href="https://github.com/sobolevn/awesome-cryptography">Awesome cryptography</a></li>
             </ul>
         </li>
         <li>
@@ -450,6 +451,8 @@ Where you can ask questions, suggest new ideas, and get support.
                 <li><a href="https://www.youtube.com/playlist?list=PLO5VPQH6OWdVQwpQfw9rZ67O6Pjfo6q-p">Solidity 0.8</a></li>
                 <li><a href="https://www.youtube.com/playlist?list=PLO5VPQH6OWdVfvNOaEhBtA53XHyHo_oJo">Solidity Applications</a></li>
                 <li><a href="https://www.youtube.com/playlist?list=PLO5VPQH6OWdXxQc_1YPa63Ody9LknKW4k">Security</a></li>
+                <li><a href="https://github.com/bkrem/awesome-solidity">Awesome solidity</a></li>
+                <li><a href="https://github.com/liamzebedee/awesome-solidity-patterns">Awesome solidity patterns</a></li>
             </ul>
         </li>
         <li>
@@ -466,6 +469,7 @@ Where you can ask questions, suggest new ideas, and get support.
                 <li><a href="https://youtu.be/HUVmypx9HGI">IPFS and the Permanent We</a></li>
                 <li><a href="https://youtu.be/6kqgsGXpykM">InterPlanetary File System (IPFS) Tutorial - Building the Distributed Web</a></li>
                 <li><a href="https://www.youtube.com/watch?v=3jizwk6_m1s">Upload 10000 NFTs to IPFS</a></li>
+                <li><a href="https://github.com/ipfs/awesome-ipfs">Awesome IPFS</a></li>
             </ul>
         </li>
     </ul>
