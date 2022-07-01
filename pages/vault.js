@@ -106,7 +106,7 @@ export default function Vault () {
 
   useEffect(() => {
     const fetchFilesMetadata = async () => {
-      if (window.sessionStorage.getItem('metamask') === 'ok') {
+      if (window.sessionStorage.getItem('is_connected') === 'true') {
         setIsSameSession(prevState => true)
       }
 

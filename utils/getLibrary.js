@@ -28,8 +28,6 @@ export const getLibrary = () => {
     })
     return provider
   } else {
-    // If neither are available, we'll just use the default
-    // provider, which just points to the local node
-    return new ethers.providers.JsonRpcProvider()
+    return null
   }
 }

@@ -1,4 +1,4 @@
-export default function handleMetamaskErrors (error) {
+export default function isMetamaskError (error) {
   const rpc = [
     -32000,
     -32001,

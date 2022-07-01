@@ -16,7 +16,7 @@ fi
 install_nvm() {
 	export XDG_CONFIG_HOME=$HOME/.config
 	unset npm_config_prefix
-	curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash >/dev/null 2>&1
 
 	if [[ -f "$HOME"/.config/nvm/nvm.sh ]]; then
 		source "$HOME"/.config/nvm/nvm.sh
@@ -85,7 +85,7 @@ check_network() {
 }
 
 main() {
-	install_nvm >/dev/null 2>&1
+	install_nvm
 	compile_smart_contract
 
 	if [[ "$network" != "localhost" ]]; then

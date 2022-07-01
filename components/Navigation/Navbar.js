@@ -1,51 +1,44 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState, useContext } from 'react'
-
+import { useState, useContext, createContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouseLock, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
+import { Web3Context } from '../../pages/_app'
+
+import { UNSET, TRUE } from '../../utils/states'
 
 import ConnectWallet from '../Buttons/ConnectWallet'
 import ConnectingWallet from '../Buttons/ConnectingWallet'
 import ConnectedWallet from '../Buttons/ConnectedWallet'
 
-import { Web3Context } from '../../pages/_app'
-
 import styles from './Navbar.module.css'
 
+export const ConnectionContext = createContext()
+
 export default function Navbar () {
-  const [isConnecting, setIsConnecting] = useState(false)
-  const { Initialize, account, balance } = useContext(Web3Context)
+  const [isConnecting, setIsConnecting] = useState(UNSET)
+  const [isConnected, setIsConnected] = useState(UNSET)
+  const { account, balance } = useContext(Web3Context)
+
+  const value = {
+    isConnecting,
+    setIsConnecting,
+    isConnected,
+    setIsConnected
+  }
+
+  useEffect(() => {
+    const __checkConnection = async () => {
+      if (window.sessionStorage.getItem('is_connected') === 'true' && account) {
+        setIsConnected(prevState => TRUE)
+      }
+    }
+    __checkConnection()
+  }, [account])
 
   const router = useRouter()
-
-  const handleConnection = async () => {
-    console.log('Handle connection...')
-    setIsConnecting(prevState => true)
-
-    try {
-      await Initialize()
-
-      window.sessionStorage.setItem('metamask', 'ok')
-      console.log('Connection established')
-
-      // console.log('chainId: ', chainId)
-      // if (chainId !== 3 && WrongNetwork(chainId)) {
-      //   setChainId(prevState => 3)
-      // }
-    } catch (error) {
-      // if (handleMetamaskErrors(error)) {
-      //   CannotConnectWallet(error.message)
-      // } else {
-      //   MetamaskNotInstalled()
-      // }
-      window.sessionStorage.removeItem('metamask')
-      console.info('Connection error:', error.message)
-    } finally {
-      setIsConnecting(prevState => false)
-    }
-  }
 
   return (
     <>
@@ -112,11 +105,19 @@ export default function Navbar () {
                   </li>
                 </ul>
                 <div>
-                  {isConnecting
-                    ? <ConnectingWallet />
-                    : account > 0
-                      ? <ConnectedWallet account={account} balance={balance} />
-                      : <ConnectWallet handleConnection={handleConnection} />}
+                  {isConnecting === TRUE
+                    ? (<ConnectingWallet />)
+                    : (isConnected === TRUE
+                        ? (
+                          <ConnectionContext.Provider value={value}>
+                            <ConnectedWallet account={account} balance={balance} />
+                          </ConnectionContext.Provider>
+                          )
+                        : (
+                          <ConnectionContext.Provider value={value}>
+                            <ConnectWallet />
+                          </ConnectionContext.Provider>
+                          ))}
                 </div>
               </div>
             </div>
