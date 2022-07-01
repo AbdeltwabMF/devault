@@ -8,13 +8,20 @@ import isMetamaskError from '../../utils/isMetamaskError'
 import { Web3Context } from '../../pages/_app'
 import { ConnectionContext } from '../Navigation/Navbar'
 
+import StatusAlert from '../Modals/StatusAlert'
+
 import styles from './ConnectWallet.module.css'
 
 export default function ConnectWallet () {
-  const [isMetamaskInstalled, setIsMetamaskInstalled] = useState(UNSET)
-  const [isNetworkCorrect, setIsNetworkCorrect] = useState(UNSET)
-  const { setIsConnected, setIsConnecting } = useContext(ConnectionContext)
-  const { Initialize, chainId, setChainId } = useContext(Web3Context)
+  const {
+    setIsConnected,
+    setIsConnecting,
+    isConnected,
+    setIsMetamaskInstalled,
+    setIsNetworkCorrect,
+    isMetamaskInstalled
+  } = useContext(ConnectionContext)
+  const { Initialize, chainId } = useContext(Web3Context)
 
   const handleConnection = async () => {
     console.log('Handle connection...')
@@ -48,6 +55,15 @@ export default function ConnectWallet () {
 
   return (
     <>
+      {isMetamaskInstalled === FALSE
+        ? (
+          <StatusAlert
+            header='Metamask'
+            message='Please install Metamask to continue.'
+            type='error'
+          />
+          )
+        : null}
       <button
         onClick={handleConnection}
         className={styles.button}

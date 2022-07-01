@@ -20,13 +20,22 @@ export const ConnectionContext = createContext()
 export default function Navbar () {
   const [isConnecting, setIsConnecting] = useState(UNSET)
   const [isConnected, setIsConnected] = useState(UNSET)
+  const [isSwitched, setIsSwitched] = useState(UNSET)
+  const [isMetamaskInstalled, setIsMetamaskInstalled] = useState(UNSET)
+  const [isNetworkCorrect, setIsNetworkCorrect] = useState(UNSET)
   const { account, balance } = useContext(Web3Context)
 
   const value = {
     isConnecting,
     setIsConnecting,
     isConnected,
-    setIsConnected
+    setIsConnected,
+    isSwitched,
+    setIsSwitched,
+    isMetamaskInstalled,
+    setIsMetamaskInstalled,
+    isNetworkCorrect,
+    setIsNetworkCorrect
   }
 
   useEffect(() => {

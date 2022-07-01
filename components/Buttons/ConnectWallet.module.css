@@ -1,6 +1,6 @@
 .button {
 	align-items: center;
-	background-color: var(--color-primary-400, #f5f5f5);
+	background-color: var(--color-primary-300, #f5f5f5);
 	border: 0;
 	border-radius: 1rem;
 	box-shadow: 0 0 0 0;
