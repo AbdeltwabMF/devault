@@ -1,16 +1,47 @@
+import { useState, useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
-import { useContext } from 'react'
-import { Web3Context } from '../../pages/_app'
-
-// import WrongNetwork from '../Alerts/WrongNetwork'
-
+import { UNSET, TRUE, FALSE } from '../../utils/states'
 import { truncateAddress, truncateBalance } from '../../utils/regexUtility'
+
+import { Web3Context } from '../../pages/_app'
+import { ConnectionContext } from '../Navigation/Navbar'
+
 import styles from './ConnectedWallet.module.css'
 
 export default function ConnectedWallet ({ account, balance }) {
-  const { setAccount, chainId, setChainId } = useContext(Web3Context)
+  const [isSwitched, setIsSwitched] = useState(UNSET)
+  const { chainId, setChainId, setProvider, setSigner } = useContext(Web3Context)
+  const { isConnected, setIsConnected, setIsConnecting } = useContext(ConnectionContext)
+
+  const hadleDisconnection = async () => {
+    setIsConnected(prevState => FALSE)
+    setProvider(prevState => null)
+    setSigner(prevState => null)
+    window.sessionStorage.removeItem('is_connected')
+  }
+
+  const handleNetworkChange = async () => {
+    setIsConnecting(prevState => TRUE)
+    try {
+      if (chainId !== 3) {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{
+            chainId: '0x3'
+          }]
+        })
+      }
+      setChainId(prevState => 3)
+      setIsSwitched(prevState => TRUE)
+    } catch (error) {
+      console.log('Error switching network:', error.message)
+    } finally {
+      setIsConnecting(prevState => FALSE)
+    }
+  }
+
   return (
     <div>
       <div className={styles.container}>
@@ -26,27 +57,25 @@ export default function ConnectedWallet ({ account, balance }) {
             aria-expanded='false'
           >
             <p className={styles.address}>
-              {(account === undefined)
-                ? 'No Account'
-                : truncateAddress(account)}
+              {isConnected === TRUE ? truncateAddress(account) : ''}
             </p>
-            {(account === undefined)
+            {isConnected === TRUE
               ? (
-                <FontAwesomeIcon
-                  icon={faCircleXmark}
-                  size='lg'
-                  fixedWidth
-                  beat
-                  className={styles.iconXmark}
-                />
-                )
-              : (
                 <FontAwesomeIcon
                   icon={faCircleCheck}
                   size='lg'
                   fixedWidth
                   beat
                   className={styles.iconCheck}
+                />
+                )
+              : (
+                <FontAwesomeIcon
+                  icon={faCircleXmark}
+                  size='lg'
+                  fixedWidth
+                  beat
+                  className={styles.iconXmark}
                 />
                 )}
           </button>
@@ -55,10 +84,7 @@ export default function ConnectedWallet ({ account, balance }) {
               <button
                 className={'dropdown-item ' + `${styles.dropdownItem}`}
                 type='button'
-                onClick={async () => {
-                  setAccount(null)
-                  window.sessionStorage.removeItem('isMetamaskConnected')
-                }}
+                onClick={hadleDisconnection}
               >
                 Disconnect
               </button>
@@ -67,11 +93,7 @@ export default function ConnectedWallet ({ account, balance }) {
               <button
                 className={'dropdown-item ' + `${styles.dropdownItem}`}
                 type='button'
-                // onClick={async () => {
-                //   if (chainId !== 3 && WrongNetwork(chainId)) {
-                //     setChainId(prevState => 3)
-                //   }
-                // }}
+                onClick={handleNetworkChange}
               >
                 Switch network
               </button>

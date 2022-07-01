@@ -21,10 +21,8 @@ export default function App ({ Component, pageProps }) {
   const [account, setAccount] = useState(null)
   const [blockNumber, setBlockNumber] = useState(null)
   const [balance, setBalance] = useState(null)
-  // 1 = '0x02C789CCD01aa2916A9f00dcEBfE30b1DC7Feb10'
-  // 2 = '0x579B81f6b261EB16a14E0978928390cC44Dfc7F8'
   // 3 = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
-  const contractAddress = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
+  const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap.min.js')
@@ -32,7 +30,7 @@ export default function App ({ Component, pageProps }) {
 
   useEffect(() => {
     const __restoreStates = async () => {
-      if (window.sessionStorage.getItem('metamask') === 'ok') {
+      if (window.sessionStorage.getItem('is_connected') === 'true') {
         await Initialize()
       }
     }
@@ -60,11 +58,9 @@ export default function App ({ Component, pageProps }) {
 
     const _chainId = await provider.getNetwork()
     setChainId(prevState => _chainId.chainId)
-    console.log('root:', _chainId.chainId)
 
     const _blockNumber = await provider.getBlockNumber()
     setBlockNumber(prevState => _blockNumber)
-    console.log('root:', _blockNumber)
   }
 
   useEffect(() => {
@@ -79,7 +75,7 @@ export default function App ({ Component, pageProps }) {
       }
     }
     __update()
-  }, [account, chainId])
+  }, [account, chainId, provider])
 
   const value = {
     provider,
@@ -104,6 +100,7 @@ export default function App ({ Component, pageProps }) {
     <>
       <Head>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
+        <meta name='description' content='Devault; your way to the decentralized cloud' />
       </Head>
       <Web3Context.Provider value={value}>
         <Layout>
