@@ -4,7 +4,7 @@
   background: var(--color-primary-300, #fafafa);
   background: linear-gradient(
     180deg,
-    var(--color-primary-300, #fafafa) 0%,
+    var(--color-primary-400, #fafafa) 0%,
     var(--color-primary-900, #f5f5f5) 100%
   );
 }
