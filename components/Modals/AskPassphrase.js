@@ -65,16 +65,16 @@ export default function AskPassphrase ({ isEncryption, setAskingPassphrase, setI
           aria-labelledby='exampleModalLabel'
           style={{ display: show ? 'block' : 'none' }}
         >
-          <div className='modal-dialog'>
-            <div className='modal-content'>
-              <div className={styles.body + ' modal-body'}>
+          <div className={'modal-dialog ' + styles.dialog}>
+            <div className={'modal-content ' + styles.content}>
+              <div className={'modal-body ' + styles.body}>
                 <div className={styles.header}>
-                  <FontAwesomeIcon icon={isEncryption ? faLock : faLockOpen} size='3x' className={styles.lockIcon} beat />
+                  <FontAwesomeIcon icon={isEncryption ? faLock : faLockOpen} size='3x' className={styles.lockIcon} />
                   <p>
                     {isEncryption ? 'Enter a passphrase to encrypt your file' : 'Enter your passphrase to decrypt the file'}
                   </p>
                 </div>
-                <form>
+                <form className={styles.form}>
                   <div className='col-md-12 mb-3 '>
                     <label htmlFor='inputPassword1' className='form-label'>Passphrase</label>
                     <input

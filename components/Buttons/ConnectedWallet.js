@@ -20,11 +20,12 @@ export default function ConnectedWallet ({ account, balance }) {
     setIsConnected(prevState => FALSE)
     setProvider(prevState => null)
     setSigner(prevState => null)
+    setIsSwitched(prevState => UNSET)
     window.sessionStorage.removeItem('is_connected')
   }
 
   const handleNetworkChange = async () => {
-    setIsConnecting(prevState => TRUE)
+    setIsSwitched(prevState => UNSET)
     try {
       if (chainId !== 3) {
         await window.ethereum.request({
@@ -39,34 +40,31 @@ export default function ConnectedWallet ({ account, balance }) {
       } else {
         setIsSwitched(prevState => FALSE)
       }
+      console.log('isSwitched:', isSwitched)
     } catch (error) {
       console.log('Error switching network:', error.message)
-    } finally {
-      setIsConnecting(prevState => FALSE)
     }
   }
 
   return (
     <div>
-      <div>
-        {isSwitched === TRUE
+      {isSwitched === TRUE
+        ? (
+          <StatusAlert
+            header='Switch Network'
+            message='The network switched to the Ropsten network successfully.'
+            type='success'
+          />
+          )
+        : isSwitched === FALSE
           ? (
             <StatusAlert
               header='Switch Network'
-              message='The network switched to the Ropsten network successfully.'
-              type='success'
+              message='You are currently on the Ropsten network.'
+              type='info'
             />
             )
-          : isSwitched === FALSE
-            ? (
-              <StatusAlert
-                header='Switch Network'
-                message='You are currently on the Ropsten network.'
-                type='info'
-              />
-              )
-            : null}
-      </div>
+          : null}
       <div className={styles.container}>
         <p className={styles.balance}>{truncateBalance(balance)}
           <span className={styles.eth}>ETH</span>

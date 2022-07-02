@@ -16,7 +16,7 @@ export default function UploadForm ({ captureFiles, uploadFiles }) {
       console.log(isReadyForUploading)
       uploadFiles()
     }
-  }, [askingPassphrase, isReadyForUploading])
+  }, [askingPassphrase, isReadyForUploading, uploadFiles])
 
   const getPassphrase = (e) => {
     e.preventDefault()
