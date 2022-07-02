@@ -2,13 +2,15 @@ import { useState, useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons'
 
+import { UNSET, TRUE, FALSE } from '../../utils/states'
+
 import { FileContext } from '../../pages/vault'
 import styles from './AskPassphrase.module.css'
 
-export default function AskPassphrase ({ isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading }) {
-  const [passphrase1, setPassphrase1] = useState('')
-  const [passphrase2, setPassphrase2] = useState('')
-  const [show, setShow] = useState(true)
+export default function AskPassphrase ({ header, message, isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading }) {
+  const [passphrase1, setPassphrase1] = useState(UNSET)
+  const [passphrase2, setPassphrase2] = useState(UNSET)
+  const [show, setShow] = useState(TRUE)
   const { setPassphrase } = useContext(FileContext)
 
   const handleSubmit = (e) => {
@@ -19,13 +21,13 @@ export default function AskPassphrase ({ isEncryption, setAskingPassphrase, setI
     } else if (passphrase1.length < 1 || passphrase1.length > 64) {
       window.alert('Passphrase length must be between 1 and 64 characters')
     } else {
-      setShow(prevStat => false)
+      setShow(prevStat => FALSE)
       setPassphrase(prevStat => passphrase1)
-      setAskingPassphrase(prevStat => false)
+      setAskingPassphrase(prevStat => FALSE)
       if (!isEncryption) {
-        setIsReadyForDownloading(prevStat => true)
+        setIsReadyForDownloading(prevStat => TRUE)
       } else {
-        setIsReadyForUploading(prevStat => true)
+        setIsReadyForUploading(prevStat => TRUE)
       }
     }
   }
@@ -44,14 +46,14 @@ export default function AskPassphrase ({ isEncryption, setAskingPassphrase, setI
   }
 
   const handleCancel = () => {
-    setPassphrase1(prevStat => '')
-    setPassphrase2(prevStat => '')
-    setShow(prevStat => false)
-    setAskingPassphrase(prevStat => null)
+    setPassphrase1(prevStat => UNSET)
+    setPassphrase2(prevStat => UNSET)
+    setShow(prevStat => FALSE)
+    setAskingPassphrase(prevStat => UNSET)
     if (!isEncryption) {
-      setIsReadyForDownloading(prevStat => false)
+      setIsReadyForDownloading(prevStat => FALSE)
     } else {
-      setIsReadyForUploading(prevStat => false)
+      setIsReadyForUploading(prevStat => FALSE)
     }
   }
 
@@ -59,62 +61,63 @@ export default function AskPassphrase ({ isEncryption, setAskingPassphrase, setI
     <>
       <div>
         <div
-          className={'modal fade ' + `${show ? ' show' : ''}` + ' ' + `${styles.modal}`}
+          className={'modal fade ' + `${show === TRUE ? ' show' : ''}` + ' ' + `${styles.modal}`}
           id='exampleModal'
           tabIndex='-1'
           aria-labelledby='exampleModalLabel'
-          style={{ display: show ? 'block' : 'none' }}
+          style={{ display: show === TRUE ? 'block' : 'none' }}
         >
-          <div className={'modal-dialog ' + styles.dialog}>
-            <div className={'modal-content ' + styles.content}>
-              <div className={'modal-body ' + styles.body}>
-                <div className={styles.header}>
-                  <FontAwesomeIcon icon={isEncryption ? faLock : faLockOpen} size='3x' className={styles.lockIcon} />
-                  <p>
-                    {isEncryption ? 'Enter a passphrase to encrypt your file' : 'Enter your passphrase to decrypt the file'}
-                  </p>
-                </div>
-                <form className={styles.form}>
-                  <div className='col-md-12 mb-3 '>
-                    <label htmlFor='inputPassword1' className='form-label'>Passphrase</label>
-                    <input
-                      type='password'
-                      className={styles.input + ' form-control'}
-                      required
-                      id='inputPassword1'
-                      onChange={handlePassphrase1}
-                    />
-                  </div>
-                  {isEncryption
-                    ? (
-                      <div className='col-md-12'>
-                        <label htmlFor='inputPassword2' className='form-label'>Retype passphrase</label>
-                        <input
-                          type='password'
-                          className={styles.input + ' form-control'}
-                          required
-                          id='inputPassword2'
-                          onChange={handlePassphrase2}
-                        />
-                      </div>)
-                    : <></>}
-                  <div className={styles.footer + ' modal-footer justify-content-center'}>
-                    <button
-                      type='submit'
-                      className={styles.upload + ' btn btn-primary'}
-                      onClick={handleSubmit}
-                    >{isEncryption ? 'Upload' : 'Download'}
-                    </button>
-                    <button
-                      type='button'
-                      className={styles.close + ' btn btn-danger'}
-                      data-bs-dismiss='modal'
-                      onClick={handleCancel}
-                    >Close
-                    </button>
-                  </div>
-                </form>
+          <div className={'modal-content ' + styles.content}>
+            <div className={'modal-body ' + styles.body}>
+              <div className={styles.header}>
+                <FontAwesomeIcon
+                  icon={isEncryption ? faLock : faLockOpen}
+                  size='4x'
+                  className={styles.icon}
+                />
+                <h2 className={styles.header}>{header}</h2>
+                <p className={styles.message}>{message}</p>
               </div>
+              <form className={styles.form}>
+                <div className='col-md-12 mb-3 '>
+                  <label htmlFor='inputPassword1' className='form-label'>Passphrase</label>
+                  <input
+                    type='password'
+                    className={styles.input + ' form-control'}
+                    required
+                    id='inputPassword1'
+                    onChange={handlePassphrase1}
+                  />
+                </div>
+                {isEncryption
+                  ? (
+                    <div className='col-md-12'>
+                      <label htmlFor='inputPassword2' className='form-label'>Retype passphrase</label>
+                      <input
+                        type='password'
+                        className={styles.input + ' form-control'}
+                        required
+                        id='inputPassword2'
+                        onChange={handlePassphrase2}
+                      />
+                    </div>)
+                  : <></>}
+                <div className={styles.footer + ' modal-footer justify-content-center'}>
+                  <button
+                    type='submit'
+                    className={styles.upload + ' btn btn-primary'}
+                    onClick={handleSubmit}
+                  >{isEncryption ? 'Upload' : 'Download'}
+                  </button>
+                  <button
+                    type='button'
+                    className={styles.close + ' btn btn-danger'}
+                    data-bs-dismiss='modal'
+                    onClick={handleCancel}
+                  >Cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

@@ -2,17 +2,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 
+import { UNSET, TRUE, FALSE } from '../../utils/states'
+
 import AskPassphrase from '../Modals/AskPassphrase'
 
 import styles from './UploadForm.module.css'
 
 export default function UploadForm ({ captureFiles, uploadFiles }) {
-  const [askingPassphrase, setAskingPassphrase] = useState(null)
-  const [isReadyForUploading, setIsReadyForUploading] = useState(false)
+  const [askingPassphrase, setAskingPassphrase] = useState(UNSET)
+  const [isReadyForUploading, setIsReadyForUploading] = useState(UNSET)
 
   useEffect(() => {
-    if (askingPassphrase === false && isReadyForUploading) {
-      setAskingPassphrase(null)
+    if (askingPassphrase === FALSE && isReadyForUploading === TRUE) {
+      setAskingPassphrase(prevStat => UNSET)
       console.log(isReadyForUploading)
       uploadFiles()
     }
@@ -20,12 +22,18 @@ export default function UploadForm ({ captureFiles, uploadFiles }) {
 
   const getPassphrase = (e) => {
     e.preventDefault()
-    setAskingPassphrase(true)
+    setAskingPassphrase(prevStat => TRUE)
   }
 
   return (
     <>
-      {askingPassphrase && <AskPassphrase isEncryption setAskingPassphrase={setAskingPassphrase} setIsReadyForUploading={setIsReadyForUploading} />}
+      {askingPassphrase === TRUE && <AskPassphrase
+        isEncryption
+        setAskingPassphrase={setAskingPassphrase}
+        setIsReadyForUploading={setIsReadyForUploading}
+        header='Encrypt file'
+        message='Enter your passphrase to encrypt your files'
+                                    />}
       <form
         className={styles.main}
         onSubmit={getPassphrase}

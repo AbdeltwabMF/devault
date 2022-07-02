@@ -8,7 +8,7 @@ import { truncateAddress, truncateBalance } from '../../utils/regexUtility'
 import { Web3Context } from '../../pages/_app'
 import { ConnectionContext } from '../Navigation/Navbar'
 
-import StatusAlert from '../Modals/StatusAlert'
+import SpinnerModal from '../Modals/SpinnerModal'
 
 import styles from './ConnectedWallet.module.css'
 
@@ -50,7 +50,7 @@ export default function ConnectedWallet ({ account, balance }) {
     <div>
       {isSwitched === TRUE
         ? (
-          <StatusAlert
+          <SpinnerModal
             header='Switch Network'
             message='The network switched to the Ropsten network successfully.'
             type='success'
@@ -58,7 +58,7 @@ export default function ConnectedWallet ({ account, balance }) {
           )
         : isSwitched === FALSE
           ? (
-            <StatusAlert
+            <SpinnerModal
               header='Switch Network'
               message='You are currently on the Ropsten network.'
               type='info'
