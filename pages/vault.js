@@ -16,10 +16,12 @@ import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
 import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 import HorizontalDivider from '../components/Dividers/HorizontalDivider'
+import StatusSpinner from '../components/Modals/StatusSpinner'
 
 import getIpfs from '../utils/getIpfs'
 import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
 import { downloadBlob } from '../utils/downloadHandlers'
+import { UNSET, TRUE, FALSE } from '../utils/states'
 
 import { Web3Context } from './_app'
 
@@ -50,13 +52,13 @@ export default function Vault () {
   const [hash, setHash] = useState('')
   const [passphrase, setPassphrase] = useState('')
 
-  const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
-  const [isUploadCanceled, setIsUploadCanceled] = useState(false)
-  const [isTransactionSucceed, setIsTransactionSucceed] = useState(null)
-  const [isDownloading, setIsDownloading] = useState(false)
-  const [isSameSession, setIsSameSession] = useState(false)
-  const [isReadyForTransaction, setIsReadyForTransaction] = useState(false)
+  const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(UNSET)
+  const [isUploading, setIsUploading] = useState(UNSET)
+  const [isUploadCanceled, setIsUploadCanceled] = useState(UNSET)
+  const [isTransactionSucceed, setIsTransactionSucceed] = useState(UNSET)
+  const [isDownloading, setIsDownloading] = useState(UNSET)
+  const [isSameSession, setIsSameSession] = useState(UNSET)
+  const [isReadyForTransaction, setIsReadyForTransaction] = useState(UNSET)
 
   const processContextValue = {
     isRequestingPassphrase,
@@ -102,12 +104,12 @@ export default function Vault () {
       }
     }
     __update()
-  }, [isTransactionSucceed])
+  }, [isTransactionSucceed, provider, account, setBalance, setBlockNumber])
 
   useEffect(() => {
     const fetchFilesMetadata = async () => {
       if (window.sessionStorage.getItem('is_connected') === 'true') {
-        setIsSameSession(prevState => true)
+        setIsSameSession(prevState => TRUE)
       }
 
       if (contract && account) {
@@ -135,7 +137,7 @@ export default function Vault () {
 
         try {
           console.log('Storing the files metadata in the blockchain...')
-          setIsTransactionSucceed(prevState => null)
+          setIsTransactionSucceed(prevState => UNSET)
 
           const _options = { from: account, gasLimit: 3000000 }
 
@@ -144,19 +146,19 @@ export default function Vault () {
           const _receipt = await _tx.wait()
           console.log('Receipt:', _receipt)
 
-          setIsTransactionSucceed(prevState => true)
-          setIsReadyForTransaction(prevState => false)
+          setIsTransactionSucceed(prevState => TRUE)
+          setIsReadyForTransaction(prevState => FALSE)
         } catch (err) {
           console.log('Cannot make a transaction to store files\' metadata:', err.message)
-          setIsTransactionSucceed(prevState => false)
+          setIsTransactionSucceed(prevState => FALSE)
         } finally {
-          setIsReadyForTransaction(prevState => false)
+          setIsReadyForTransaction(prevState => FALSE)
           console.log('Done.')
         }
       }
       __storeFilesMetadata()
     }
-  }, [isReadyForTransaction])
+  }, [isReadyForTransaction, account, contract, name, size, type, hash])
 
   const captureFiles = (e) => {
     e.preventDefault()
@@ -182,7 +184,7 @@ export default function Vault () {
   const uploadFiles = async () => {
     try {
       console.log('Encrypting & Uploading file to IPFS...')
-      setIsUploading(prevState => true)
+      setIsUploading(prevState => TRUE)
 
       const ipfs = getIpfs()
       // fileBuffer = ArrayBuffer
@@ -192,20 +194,20 @@ export default function Vault () {
       setSize(prevState => response.size)
       setHash(prevState => response.path)
 
-      setIsUploading(prevState => false)
-      setIsReadyForTransaction(prevState => true)
+      setIsUploading(prevState => FALSE)
+      setIsReadyForTransaction(prevState => TRUE)
     } catch (error) {
       console.log('Cannot upload file to IPFS:', error.message)
       // TODO: show error message
     } finally {
-      setIsUploading(prevState => false)
+      setIsUploading(prevState => FALSE)
     }
   }
 
   const downloadFiles = async (_name, cid, _type) => {
     try {
       console.log('Retrieving & decrypting the file...')
-      setIsDownloading(prevState => true)
+      setIsDownloading(prevState => TRUE)
 
       const ipfs = getIpfs()
       console.log('cid:', cid)
@@ -216,12 +218,12 @@ export default function Vault () {
       const decryptedUint8Array = decryptAES256(data, passphrase)
       downloadBlob(decryptedUint8Array, _name, _type)
 
-      setIsDownloading(prevState => false)
+      setIsDownloading(prevState => FALSE)
     } catch (error) {
       console.log('Cannot download file from IPFS:', error.message)
     // TODO: handle error
     } finally {
-      setIsDownloading(prevState => false)
+      setIsDownloading(prevState => UNSET)
     }
   }
 
@@ -229,6 +231,15 @@ export default function Vault () {
     <>
       <FileContext.Provider value={fileContextValue}>
         <ProcessContext.Provider value={processContextValue}>
+          {isUploading === TRUE
+            ? (
+              <StatusSpinner
+                header='Uploading files'
+                message='Please wait while your files are being uploaded.'
+                type='info'
+              />
+              )
+            : null}
           <div className={styles.main}>
             <div className={'container-fluid ' + `${styles.container}`}>
               <div className={'row ' + `${styles.row}`}>

@@ -1,20 +1,47 @@
 .modal {
-	background-color: #3f3f3f84;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	background-color: #33333355;
 }
 
 .header {
 	text-align: center;
 	color: var(--color-info-300, #00a699);
 	font-size: 1.5rem;
-	padding-bottom: 2rem;
 }
 
 .body {
-	padding: 1rem 1.5rem;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	background-color: var(--color-info-900, #ffffff);
+	border-radius: 0.5rem;
+	border: 0;
+	padding: 1rem;
+}
+
+.content {
+	border-radius: 1rem;
+	border: 0;
+	background-color: transparent;
+}
+
+.dialog {
+	background-color: transparent;
+	border: 0;
+	border-radius: 1rem;
+}
+
+.form {
+	width: 100%;
+	padding: 1rem;
 }
 
 .footer {
-	background-color: var(--color-grey-200, #fafafa);
+	background-color: transparent;
 	margin-top: 2rem;
 }
 
@@ -50,7 +77,7 @@
 }
 
 .input {
-	background-color: var(--color-grey-200, #fafafa);
+	background-color: var(--color-success-800, #ffffff);
 	box-shadow: none;
 }
 
