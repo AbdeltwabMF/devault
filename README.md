@@ -32,7 +32,7 @@
     <a href="https://github.com/AbdeltwabMF/devault">
         <img src="https://img.shields.io/github/languages/top/AbdeltwabMF/devault" alt="languages" />
     </a>
-    <a href="https://github.com/AbdeltwabMF/devault/CODE_OF_CONDUCT.md">
+    <a href="https://github.com/AbdeltwabMF/devault/CODE-OF-CONDUCT.md">
         <img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="code-of-conduct" />
     </a>
     <a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AbdeltwabMF/devault&amp;utm_campaign=Badge_Grade">
@@ -99,11 +99,11 @@ Devault is a decentralized, self-hosted, and end-to-end encrypted alternative to
 ### :mag: Why Devault
 
 #### :-1: The Problem with Traditional Cloud Storage
-  
+
   - Data loss
   - Data hack
   - Data surveillance
-  
+
 #### :+1: The Solution with Devault
 
   - No third party can access your files or prevent you from accessing them.
@@ -258,7 +258,7 @@ npm run deploy localhost
 :green_circle: _Now you're good to go_
 
 #### :syringe: Run the Tests
- 
+
   - Run the smart contracts test
 
 ```sh
@@ -397,7 +397,7 @@ Where you can ask questions, suggest new ideas, and get support.
 
   - [Osama El-Zero](https://www.youtube.com/c/ElzeroInfo/)
   - [Web Dev Simplified](https://www.youtube.com/c/WebDevSimplified/)
-  - [Patrick Collins](https://www.youtube.com/c/PatrickCollins/) 
+  - [Patrick Collins](https://www.youtube.com/c/PatrickCollins/)
   - [3blue1brown](https://www.youtube.com/c/3blue1brown/)
   - [Savjee](https://www.youtube.com/c/Savjee/)
 

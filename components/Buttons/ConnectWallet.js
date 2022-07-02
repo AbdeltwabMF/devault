@@ -8,7 +8,7 @@ import isMetamaskError from '../../utils/isMetamaskError'
 import { Web3Context } from '../../pages/_app'
 import { ConnectionContext } from '../Navigation/Navbar'
 
-import StatusAlert from '../Modals/StatusAlert'
+import SpinnerModal from '../Modals/SpinnerModal'
 
 import styles from './ConnectWallet.module.css'
 
@@ -57,7 +57,7 @@ export default function ConnectWallet () {
     <>
       {isMetamaskInstalled === FALSE
         ? (
-          <StatusAlert
+          <SpinnerModal
             header='Metamask'
             message='Please install Metamask to continue.'
             type='error'

@@ -16,7 +16,7 @@ import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
 import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 import HorizontalDivider from '../components/Dividers/HorizontalDivider'
-import StatusSpinner from '../components/Modals/StatusSpinner'
+import SpinnerModal from '../components/Modals/SpinnerModal'
 
 import getIpfs from '../utils/getIpfs'
 import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
@@ -54,6 +54,8 @@ export default function Vault () {
 
   const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(UNSET)
   const [isUploading, setIsUploading] = useState(UNSET)
+  const [isEncrypting, setIsEncrypting] = useState(UNSET)
+  const [isDecrypting, setIsDecrypting] = useState(UNSET)
   const [isUploadCanceled, setIsUploadCanceled] = useState(UNSET)
   const [isTransactionSucceed, setIsTransactionSucceed] = useState(UNSET)
   const [isDownloading, setIsDownloading] = useState(UNSET)
@@ -71,6 +73,10 @@ export default function Vault () {
     setIsTransactionSucceed,
     isDownloading,
     setIsDownloading,
+    isEncrypting,
+    setIsEncrypting,
+    isDecrypting,
+    setIsDecrypting,
     isSameSession,
     setIsSameSession,
     isReadyForTransaction,
@@ -153,7 +159,6 @@ export default function Vault () {
           setIsTransactionSucceed(prevState => FALSE)
         } finally {
           setIsReadyForTransaction(prevState => FALSE)
-          console.log('Done.')
         }
       }
       __storeFilesMetadata()
@@ -184,11 +189,14 @@ export default function Vault () {
   const uploadFiles = async () => {
     try {
       console.log('Encrypting & Uploading file to IPFS...')
-      setIsUploading(prevState => TRUE)
+      setIsEncrypting(prevState => TRUE)
 
       const ipfs = getIpfs()
       // fileBuffer = ArrayBuffer
       const encryptedFileBufferWordArray = encryptAES256(fileBuffer, passphrase)
+      setIsEncrypting(prevState => FALSE)
+
+      setIsUploading(prevState => TRUE)
       const response = await ipfs.add(Buffer.from(encryptedFileBufferWordArray))
 
       setSize(prevState => response.size)
@@ -200,7 +208,8 @@ export default function Vault () {
       console.log('Cannot upload file to IPFS:', error.message)
       // TODO: show error message
     } finally {
-      setIsUploading(prevState => FALSE)
+      setIsUploading(prevState => UNSET)
+      setIsEncrypting(prevState => UNSET)
     }
   }
 
@@ -214,16 +223,18 @@ export default function Vault () {
 
       // Get the data in one large uint8array
       const data = concat(await all(ipfs.cat(cid)))
+      setIsDownloading(prevState => FALSE)
 
+      setIsDecrypting(prevState => TRUE)
       const decryptedUint8Array = decryptAES256(data, passphrase)
       downloadBlob(decryptedUint8Array, _name, _type)
-
-      setIsDownloading(prevState => FALSE)
+      setIsDecrypting(prevState => FALSE)
     } catch (error) {
       console.log('Cannot download file from IPFS:', error.message)
     // TODO: handle error
     } finally {
       setIsDownloading(prevState => UNSET)
+      setIsDecrypting(prevState => UNSET)
     }
   }
 
@@ -233,10 +244,18 @@ export default function Vault () {
         <ProcessContext.Provider value={processContextValue}>
           {isUploading === TRUE
             ? (
-              <StatusSpinner
-                header='Uploading files'
+              <SpinnerModal
+                header='Uploading...'
                 message='Please wait while your files are being uploaded.'
-                type='info'
+              />
+              )
+            : null}
+
+          {isDecrypting === TRUE
+            ? (
+              <SpinnerModal
+                header='Decrypting...'
+                message=''
               />
               )
             : null}
