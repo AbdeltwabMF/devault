@@ -1,10 +1,10 @@
 .main {
-  min-height: calc(100vh - 112.78px);
-  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 139.59px);
+  padding: 2rem 1rem;
 }
 
 @media (max-width: 990px) {
