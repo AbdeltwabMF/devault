@@ -18,7 +18,7 @@ export default function Faqs () {
                   </h2>
                   <div id='panelsStayOpen-collapseOne' className='accordion-collapse collapse show' aria-labelledby='panelsStayOpen-headingOne'>
                     <div className='accordion-body'>
-                      Go to <Link href='https://metamask.io/'><a>MetaMask.io</a></Link> and select from Android or iOS for mobile application or you can select Chrome or Firefox or any supported browser to install the metamask extension.
+                      Go to <Link href='https://metamask.io/'><a target='_blank'>MetaMask.io</a></Link> and select from Android or iOS for mobile application or you can select Chrome or Firefox or any supported browser to install the metamask extension.
                     </div>
                   </div>
                 </div>

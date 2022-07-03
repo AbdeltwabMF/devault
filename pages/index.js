@@ -10,9 +10,7 @@ export default function Home () {
         <div className={'container ' + `${styles.container}`}>
           <div className={'row ' + `${styles.header}`}>
             <div className='col col-12 '>
-              <h1
-                className={styles.headerTitle}
-              >
+              <h1 className={styles.headerTitle}>
                 Devault is a {' '}
                 <span className={styles.decentralized}>decentralized,</span>{' '}
                 <span className={styles.selfHosted}>self-hosted,</span>{' '}
@@ -23,17 +21,19 @@ export default function Home () {
             </div>
             <div className='col col-12 '>
               <h5 className={styles.headerDetails}>
-                You deserve to live a sustainable, private, self-sufficient and independent life.
+                You deserve to live a sustainable, private, self-sufficient, and independent life.
                 <br />
-                Don&apos;t let anyone take this from you.
+                Devault is making that happen where there is no spying, no surveillance, no backdoors, and ads.
+                <br />
+                The future is making a comeback.
               </h5>
             </div>
             <div className='col col-12 '>
               <button
                 onClick={() => router.push('/vault')}
-                className={styles.getStarted}
+                className={styles.buttonGetStarted}
               >
-                Get started
+                Get Started
               </button>
             </div>
           </div>
