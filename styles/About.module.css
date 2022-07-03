@@ -69,3 +69,10 @@
   line-height: 1.5;
   margin: 0;
 }
+
+@media (max-width: 990px) {
+  .main {
+    min-height: calc(100vh - 170.78px);
+    padding: 1rem;
+  }
+}
