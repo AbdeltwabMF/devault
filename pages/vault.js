@@ -152,6 +152,7 @@ export default function Vault () {
         } catch (err) {
           console.log('Cannot make a transaction to store files\' metadata:', err.message)
           setIsTransactionSucceed(prevState => FALSE)
+          setIsReadyForTransaction(prevState => UNSET)
         }
       }
       __storeFilesMetadata()
@@ -199,6 +200,7 @@ export default function Vault () {
       console.log('Cannot upload file to IPFS:', error.message)
       // TODO: show error message
       setIsUploading(prevState => UNSET)
+      setIsReadyForTransaction(prevState => UNSET)
     }
   }
 
@@ -240,6 +242,16 @@ export default function Vault () {
               <SpinnerModal
                 header='Encrypting & Uploading your file...'
                 message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
+                closeOrCancel='Cancel'
+              />
+              )
+            : <></>}
+
+          {isReadyForTransaction === TRUE
+            ? (
+              <SpinnerModal
+                header='Confirming your transaction...'
+                message='Choose to confirm or reject the transaction.'
                 closeOrCancel='Cancel'
               />
               )

@@ -112,7 +112,7 @@ export default function FilesList ({ files, downloadFiles }) {
                         <FontAwesomeIcon
                           icon={faShareNodes}
                           className={styles.shareIcon}
-                          size='x3'
+                          size='3x'
                         />
                         <span className={styles.shareText}>
                           Share
@@ -127,7 +127,7 @@ export default function FilesList ({ files, downloadFiles }) {
                         <FontAwesomeIcon
                           icon={faTrash}
                           className={styles.deleteIcon}
-                          size='x3'
+                          size='3x'
                         />
                         <span className={styles.deleteText}>
                           Delete

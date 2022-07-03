@@ -81,7 +81,8 @@
 .tableRow:hover {
   box-shadow: 0 0 0 1px var(--color-primary-500, #d9d9d9);
   border-radius: 0.5rem;
-  transition: box-shadow 0.2s ease-in-out;
+  background-color: #c6ced1;
+  transition: box-shadow 0.1s ease-in-out;
 }
 
 .download button {
@@ -116,11 +117,13 @@
 }
 
 .actionButton {
-  border: 0;
   background-color: var(--color-grey-200, #fafafa);
-  box-shadow: none;
-  padding: 0.1rem 1rem;
+  border: 0;
   border-radius: 100%;
+  box-shadow: none;
+  height: 2.2rem;
+  padding: 0.2rem 0.1rem 0.1rem;
+  width: 2.2rem;
 }
 
 .actionButton:hover,
@@ -188,6 +191,11 @@
   .thTime {
     display: none;
   }
+
+  .tdDownload,
+  .tdAction {
+    width: fit-content;
+  }
 }
 
 @media (max-width: 999px) {
@@ -196,7 +204,14 @@
   }
 
   .downloadIcon {
-    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .download button {
+    border-radius: 100%;
+    padding: 0;
+    width: 2.2rem;
+    height: 2.2rem;
   }
 
   .tdName {

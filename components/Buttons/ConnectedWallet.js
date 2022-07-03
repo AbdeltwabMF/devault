@@ -14,13 +14,15 @@ import InfoModal from '../Modals/InfoModal'
 import styles from './ConnectedWallet.module.css'
 
 export default function ConnectedWallet ({ account, balance }) {
-  const { chainId, setChainId, setProvider, setSigner } = useContext(Web3Context)
+  const { chainId, setChainId, setProvider, setSigner, setAccount, setContract } = useContext(Web3Context)
   const { isConnected, setIsConnected, isSwitched, setIsSwitched } = useContext(ConnectionContext)
 
   const hadleDisconnection = async () => {
     setIsConnected(prevState => FALSE)
     setProvider(prevState => null)
     setSigner(prevState => null)
+    setAccount(prevState => null)
+    setContract(prevState => null)
     setIsSwitched(prevState => UNSET)
     window.sessionStorage.removeItem('is_connected')
   }
