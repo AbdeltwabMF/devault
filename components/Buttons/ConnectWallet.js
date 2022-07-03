@@ -1,8 +1,8 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet } from '@fortawesome/free-solid-svg-icons'
 
-import { UNSET, TRUE, FALSE } from '../../utils/states'
+import { TRUE, FALSE } from '../../utils/states'
 import isMetamaskError from '../../utils/isMetamaskError'
 
 import { Web3Context } from '../../pages/_app'
@@ -16,7 +16,6 @@ export default function ConnectWallet () {
   const {
     setIsConnected,
     setIsConnecting,
-    isConnected,
     setIsMetamaskInstalled,
     setIsNetworkCorrect,
     isMetamaskInstalled

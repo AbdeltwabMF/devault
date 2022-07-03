@@ -1,123 +1,120 @@
 .name {
-	align-items: center;
-	display: flex;
-	flex-direction: row;
-	justify-content: start;
-	width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  width: 100%;
 }
 
 .tdName {
-	max-width: 12rem;
+  max-width: 12rem;
 }
 
 .nameText {
-	font-size: 1em;
-	color: var(--color-grey-900, #666666);
-	font-weight: 500;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  color: var(--color-grey-900, #666666);
+  font-size: 1em;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tdSize {
-	max-width: 8rem;
+  max-width: 8rem;
 }
 
 .size {
-	font-size: 1em;
-	color: var(--color-grey-900, #666666);
-	font-weight: 500;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	width: 100%;
+  color: var(--color-grey-900, #666666);
+  font-size: 1em;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .tdTime {
-	max-width: 6rem;
+  max-width: 6rem;
 }
 
 .time {
-	font-size: 1em;
-	color: var(--color-grey-900, #666666);
-	font-weight: 500;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	width: 100%;
+  color: var(--color-grey-900, #666666);
+  font-size: 1em;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .tdAction {
-	max-width: 6rem;
-	text-align: center;
+  max-width: 6rem;
+  text-align: center;
 }
 
 .iconMime {
-	color: var(--color-success-200, #00a699);
-	padding-right: 1rem;
+  color: var(--color-success-200, #00a699);
+  padding-right: 1rem;
 }
 
 .tableBody {
-	vertical-align: middle !important;
-}
-
-.tableHeader {
+  vertical-align: middle;
 }
 
 .headerText {
-	font-size: 1em;
-	color: var(--color-grey-900, #666666);
-	font-weight: 600;
-	padding: 0;
+  color: var(--color-grey-900, #666666);
+  font-size: 1em;
+  font-weight: 600;
+  padding: 0;
 }
 
 .sortIcon {
-	color: var(--color-grey-900, #666666);
-	padding-left: 1rem;
+  color: var(--color-grey-900, #666666);
+  padding-left: 1rem;
 }
 
 .tableRow:hover {
-	background-color: var(--color-primary-800, #00a699);
+  background-color: var(--color-primary-800, #00a699);
 }
 
 .action button {
-	border-radius: 0.4rem;
-	padding: 0.3rem 1rem;
-	color: var(--color-grey-900, #666666);
-	border: 0;
-	background-color: var(--color-grey-200, #fafafa);
+  background-color: var(--color-grey-200, #fafafa);
+  border: 0;
+  border-radius: 0.4rem;
+  color: var(--color-grey-900, #666666);
+  padding: 0.3rem 1rem;
 }
 
 .action button:hover {
-	color: var(--color-grey-900, #666666);
-	background-color: var(--color-grey-100, #fafafa);
-	box-shadow: 0  0 0 1px #66666654;
+  background-color: var(--color-grey-100, #fafafa);
+  box-shadow: 0  0 0 1px #66666654;
+  color: var(--color-grey-900, #666666);
 }
 
 .downloadText {
-	padding: 0;
+  padding: 0;
 }
 
 .downloadIcon {
-	color: var(--color-grey-900, #666666);
-	padding-left: 0.8rem;
+  color: var(--color-grey-900, #666666);
+  padding-left: 0.8rem;
 }
 
 @media (max-width: 768px) {
-	.tdSize,
-	.tdTime,
-	.thSize,
-	.thTime {
-		display: none;
-	}
+  .tdSize,
+  .tdTime,
+  .thSize,
+  .thTime {
+    display: none;
+  }
 }
 
 @media (max-width: 916px) {
-	.downloadText {
-		display: none;
-	}
+  .downloadText {
+    display: none;
+  }
 
-	.downloadIcon {
-		padding-left: 0;
-	}
+  .downloadIcon {
+    padding-left: 0;
+  }
 }
