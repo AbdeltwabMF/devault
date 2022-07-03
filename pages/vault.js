@@ -11,6 +11,7 @@
 
 import { useState, useEffect, useContext, createContext } from 'react'
 import { ethers } from 'ethers'
+import Head from 'next/head'
 
 import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
@@ -240,6 +241,9 @@ export default function Vault () {
 
   return (
     <>
+      <Head>
+        <title>The vault | Where your files live</title>
+      </Head>
       <FileContext.Provider value={fileContextValue}>
         <ProcessContext.Provider value={processContextValue}>
           {isUploading === TRUE

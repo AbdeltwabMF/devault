@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import Error404 from '../components/Errors/Error404'
+import Error404 from '../components/AssistantPages/Error404'
 import styles from '../styles/Page404.module.css'
 
 export default function Page404 () {
@@ -10,7 +10,7 @@ export default function Page404 () {
   useEffect(() => {
     setTimeout(() => {
       router.push('/')
-    }, 10000)
+    }, 60000)
   })
 
   return (
