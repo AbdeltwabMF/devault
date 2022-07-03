@@ -100,12 +100,12 @@
 
 .downloadText {
   padding: 0;
-  color: var(--color-primary-300, #00a699);
+  color: var(--color-secondary-400, #00a699);
 }
 
 .downloadIcon {
-  color: var(--color-primary-300, #00a699);
-  padding-left: 0.8rem;
+  color: var(--color-secondary-400, #00a699);
+  padding-right: 0.8rem;
 }
 
 .actionIcon {
@@ -129,6 +129,56 @@
   background-color: var(--color-grey-100, #fafafa);
   box-shadow: 0 0 0 1px #66666654;
   color: var(--color-grey-900, #666666);
+}
+
+.actionButton::after,
+.actionButton::before,
+.actionDropdown .actionButton::after,
+.actionDropdown .actionButton::before {
+  content: none;
+}
+
+.actionDropdownMenu {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background-color: var(--color-accent-900, #f5f5f5);
+}
+
+.actionDropdownItem {
+  border-radius: 0.5rem;
+  background-color: var(--color-accent-800);
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.actionDropdownItem:hover {
+  background-color: var(--color-accent-700);
+  box-shadow: 0 0 0 1px #66666654;
+  color: var(--color-grey-900, #666666);
+}
+
+.shareText {
+  padding: 0 0.5rem;
+  color: var(--color-info-500, #00a699);
+  font-size: 1rem;
+}
+
+.shareIcon {
+  color: var(--color-info-500, #00a699);
+  font-size: 1.2rem;
+  padding-left: 0.8rem;
+}
+
+.deleteText {
+  padding: 0 0.5rem;
+  color: var(--color-error-400, #ff0000);
+  font-size: 1rem;
+}
+
+.deleteIcon {
+  color: var(--color-error-400, #ff0000);
+  font-size: 1.2rem;
+  padding-left: 0.8rem;
 }
 
 @media (max-width: 768px) {

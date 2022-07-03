@@ -55,8 +55,6 @@ export default function Vault () {
 
   const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(UNSET)
   const [isUploading, setIsUploading] = useState(UNSET)
-  const [isEncrypting, setIsEncrypting] = useState(UNSET)
-  const [isDecrypting, setIsDecrypting] = useState(UNSET)
   const [isUploadCanceled, setIsUploadCanceled] = useState(UNSET)
   const [isTransactionSucceed, setIsTransactionSucceed] = useState(UNSET)
   const [isDownloading, setIsDownloading] = useState(UNSET)
@@ -74,10 +72,6 @@ export default function Vault () {
     setIsTransactionSucceed,
     isDownloading,
     setIsDownloading,
-    isEncrypting,
-    setIsEncrypting,
-    isDecrypting,
-    setIsDecrypting,
     isSameSession,
     setIsSameSession,
     isReadyForTransaction,
@@ -158,8 +152,6 @@ export default function Vault () {
         } catch (err) {
           console.log('Cannot make a transaction to store files\' metadata:', err.message)
           setIsTransactionSucceed(prevState => FALSE)
-        } finally {
-          setIsReadyForTransaction(prevState => UNSET)
         }
       }
       __storeFilesMetadata()
@@ -190,14 +182,12 @@ export default function Vault () {
   const uploadFiles = async () => {
     try {
       console.log('Encrypting & Uploading file to IPFS...')
-      setIsEncrypting(prevState => TRUE)
+      setIsUploading(prevState => TRUE)
 
       const ipfs = getIpfs()
       // fileBuffer = ArrayBuffer
       const encryptedFileBufferWordArray = encryptAES256(fileBuffer, passphrase)
-      setIsEncrypting(prevState => FALSE)
 
-      setIsUploading(prevState => TRUE)
       const response = await ipfs.add(Buffer.from(encryptedFileBufferWordArray))
 
       setSize(prevState => response.size)
@@ -208,15 +198,18 @@ export default function Vault () {
     } catch (error) {
       console.log('Cannot upload file to IPFS:', error.message)
       // TODO: show error message
-    } finally {
       setIsUploading(prevState => UNSET)
-      setIsEncrypting(prevState => UNSET)
     }
   }
 
-  const downloadFiles = async (_name, cid, _type) => {
+  const downloadFiles = async (_name, cid, _type, _size) => {
     try {
       console.log('Retrieving & decrypting the file...')
+      console.log('name:', _name)
+      console.log('cid:', cid)
+      console.log('type:', _type)
+      console.log('size:', _size)
+      setSize(prevState => _size)
       setIsDownloading(prevState => TRUE)
 
       const ipfs = getIpfs()
@@ -224,18 +217,14 @@ export default function Vault () {
 
       // Get the data in one large uint8array
       const data = concat(await all(ipfs.cat(cid)))
-      setIsDownloading(prevState => FALSE)
 
-      setIsDecrypting(prevState => TRUE)
       const decryptedUint8Array = decryptAES256(data, passphrase)
       downloadBlob(decryptedUint8Array, _name, _type)
-      setIsDecrypting(prevState => FALSE)
+      setIsDownloading(prevState => FALSE)
     } catch (error) {
       console.log('Cannot download file from IPFS:', error.message)
-    // TODO: handle error
-    } finally {
+      // TODO: handle error
       setIsDownloading(prevState => UNSET)
-      setIsDecrypting(prevState => UNSET)
     }
   }
 
@@ -249,20 +238,22 @@ export default function Vault () {
           {isUploading === TRUE
             ? (
               <SpinnerModal
-                header='Uploading...'
-                message='Please wait while your files are being uploaded.'
+                header='Encrypting & Uploading your file...'
+                message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
+                closeOrCancel='Cancel'
               />
               )
-            : null}
+            : <></>}
 
-          {isDecrypting === TRUE
+          {isDownloading === TRUE
             ? (
               <SpinnerModal
-                header='Decrypting...'
-                message=''
+                header='Retrieving & decrypting your file...'
+                message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
+                closeOrCancel='Cancel'
               />
               )
-            : null}
+            : <></>}
           <div className={styles.main}>
             <div className={'container ' + styles.container}>
               <div className={'row ' + styles.row}>

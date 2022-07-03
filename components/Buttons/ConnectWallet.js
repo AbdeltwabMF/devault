@@ -47,7 +47,6 @@ export default function ConnectWallet () {
       }
       window.sessionStorage.removeItem('is_connected')
       console.info('Connection error:', error.message)
-    } finally {
       setIsConnecting(prevState => FALSE)
     }
   }

@@ -33,12 +33,13 @@ export default function SuccessModal ({ header, message, buttonText, buttonActio
             <h2 className={styles.header}>{header}</h2>
             <p className={styles.message}>{message}</p>
             <div className={styles.footer + ' modal-footer'}>
-              <button
-                type='button'
-                className={styles.action + ' btn btn-primary'}
-                onClick={buttonAction}
-              >{buttonText}
-              </button>
+              {buttonText && buttonAction && (
+                <button
+                  type='button'
+                  className={styles.action + ' btn btn-primary'}
+                  onClick={buttonAction}
+                >{buttonText}
+                </button>)}
               <button
                 type='button'
                 className={styles.close + ' btn btn-danger'}
