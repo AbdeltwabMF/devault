@@ -76,38 +76,38 @@ export default function Navbar () {
 
               <div className='collapse navbar-collapse' id='navbarNavDropdown'>
                 <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                  <li className='nav-item'>
+                  <li className={'nav-item ' + styles.navItem}>
                     <Link href='/vault'>
                       <a
                         aria-current='page'
-                        className={'nav-link ' + (router.pathname === '/vault' ? ' active' : '') + ' ' + styles.link}
+                        className={'nav-link ' + (router.pathname === '/vault' ? styles.active : '') + ' ' + styles.link}
                       >The Vault
                       </a>
                     </Link>
                   </li>
-                  <li className='nav-item'>
+                  <li className={'nav-item ' + styles.navItem}>
                     <Link href='/docs'>
                       <a
                         aria-current='page'
-                        className={'nav-link ' + (router.pathname === '/docs' ? ' active' : '') + ' ' + styles.link}
+                        className={'nav-link ' + (router.pathname === '/docs' ? styles.active : '') + ' ' + styles.link}
                       >Docs
                       </a>
                     </Link>
                   </li>
-                  <li className='nav-item'>
-                    <Link href='/how-it-works'>
+                  <li className={'nav-item ' + styles.navItem}>
+                    <Link href='/how'>
                       <a
                         aria-current='page'
-                        className={'nav-link ' + (router.pathname === '/how-it-works' ? ' active' : '') + ' ' + styles.link}
+                        className={'nav-link ' + (router.pathname === '/how' ? styles.active : '') + ' ' + styles.link}
                       >How it works
                       </a>
                     </Link>
                   </li>
-                  <li className='nav-item'>
+                  <li className={'nav-item ' + styles.navItem}>
                     <Link href='/resources'>
                       <a
                         aria-current='page'
-                        className={'nav-link ' + (router.pathname === '/resources' ? ' active' : '') + ' ' + styles.link}
+                        className={'nav-link ' + (router.pathname === '/resources' ? styles.active : '') + ' ' + styles.link}
                       >Resources
                       </a>
                     </Link>
