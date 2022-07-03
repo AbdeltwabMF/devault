@@ -1,79 +1,79 @@
 .dropdown,
 .container {
-	align-items: center;
-	border: 0;
-	border-radius: 1em;
-	box-shadow: 0;
-	display: flex;
-	flex-direction: row;
-	font-family: var(--fonts-code, monospace);
-	justify-content: center;
-	margin: 0;
+  align-items: center;
+  border: 0;
+  border-radius: 1em;
+  box-shadow: 0;
+  display: flex;
+  flex-direction: row;
+  font-family: var(--fonts-code, monospace);
+  justify-content: center;
+  margin: 0;
 }
 
 .dropdown {
-	background-color: var(--color-primary-900, #f5f5f5);
-	padding: 0.3em 0.6em !important;
+  background-color: var(--color-primary-900, #f5f5f5);
+  padding: 0.3em 0.6em;
 }
 
 .dropdown:hover,
 .dropdown:focus,
 .dropdown:active {
-	background-color: var(--color-accent-900, #f5f5f5);
-	border: 0;
-	box-shadow: 0;
+  background-color: var(--color-accent-900, #f5f5f5);
+  border: 0;
+  box-shadow: 0;
 }
 
 .dropdownMenu {
-	background-color: var(--color-primary-900, #f5f5f5);
-	border-radius: 1rem;
+  background-color: var(--color-primary-900, #f5f5f5);
+  border-radius: 1rem;
 }
 
 .dropdownMenu .dropdownItem {
-	border-radius: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .dropdownMenu .dropdownItem:hover {
-	background-color: var(--color-primary-700, #f5f5f5);
+  background-color: var(--color-primary-700, #f5f5f5);
 }
 
 .container {
-	background-color: var(--color-primary-800, #f5f5f5);
-	padding: 0.1em 0.1em  0.1em 0.8rem !important;
+  background-color: var(--color-primary-800, #f5f5f5);
+  padding: 0.1em 0.1em  0.1em 0.8rem;
 }
 
 .balance,
 .address {
-	color: var(--color-secondary-200, #f5f5f5);
-	display: inline-block;
-	font-weight: 600;
-	margin: 0 !important;
-	padding-right: 0.5em;
+  color: var(--color-secondary-200, #f5f5f5);
+  display: inline-block;
+  font-weight: 600;
+  margin: 0;
+  padding-right: 0.5em;
 }
 
 .iconCheck {
-	color: var(--color-success-400, #f5f5f5);
-	vertical-align: middle !important;
+  color: var(--color-success-400, #f5f5f5);
+  vertical-align: middle;
 }
 
 .eth {
-	padding-left: 0.5rem;
-	color: var(--color-success-300, #f5f5f5);
+  padding-left: 0.5rem;
+  color: var(--color-success-300, #f5f5f5);
 }
 
 @media (max-width: 999px) {
-	.button {
-		width: 100%;
-	}
+  .button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 350px) {
-	.eth,
-	.balance {
-		display: none;
-	}
+  .eth,
+  .balance {
+    display: none;
+  }
 
-	.container {
-		padding: 0.1em 0.1em 0.1em 0.1rem !important;
-	}
+  .container {
+    padding: 0.1em 0.1em 0.1em 0.1rem;
+  }
 }

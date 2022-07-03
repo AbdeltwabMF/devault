@@ -1,4 +1,4 @@
-import { useState, useContext, createContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,7 +14,7 @@ import styles from './ConnectedWallet.module.css'
 
 export default function ConnectedWallet ({ account, balance }) {
   const { chainId, setChainId, setProvider, setSigner } = useContext(Web3Context)
-  const { isConnected, setIsConnected, setIsConnecting, isSwitched, setIsSwitched } = useContext(ConnectionContext)
+  const { isConnected, setIsConnected, isSwitched, setIsSwitched } = useContext(ConnectionContext)
 
   const hadleDisconnection = async () => {
     setIsConnected(prevState => FALSE)
