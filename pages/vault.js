@@ -137,7 +137,7 @@ export default function Vault () {
   }, [isTransactionSucceed, chainId, account, contract])
 
   useEffect(() => {
-    if (isReadyForTransaction) {
+    if (isReadyForTransaction === TRUE) {
       const __storeFilesMetadata = async () => {
         setType(type === '' ? prevState => 'none' : prevState => type)
 
@@ -158,7 +158,7 @@ export default function Vault () {
           console.log('Cannot make a transaction to store files\' metadata:', err.message)
           setIsTransactionSucceed(prevState => FALSE)
         } finally {
-          setIsReadyForTransaction(prevState => FALSE)
+          setIsReadyForTransaction(prevState => UNSET)
         }
       }
       __storeFilesMetadata()
