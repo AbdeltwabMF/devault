@@ -1,59 +1,66 @@
 .main {
-	background-color: var(--color-primary-400, #f5f5f5);
-	font-family: var(--fonts-primary, "Ubuntu", sans-serif);
+  background-color: var(--color-primary-400, #f5f5f5);
+  font-family: var(--fonts-primary, "Ubuntu", sans-serif);
 }
 
 .container {
-	margin: auto;
-	max-width: 1200px;
-	padding-left: 1.5rem;
-	padding-right: 1.5rem;
+  margin: auto;
+  max-width: 1200px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .brand {
-	align-items: center;
-	display: flex;
-	justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .brandText {
-	color: var(--color-primary-900, #f5f5f5);
-	font-size: 1.5rem;
-	font-weight: bold;
-	padding-left: 0.5rem;
-	padding-right: 1rem;
+  color: var(--color-primary-900, #f5f5f5);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+}
+
+.navItem {
+  padding: 0.8rem 0.5rem 0.5em 0.5rem;
 }
 
 .link {
-	color: var(--color-accent-900, #e5e5e5);
-	font-size: 1.2rem;
-	padding: 0.8rem 0.5rem 0.5em 0.5rem;
+  color: var(--color-accent-900, #e5e5e5);
+  font-size: 1.2rem;
 }
 
-.link:hover {
-	box-shadow: 0 -2px 0 0 var(--color-warning-700, #e5e5e5);
-	color: var(--color-warning-700, #e5e5e5);
+.link:hover,
+.link:focus,
+.link:active {
+  box-shadow: 0 2px 0 0 var(--color-warning-700, #e5e5e5);
+  color: var(--color-warning-700, #e5e5e5);
+  transition: all 0.2s ease-in-out;
 }
 
+.link:focus,
 .link:active,
-.link:focus {
-	box-shadow: 0 -2px 0 0 var(--color-success-600, #e5e5e5);
-	color: var(--color-success-600, #e5e5e5);
+.active {
+  box-shadow: 0 2px 0 0 var(--color-warning-900, #e5e5e5);
+  color: var(--color-warning-900, #e5e5e5);
 }
 
 .navbarToggler {
-	border: none;
-	box-shadow: none;
-	color: var(--color-secondary-900, #e5e5e5);
-	padding-left: 0.3rem;
-	padding-right: 0.3rem;
+  border: none;
+  box-shadow: none;
+  color: var(--color-secondary-900, #e5e5e5);
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
 .navbarToggler:active,
 .navbarToggler:focus,
 .navbarToggler:hover {
-	border: none;
-	box-shadow: 0 0 0 1px var(--color-secondary-900, #e5e5e5);
+  border: none;
+  box-shadow: 0 0 0 1px var(--color-secondary-900, #e5e5e5);
 }
 
 .chevronDown {
@@ -61,23 +68,27 @@
 }
 
 @media (max-width: 350px) {
-	.brandText {
-		display: none;
-	}
+  .brandText {
+    display: none;
+  }
 
-	.brandIcon {
-		height: 16;
-		width: 16;
-	}
+  .brandIcon {
+    height: 16;
+    width: 16;
+  }
 }
 
 @media (max-width: 1100px) {
-	.link {
-		font-size: 1rem;
-		padding: 0.3rem 0.0rem;
-	}
+  .navItem {
+    padding: 0.4rem 0rem;
+  }
 
-	.brandText {
-		font-size: 1.2rem;
-	}
+  .link {
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  .brandText {
+    font-size: 1.2rem;
+  }
 }
