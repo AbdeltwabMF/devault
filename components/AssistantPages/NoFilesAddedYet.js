@@ -9,15 +9,24 @@ export default function NoFile () {
       <div className={styles.main}>
         <FontAwesomeIcon
           icon={faFolderOpen}
-          size='6x'
-          className={styles.mainHeaderIcon}
+          size='4x'
+          className={styles.icon}
         />
-        <h1 className={styles.mainHeader}>Empty Vault</h1>
-        <p className={styles.description}>
-          <span className={styles.descriptionText}>No files added yet. To add files, choose a file and click the </span>
-          <FontAwesomeIcon icon={faArrowUpFromBracket} className={styles.arrow} />
-          <span className={styles.descriptionText}>icon button in the top.</span>
-        </p>
+        <h1 className={styles.header}>Empty Vault</h1>
+        <div className={styles.messageContainer}>
+          <span
+            className={styles.descriptionText}
+          >No files added yet. To add files, choose a file and click the
+          </span>
+          <FontAwesomeIcon
+            icon={faArrowUpFromBracket}
+            className={styles.arrow}
+          />
+          <span
+            className={styles.descriptionText}
+          >icon button in the top.
+          </span>
+        </div>
       </div>
     </>
   )

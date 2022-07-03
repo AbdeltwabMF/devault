@@ -40,7 +40,7 @@ export default function UploadForm ({ captureFiles, uploadFiles }) {
       >
         <div className=''>
           <input
-            className={'form-control form-control-md ' + `${styles.control}`}
+            className={'form-control form-control-md ' + styles.control}
             id='fileCapturer'
             type='file'
             required

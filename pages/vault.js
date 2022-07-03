@@ -264,12 +264,12 @@ export default function Vault () {
               )
             : null}
           <div className={styles.main}>
-            <div className={'container-fluid ' + `${styles.container}`}>
-              <div className={'row ' + `${styles.row}`}>
+            <div className={'container ' + styles.container}>
+              <div className={'row ' + styles.row}>
                 {account
                   ? (
                     <>
-                      <div className={'col col-12 ' + `${styles.readData}`}>
+                      <div className={'col col-12 ' + styles.readData}>
                         <UploadForm
                           captureFiles={captureFiles}
                           uploadFiles={uploadFiles}
