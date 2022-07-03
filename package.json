@@ -16,6 +16,8 @@
     "test": "jest",
     "test-coverage": "jest --coverage",
     "deploy": "./scripts/deploy.sh",
+    "check": "remark . --quiet --frail",
+    "format": "remark . --quiet --frail --output",
     "lint": "next lint"
   },
   "dependencies": {
@@ -45,6 +47,34 @@
     "eslint": "^8.18.0",
     "eslint-config-next": "^12.1.4",
     "jest": "^28.1.2",
+    "remark-cli": "^11.0.0",
+    "remark-lint-emphasis-marker": "^3.1.1",
+    "remark-lint-list-item-indent": "^3.1.1",
+    "remark-lint-strong-marker": "^3.1.1",
+    "remark-preset-lint-consistent": "^5.1.1",
+    "remark-preset-lint-recommended": "^6.1.2",
     "solidity-coverage": "^0.7.0"
+  },
+  "remarkConfig": {
+    "settings": {
+      "emphasis": "*",
+      "strong": "*"
+    },
+    "plugins": [
+      "remark-preset-lint-consistent",
+      "remark-preset-lint-recommended",
+      [
+        "remark-lint-list-item-indent",
+        "tab-size"
+      ],
+      [
+        "remark-lint-emphasis-marker",
+        "*"
+      ],
+      [
+        "remark-lint-strong-marker",
+        "*"
+      ]
+    ]
   }
 }
