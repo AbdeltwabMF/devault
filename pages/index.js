@@ -21,9 +21,11 @@ export default function Home () {
             </div>
             <div className='col col-12 '>
               <h5 className={styles.headerDetails}>
-                You deserve to live a sustainable, private, self-sufficient and independent life.
+                You deserve to live a sustainable, private, self-sufficient, and independent life.
                 <br />
-                Don&apos;t let anyone take this from you.
+                Devault is making that happen where there is no spying, no surveillance, no backdoors, and ads.
+                <br />
+                The future is making a comeback.
               </h5>
             </div>
             <div className='col col-12 '>
@@ -31,7 +33,7 @@ export default function Home () {
                 onClick={() => router.push('/vault')}
                 className={styles.buttonGetStarted}
               >
-                Get started
+                Get Started
               </button>
             </div>
           </div>
