@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSort, faDownload, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
+import { faSort, faDownload, faEllipsisVertical, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 
 import FontAwesomeMimeTypeIcon from '../Icons/FontAwesomeMimeTypeIcon'
@@ -15,6 +15,7 @@ export default function FilesList ({ files, downloadFiles }) {
   const [askingPassphrase, setAskingPassphrase] = useState(UNSET)
   const [selectedFileName, setSelectedFileName] = useState(UNSET)
   const [selectedFileHash, setSelectedFileHash] = useState(UNSET)
+  const [selectedFileType, setSelectedFileType] = useState(UNSET)
   const [selectedFileSize, setSelectedFileSize] = useState(UNSET)
   const [isReadyForDownloading, setIsReadyForDownloading] = useState(UNSET)
 
@@ -22,9 +23,9 @@ export default function FilesList ({ files, downloadFiles }) {
     if (askingPassphrase === FALSE && isReadyForDownloading === TRUE) {
       setAskingPassphrase(prevState => UNSET)
       console.log(isReadyForDownloading)
-      downloadFiles(selectedFileName, selectedFileHash, selectedFileSize)
+      downloadFiles(selectedFileName, selectedFileHash, selectedFileType, selectedFileSize)
     }
-  }, [askingPassphrase, isReadyForDownloading, selectedFileName, selectedFileHash, selectedFileSize, downloadFiles])
+  }, [askingPassphrase, isReadyForDownloading, selectedFileName, selectedFileHash, selectedFileSize, downloadFiles, selectedFileType])
 
   const getPassphrase = () => {
     setAskingPassphrase(prevState => TRUE)
@@ -79,23 +80,61 @@ export default function FilesList ({ files, downloadFiles }) {
                     getPassphrase()
                     setSelectedFileName(prevState => file.name)
                     setSelectedFileHash(prevState => file.hash)
+                    setSelectedFileType(prevState => file.mimeType)
                     setSelectedFileSize(prevState => file.size)
                   }}
                   >
-                    <span className={styles.downloadText}>Download</span>
                     <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
+                    <span className={styles.downloadText}>Download</span>
                   </button>
                 </div>
               </td>
               <td className={styles.tdAction}>
-                <div className={styles.action}>
+                <div className={styles.actionDropdown + ' dropup-center dropup'}>
                   <button
-                    className={styles.actionButton}
-                    onClick={() => {
-                    }}
+                    className={styles.actionButton + ' dropdown-toggle'}
+                    type='button'
+                    id='fileActions'
+                    data-bs-toggle='dropdown'
+                    aria-expanded='false'
                   >
                     <FontAwesomeIcon icon={faEllipsisVertical} className={styles.actionIcon} />
                   </button>
+                  <ul
+                    className={styles.actionDropdownMenu + ' dropdown-menu'}
+                    aria-labelledby='fileActions'
+                  >
+                    <li>
+                      <a
+                        className={styles.actionDropdownItem + ' dropdown-item'}
+                        href='#'
+                      >
+                        <FontAwesomeIcon
+                          icon={faShareNodes}
+                          className={styles.shareIcon}
+                          size='x3'
+                        />
+                        <span className={styles.shareText}>
+                          Share
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className={styles.actionDropdownItem + ' dropdown-item'}
+                        href='#'
+                      >
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className={styles.deleteIcon}
+                          size='x3'
+                        />
+                        <span className={styles.deleteText}>
+                          Delete
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </td>
             </tr>
