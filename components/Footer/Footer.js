@@ -25,7 +25,7 @@ export default function Footer () {
             </Link>
           </div>
           <div className={'col col-lg-6 col-12 ' + `${styles.col2}`}>
-            <Image src='/devault-64.png' alt='logo' width='32px' height='32px' className={styles.brandIcon} />
+            <Image src='/favicon-32x32.png' alt='logo' width='32px' height='32px' className={styles.brandIcon} />
             <span className={styles.copyright}>
               &copy; {new Date().getFullYear()}
             </span>

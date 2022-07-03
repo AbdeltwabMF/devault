@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSort, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { faSort, faDownload, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 
 import FontAwesomeMimeTypeIcon from '../Icons/FontAwesomeMimeTypeIcon'
@@ -55,6 +55,7 @@ export default function FilesList ({ files, downloadFiles }) {
               <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </th>
             <th />
+            <th />
           </tr>
         </thead>
         {files && files.map((file, index) => (
@@ -72,17 +73,28 @@ export default function FilesList ({ files, downloadFiles }) {
               <td className={styles.tdTime}>
                 <div className={styles.time}>{calculateTimeFromUnixStamp(file.uploadTime)}</div>
               </td>
-              <td className={styles.tdAction}>
-                <div className={styles.action}>
+              <td className={styles.tdDownload}>
+                <div className={styles.download}>
                   <button onClick={() => {
                     getPassphrase()
-                    setSelectedFileName(file.name)
-                    setSelectedFileHash(file.hash)
-                    setSelectedFileSize(file.size)
+                    setSelectedFileName(prevState => file.name)
+                    setSelectedFileHash(prevState => file.hash)
+                    setSelectedFileSize(prevState => file.size)
                   }}
                   >
                     <span className={styles.downloadText}>Download</span>
                     <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
+                  </button>
+                </div>
+              </td>
+              <td className={styles.tdAction}>
+                <div className={styles.action}>
+                  <button
+                    className={styles.actionButton}
+                    onClick={() => {
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faEllipsisVertical} className={styles.actionIcon} />
                   </button>
                 </div>
               </td>
