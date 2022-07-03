@@ -10,9 +10,7 @@ export default function Home () {
         <div className={'container ' + `${styles.container}`}>
           <div className={'row ' + `${styles.header}`}>
             <div className='col col-12 '>
-              <h1
-                className={styles.headerTitle}
-              >
+              <h1 className={styles.headerTitle}>
                 Devault is a {' '}
                 <span className={styles.decentralized}>decentralized,</span>{' '}
                 <span className={styles.selfHosted}>self-hosted,</span>{' '}
@@ -31,7 +29,7 @@ export default function Home () {
             <div className='col col-12 '>
               <button
                 onClick={() => router.push('/vault')}
-                className={styles.getStarted}
+                className={styles.buttonGetStarted}
               >
                 Get started
               </button>
