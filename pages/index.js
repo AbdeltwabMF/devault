@@ -1,11 +1,15 @@
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 export default function Home () {
   const router = useRouter()
 
   return (
     <>
+      <Head>
+        <title>Devault | The decentralized and encrypted cloud</title>
+      </Head>
       <div className={styles.main}>
         <div className={'container ' + `${styles.container}`}>
           <div className={'row ' + `${styles.header}`}>
