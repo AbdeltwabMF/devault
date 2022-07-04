@@ -34,7 +34,7 @@ export default function Home () {
             </div>
             <div className='col col-12 '>
               <button
-                onClick={() => router.push('/vault')}
+                onClick={() => router.push('/docs')}
                 className={styles.buttonGetStarted}
               >
                 Get Started

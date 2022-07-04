@@ -76,15 +76,16 @@ export default function Navbar () {
 
               <div className='collapse navbar-collapse' id='navbarNavDropdown'>
                 <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                  <li className={'nav-item ' + styles.navItem}>
-                    <Link href='/vault'>
-                      <a
-                        aria-current='page'
-                        className={'nav-link ' + (router.pathname === '/vault' ? styles.active : '') + ' ' + styles.link}
-                      >The Vault
-                      </a>
-                    </Link>
-                  </li>
+                  {isConnected === TRUE && (
+                    <li className={'nav-item ' + styles.navItem}>
+                      <Link href='/vault'>
+                        <a
+                          aria-current='page'
+                          className={'nav-link ' + (router.pathname === '/vault' ? styles.active : '') + ' ' + styles.link}
+                        >The Vault
+                        </a>
+                      </Link>
+                    </li>)}
                   <li className={'nav-item ' + styles.navItem}>
                     <Link href='/docs'>
                       <a
