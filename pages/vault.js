@@ -12,12 +12,14 @@
 import { useState, useEffect, useContext, createContext } from 'react'
 import { ethers } from 'ethers'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
 import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 import HorizontalDivider from '../components/Dividers/HorizontalDivider'
 import SpinnerModal from '../components/Modals/SpinnerModal'
+import Error404 from '../components/AssistantPages/Error404'
 
 import getIpfs from '../utils/getIpfs'
 import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
@@ -92,6 +94,16 @@ export default function Vault () {
     passphrase,
     setPassphrase
   }
+
+  const router = useRouter()
+  console.log(router.pathname)
+
+  useEffect(() => {
+    if (account && contract);
+    else {
+      router.push('/404')
+    }
+  }, [account, contract, router, chainId])
 
   useEffect(() => {
     const __update = async () => {
@@ -269,7 +281,7 @@ export default function Vault () {
           <div className={styles.main}>
             <div className={'container ' + styles.container}>
               <div className={'row ' + styles.row}>
-                {account
+                {account && contract
                   ? (
                     <>
                       <div className={'col col-12 ' + styles.readData}>
@@ -290,7 +302,7 @@ export default function Vault () {
                       </div>
                     </>
                     )
-                  : (<></>)}
+                  : <></>}
               </div>
             </div>
           </div>
