@@ -95,16 +95,6 @@ export default function Vault () {
     setPassphrase
   }
 
-  const router = useRouter()
-  console.log(router.pathname)
-
-  useEffect(() => {
-    if (account && contract);
-    else {
-      router.push('/404')
-    }
-  }, [account, contract, router, chainId])
-
   useEffect(() => {
     const __update = async () => {
       if (provider) {
@@ -241,6 +231,15 @@ export default function Vault () {
       setIsDownloading(prevState => UNSET)
     }
   }
+
+  const router = useRouter()
+  useEffect(() => {
+    if (window.sessionStorage.getItem('is_connected') === 'true') {
+      console.log('Authorized user is connected.')
+    } else {
+      router.push('/404')
+    }
+  }, [account, contract, router, chainId])
 
   return (
     <>
