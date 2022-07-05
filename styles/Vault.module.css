@@ -21,3 +21,9 @@
     padding: 1rem;
   }
 }
+
+@media (max-width: 768px) {
+  .searchUpload {
+    flex-direction: column;
+  }
+}

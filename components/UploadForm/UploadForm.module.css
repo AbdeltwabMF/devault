@@ -1,5 +1,5 @@
 .main {
-  width: 20%;
+  width: fit-content;
 }
 
 .controlContainer {
@@ -15,17 +15,23 @@
   overflow: hidden;
   display: block;
   border-radius: 1rem;
-  padding: 0.3rem 1rem;
+  padding: 0.531875rem 2rem;
   cursor: pointer;
   text-align: center;
-  background-color: var(--color-primary-700, #00bcd4);
-  border: 1px solid var(--color-primary-500, #46acd8);
+  background-color: var(--color-info-900, #00bcd4);
   width: 100%;
-  color: var(--color-accent-900, #46acd8);
+  color: var(--color-info-500, #46acd8);
 }
 
 .label input.control {
   display: none;
+}
+
+.label:hover,
+.label:focus,
+.label:active {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-info-600, #00bcd4);
 }
 
 .angleDown,
@@ -45,16 +51,13 @@
   font-size: 1rem;
 }
 
-@media (max-width: 568px) {
-  .upload {
-    display: none;
+@media (max-width: 768px) {
+  .main {
+    width: 100%;
+    padding: 0;
   }
-
-  .control {
-    font-size: 0.7rem;
-  }
-
-  .button {
-    padding: 0.21289rem 1rem;
+  .controlContainer {
+    width: 100%;
+    padding: 0.2rem 0 1rem;
   }
 }
