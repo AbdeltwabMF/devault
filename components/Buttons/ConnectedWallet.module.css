@@ -6,9 +6,9 @@
   box-shadow: 0;
   display: flex;
   flex-direction: row;
-  font-family: var(--fonts-code, monospace);
   justify-content: center;
   margin: 0;
+  outline: none;
 }
 
 .dropdown {
@@ -27,6 +27,7 @@
 .dropdownMenu {
   background-color: var(--color-primary-900, #f5f5f5);
   border-radius: 1rem;
+  padding: 1rem 0.5rem;
 }
 
 .dropdownMenu .dropdownItem {
@@ -35,6 +36,10 @@
 
 .dropdownMenu .dropdownItem:hover {
   background-color: var(--color-primary-700, #f5f5f5);
+}
+
+.dropdownItem {
+  margin: 0.2rem 0;
 }
 
 .container {
@@ -47,6 +52,7 @@
   color: var(--color-secondary-200, #f5f5f5);
   display: inline-block;
   font-weight: 600;
+  font-family: var(--font-code-1, monospace);
   margin: 0;
   padding-right: 0.5em;
 }
@@ -59,6 +65,24 @@
 .eth {
   padding-left: 0.5rem;
   color: var(--color-success-300, #f5f5f5);
+}
+
+.arrowRightFromBracket {
+  padding-right: 0.5rem;
+  color: var(--color-error-400, #f5f5f5);
+}
+
+.disconnect {
+  color: var(--color-error-400, #f5f5f5);
+}
+
+.arrowsRotate {
+  padding-right: 0.5rem;
+  color: var(--color-info-200, #f5f5f5);
+}
+
+.switch {
+  color: var(--color-info-200, #f5f5f5);
 }
 
 @media (max-width: 999px) {

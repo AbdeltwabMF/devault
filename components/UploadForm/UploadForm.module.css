@@ -1,52 +1,48 @@
 .main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  width: 20%;
+}
+
+.controlContainer {
+  width: 100%;
+  padding: 0 1rem 1rem;
 }
 
 .button {
-  border-bottom-right-radius: 0.8rem;
-  background-color: var(--color-info-400, #f5f5f5);
-  border: 0;
-  color: var(--color-grey-100, #f5f5f5);
-  max-width: 50%;
-  padding: 0.4375rem 1rem;
+  display: none;
 }
 
-.button:hover,
-.button:focus,
-.button:active {
-  background-color: var(--color-info-300, #f5f5f5);
-  transition: ease-in-out 0.2s;
+.label {
+  overflow: hidden;
+  display: block;
+  border-radius: 1rem;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  background-color: var(--color-primary-700, #00bcd4);
+  border: 1px solid var(--color-primary-500, #46acd8);
+  width: 100%;
+  color: var(--color-accent-900, #46acd8);
 }
 
-.control {
-  border-bottom-left-radius: 0.8rem;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  background-color: var(--color-success-900, #f5f5f5);
-  color: var(--color-info-200, #f5f5f5);
-  border: 1px solid var(--color-info-400, #f5f5f5);
+.label input.control {
+  display: none;
 }
 
-.control:hover,
-.control:focus,
-.control:active {
-  box-shadow: none;
-  transition: ease-in-out 0.2s;
-  background-color: var(--color-info-900, #f5f5f5);
-  color: var(--color-info-100, #f5f5f5);
-}
-
-.upload {
-  padding-left: 0.4rem;
-  font-weight: 500;
-}
-
-.icon {
+.angleDown,
+.arrowUpFromBracket {
   vertical-align: middle;
+}
+
+.angleDown {
+  padding-left: 0.5rem;
+}
+
+.arrowUpFromBracket {
+  padding-right: 0.5rem;
+}
+
+.uploadText {
+  font-size: 1rem;
 }
 
 @media (max-width: 568px) {

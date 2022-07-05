@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket, faArrowsRotate, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { UNSET, TRUE, FALSE } from '../../utils/states'
 import { truncateAddress, truncateBalance } from '../../utils/regexUtility'
@@ -106,18 +106,34 @@ export default function ConnectedWallet ({ account, balance }) {
               <button
                 className={'dropdown-item ' + `${styles.dropdownItem}`}
                 type='button'
-                onClick={hadleDisconnection}
+                onClick={handleNetworkChange}
               >
-                Disconnect
+                <FontAwesomeIcon
+                  icon={faArrowsRotate}
+                  size='lg'
+                  fixedWidth
+                  className={styles.arrowsRotate}
+                />
+                <span className={styles.switch}>
+                  Switch network
+                </span>
               </button>
             </li>
             <li>
               <button
                 className={'dropdown-item ' + `${styles.dropdownItem}`}
                 type='button'
-                onClick={handleNetworkChange}
+                onClick={hadleDisconnection}
               >
-                Switch network
+                <FontAwesomeIcon
+                  icon={faArrowRightFromBracket}
+                  size='lg'
+                  fixedWidth
+                  className={styles.arrowRightFromBracket}
+                />
+                <span className={styles.disconnect}>
+                  Disconnect
+                </span>
               </button>
             </li>
           </ul>

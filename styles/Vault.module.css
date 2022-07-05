@@ -3,8 +3,12 @@
   padding: 2rem 1rem;
 }
 
-.readData {
-  padding-bottom: 1em;
+.searchUpload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
 }
 
 .container {

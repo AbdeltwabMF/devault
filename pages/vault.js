@@ -5,7 +5,7 @@
   *         and then instantiating the contract.
   *         and then calling its methods.
   * @author Abd El-Twab M. Fakhry <abdeltwab.m.fakhry at gmail dot com>
-  * @version v0.1.0
+  * @version v0.2.2
   * @license GPL-3.0
   */
 
@@ -16,10 +16,10 @@ import { useRouter } from 'next/router'
 
 import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
+import SearchFiles from '../components/Search/SearchFiles'
 import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 import HorizontalDivider from '../components/Dividers/HorizontalDivider'
 import SpinnerModal from '../components/Modals/SpinnerModal'
-import Error404 from '../components/AssistantPages/Error404'
 
 import getIpfs from '../utils/getIpfs'
 import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
@@ -176,6 +176,13 @@ export default function Vault () {
         setType(prevState => _file.type)
         setName(prevState => _file.name)
       }
+
+      const fileCapturer = document.getElementById('fileCapturer')
+      const fileSelect = document.getElementById('fileSelect')
+
+      if (fileCapturer) {
+        fileSelect.click()
+      }
     } catch (error) {
       console.log('Cannot capture the file:', error.message)
     // TODO: handle error
@@ -283,7 +290,8 @@ export default function Vault () {
                 {account && contract
                   ? (
                     <>
-                      <div className={'col col-12 ' + styles.readData}>
+                      <div className={'col col-12 ' + styles.searchUpload}>
+                        <SearchFiles />
                         <UploadForm
                           captureFiles={captureFiles}
                           uploadFiles={uploadFiles}

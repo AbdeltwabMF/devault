@@ -40,13 +40,15 @@
 .headerTitle {
   font-size: 3rem;
   font-weight: 1000;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-primary-1);
   color: var(--color-grey-200, #fff);
   margin-bottom: 2rem;
 }
 
 .headerDetails {
-  color: var(--color-primary-300, #666);
+  color: var(--color-primary-200, #666);
+  font-family: var(--font-primary-2, sans-serif);
+  font-size: 1rem;
 }
 
 .buttonGetStarted {
@@ -82,7 +84,7 @@
   }
 
   .headerDetails {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0;
   }
 }
@@ -91,13 +93,13 @@
   .headerTitle {
     font-size: 1.5rem;
     font-weight: 900;
-    font-family: var(--font-primary, "Roboto", sans-serif);
+    font-family: var(--font-primary-1, "Roboto", sans-serif);
     margin: 0;
     margin-bottom: 1.5rem;
   }
 
   .headerDetails {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     margin: 0;
   }
 
@@ -110,13 +112,13 @@
   .headerTitle {
     font-size: 1.3rem;
     font-weight: 900;
-    font-family: var(--font-primary, "Roboto", sans-serif);
+    font-family: var(--font-primary-1, "Roboto", sans-serif);
     margin: 0;
     margin-bottom: 1.3rem;
   }
 
   .headerDetails {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     margin: 0;
   }
 

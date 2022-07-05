@@ -1,0 +1,54 @@
+.main {
+  width: 60%;
+  padding: 0 1rem 1rem;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  background-color: var(--color-primary-900, #00bcd4);
+  border: none;
+}
+
+.form:hover {
+  box-shadow: 0 0 0 1px var(--color-primary-700, #00bcd4);
+}
+
+.input {
+  cursor: pointer;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  overflow: hidden;
+  width: 100%;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-family: var(--font-primary-1, sans-serif);
+  padding: 0.3rem;
+}
+
+.input:hover,
+.input:focus,
+.input:active {
+  outline: none;
+  cursor: text;
+}
+
+.magnifyingGlass {
+  color: var(--color-accent-100, #46acd8);
+  background-color: #ffffff;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  padding: 0.3rem 1rem;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.magnifyingGlass:hover,
+.magnifyingGlass:focus,
+.magnifyingGlass:active {
+}
