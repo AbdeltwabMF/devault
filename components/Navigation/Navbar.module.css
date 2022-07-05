@@ -1,6 +1,6 @@
 .main {
   background-color: var(--color-primary-400, #f5f5f5);
-  font-family: var(--fonts-primary, "Ubuntu", sans-serif);
+  font-family: var(--font-primary-1, "Ubuntu", sans-serif);
 }
 
 .container {

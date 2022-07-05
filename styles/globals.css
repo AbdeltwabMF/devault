@@ -80,12 +80,105 @@
   --color-error-700: #eb886f;
   --color-error-800: #f3b5a5;
   --color-error-900: #f8d2c9;
+
+  --font-primary-1: "comfortaa-regular";
+  --font-primary-2: "comfortaa-bold";
+  --font-primary-3: "comfortaa-thin";
+  --font-secondary-1: "dosis-regular";
+  --font-secondary-2: "dosis-bold";
+  --font-secondary-3: "dosis-thin";
+  --font-accent-1: "jost-regular";
+  --font-accent-2: "jost-bold";
+  --font-accent-3: "jost-thin";
+  --font-info-1: "montserrat-regular";
+  --font-info-2: "montserrat-bold";
+  --font-info-3: "montserrat-thin";
+  --font-code-1: "fantasquesansmono-regular";
+  --font-code-2: "fantasquesansmono-bold";
 }
 
-:root {
-  --fonts-primary: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --fonts-secondary: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, serif;
-  --fonts-code: monospace;
+@font-face {
+  font-family: "comfortaa-regular";
+  src: url("../public/fonts/Comfortaa-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "comfortaa-bold";
+  src: url("../public/fonts/Comfortaa-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "comfortaa-thin";
+  src: url("../public/fonts/Comfortaa-Light.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "dosis-regular";
+  src: url("../public/fonts/Dosis-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "dosis-bold";
+  src: url("../public/fonts/Dosis-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "dosis-thin";
+  src: url("../public/fonts/Dosis-Light.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "jost-regular";
+  src: url("../public/fonts/Jost-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "jost-bold";
+  src: url("../public/fonts/Jost-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "jost-thin";
+  src: url("../public/fonts/Jost-Thin.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "montserrat-regular";
+  src: url("../public/fonts/Montserrat-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "montserrat-bold";
+  src: url("../public/fonts/Montserrat-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "montserrat-thin";
+  src: url("../public/fonts/Montserrat-Thin.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "fantasquesansmono-regular";
+  src: url("../public/fonts/FantasqueSansMono-Regular.otf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "fantasquesansmono-bold";
+  src: url("../public/fonts/FantasqueSansMono-Bold.otf");
+  font-style: normal;
 }
 
 html,
@@ -95,7 +188,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(
-    --fonts-primary,
+    --font-primary-1,
     "Roboto",
     "Helvetica Neue",
     Helvetica,

@@ -38,27 +38,30 @@ export default function UploadForm ({ captureFiles, uploadFiles }) {
         className={styles.main}
         onSubmit={getPassphrase}
       >
-        <div className=''>
-          <input
-            className={'form-control form-control-md ' + styles.control}
-            id='fileCapturer'
-            type='file'
-            required
-            onChange={captureFiles}
-          />
+        <div className={styles.controlContainer}>
+          <label className={styles.label}>
+            <input
+              className={'' + styles.control}
+              id='fileCapturer'
+              type='file'
+              onChange={captureFiles}
+              required
+              multiple
+            />
+            <FontAwesomeIcon
+              icon={faArrowUpFromBracket}
+              size='lg'
+              fixedWidth
+              className={styles.arrowUpFromBracket}
+            />
+            <span className={styles.uploadText}>Upload</span>
+          </label>
         </div>
         <button
           type='submit'
+          id='fileSelect'
           className={styles.button}
-        >
-          <FontAwesomeIcon
-            icon={faArrowUpFromBracket}
-            size='lg'
-            fixedWidth
-            className={styles.icon}
-          />
-          <span className={styles.upload}>Upload</span>
-        </button>
+        />
       </form>
     </>
   )

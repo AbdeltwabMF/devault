@@ -7,7 +7,7 @@
   color: var(--color-info-800, #f5f5f5);
   display: flex;
   flex-direction: row;
-  font-family: var(--fonts-code, monospace);
+  font-family: var(--font-code-1, monospace);
   justify-content: center;
   padding: 0.4em 0.8em;
 }
