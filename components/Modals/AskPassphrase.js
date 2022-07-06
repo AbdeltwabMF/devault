@@ -72,11 +72,11 @@ export default function AskPassphrase ({ header, message, isEncryption, setAskin
               <div className={styles.header}>
                 <FontAwesomeIcon
                   icon={isEncryption ? faLock : faLockOpen}
-                  size='4x'
+                  size='2x'
                   className={styles.icon}
                 />
-                <h2 className={styles.header}>{header}</h2>
-                <p className={styles.message}>{message}</p>
+                <span className={styles.header}>{header}</span>
+                <span className={styles.message}>{message}</span>
               </div>
               <form className={styles.form}>
                 <div className='col-md-12 mb-3 '>

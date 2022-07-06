@@ -27,11 +27,11 @@ export default function ErrorModal ({ header, message, buttonText, buttonAction 
           <div className={'modal-body ' + styles.body}>
             <FontAwesomeIcon
               icon={faBug}
-              size='5x'
+              size='2x'
               className={styles.icon}
             />
-            <h2 className={styles.header}>{header}</h2>
-            <p className={styles.message}>{message}</p>
+            <span className={styles.header}>{header}</span>
+            <span className={styles.message}>{message}</span>
             <div className={styles.footer + ' modal-footer'}>
               {buttonText && buttonAction && (
                 <button
