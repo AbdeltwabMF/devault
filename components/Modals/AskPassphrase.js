@@ -8,15 +8,15 @@ import { FileContext } from '../../pages/vault'
 import styles from './AskPassphrase.module.css'
 
 export default function AskPassphrase ({ header, message, isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading }) {
-  const [passphrase1, setPassphrase1] = useState(UNSET)
-  const [passphrase2, setPassphrase2] = useState(UNSET)
+  const [passphrase1, setPassphrase1] = useState(null)
+  const [passphrase2, setPassphrase2] = useState(null)
   const [show, setShow] = useState(TRUE)
   const { setPassphrase } = useContext(FileContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (passphrase1 === UNSET || passphrase2 === UNSET || passphrase1 !== passphrase2) {
+    if (passphrase1 === null || passphrase2 === null || passphrase1 !== passphrase2) {
       window.alert('Passphrases do not match')
     } else if (passphrase1 < 1 || passphrase1.length > 64) {
       window.alert('Passphrase length must be between 1 and 64 characters')
@@ -46,8 +46,8 @@ export default function AskPassphrase ({ header, message, isEncryption, setAskin
   }
 
   const handleCancel = () => {
-    setPassphrase1(prevStat => UNSET)
-    setPassphrase2(prevStat => UNSET)
+    setPassphrase1(prevStat => null)
+    setPassphrase2(prevStat => null)
     setShow(prevStat => FALSE)
     setAskingPassphrase(prevStat => UNSET)
     if (!isEncryption) {
