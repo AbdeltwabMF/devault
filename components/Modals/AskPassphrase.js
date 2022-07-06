@@ -18,7 +18,7 @@ export default function AskPassphrase ({ header, message, isEncryption, setAskin
 
     if (passphrase1 === null || passphrase2 === null || passphrase1 !== passphrase2) {
       window.alert('Passphrases do not match')
-    } else if (passphrase1 < 1 || passphrase1.length > 64) {
+    } else if (passphrase1.length < 1 || passphrase1.length > 64) {
       window.alert('Passphrase length must be between 1 and 64 characters')
     } else {
       setShow(prevStat => FALSE)
