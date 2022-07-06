@@ -20,7 +20,7 @@
   text-align: center;
   background-color: var(--color-info-900, #00bcd4);
   width: 100%;
-  color: var(--color-info-500, #46acd8);
+  color: var(--color-info-300, #46acd8);
 }
 
 .label input.control {

@@ -16,9 +16,9 @@ export default function AskPassphrase ({ header, message, isEncryption, setAskin
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (passphrase1 !== passphrase2) {
+    if (passphrase1 === UNSET || passphrase2 === UNSET || passphrase1 !== passphrase2) {
       window.alert('Passphrases do not match')
-    } else if (passphrase1.length < 1 || passphrase1.length > 64) {
+    } else if (passphrase1 < 1 || passphrase1.length > 64) {
       window.alert('Passphrase length must be between 1 and 64 characters')
     } else {
       setShow(prevStat => FALSE)
