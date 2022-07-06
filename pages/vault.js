@@ -243,7 +243,9 @@ export default function Vault () {
   useEffect(() => {
     if (window.sessionStorage.getItem('is_connected') === 'true') {
       console.log('Authorized user is connected.')
+      router.push('/vault')
     } else {
+      console.log('unauthorized user.')
       router.push('/404')
     }
   }, [account, contract, router, chainId])
