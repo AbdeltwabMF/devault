@@ -130,6 +130,7 @@ export default function Vault () {
         setIsSameSession(prevState => FALSE)
         setIsAuthorized(prevState => FALSE)
       }
+      console.log(isAuthorized)
 
       if (contract && account) {
         const _options = { from: account }
@@ -147,7 +148,7 @@ export default function Vault () {
       }
     }
     fetchFilesMetadata()
-  }, [isTransactionSucceed, chainId, account, contract])
+  }, [isTransactionSucceed, chainId, account, contract, isAuthorized])
 
   useEffect(() => {
     if (isReadyForTransaction === TRUE) {
@@ -267,6 +268,7 @@ export default function Vault () {
               header='You are not authorized to access this page'
               message='Please connect with your Ethereum wallet.'
             />)}
+
           {isUploading === TRUE
             ? (
               <SpinnerModal
