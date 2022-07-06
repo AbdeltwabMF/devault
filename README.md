@@ -1,5 +1,5 @@
 <div align="center">
-<img src="/public/devault-1024.png" width="200px" height="200px" />
+<img src="/public/devault-fetrah-1024.png" width="200px" height="200px" />
 </div>
 <h1 align="center">Devault</h1>
 <h4 align="center">A Blockchain-based, self-hosted, and end-to-end encrypted cloud storage.</h4>
