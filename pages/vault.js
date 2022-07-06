@@ -12,7 +12,6 @@
 import { useState, useEffect, useContext, createContext } from 'react'
 import { ethers } from 'ethers'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 
 import FilesList from '../components/FilesList/FilesList'
 import UploadForm from '../components/UploadForm/UploadForm'
@@ -20,6 +19,7 @@ import SearchFiles from '../components/Search/SearchFiles'
 import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 import HorizontalDivider from '../components/Dividers/HorizontalDivider'
 import SpinnerModal from '../components/Modals/SpinnerModal'
+import ErrorModal from '../components/Modals/ErrorModal'
 
 import getIpfs from '../utils/getIpfs'
 import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
@@ -62,6 +62,7 @@ export default function Vault () {
   const [isDownloading, setIsDownloading] = useState(UNSET)
   const [isSameSession, setIsSameSession] = useState(UNSET)
   const [isReadyForTransaction, setIsReadyForTransaction] = useState(UNSET)
+  const [isAuthorized, setIsAuthorized] = useState(UNSET)
 
   const processContextValue = {
     isRequestingPassphrase,
@@ -72,6 +73,8 @@ export default function Vault () {
     setIsUploadCanceled,
     isTransactionSucceed,
     setIsTransactionSucceed,
+    isAuthorized,
+    setIsAuthorized,
     isDownloading,
     setIsDownloading,
     isSameSession,
@@ -122,6 +125,10 @@ export default function Vault () {
     const fetchFilesMetadata = async () => {
       if (window.sessionStorage.getItem('is_connected') === 'true') {
         setIsSameSession(prevState => TRUE)
+        setIsAuthorized(prevState => TRUE)
+      } else {
+        setIsSameSession(prevState => FALSE)
+        setIsAuthorized(prevState => FALSE)
       }
 
       if (contract && account) {
@@ -248,17 +255,6 @@ export default function Vault () {
     }
   }
 
-  const router = useRouter()
-  useEffect(() => {
-    if (window.sessionStorage.getItem('is_connected') === 'true') {
-      console.log('Authorized user is connected.')
-      router.push('/vault')
-    } else {
-      console.log('unauthorized user.')
-      router.push('/404')
-    }
-  }, [account, contract, router, chainId])
-
   return (
     <>
       <Head>
@@ -266,6 +262,11 @@ export default function Vault () {
       </Head>
       <FileContext.Provider value={fileContextValue}>
         <ProcessContext.Provider value={processContextValue}>
+          {isAuthorized === FALSE && (
+            <ErrorModal
+              header='You are not authorized to access this page'
+              message='Please connect with your Ethereum wallet.'
+            />)}
           {isUploading === TRUE
             ? (
               <SpinnerModal
