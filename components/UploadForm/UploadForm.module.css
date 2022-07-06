@@ -51,6 +51,10 @@
   font-size: 1rem;
 }
 
+.reset {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .main {
     width: 100%;
