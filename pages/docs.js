@@ -6,7 +6,7 @@ export default function Docs () {
     <>
       <div className={styles.main}>
         <Image
-          src='/he-she.jpg'
+          src='/devault-fetrah-1024.jpg'
           alt='fetrah'
           width='460rem'
           height='460rem'
