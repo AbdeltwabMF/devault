@@ -107,6 +107,15 @@ export default function Vault () {
       }
     }
     __update()
+
+    const __resetForm = () => {
+      const resetInput = document.getElementById('resetForm')
+      resetInput.click()
+    }
+
+    if (isTransactionSucceed === FALSE) {
+      __resetForm()
+    }
   }, [isTransactionSucceed, provider, account, setBalance, setBlockNumber])
 
   useEffect(() => {

@@ -57,6 +57,7 @@ export default function UploadForm ({ captureFiles, uploadFiles }) {
             <span className={styles.uploadText}>Upload</span>
           </label>
         </div>
+        <input className={styles.reset} type='reset' id='resetForm' />
         <button
           type='submit'
           id='fileSelect'
