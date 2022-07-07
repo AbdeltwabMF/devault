@@ -33,6 +33,7 @@ export default function UploadForm ({ captureFiles, uploadFiles }) {
         setIsReadyForUploading={setIsReadyForUploading}
         header='Encrypt file'
         message='Enter your passphrase to encrypt your files'
+        onClose={() => setAskingPassphrase(prevStat => UNSET)}
                                     />}
       <form
         className={styles.main}

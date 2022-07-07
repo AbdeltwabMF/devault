@@ -7,11 +7,12 @@ import { TRUE, FALSE } from '../../utils/states'
 
 import styles from './InfoModal.module.css'
 
-export default function InfoModal ({ header, message, buttonText, buttonAction }) {
+export default function InfoModal ({ header, message, buttonText, buttonAction, onClose }) {
   const [show, setShow] = useState(TRUE)
 
   const handleCancel = () => {
     setShow(prevStat => FALSE)
+    onClose()
   }
 
   return (

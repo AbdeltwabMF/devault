@@ -48,12 +48,12 @@ export default function Vault () {
 
   const [files, setFiles] = useState([])
 
-  const [fileBuffer, setFileBuffer] = useState(null)
-  const [name, setName] = useState('')
-  const [type, setType] = useState('')
-  const [size, setSize] = useState(0)
-  const [hash, setHash] = useState('')
-  const [passphrase, setPassphrase] = useState('')
+  const [fileBuffer, setFileBuffer] = useState(UNSET)
+  const [name, setName] = useState(UNSET)
+  const [type, setType] = useState(UNSET)
+  const [size, setSize] = useState(UNSET)
+  const [hash, setHash] = useState(UNSET)
+  const [passphrase, setPassphrase] = useState(UNSET)
 
   const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(UNSET)
   const [isUploading, setIsUploading] = useState(UNSET)

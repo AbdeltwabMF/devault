@@ -7,16 +7,16 @@ import { UNSET, TRUE, FALSE } from '../../utils/states'
 import { FileContext } from '../../pages/vault'
 import styles from './AskPassphrase.module.css'
 
-export default function AskPassphrase ({ header, message, isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading }) {
-  const [passphrase1, setPassphrase1] = useState(null)
-  const [passphrase2, setPassphrase2] = useState(null)
+export default function AskPassphrase ({ header, message, isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading, onClose }) {
+  const [passphrase1, setPassphrase1] = useState(UNSET)
+  const [passphrase2, setPassphrase2] = useState(UNSET)
   const [show, setShow] = useState(TRUE)
   const { setPassphrase } = useContext(FileContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (passphrase1 === null || passphrase2 === null || passphrase1 !== passphrase2) {
+    if (passphrase1 !== passphrase2) {
       window.alert('Passphrases do not match')
     } else if (passphrase1.length < 1 || passphrase1.length > 64) {
       window.alert('Passphrase length must be between 1 and 64 characters')
@@ -46,10 +46,11 @@ export default function AskPassphrase ({ header, message, isEncryption, setAskin
   }
 
   const handleCancel = () => {
-    setPassphrase1(prevStat => null)
-    setPassphrase2(prevStat => null)
+    setPassphrase1(prevStat => UNSET)
+    setPassphrase2(prevStat => UNSET)
     setShow(prevStat => FALSE)
     setAskingPassphrase(prevStat => UNSET)
+    onClose()
     if (!isEncryption) {
       setIsReadyForDownloading(prevStat => FALSE)
     } else {
@@ -79,8 +80,12 @@ export default function AskPassphrase ({ header, message, isEncryption, setAskin
                 <span className={styles.message}>{message}</span>
               </div>
               <form className={styles.form}>
-                <div className='col-md-12 mb-3 '>
-                  <label htmlFor='inputPassword1' className='form-label'>Passphrase</label>
+                <div className='col-md-12'>
+                  <label
+                    htmlFor='inputPassword1'
+                    className={styles.label + ' form-label'}
+                  >Passphrase
+                  </label>
                   <input
                     type='password'
                     className={styles.input + ' form-control'}
@@ -91,8 +96,12 @@ export default function AskPassphrase ({ header, message, isEncryption, setAskin
                 </div>
                 {isEncryption
                   ? (
-                    <div className='col-md-12'>
-                      <label htmlFor='inputPassword2' className='form-label'>Retype passphrase</label>
+                    <div className='col-md-12 mt-2'>
+                      <label
+                        htmlFor='inputPassword2'
+                        className={styles.label + ' form-label'}
+                      >Retype passphrase
+                      </label>
                       <input
                         type='password'
                         className={styles.input + ' form-control'}

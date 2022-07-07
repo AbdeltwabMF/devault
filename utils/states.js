@@ -1,6 +1,6 @@
-const UNSET = 0
-const TRUE = 1
-const FALSE = 2
+const UNSET = null
+const TRUE = 0
+const FALSE = 1
 
 export {
   UNSET,

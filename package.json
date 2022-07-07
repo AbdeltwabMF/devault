@@ -14,11 +14,15 @@
     "build2": "next build && next export",
     "start": "next start",
     "test": "jest",
-    "test-coverage": "jest --coverage",
+    "coverage": "jest --coverage",
     "deploy": "./scripts/deploy.sh",
-    "check": "remark . --quiet --frail",
-    "format": "remark . --quiet --frail --output",
-    "lint": "next lint"
+    "md:fix": "remark . --quiet --frail --output",
+    "sol:lint": "solhint -f table contracts/**/*.sol",
+    "sol:fmt": "prettier --write contracts/**/*.sol",
+    "sol:test": "npx hardhat test",
+    "sol:test:coverage": "npx hardhat coverage",
+    "lint": "next lint",
+    "fix": "npm run md:fix && npm run sol:fmt && standard --fix"
   },
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",
@@ -47,6 +51,8 @@
     "eslint": "^8.19.0",
     "eslint-config-next": "^12.1.4",
     "jest": "^28.1.2",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
     "remark-cli": "^11.0.0",
     "remark-lint-emphasis-marker": "^3.1.1",
     "remark-lint-list-item-indent": "^3.1.1",

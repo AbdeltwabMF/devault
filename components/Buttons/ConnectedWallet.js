@@ -19,10 +19,10 @@ export default function ConnectedWallet ({ account, balance }) {
 
   const hadleDisconnection = async () => {
     setIsConnected(prevState => FALSE)
-    setProvider(prevState => null)
-    setSigner(prevState => null)
-    setAccount(prevState => null)
-    setContract(prevState => null)
+    setProvider(prevState => UNSET)
+    setSigner(prevState => UNSET)
+    setAccount(prevState => UNSET)
+    setContract(prevState => UNSET)
     setIsSwitched(prevState => UNSET)
     window.sessionStorage.removeItem('is_connected')
   }
@@ -65,7 +65,7 @@ export default function ConnectedWallet ({ account, balance }) {
               message='You are currently on the Ropsten network.'
             />
             )
-          : null}
+          : UNSET}
       <div className={styles.container}>
         <p className={styles.balance}>{truncateBalance(balance)}
           <span className={styles.eth}>ETH</span>

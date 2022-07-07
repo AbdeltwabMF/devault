@@ -13,14 +13,16 @@ export default function Footer () {
           <div className={'col col-lg-6 col-12 ' + `${styles.col1}`}>
             <Link href='https://github.com/abdeltwabmf/devault'>
               <a
-              className={styles.social}>
+                className={styles.social}
+              >
                 <FontAwesomeIcon icon={faGithub} className={styles.socialIcon} />
                 <span className={styles.label}>Source</span>
               </a>
             </Link>
             <Link href='https://t.me/+OeH3hX00HqxmZDc8'>
               <a
-              className={styles.social}>
+                className={styles.social}
+              >
                 <FontAwesomeIcon icon={faTelegram} className={styles.socialIcon} />
                 <span className={styles.label}>Join</span>
               </a>
