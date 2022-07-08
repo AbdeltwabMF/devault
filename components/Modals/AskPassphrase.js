@@ -14,7 +14,7 @@ export default function AskPassphrase (props) {
   const { setPassphrase } = useContext(FileContext)
   const { header, message, isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading, onClose } = props
 
-  const handleSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault()
 
     if (passphrase1 !== passphrase2) {
@@ -33,7 +33,7 @@ export default function AskPassphrase (props) {
     }
   }
 
-  const handlePassphrase1 = (e) => {
+  const passphrase1Handler = (e) => {
     console.log('Passphrase', e.target.value)
     setPassphrase1(prevStat => e.target.value)
     if (!isEncryption) {
@@ -41,12 +41,12 @@ export default function AskPassphrase (props) {
     }
   }
 
-  const handlePassphrase2 = (e) => {
+  const passphrase2Handler = (e) => {
     console.log('Retype passphrase', e.target.value)
     setPassphrase2(prevStat => e.target.value)
   }
 
-  const handleCancel = () => {
+  const cancelHandle = () => {
     setPassphrase1(prevStat => UNSET)
     setPassphrase2(prevStat => UNSET)
     setShow(prevStat => FALSE)
@@ -92,7 +92,7 @@ export default function AskPassphrase (props) {
                     className={styles.input + ' form-control'}
                     required
                     id='inputPassword1'
-                    onChange={handlePassphrase1}
+                    onChange={passphrase1Handler}
                   />
                 </div>
                 {isEncryption
@@ -108,7 +108,7 @@ export default function AskPassphrase (props) {
                         className={styles.input + ' form-control'}
                         required
                         id='inputPassword2'
-                        onChange={handlePassphrase2}
+                        onChange={passphrase2Handler}
                       />
                     </div>)
                   : <></>}
@@ -116,14 +116,14 @@ export default function AskPassphrase (props) {
                   <button
                     type='submit'
                     className={styles.upload + ' btn btn-primary'}
-                    onClick={handleSubmit}
+                    onClick={submitHandler}
                   >{isEncryption ? 'Upload' : 'Download'}
                   </button>
                   <button
                     type='button'
                     className={styles.close + ' btn btn-danger'}
                     data-bs-dismiss='modal'
-                    onClick={handleCancel}
+                    onClick={cancelHandle}
                   >Cancel
                   </button>
                 </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfo } from '@fortawesome/free-solid-svg-icons'
+import { faShare } from '@fortawesome/free-solid-svg-icons'
 
 import { TRUE, FALSE } from '../../utils/states'
 
@@ -11,7 +11,7 @@ export default function InfoModal (props) {
   const [show, setShow] = useState(TRUE)
   const { header, message, buttonText, buttonAction, onClose, setToAddress, toAddress } = props
 
-  const handleCancel = () => {
+  const cancelHandler = () => {
     setShow(prevStat => FALSE)
     onClose()
   }
@@ -33,7 +33,7 @@ export default function InfoModal (props) {
         <div className={'modal-content ' + styles.content}>
           <div className={'modal-body ' + styles.body}>
             <FontAwesomeIcon
-              icon={faInfo}
+              icon={faShare}
               size='2x'
               className={styles.icon}
             />
@@ -64,7 +64,7 @@ export default function InfoModal (props) {
                   type='button'
                   className={styles.close + ' btn btn-danger'}
                   data-bs-dismiss='modal'
-                  onClick={handleCancel}
+                  onClick={cancelHandler}
                 >Close
                 </button>
               </div>

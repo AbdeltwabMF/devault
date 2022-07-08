@@ -11,7 +11,7 @@ export default function SpinnerModal (props) {
   const [show, setShow] = useState(TRUE)
   const { header, message, buttonText, buttonAction, onClose } = props
 
-  const handleCancel = () => {
+  const cancelHandler = () => {
     setShow(prevStat => FALSE)
     onClose()
   }
@@ -47,7 +47,7 @@ export default function SpinnerModal (props) {
                 type='button'
                 className={styles.close + ' btn btn-danger'}
                 data-bs-dismiss='modal'
-                onClick={handleCancel}
+                onClick={cancelHandler}
               >Cancel
               </button>
             </div>
