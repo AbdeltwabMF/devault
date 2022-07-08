@@ -20,6 +20,7 @@ import NoFilesAddedYet from '../components/AssistantPages/NoFilesAddedYet'
 import HorizontalDivider from '../components/Dividers/HorizontalDivider'
 import SpinnerModal from '../components/Modals/SpinnerModal'
 import ErrorModal from '../components/Modals/ErrorModal'
+import Pagination from '../components/Pagination/Pagination'
 
 import getIpfs from '../utils/getIpfs'
 import { encryptAES256, decryptAES256 } from '../utils/cryptoHandlers'
@@ -35,6 +36,7 @@ import { concat } from 'uint8arrays/concat'
 
 export const FileContext = createContext()
 export const ProcessContext = createContext()
+export const PagingContext = createContext()
 
 export default function Vault () {
   const {
@@ -48,12 +50,12 @@ export default function Vault () {
 
   const [files, setFiles] = useState([])
 
-  const [fileBuffer, setFileBuffer] = useState(null)
-  const [name, setName] = useState('')
-  const [type, setType] = useState('')
-  const [size, setSize] = useState(0)
-  const [hash, setHash] = useState('')
-  const [passphrase, setPassphrase] = useState('')
+  const [fileBuffer, setFileBuffer] = useState(UNSET)
+  const [name, setName] = useState(UNSET)
+  const [type, setType] = useState(UNSET)
+  const [size, setSize] = useState(UNSET)
+  const [hash, setHash] = useState(UNSET)
+  const [passphrase, setPassphrase] = useState(UNSET)
 
   const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(UNSET)
   const [isUploading, setIsUploading] = useState(UNSET)
@@ -63,6 +65,13 @@ export default function Vault () {
   const [isSameSession, setIsSameSession] = useState(UNSET)
   const [isReadyForTransaction, setIsReadyForTransaction] = useState(UNSET)
   const [isAuthorized, setIsAuthorized] = useState(UNSET)
+
+  const [pageSize, setPageSize] = useState(10)
+  const [firstIndex, setFirstIndex] = useState(0)
+  const [lastIndex, setLastIndex] = useState(pageSize)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalFiles, setTotalFiles] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
 
   const processContextValue = {
     isRequestingPassphrase,
@@ -96,6 +105,21 @@ export default function Vault () {
     setHash,
     passphrase,
     setPassphrase
+  }
+
+  const pagingContextValue = {
+    currentPage,
+    setCurrentPage,
+    firstIndex,
+    setFirstIndex,
+    lastIndex,
+    setLastIndex,
+    totalPages,
+    setTotalPages,
+    pageSize,
+    setPageSize,
+    totalFiles,
+    setTotalFiles
   }
 
   useEffect(() => {
@@ -136,11 +160,14 @@ export default function Vault () {
         const _options = { from: account }
 
         try {
+          const _filesCount = await contract.getFilesCount(_options)
+          setTotalFiles(prevState => _filesCount)
+          setTotalPages(prevState => Math.ceil(_filesCount / pageSize))
+
+          console.log(firstIndex, lastIndex)
           console.log('Fetching files metadata form blockchain...')
-          const _files = await contract.getFiles(_options)
-          if (_files.length > 0) {
-            setFiles(prevState => _files)
-          }
+          const _files = await contract.getRangeOfFiles(firstIndex, lastIndex, _options)
+          setFiles(prevState => _files)
         } catch (err) {
           console.log('Cannot fetch files from blockchain:', err.message)
           // TODO: handle error
@@ -148,7 +175,7 @@ export default function Vault () {
       }
     }
     fetchFilesMetadata()
-  }, [isTransactionSucceed, chainId, account, contract, isAuthorized])
+  }, [isTransactionSucceed, chainId, account, contract, isAuthorized, firstIndex, lastIndex, currentPage])
 
   useEffect(() => {
     if (isReadyForTransaction === TRUE) {
@@ -263,70 +290,75 @@ export default function Vault () {
       </Head>
       <FileContext.Provider value={fileContextValue}>
         <ProcessContext.Provider value={processContextValue}>
-          {isAuthorized === FALSE && (
-            <ErrorModal
-              header='You are not authorized to access this page'
-              message='Please connect with your Ethereum wallet.'
-            />)}
+          <PagingContext.Provider value={pagingContextValue}>
+            {isAuthorized === FALSE && (
+              <ErrorModal
+                header='You are not authorized to access this page'
+                message='Please connect with your Ethereum wallet.'
+              />)}
 
-          {isUploading === TRUE
-            ? (
-              <SpinnerModal
-                header='Encrypting & Uploading your file...'
-                message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
-                closeOrCancel='Cancel'
-              />
-              )
-            : <></>}
+            {isUploading === TRUE
+              ? (
+                <SpinnerModal
+                  header='Encrypting & Uploading your file...'
+                  message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
+                  closeOrCancel='Cancel'
+                />
+                )
+              : <></>}
 
-          {isReadyForTransaction === TRUE
-            ? (
-              <SpinnerModal
-                header='Confirming your transaction...'
-                message='Choose to confirm or reject the transaction.'
-                closeOrCancel='Cancel'
-              />
-              )
-            : <></>}
+            {isReadyForTransaction === TRUE
+              ? (
+                <SpinnerModal
+                  header='Confirming your transaction...'
+                  message='Choose to confirm or reject the transaction.'
+                  closeOrCancel='Cancel'
+                />
+                )
+              : <></>}
 
-          {isDownloading === TRUE
-            ? (
-              <SpinnerModal
-                header='Retrieving & decrypting your file...'
-                message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
-                closeOrCancel='Cancel'
-              />
-              )
-            : <></>}
-          <div className={styles.main}>
-            <div className={'container ' + styles.container}>
-              <div className={'row ' + styles.row}>
-                {account && contract
-                  ? (
-                    <>
-                      <div className={'col col-12 ' + styles.searchUpload}>
-                        <SearchFiles />
-                        <UploadForm
-                          captureFiles={captureFiles}
-                          uploadFiles={uploadFiles}
-                        />
-                      </div>
-                      <HorizontalDivider />
-                      <div className='col col-12 '>
-                        {files.length > 0
-                          ? (
-                            <FilesList
-                              files={files}
-                              downloadFiles={downloadFiles}
-                            />)
-                          : <><NoFilesAddedYet /></>}
-                      </div>
-                    </>
-                    )
-                  : <></>}
+            {isDownloading === TRUE
+              ? (
+                <SpinnerModal
+                  header='Retrieving & decrypting your file...'
+                  message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
+                  closeOrCancel='Cancel'
+                />
+                )
+              : <></>}
+            <div className={styles.main}>
+              <div className={'container ' + styles.container}>
+                <div className={'row ' + styles.row}>
+                  {account && contract
+                    ? (
+                      <>
+                        <div className={'col col-12 ' + styles.searchUpload}>
+                          <SearchFiles />
+                          <UploadForm
+                            captureFiles={captureFiles}
+                            uploadFiles={uploadFiles}
+                          />
+                        </div>
+                        <HorizontalDivider />
+                        <div className='col col-12 '>
+                          {files.length > 0
+                            ? (
+                              <>
+                                <FilesList
+                                  files={files}
+                                  downloadFiles={downloadFiles}
+                                />
+                                <Pagination />
+                              </>)
+                            : <><NoFilesAddedYet /></>}
+                        </div>
+                      </>
+                      )
+                    : <></>}
+                </div>
               </div>
             </div>
-          </div>
+          </PagingContext.Provider>
         </ProcessContext.Provider>
       </FileContext.Provider>
     </>

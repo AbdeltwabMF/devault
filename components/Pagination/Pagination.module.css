@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 1.5rem;
+}
+
+.button {
+  background-color: var(--color-primary-700, #0070f3);
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: none;
+  margin: 0.5rem;
+  padding: 0.2rem 0.8rem;
+}
+
+.button:hover,
+.button:active,
+.button:focus {
+  background-color: var(--color-primary-600, #0070f3);
+  box-shadow: none;
+}
+
+.next {
+  margin-right: 0.5rem;
+}
+
+.prev {
+  margin-left: 0.5rem;
+}
+
+.icon {
+  vertical-align: middle;
+}

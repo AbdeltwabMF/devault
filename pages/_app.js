@@ -10,19 +10,20 @@ import { ethers } from 'ethers'
 import Storage from '../artifacts/contracts/storage.sol/Storage.json'
 import Layout from '../components/Layouts/Layout'
 import { getLibrary } from '../utils/getLibrary'
+import { UNSET } from '../utils/states'
 
 export const Web3Context = createContext()
 
 export default function App ({ Component, pageProps }) {
-  const [provider, setProvider] = useState(null)
-  const [contract, setContract] = useState(null)
-  const [chainId, setChainId] = useState(null)
-  const [signer, setSigner] = useState(null)
-  const [account, setAccount] = useState(null)
-  const [blockNumber, setBlockNumber] = useState(null)
-  const [balance, setBalance] = useState(null)
+  const [provider, setProvider] = useState(UNSET)
+  const [contract, setContract] = useState(UNSET)
+  const [chainId, setChainId] = useState(UNSET)
+  const [signer, setSigner] = useState(UNSET)
+  const [account, setAccount] = useState(UNSET)
+  const [blockNumber, setBlockNumber] = useState(UNSET)
+  const [balance, setBalance] = useState(UNSET)
   // 3 = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
-  const contractAddress = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
+  const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap.min.js')

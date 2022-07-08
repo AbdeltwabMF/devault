@@ -21,7 +21,7 @@ install_nvm() {
 	if [[ -f "$HOME"/.config/nvm/nvm.sh ]]; then
 		source "$HOME"/.config/nvm/nvm.sh
 		info "NVM is installed and loaded"
-		nvm install --lts >/dev/null 2>&1
+		nvm use 16 >/dev/null 2>&1
 		info "Now using node $(node -v) (npm $(npm -v))"
 	else
 		error "Couldn't install NVM, check the network"

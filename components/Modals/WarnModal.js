@@ -7,11 +7,12 @@ import { TRUE, FALSE } from '../../utils/states'
 
 import styles from './WarnModal.module.css'
 
-export default function WarnModal ({ header, message, buttonText, buttonAction }) {
+export default function WarnModal ({ header, message, buttonText, buttonAction, onClose }) {
   const [show, setShow] = useState(TRUE)
 
   const handleCancel = () => {
     setShow(prevStat => FALSE)
+    onClose()
   }
 
   return (

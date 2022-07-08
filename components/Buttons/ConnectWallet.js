@@ -2,13 +2,13 @@ import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet } from '@fortawesome/free-solid-svg-icons'
 
-import { TRUE, FALSE } from '../../utils/states'
+import { UNSET, TRUE, FALSE } from '../../utils/states'
 import isMetamaskError from '../../utils/isMetamaskError'
 
 import { Web3Context } from '../../pages/_app'
 import { ConnectionContext } from '../Navigation/Navbar'
 
-import SpinnerModal from '../Modals/SpinnerModal'
+import InfoModal from '../Modals/InfoModal'
 
 import styles from './ConnectWallet.module.css'
 
@@ -21,6 +21,10 @@ export default function ConnectWallet () {
     isMetamaskInstalled
   } = useContext(ConnectionContext)
   const { Initialize, chainId } = useContext(Web3Context)
+
+  const installMetamask = () => {
+    window.open('https://metamask.io/', '_blank')
+  }
 
   const handleConnection = async () => {
     console.log('Handle connection...')
@@ -55,13 +59,17 @@ export default function ConnectWallet () {
     <>
       {isMetamaskInstalled === FALSE
         ? (
-          <SpinnerModal
-            header='Metamask'
-            message='Please install Metamask to continue.'
-            type='error'
+          <InfoModal
+            header='Connect to Metamask'
+            message='Please install Metamask to continue'
+            buttonText='Install Metamask'
+            buttonAction={installMetamask}
+            onClose={() => {
+              setIsMetamaskInstalled(prevState => UNSET)
+            }}
           />
           )
-        : null}
+        : <></>}
       <button
         onClick={handleConnection}
         className={styles.button}

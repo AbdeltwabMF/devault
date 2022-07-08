@@ -33,6 +33,7 @@
   color: var(--color-info-300, #00b300);
   margin: 0;
   display: block;
+  font-size: 1.4rem;
   padding: 0.3em 1.2em 0.3em 0.7em;
   text-align: center;
 }
@@ -82,4 +83,24 @@
 .action:focus {
   background-color: var(--color-success-300, #00a699);
   box-shadow: none;
+}
+
+@media (max-width: 468px) {
+  .content {
+    min-width: 80%;
+    max-width: 80%;
+  }
+
+  .header {
+    font-size: 1rem;
+  }
+
+  .message {
+    font-size: 0.7rem;
+  }
+
+  .close,
+  .action {
+    font-size: 0.8rem;
+  }
 }

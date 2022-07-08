@@ -53,7 +53,7 @@
 
 *If you have any improvements, do not hesitate to post an [issue](https://github.com/AbdeltwabMF/devault/issues/new/choose) or make a [pull request](https://github.com/AbdeltwabMF/devault/pulls).*
 
-_Your support is very much appreciated!_ [star on GitHub](https://github.com/AbdeltwabMF/devault/stargazers)
+*Your support is very much appreciated!* [star on GitHub](https://github.com/AbdeltwabMF/devault/stargazers)
 
 <p align="center">
     :warning: Active development. Unstable. Breaking changes. You get the point. :warning:

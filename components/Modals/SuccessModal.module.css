@@ -85,3 +85,23 @@
   background-color: var(--color-success-300, #00a699);
   box-shadow: none;
 }
+
+@media (max-width: 468px) {
+  .content {
+    min-width: 80%;
+    max-width: 80%;
+  }
+
+  .header {
+    font-size: 1rem;
+  }
+
+  .message {
+    font-size: 0.7rem;
+  }
+
+  .close,
+  .action {
+    font-size: 0.8rem;
+  }
+}
