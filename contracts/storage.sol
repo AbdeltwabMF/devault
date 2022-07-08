@@ -9,8 +9,8 @@ pragma solidity ^0.8.4;
 
 contract Storage {
     /**
-        * @dev The file's metadata.
-        */
+     * @dev The file's metadata.
+     */
     mapping(address => File[]) private _ownerToFiles;
     mapping(address => mapping(string => uint256)) private _hashToIndex;
 
@@ -52,12 +52,12 @@ contract Storage {
     );
 
     /**
-        * @dev Creates a new file.
-        * @param _name Name of the file.
-        * @param _size Size of the file.
-        * @param _mimeType Mime type of the file.
-        * @param _hash Hash of the file.
-        */
+     * @dev Creates a new file.
+     * @param _name Name of the file.
+     * @param _size Size of the file.
+     * @param _mimeType Mime type of the file.
+     * @param _hash Hash of the file.
+     */
     function storeFile(
         string memory _name,
         uint256 _size,
@@ -107,31 +107,28 @@ contract Storage {
     }
 
     /**
-        * @dev Count the number of files owned by the caller.
-        */
+     * @dev Count the number of files owned by the caller.
+     */
     function getFilesCount() public view returns (uint256) {
         return _ownerToFiles[msg.sender].length;
     }
 
     /**
-        * @dev Returns the file at the given index.
-        * @param _index The index of the file to return. -- 1-based indexing
-        */
+     * @dev Returns the file at the given index.
+     * @param _index The index of the file to return. -- 1-based indexing
+     */
     function getSingleFile(uint256 _index) public view returns (File memory) {
         require(
             _index <= _ownerToFiles[msg.sender].length,
             "Index out of bounds"
         );
-        require(
-            _index > 0,
-            "Index must be greater than 0"
-        );
+        require(_index > 0, "Index must be greater than 0");
         return _ownerToFiles[msg.sender][_index - 1];
     }
 
     /**
-        * @dev Returns an array of files owned by the caller.
-        */
+     * @dev Returns an array of files owned by the caller.
+     */
     function getAllFiles() public view returns (File[] memory) {
         require(_ownerToFiles[msg.sender].length > 0, "No files found!");
         return _ownerToFiles[msg.sender];
@@ -146,10 +143,10 @@ contract Storage {
     }
 
     /**
-        * @dev Share a file with another user.
-        * @param _startIndex the start index of the range of files to return. -- 1-based indexing
-        * @param _endIndex the end index of the range of files to return. -- 1-based indexing
-        */
+     * @dev Share a file with another user.
+     * @param _startIndex the start index of the range of files to return. -- 1-based indexing
+     * @param _endIndex the end index of the range of files to return. -- 1-based indexing
+     */
     function getRangeOfFiles(uint256 _startIndex, uint256 _endIndex)
         public
         view
@@ -178,19 +175,16 @@ contract Storage {
     }
 
     /**
-        * @dev Share a file with another user.
-        * @param _to The address of the user to share the file with.
-        * @param _index The index of the file to be shared. -- 1-based indexing
-        */
+     * @dev Share a file with another user.
+     * @param _to The address of the user to share the file with.
+     * @param _index The index of the file to be shared. -- 1-based indexing
+     */
     function shareFile(address _to, uint256 _index) public {
         require(
             _index <= _ownerToFiles[msg.sender].length,
             "Index out of bounds!"
         );
-        require(
-            _index > 0,
-            "Index must be greater than 0!"
-        );
+        require(_index > 0, "Index must be greater than 0!");
 
         require(_to != msg.sender, "To yourself!");
         require(_to != address(0), "Null address!");
@@ -215,18 +209,15 @@ contract Storage {
     }
 
     /**
-        * @dev Removes a file from the storage.
-        * @param _index The index of the file to be removed. -- 1-based indexing
-        */
+     * @dev Removes a file from the storage.
+     * @param _index The index of the file to be removed. -- 1-based indexing
+     */
     function removeFile(uint256 _index) public {
         require(
             _index <= _ownerToFiles[msg.sender].length,
             "Index out of bounds!"
         );
-        require(
-            _index > 0,
-            "Index must be greater than 0!"
-        );
+        require(_index > 0, "Index must be greater than 0!");
 
         File memory file = _ownerToFiles[msg.sender][_index - 1];
 
@@ -253,9 +244,9 @@ contract Storage {
     }
 
     /**
-        * @dev Is the file with the given hash stored in the storage?
-        * @param _hash The hash of the file to check.
-        */
+     * @dev Is the file with the given hash stored in the storage?
+     * @param _hash The hash of the file to check.
+     */
     function isFilePresent(string memory _hash) public view returns (bool) {
         return _hashToIndex[msg.sender][_hash] != 0;
     }
