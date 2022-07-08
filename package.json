@@ -34,7 +34,7 @@
     "hardhat": "^2.9.3",
     "ipfs-http-client": "^57.0.3",
     "it-all": "^1.0.6",
-    "next": "^12.1.6",
+    "next": "^12.2.1",
     "react": "^18.1.0",
     "react-dom": "^18.2.0",
     "uint8arrays": "^3.0.0"
