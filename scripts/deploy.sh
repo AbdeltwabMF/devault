@@ -91,6 +91,13 @@ main() {
 	if [[ "$network" != "localhost" ]]; then
 		if (( $2 == 1 )); then
 			deploy_to_network
+			while [[ $smart_contract_address == "" ]]; do
+				error "Unable to deploy the smart contracts to $network network"
+				warn "Please check your node is up and running and try again"
+				info "Retrying in 5 seconds..."
+				sleep 5s
+				deploy_to_network
+			done
 			info "A new smart contract address: $(decorize_address) is cached"
 			sed -i "s/SMART_CONTRACT_ADDRESS_ROPSTEN.*$/SMART_CONTRACT_ADDRESS_ROPSTEN=$smart_contract_address/" ./.env
 		else
