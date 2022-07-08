@@ -65,6 +65,7 @@ export default function Vault () {
   const [isSameSession, setIsSameSession] = useState(UNSET)
   const [isReadyForTransaction, setIsReadyForTransaction] = useState(UNSET)
   const [isAuthorized, setIsAuthorized] = useState(UNSET)
+  const [isRemoving, setIsRemoving] = useState(UNSET)
 
   const [pageSize, setPageSize] = useState(10)
   const [firstIndex, setFirstIndex] = useState(0)
@@ -119,7 +120,37 @@ export default function Vault () {
     pageSize,
     setPageSize,
     totalFiles,
-    setTotalFiles
+    setTotalFiles,
+    isRemoving,
+    setIsRemoving
+  }
+
+  const shareFile = async (_address, _fileIndex) => {
+    const _options = {
+      from: account,
+      gasLimit: 3000000
+    }
+    try {
+      const res = await contract.shareFile(_address, _fileIndex, _options)
+      console.log(res)
+    } catch (err) {
+      console.log('Cannot share the file:', err.message)
+    }
+  }
+
+  const removeFile = async (_fileIndex) => {
+    const _options = {
+      from: account,
+      gasLimit: 3000000
+    }
+    try {
+      const res = await contract.removeFile(_fileIndex, _options)
+      setIsRemoving(prevState => TRUE)
+      console.log(res)
+    } catch (err) {
+      setIsRemoving(prevState => UNSET)
+      console.log('Cannot delete the file:', err.message)
+    }
   }
 
   useEffect(() => {
@@ -175,7 +206,7 @@ export default function Vault () {
       }
     }
     fetchFilesMetadata()
-  }, [isTransactionSucceed, chainId, account, contract, isAuthorized, firstIndex, lastIndex, currentPage])
+  }, [isTransactionSucceed, chainId, account, contract, isAuthorized, firstIndex, lastIndex, currentPage, isRemoving])
 
   useEffect(() => {
     if (isReadyForTransaction === TRUE) {
@@ -347,6 +378,8 @@ export default function Vault () {
                                 <FilesList
                                   files={files}
                                   downloadFiles={downloadFiles}
+                                  shareFile={shareFile}
+                                  removeFile={removeFile}
                                 />
                                 <Pagination />
                               </>)

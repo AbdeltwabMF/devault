@@ -1,22 +1,8 @@
-.tdName {
-  width: 12rem;
-}
-
-.tdSize {
-  width: 8rem;
-}
-
-.tdTime {
-  width: 6rem;
-}
-
 .tdDownload {
-  width: 6rem;
   text-align: right;
 }
 
 .tdAction {
-  width: 2rem;
   text-align: right;
 }
 
@@ -36,12 +22,16 @@
   padding: 0;
 }
 
-.name {
+.thName {
+  width: 26rem;
+}
+
+.tdName {
   align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 100%;
+  width: 26rem;
 }
 
 .nameText {
@@ -51,26 +41,40 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 100%;
 }
 
-.size {
+.thSize,
+.tdSize {
+  width: 8rem;
+}
+
+.tdSize {
   color: var(--color-primary-400, #d9d9d9);
   font-size: 1em;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
 }
 
-.time {
+.thTime,
+.tdTime {
+  width: 11rem;
+}
+
+.tdTime {
   color: var(--color-primary-400, #d9d9d9);
   font-size: 1em;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
+}
+
+.thAction,
+.tdAction {
+  width: 3rem;
 }
 
 .sortIcon {
@@ -85,28 +89,29 @@
   transition: box-shadow 0.1s ease-in-out;
 }
 
-.download button {
+.downloadButton {
   background-color: var(--color-grey-200, #fafafa);
   border: 0;
-  border-radius: 0.4rem;
   color: var(--color-grey-900, #666666);
-  padding: 0.3rem 1rem;
+  border-radius: 100%;
+  padding: 0;
+  width: 2.2rem;
+  height: 2.2rem;
 }
 
-.download button:hover {
+.downloadButton:hover {
   background-color: var(--color-grey-100, #fafafa);
   box-shadow: 0 0 0 1px #66666654;
   color: var(--color-grey-900, #666666);
 }
 
-.downloadText {
-  padding: 0;
-  color: var(--color-secondary-400, #00a699);
+.downloadIcon {
+  color: var(--color-primary-300, #00a699);
 }
 
-.downloadIcon {
-  color: var(--color-secondary-400, #00a699);
-  padding-right: 0.8rem;
+.thDownload,
+.tdDownload {
+  width: 3rem;
 }
 
 .actionIcon {
@@ -183,37 +188,32 @@
   padding-left: 0.8rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .tdSize,
   .tdTime,
   .thSize,
   .thTime {
     display: none;
   }
+}
 
-  .tdDownload,
-  .tdAction {
-    width: fit-content;
+@media (max-width: 568px) {
+  .thName,
+  .tdName {
+    width: 16rem;
   }
 }
 
-@media (max-width: 999px) {
-  .downloadText {
-    display: none;
-  }
-
-  .downloadIcon {
-    padding-right: 0;
-  }
-
-  .download button {
-    border-radius: 100%;
-    padding: 0;
-    width: 2.2rem;
-    height: 2.2rem;
-  }
-
+@media (max-width: 416px) {
+  .thName,
   .tdName {
-    width: 6rem;
+    width: 10rem;
+  }
+}
+
+@media (max-width: 316px) {
+  .thName,
+  .tdName {
+    width: 7rem;
   }
 }
