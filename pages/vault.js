@@ -5,7 +5,7 @@
   *         and then instantiating the contract.
   *         and then calling its methods.
   * @author Abd El-Twab M. Fakhry <abdeltwab.m.fakhry at gmail dot com>
-  * @version v0.2.2
+  * @version v0.3.0
   * @license GPL-3.0
   */
 
