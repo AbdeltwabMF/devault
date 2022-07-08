@@ -1,22 +1,22 @@
 .tdName {
-  max-width: 12rem;
+  width: 12rem;
 }
 
 .tdSize {
-  max-width: 8rem;
+  width: 8rem;
 }
 
 .tdTime {
-  max-width: 6rem;
+  width: 6rem;
 }
 
 .tdDownload {
-  max-width: 6rem;
+  width: 6rem;
   text-align: right;
 }
 
 .tdAction {
-  max-width: 2rem;
+  width: 2rem;
   text-align: right;
 }
 
@@ -214,6 +214,6 @@
   }
 
   .tdName {
-    max-width: 6rem;
+    width: 6rem;
   }
 }
