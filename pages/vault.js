@@ -68,8 +68,8 @@ export default function Vault () {
   const [isRemoving, setIsRemoving] = useState(UNSET)
 
   const [pageSize, setPageSize] = useState(10)
-  const [firstIndex, setFirstIndex] = useState(0)
-  const [lastIndex, setLastIndex] = useState(pageSize)
+  const [firstIndex, setFirstIndex] = useState(1)
+  const [lastIndex, setLastIndex] = useState(1 + pageSize)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalFiles, setTotalFiles] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
@@ -269,11 +269,21 @@ export default function Vault () {
       console.log('Encrypting & Uploading file to IPFS...')
       setIsUploading(prevState => TRUE)
 
+      const _options = { from: account, gasLimit: 3000000 }
       const ipfs = getIpfs()
       // fileBuffer = ArrayBuffer
       const encryptedFileBufferWordArray = encryptAES256(fileBuffer, passphrase)
 
       const response = await ipfs.add(Buffer.from(encryptedFileBufferWordArray))
+
+      console.log('response:', response.path)
+      const isFilePresent = await contract.isFilePresent(response.path, _options)
+      console.log(isFilePresent)
+      if (isFilePresent) {
+        console.log('File already exists')
+        setIsUploading(prevState => FALSE)
+        return
+      }
 
       setSize(prevState => response.size)
       setHash(prevState => response.path)
