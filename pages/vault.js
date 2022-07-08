@@ -60,12 +60,13 @@ export default function Vault () {
   const [isRequestingPassphrase, setIsRequestingPassphrase] = useState(UNSET)
   const [isUploading, setIsUploading] = useState(UNSET)
   const [isUploadCanceled, setIsUploadCanceled] = useState(UNSET)
-  const [isTransactionSucceed, setIsTransactionSucceed] = useState(UNSET)
   const [isDownloading, setIsDownloading] = useState(UNSET)
   const [isSameSession, setIsSameSession] = useState(UNSET)
+  const [isTransactionSucceed, setIsTransactionSucceed] = useState(UNSET)
   const [isReadyForTransaction, setIsReadyForTransaction] = useState(UNSET)
   const [isAuthorized, setIsAuthorized] = useState(UNSET)
-  const [isRemoving, setIsRemoving] = useState(UNSET)
+  const [isRemoved, setIsRemoved] = useState(UNSET)
+  const [isShared, setIsShared] = useState(UNSET)
 
   const [pageSize, setPageSize] = useState(10)
   const [firstIndex, setFirstIndex] = useState(1)
@@ -90,7 +91,11 @@ export default function Vault () {
     isSameSession,
     setIsSameSession,
     isReadyForTransaction,
-    setIsReadyForTransaction
+    setIsReadyForTransaction,
+    isRemoved,
+    setIsRemoved,
+    isShared,
+    setIsShared
   }
 
   const fileContextValue = {
@@ -120,9 +125,7 @@ export default function Vault () {
     pageSize,
     setPageSize,
     totalFiles,
-    setTotalFiles,
-    isRemoving,
-    setIsRemoving
+    setTotalFiles
   }
 
   const shareFile = async (_address, _fileIndex) => {
@@ -133,8 +136,12 @@ export default function Vault () {
     try {
       const res = await contract.shareFile(_address, _fileIndex, _options)
       console.log(res)
+      setIsTransactionSucceed(prevState => TRUE)
+      setIsShared(prevState => TRUE)
     } catch (err) {
       console.log('Cannot share the file:', err.message)
+      setIsTransactionSucceed(prevState => FALSE)
+      setIsShared(prevState => FALSE)
     }
   }
 
@@ -145,11 +152,13 @@ export default function Vault () {
     }
     try {
       const res = await contract.removeFile(_fileIndex, _options)
-      setIsRemoving(prevState => TRUE)
       console.log(res)
+      setIsTransactionSucceed(prevState => TRUE)
+      setIsRemoved(prevState => TRUE)
     } catch (err) {
-      setIsRemoving(prevState => UNSET)
       console.log('Cannot delete the file:', err.message)
+      setIsTransactionSucceed(prevState => FALSE)
+      setIsRemoved(prevState => FALSE)
     }
   }
 
@@ -206,7 +215,7 @@ export default function Vault () {
       }
     }
     fetchFilesMetadata()
-  }, [isTransactionSucceed, chainId, account, contract, isAuthorized, firstIndex, lastIndex, currentPage, isRemoving])
+  }, [isTransactionSucceed, chainId, account, contract, isAuthorized, firstIndex, lastIndex, currentPage, isRemoved, isShared, pageSize])
 
   useEffect(() => {
     if (isReadyForTransaction === TRUE) {
@@ -336,6 +345,8 @@ export default function Vault () {
               <ErrorModal
                 header='You are not authorized to access this page'
                 message='Please connect with your Ethereum wallet.'
+                onClose={() => {
+                }}
               />)}
 
             {isUploading === TRUE
@@ -343,7 +354,7 @@ export default function Vault () {
                 <SpinnerModal
                   header='Encrypting & Uploading your file...'
                   message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
-                  closeOrCancel='Cancel'
+                  onClose={() => setIsUploading(prevState => FALSE)}
                 />
                 )
               : <></>}
@@ -352,8 +363,11 @@ export default function Vault () {
               ? (
                 <SpinnerModal
                   header='Confirming your transaction...'
-                  message='Choose to confirm or reject the transaction.'
-                  closeOrCancel='Cancel'
+                  message='Choose to confirm  transaction.'
+                  onClose={() => {
+                    isReadyForTransaction(prevState => FALSE)
+                  }}
+
                 />
                 )
               : <></>}
@@ -363,7 +377,9 @@ export default function Vault () {
                 <SpinnerModal
                   header='Retrieving & decrypting your file...'
                   message={size > 10000000 ? 'This may take several minutes...' : 'This may take a few seconds...'}
-                  closeOrCancel='Cancel'
+                  onClose={() => {
+                    isDownloading(prevState => FALSE)
+                  }}
                 />
                 )
               : <></>}

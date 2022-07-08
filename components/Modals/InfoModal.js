@@ -7,10 +7,11 @@ import { TRUE, FALSE } from '../../utils/states'
 
 import styles from './InfoModal.module.css'
 
-export default function InfoModal ({ header, message, buttonText, buttonAction, onClose }) {
+export default function InfoModal (props) {
   const [show, setShow] = useState(TRUE)
+  const { header, message, buttonText, buttonAction, onClose } = props
 
-  const handleCancel = () => {
+  const cancelHandle = () => {
     setShow(prevStat => FALSE)
     onClose()
   }
@@ -45,7 +46,7 @@ export default function InfoModal ({ header, message, buttonText, buttonAction, 
                 type='button'
                 className={styles.close + ' btn btn-danger'}
                 data-bs-dismiss='modal'
-                onClick={handleCancel}
+                onClick={cancelHandle}
               >Close
               </button>
             </div>

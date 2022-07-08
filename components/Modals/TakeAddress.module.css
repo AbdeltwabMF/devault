@@ -39,7 +39,7 @@
 }
 
 .message {
-  color: var(--color-info-500, #00b300);
+  color: var(--color-info-600, #00b300);
   letter-spacing: 1px;
   margin: 0.5rem;
   display: block;
@@ -51,6 +51,7 @@
   display: flex;
   justify-content: center;
   padding-bottom: 0;
+  margin-top: 1rem;
   width: 100%;
 }
 
@@ -71,16 +72,16 @@
   background-color: var(--color-error-600, #ff0000);
 }
 
-.action {
+.share {
   background-color: var(--color-success-400, #00a699);
   border: none;
   border-radius: 0.5rem;
   box-shadow: none;
 }
 
-.action:hover,
-.action:active,
-.action:focus {
+.share:hover,
+.share:active,
+.share:focus {
   background-color: var(--color-success-300, #00a699);
   box-shadow: none;
 }

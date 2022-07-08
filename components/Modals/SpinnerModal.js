@@ -7,10 +7,11 @@ import { TRUE, FALSE } from '../../utils/states'
 
 import styles from './SpinnerModal.module.css'
 
-export default function SpinnerModal ({ header, message, buttonText, buttonAction, onClose }) {
+export default function SpinnerModal (props) {
   const [show, setShow] = useState(TRUE)
+  const { header, message, buttonText, buttonAction, onClose } = props
 
-  const handleCancel = () => {
+  const cancelHandler = () => {
     setShow(prevStat => FALSE)
     onClose()
   }
@@ -46,7 +47,7 @@ export default function SpinnerModal ({ header, message, buttonText, buttonActio
                 type='button'
                 className={styles.close + ' btn btn-danger'}
                 data-bs-dismiss='modal'
-                onClick={handleCancel}
+                onClick={cancelHandler}
               >Cancel
               </button>
             </div>

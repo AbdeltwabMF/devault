@@ -9,23 +9,33 @@ import formatBytes from '../../utils/convertByteToHumanReadable'
 
 import WarnModal from '../Modals/WarnModal'
 import AskPassphrase from '../Modals/AskPassphrase'
-
-import { PagingContext } from '../../pages/vault'
+import TakeAddress from '../Modals/TakeAddress'
+import InfoModal from '../Modals/InfoModal'
+import { ProcessContext } from '../../pages/vault'
 
 import styles from './FilesList.module.css'
 
 export default function FilesList (props) {
   const { files, downloadFiles, shareFile, removeFile } = props
+  const {
+    setIsRemoved,
+    setIsShared,
+    isRemoved,
+    isShared,
+    isTransactionSucceed,
+    setIsTransactionSucceed
+  } = useContext(ProcessContext)
 
-  const { setIsRemoving } = useContext(PagingContext)
   const [askingPassphrase, setAskingPassphrase] = useState(UNSET)
   const [selectedFileIndex, setSelectedFileIndex] = useState(UNSET)
   const [selectedFileName, setSelectedFileName] = useState(UNSET)
   const [selectedFileHash, setSelectedFileHash] = useState(UNSET)
   const [selectedFileType, setSelectedFileType] = useState(UNSET)
   const [selectedFileSize, setSelectedFileSize] = useState(UNSET)
-  const [areYouSureRemovingFile, setAreYouSureRemovingFile] = useState(UNSET)
   const [isReadyForDownloading, setIsReadyForDownloading] = useState(UNSET)
+  const [isReadyToShare, setIsReadyToShare] = useState(UNSET)
+  const [isReadyForRemoving, setIsReadyForRemoving] = useState(UNSET)
+  const [toAddress, setToAddress] = useState(UNSET)
 
   useEffect(() => {
     if (askingPassphrase === FALSE && isReadyForDownloading === TRUE) {
@@ -35,16 +45,27 @@ export default function FilesList (props) {
     }
   }, [askingPassphrase, isReadyForDownloading, selectedFileName, selectedFileHash, selectedFileSize, downloadFiles, selectedFileType])
 
-  const getPassphrase = () => {
-    setAskingPassphrase(prevState => TRUE)
+  const removeFileHandler = () => {
+    try {
+      console.log('selected file index:', selectedFileIndex)
+      removeFile(selectedFileIndex)
+    } catch (err) {
+      console.log('Can not delete the file', err)
+    } finally {
+      setIsReadyForRemoving(prevState => UNSET)
+    }
   }
 
-  const removeFileHandler = () => {
-    setIsRemoving(prevState => UNSET)
-    console.log(selectedFileIndex)
-    removeFile(selectedFileIndex)
-    setIsRemoving(prevState => TRUE)
-    setAreYouSureRemovingFile(prevState => UNSET)
+  const shareFileHandler = (e) => {
+    e.preventDefault()
+    try {
+      console.log('selected file index:', selectedFileIndex)
+      shareFile(toAddress, selectedFileIndex)
+    } catch (err) {
+      console.log('Can not share file', err.message)
+    } finally {
+      setIsReadyToShare(prevState => UNSET)
+    }
   }
 
   return (
@@ -55,17 +76,60 @@ export default function FilesList (props) {
         setIsReadyForDownloading={setIsReadyForDownloading}
         header='Decrypt file'
         message='Enter your passphrase to decrypt the file'
+        onClose={() => setAskingPassphrase(prevState => UNSET)}
                                     />}
-      {areYouSureRemovingFile === TRUE && <WarnModal
+
+      {isReadyForRemoving === TRUE && <WarnModal
         header='Remove file permanently'
         message='Are you sure you want to remove this file?'
         buttonText='Remove'
         buttonAction={removeFileHandler}
         onClose={() => {
-          setIsRemoving(prevState => FALSE)
-          setAreYouSureRemovingFile(prevState => FALSE)
+          setIsRemoved(prevState => UNSET)
+          setIsReadyForRemoving(prevState => UNSET)
         }}
-                                          />}
+                                      />}
+
+      {isReadyToShare === TRUE && <TakeAddress
+        header='Share file'
+        message='Enter the address you want to share the file with'
+        buttonText='Share'
+        buttonAction={shareFileHandler}
+        setToAddress={setToAddress}
+        toAddress={toAddress}
+        onClose={() => {
+          setIsShared(prevState => UNSET)
+          setIsReadyToShare(prevState => UNSET)
+        }}
+                                  />}
+
+      {isRemoved === TRUE && isTransactionSucceed === TRUE && <InfoModal
+        header='File removed'
+        message={`File ${selectedFileName} has been removed`}
+        buttonText='OK'
+        buttonAction={() => {
+          setIsRemoved(prevState => UNSET)
+          setIsTransactionSucceed(prevState => UNSET)
+        }}
+        onClose={() => {
+          setIsRemoved(prevState => UNSET)
+          setIsTransactionSucceed(prevState => UNSET)
+        }}
+                                                              />}
+
+      {isShared === TRUE && isTransactionSucceed === TRUE && <InfoModal
+        header='File shared'
+        message={`File ${selectedFileName} has been shared to address ${toAddress}`}
+        buttonText='OK'
+        buttonAction={() => {
+          setIsShared(prevState => UNSET)
+          setIsTransactionSucceed(prevState => UNSET)
+        }}
+        onClose={() => {
+          setIsShared(prevState => UNSET)
+          setIsTransactionSucceed(prevState => UNSET)
+        }}
+                                                             />}
 
       <table className={'table table-borderless ' + `${styles.table}`}>
         <thead className={styles.tableHead} key='fs'>
@@ -102,7 +166,7 @@ export default function FilesList (props) {
               <td className={styles.tdDownload}>
                 <button
                   onClick={() => {
-                    getPassphrase()
+                    setAskingPassphrase(prevState => TRUE)
                     setSelectedFileName(prevState => file.name)
                     setSelectedFileHash(prevState => file.hash)
                     setSelectedFileType(prevState => file.mimeType)
@@ -131,7 +195,11 @@ export default function FilesList (props) {
                     <li>
                       <button
                         className={styles.actionDropdownItem + ' dropdown-item'}
-                        onClick={() => shareFile('', file.hash)}
+                        onClick={() => {
+                          setIsReadyToShare(prevState => TRUE)
+                          setSelectedFileName(prevState => file.name)
+                          setSelectedFileIndex(prevState => file.index)
+                        }}
                       >
                         <FontAwesomeIcon
                           icon={faShareNodes}
@@ -147,10 +215,9 @@ export default function FilesList (props) {
                       <button
                         className={styles.actionDropdownItem + ' dropdown-item'}
                         onClick={() => {
-                          console.log(file.index)
-                          console.log(files.length)
+                          setIsReadyForRemoving(prevState => TRUE)
+                          setSelectedFileName(prevState => file.name)
                           setSelectedFileIndex(prevState => file.index)
-                          setAreYouSureRemovingFile(prevState => TRUE)
                         }}
                       >
                         <FontAwesomeIcon

@@ -23,7 +23,7 @@ export default function App ({ Component, pageProps }) {
   const [blockNumber, setBlockNumber] = useState(UNSET)
   const [balance, setBalance] = useState(UNSET)
   // 3 = '0x449fE6C97F4AD1d4769971F9fb1C33a64856AB73'
-  const contractAddress = '0x37655359fD67c7A91C7D7501EEee7b087A486780'
+  const contractAddress = '0xc4AB3262299Eee50417C1936558d1dD9849b6Ce5'
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap.min.js')
