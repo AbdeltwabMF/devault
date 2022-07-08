@@ -13,7 +13,7 @@ it('should return 1 -- the count of the files', async function () {
   // wait until the transaction is mined
   await storeFileTx.wait()
 
-  const filesCount = await storage.getFilesLength()
+  const filesCount = await storage.getFilesCount()
 
   expect(parseInt(filesCount, 10)).to.equal(1)
 })
@@ -29,7 +29,7 @@ it('should return 0 -- the count of the files', async function () {
   // wait until the transaction is mined
   await storeFileTx.wait()
 
-  const filesCount = await storage.getFilesLength()
+  const filesCount = await storage.getFilesCount()
 
   expect(parseInt(filesCount, 10)).to.equal(1)
 })
