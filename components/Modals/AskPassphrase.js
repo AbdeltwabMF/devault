@@ -7,11 +7,12 @@ import { UNSET, TRUE, FALSE } from '../../utils/states'
 import { FileContext } from '../../pages/vault'
 import styles from './AskPassphrase.module.css'
 
-export default function AskPassphrase ({ header, message, isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading, onClose }) {
+export default function AskPassphrase (props) {
   const [passphrase1, setPassphrase1] = useState(UNSET)
   const [passphrase2, setPassphrase2] = useState(UNSET)
   const [show, setShow] = useState(TRUE)
   const { setPassphrase } = useContext(FileContext)
+  const { header, message, isEncryption, setAskingPassphrase, setIsReadyForDownloading, setIsReadyForUploading, onClose } = props
 
   const handleSubmit = (e) => {
     e.preventDefault()

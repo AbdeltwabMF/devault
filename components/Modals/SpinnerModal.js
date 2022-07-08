@@ -7,8 +7,9 @@ import { TRUE, FALSE } from '../../utils/states'
 
 import styles from './SpinnerModal.module.css'
 
-export default function SpinnerModal ({ header, message, buttonText, buttonAction, onClose }) {
+export default function SpinnerModal (props) {
   const [show, setShow] = useState(TRUE)
+  const { header, message, buttonText, buttonAction, onClose } = props
 
   const handleCancel = () => {
     setShow(prevStat => FALSE)
