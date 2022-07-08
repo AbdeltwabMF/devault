@@ -40,6 +40,7 @@ export default function FilesList (props) {
   }
 
   const removeFileHandler = () => {
+    setIsRemoving(prevState => UNSET)
     console.log(selectedFileIndex)
     removeFile(selectedFileIndex)
     setIsRemoving(prevState => TRUE)
@@ -146,6 +147,8 @@ export default function FilesList (props) {
                       <button
                         className={styles.actionDropdownItem + ' dropdown-item'}
                         onClick={() => {
+                          console.log(file.index)
+                          console.log(files.length)
                           setSelectedFileIndex(prevState => file.index)
                           setAreYouSureRemovingFile(prevState => TRUE)
                         }}

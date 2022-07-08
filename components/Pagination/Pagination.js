@@ -33,10 +33,13 @@ export default function Pagination () {
           icon={faChevronLeft}
           className={styles.icon}
         />
-        <span className={styles.prev}>prev</span>
+        <span className={styles.prev}>Prev</span>
       </button>
+      <span className={styles.ratio}>
+        {currentPage} of {totalPages}
+      </span>
       <button className={styles.button} onClick={nextPageHandler}>
-        <span className={styles.next}>next</span>
+        <span className={styles.next}>Next</span>
         <FontAwesomeIcon
           icon={faChevronRight}
           className={styles.icon}
