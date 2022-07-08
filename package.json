@@ -1,7 +1,7 @@
 {
   "name": "devault",
   "description": "A Blockchain-based self-hosted decentralized encrypted cloud storage",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "license": "GPLv3",
   "author": {
