@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.4;
 
 /**
@@ -8,13 +8,11 @@ pragma solidity ^0.8.4;
  */
 
 contract Storage {
-    /**
-     * @dev Map the owner address to array of files
-     */
     mapping(address => File[]) private _ownerToFiles;
     mapping(address => mapping(string => uint256)) private _hashToIndex;
 
     struct File {
+        uint256 index;
         string name;
         uint256 size;
         string mimeType;
@@ -23,6 +21,7 @@ contract Storage {
     }
 
     event FileStored(
+        uint256 index,
         string name,
         uint256 size,
         string mimeType,
@@ -32,6 +31,7 @@ contract Storage {
 
     event FileShared(
         address to,
+        uint256 index,
         string name,
         uint256 size,
         string mimeType,
@@ -40,6 +40,7 @@ contract Storage {
     );
 
     event FileRemoved(
+        uint256 index,
         string name,
         uint256 size,
         string mimeType,
@@ -47,13 +48,6 @@ contract Storage {
         uint256 uploadTime
     );
 
-    /**
-     * @dev Store a file
-     * @param _name Name of the file
-     * @param _size Size of the file
-     * @param _mimeType Mime type of the file
-     * @param _hash Hash of the file
-     */
     function storeFile(
         string memory _name,
         uint256 _size,
@@ -78,6 +72,7 @@ contract Storage {
         require(bytes(_hash).length > 0, "Hash cannot be empty");
 
         File memory newFile = File(
+            _ownerToFiles[msg.sender].length,
             _name,
             _size,
             _mimeType,
@@ -90,21 +85,21 @@ contract Storage {
             _ownerToFiles[msg.sender].push(newFile);
             _hashToIndex[msg.sender][_hash] = _ownerToFiles[msg.sender].length;
 
-            emit FileStored(_name, _size, _mimeType, _hash, block.timestamp);
+            emit FileStored(
+                newFile.index,
+                newFile.name,
+                newFile.size,
+                newFile.mimeType,
+                newFile.hash,
+                newFile.uploadTime
+            );
         }
     }
 
-    /**
-     * @dev Get the files count of the owner
-     */
     function getFilesCount() public view returns (uint256) {
         return _ownerToFiles[msg.sender].length;
     }
 
-    /**
-     * @dev Get only one file
-     * @param _index Index of the file
-     */
     function getSingleFile(uint256 _index) public view returns (File memory) {
         require(
             _index < _ownerToFiles[msg.sender].length,
@@ -113,9 +108,6 @@ contract Storage {
         return _ownerToFiles[msg.sender][_index];
     }
 
-    /**
-     * @dev Get all files of the owner
-     */
     function getAllFiles() public view returns (File[] memory) {
         require(_ownerToFiles[msg.sender].length > 0, "No files found!");
         return _ownerToFiles[msg.sender];
@@ -153,11 +145,6 @@ contract Storage {
         return result;
     }
 
-    /**
-     * @dev Share a file with another address
-     * @param _index Index of the file
-     * @param _to Address to share the file with
-     */
     function shareFile(address _to, uint256 _index) public {
         require(
             _index < _ownerToFiles[msg.sender].length,
@@ -175,19 +162,16 @@ contract Storage {
 
             emit FileShared(
                 _to,
+                file.index,
                 file.name,
                 file.size,
                 file.mimeType,
                 file.hash,
-                block.timestamp
+                file.uploadTime
             );
         }
     }
 
-    /**
-     * @dev Remove a file
-     * @param _index Index of the file
-     */
     function removeFile(uint256 _index) public {
         require(
             _index < _ownerToFiles[msg.sender].length,
@@ -195,21 +179,25 @@ contract Storage {
         );
 
         File memory file = _ownerToFiles[msg.sender][_index];
+
         _ownerToFiles[msg.sender][_index] = _ownerToFiles[msg.sender][
             _ownerToFiles[msg.sender].length - 1
         ];
+        _ownerToFiles[msg.sender][_index].index = _index;
         _ownerToFiles[msg.sender].pop();
+
         _hashToIndex[msg.sender][
             _ownerToFiles[msg.sender][_index].hash
         ] = _hashToIndex[msg.sender][file.hash];
         _hashToIndex[msg.sender][file.hash] = 0;
 
         emit FileRemoved(
+            file.index,
             file.name,
             file.size,
             file.mimeType,
             file.hash,
-            block.timestamp
+            file.uploadTime
         );
     }
 }

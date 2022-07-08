@@ -1,22 +1,30 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort, faDownload, faEllipsisVertical, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 import FontAwesomeMimeTypeIcon from '../Icons/FontAwesomeMimeTypeIcon'
 import { UNSET, TRUE, FALSE } from '../../utils/states'
 import calculateTimeFromUnixStamp from '../../utils/calculateTimeFromUnixStamp'
 import formatBytes from '../../utils/convertByteToHumanReadable'
 
+import WarnModal from '../Modals/WarnModal'
 import AskPassphrase from '../Modals/AskPassphrase'
+
+import { PagingContext } from '../../pages/vault'
 
 import styles from './FilesList.module.css'
 
-export default function FilesList ({ files, downloadFiles }) {
+export default function FilesList (props) {
+  const { files, downloadFiles, shareFile, removeFile } = props
+
+  const { setIsRemoving } = useContext(PagingContext)
   const [askingPassphrase, setAskingPassphrase] = useState(UNSET)
+  const [selectedFileIndex, setSelectedFileIndex] = useState(UNSET)
   const [selectedFileName, setSelectedFileName] = useState(UNSET)
   const [selectedFileHash, setSelectedFileHash] = useState(UNSET)
   const [selectedFileType, setSelectedFileType] = useState(UNSET)
   const [selectedFileSize, setSelectedFileSize] = useState(UNSET)
+  const [areYouSureRemovingFile, setAreYouSureRemovingFile] = useState(UNSET)
   const [isReadyForDownloading, setIsReadyForDownloading] = useState(UNSET)
 
   useEffect(() => {
@@ -31,6 +39,13 @@ export default function FilesList ({ files, downloadFiles }) {
     setAskingPassphrase(prevState => TRUE)
   }
 
+  const removeFileHandler = () => {
+    console.log(selectedFileIndex)
+    removeFile(selectedFileIndex)
+    setIsRemoving(prevState => TRUE)
+    setAreYouSureRemovingFile(prevState => UNSET)
+  }
+
   return (
     <>
       {askingPassphrase === TRUE && <AskPassphrase
@@ -40,10 +55,21 @@ export default function FilesList ({ files, downloadFiles }) {
         header='Decrypt file'
         message='Enter your passphrase to decrypt the file'
                                     />}
+      {areYouSureRemovingFile === TRUE && <WarnModal
+        header='Remove file permanently'
+        message='Are you sure you want to remove this file?'
+        buttonText='Remove'
+        buttonAction={removeFileHandler}
+        onClose={() => {
+          setIsRemoving(prevState => FALSE)
+          setAreYouSureRemovingFile(prevState => FALSE)
+        }}
+                                          />}
+
       <table className={'table table-borderless ' + `${styles.table}`}>
         <thead className={styles.tableHead} key='fs'>
           <tr>
-            <th>
+            <th className={styles.thName}>
               <span className={styles.headerText}>Name</span>
               <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </th>
@@ -55,18 +81,16 @@ export default function FilesList ({ files, downloadFiles }) {
               <span className={styles.headerText}>Last Modified</span>
               <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </th>
-            <th />
-            <th />
+            <th className={styles.thDownload} />
+            <th className={styles.thAction} />
           </tr>
         </thead>
         {files && files.map((file, index) => (
           <tbody className={styles.tableBody} key={index}>
             <tr className={styles.tableRow}>
-              <td className={styles.tdName}>
-                <div className={styles.name} title={file.name}>
-                  <FontAwesomeMimeTypeIcon mimeType={file.mimeType} />
-                  <span className={styles.nameText}>{file.name}</span>
-                </div>
+              <td className={styles.tdName} title={file.name}>
+                <FontAwesomeMimeTypeIcon mimeType={file.mimeType} />
+                <span className={styles.nameText}>{file.name}</span>
               </td>
               <td className={styles.tdSize}>
                 <div className={styles.size}>{formatBytes(file.size)}</div>
@@ -75,19 +99,18 @@ export default function FilesList ({ files, downloadFiles }) {
                 <div className={styles.time}>{calculateTimeFromUnixStamp(file.uploadTime)}</div>
               </td>
               <td className={styles.tdDownload}>
-                <div className={styles.download}>
-                  <button onClick={() => {
+                <button
+                  onClick={() => {
                     getPassphrase()
                     setSelectedFileName(prevState => file.name)
                     setSelectedFileHash(prevState => file.hash)
                     setSelectedFileType(prevState => file.mimeType)
                     setSelectedFileSize(prevState => file.size)
                   }}
-                  >
-                    <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
-                    <span className={styles.downloadText}>Download</span>
-                  </button>
-                </div>
+                  className={styles.downloadButton}
+                >
+                  <FontAwesomeIcon icon={faDownload} className={styles.downloadIcon} />
+                </button>
               </td>
               <td className={styles.tdAction}>
                 <div className={styles.actionDropdown + ' dropup-center dropup'}>
@@ -105,9 +128,9 @@ export default function FilesList ({ files, downloadFiles }) {
                     aria-labelledby='fileActions'
                   >
                     <li>
-                      <a
+                      <button
                         className={styles.actionDropdownItem + ' dropdown-item'}
-                        href='#'
+                        onClick={() => shareFile('', file.hash)}
                       >
                         <FontAwesomeIcon
                           icon={faShareNodes}
@@ -117,12 +140,15 @@ export default function FilesList ({ files, downloadFiles }) {
                         <span className={styles.shareText}>
                           Share
                         </span>
-                      </a>
+                      </button>
                     </li>
                     <li>
-                      <a
+                      <button
                         className={styles.actionDropdownItem + ' dropdown-item'}
-                        href='#'
+                        onClick={() => {
+                          setSelectedFileIndex(prevState => file.index)
+                          setAreYouSureRemovingFile(prevState => TRUE)
+                        }}
                       >
                         <FontAwesomeIcon
                           icon={faTrash}
@@ -132,7 +158,7 @@ export default function FilesList ({ files, downloadFiles }) {
                         <span className={styles.deleteText}>
                           Delete
                         </span>
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </div>
