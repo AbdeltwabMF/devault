@@ -25,7 +25,7 @@
     "fix": "npm run md:fix && npm run sol:fmt && standard --fix"
   },
   "dependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.6",
+    "@nomiclabs/hardhat-ethers": "^2.1.0",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "crypto-js": "^4.1.1",
