@@ -49,6 +49,20 @@
     </a>
 </div>
 
+<div align="center">
+    <a href="https://youtu.be/gR_tQAkn674">
+        Youtube Video
+    </a>
+    &middot;
+    <a href="https://faucet.egorfine.com/">
+        Ropsten Faucet
+    </a>
+    &middot;
+    <a href="https://devault.vercel.app/">
+        Live Instance
+    </a>
+</div>
+
 <br />
 
 *If you have any improvements, do not hesitate to post an [issue](https://github.com/AbdeltwabMF/devault/issues/new/choose) or make a [pull request](https://github.com/AbdeltwabMF/devault/pulls).*
@@ -375,16 +389,17 @@ npm run build2
 ## :rescue\_worker\_helmet: Future Work
 
 *   \[ ] Arabic version.
-*   \[ ] Secure file sharing.
 *   \[x] Client-side encryption/decryption.
-*   \[x] Download a file.
 *   \[x] Upload a file.
+*   \[x] Delete a file.
+*   \[x] Download a file.
+*   \[x] Secure file sharing.
 *   \[ ] Delete selected files.
 *   \[ ] Search files.
 *   \[ ] Change passphrase.
-*   \[ ] Remove account.
+*   \[ ] Compress files before uploading.
 *   \[ ] Sort files based on (date, size, name...)
-*   \[ ] Upload files.
+*   \[ ] Upload folders.
 *   \[ ] Download selected files.
 
 ## :hearts: Community
