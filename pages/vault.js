@@ -363,7 +363,7 @@ export default function Vault () {
               ? (
                 <SpinnerModal
                   header='Confirming your transaction...'
-                  message='Choose to confirm  transaction.'
+                  message='This may take several minutes...'
                   onClose={() => {
                     isReadyForTransaction(prevState => FALSE)
                   }}
