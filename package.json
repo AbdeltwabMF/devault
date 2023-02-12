@@ -27,9 +27,9 @@
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.1.0",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",
-    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.5",
     "crypto-js": "^4.1.1",
-    "ethereum-waffle": "^3.4.4",
+    "ethereum-waffle": "^4.0.9",
     "ethers": "^5.6.9",
     "hardhat": "^2.10.1",
     "ipfs-http-client": "^57.0.3",
@@ -60,7 +60,7 @@
     "remark-lint-strong-marker": "^3.1.1",
     "remark-preset-lint-consistent": "^5.1.1",
     "remark-preset-lint-recommended": "^6.1.2",
-    "solidity-coverage": "^0.7.0"
+    "solidity-coverage": "^0.8.2"
   },
   "remarkConfig": {
     "settings": {
